@@ -19,9 +19,8 @@ as.data.frame.profile.nls <-
 predy <- function(sp, vv) predict(sp, vv)$y
 
 ## A lattice-based plot method for profile.nls objects
-## FIXME use pmax.int and pmin.int after 2.5.0 is released
 plot.profile.nls <-
-    function (x, levels = sqrt(qf(pmax(0, pmin(1, conf)), 1, df[2])),
+    function (x, levels = sqrt(qf(pmax.int(0, pmin.int(1, conf)), 1, df[2])),
               conf = c(50, 80, 90, 95, 99)/100, 
               absVal = TRUE, ...) 
 {
@@ -71,7 +70,7 @@ ad <- function(xc, yc)
 tauij <- function(xy, lev) lev * cos(xy$x + outer(xy$y/2, c(-1, 1)))
 
 ## safe arc-cosine
-sacos <- function(x) acos(pmax(-0.999, pmin(0.999, x)))
+sacos <- function(x) acos(pmax.int(-0.999, pmin.int(0.999, x)))
 
 cont <- function(sij, sji, levels, nseg = 101)
 {
@@ -90,7 +89,8 @@ cont <- function(sij, sji, levels, nseg = 101)
 
 splom.profile.nls <-
     function (x, data, ## unused - only for compatibility with generic
-              levels = sqrt(df[1] * qf(pmax(0, pmin(1, conf)), df[1], df[2])),
+              levels = sqrt(df[1] *
+              qf(pmax.int(0, pmin.int(1, conf)), df[1], df[2])),
               conf = c(50, 80, 90, 95, 99)/100, ...)
 {
     df <- attr(x, "summary")$df

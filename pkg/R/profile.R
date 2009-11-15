@@ -99,7 +99,7 @@ splom.profile.nls <-
     spl <- lapply(x, function(x)
                   interpSpline(x$par.vals[, attr(x, "parameters")$par], x$tau))
     bsp <- lapply(spl, backSpline)
-    pfr <- do.call("cbind", lapply(bsp, predy, c(-mlev, mlev)))
+    pfr <- do.call(cbind, lapply(bsp, predy, c(-mlev, mlev)))
     fr <- as.data.frame(x)
     nms <- names(spl)
     for (nm in nms) fr[[nm]] <- predy(spl[[nm]], fr[[nm]])

@@ -1,0 +1,16 @@
+.PS
+G1: circle "$f_{1}$";
+move right;
+G2: circle "$f_{2}$";
+move down from G1;
+G3: circle "$f_{3}$";
+move down from G2;
+G4: circle "$f_{4}$";
+move down from G3;
+G5: circle "$f_{5}$";
+arrow -> from G1.e to G2.w "$\theta_{1}$" above;
+arrow -> from G1.s to G3.n "$\theta_{2}$ " rjust;
+arrow -> from G3.e to G4.w "$\theta_{3}$" above;
+arrow -> from G3.sw to G5.nw "$\theta_{4}$ " rjust;
+arrow <- from G3.se to G5.ne "$\theta_{5}$ " rjust;
+.PE

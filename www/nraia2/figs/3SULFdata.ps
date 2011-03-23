@@ -1,0 +1,199 @@
+%!PS-Adobe-1.0
+%%Creator: bates
+%%CreationDate: Thu Jun  4 14:41:37 1987
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 252.0 522.0 540.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 100 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+/AT		% add a text string. Stack: srot cex string
+  { /str exch def
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate
+    str show
+    neg rotate
+  } def
+
+/AST		% add text in Symbol font. Stack: (as for AT)
+  {
+    /Symbol F AT /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+%%Page: 1 1
+gsave newpath
+2109 3009 M 4383 3009 L 4383 5283 L 2109 5283 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+2156 4974 P
+2167 4740 P
+2178 4623 P
+2189 4506 P
+2211 4291 P
+2233 4135 P
+2277 3959 P
+2321 3842 P
+2409 3608 P
+2673 3256 P
+3201 3100 P
+4258 3062 P
+grestore
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3246 2711 (Time \(min\)) T
+0.5 90 1 1812 4145 (Sulfisoxazole concentration \() T
+90 1 (m) AST 90 1 (g/ml\)) AT
+2145 3011 M 2145 3057 L S
+2585 3011 M 2585 3057 L S
+3025 3011 M 3025 3057 L S
+3466 3011 M 3466 3057 L S
+3906 3011 M 3906 3057 L S
+4346 3011 M 4346 3057 L S
+2145 3011 M 4346 3011 L S
+0.5 0 1 2145 2891 (0) T
+0.5 0 1 2585 2891 (10) T
+0.5 0 1 3025 2891 (20) T
+0.5 0 1 3466 2891 (30) T
+0.5 0 1 3906 2891 (40) T
+0.5 0 1 4346 2891 (50) T
+2112 3061 M 2157 3061 L S
+2112 3505 M 2157 3505 L S
+2112 3949 M 2157 3949 L S
+2112 4392 M 2157 4392 L S
+2112 4836 M 2157 4836 L S
+2112 5279 M 2157 5279 L S
+2112 3061 M 2112 5279 L S
+0.5 90 1 1992 3061 (0) T
+0.5 90 1 1992 3505 (50) T
+0.5 90 1 1992 3949 (100) T
+0.5 90 1 1992 4392 (150) T
+0.5 90 1 1992 4836 (200) T
+0.5 90 1 1992 5279 (250) T
+grestore
+gsave newpath
+2109 3009 M 4383 3009 L 4383 5283 L 2109 5283 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+2112 5279 M
+2112 3011 L
+4380 3011 L
+4380 5279 L
+2112 5279 L
+S
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

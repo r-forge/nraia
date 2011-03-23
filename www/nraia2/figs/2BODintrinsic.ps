@@ -1,0 +1,525 @@
+%!PS-Adobe-1.0
+%%Creator: bates
+%%CreationDate: Mon Jul  6 14:43:11 1987
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 162.0 300.0 450.0 493.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 90 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+gsave newpath
+1619 2519 M 4501 2519 L 4501 5401 L 1619 5401 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+2667 3122 M
+4476 3505 L
+3418 4110 L
+1677 3769 L
+2667 3122 L
+gsave closepath 0.85 setgray fill newpath 0 setgray grestore
+S
+10 setlinewidth
+2606 3188 M
+2606 3188 L
+S
+2606 3188 M
+2606 3189 L
+S
+2606 3189 M
+2605 3189 L
+S
+2605 3189 M
+2605 3189 L
+S
+2605 3189 M
+2605 3189 L
+S
+2605 3189 M
+2605 3189 L
+S
+2605 3189 M
+2604 3189 L
+S
+2604 3189 M
+2603 3190 L
+S
+2603 3190 M
+2602 3190 L
+S
+2602 3190 M
+2599 3191 L
+S
+2599 3191 M
+2596 3193 L
+S
+2596 3193 M
+2592 3195 L
+S
+2592 3195 M
+2585 3198 L
+S
+2585 3198 M
+2576 3203 L
+S
+2576 3203 M
+2562 3209 L
+S
+2562 3209 M
+2543 3219 L
+S
+2543 3219 M
+2514 3234 L
+S
+2514 3234 M
+2475 3255 L
+S
+2475 3255 M
+2420 3286 L
+S
+2420 3286 M
+2348 3331 L
+S
+2348 3331 M
+2256 3392 L
+S
+2256 3392 M
+2151 3470 L
+S
+2151 3470 M
+2044 3557 L
+S
+2044 3557 M
+1952 3638 L
+S
+1952 3638 M
+1884 3701 L
+S
+1884 3701 M
+1842 3745 L
+S
+1842 3745 M
+1821 3771 L
+S
+1821 3771 M
+1813 3783 L
+S
+1813 3783 M
+1811 3787 L
+S
+1811 3787 M
+1810 3787 L
+S
+3412 4208 M
+3444 4181 L
+S
+3444 4181 M
+3480 4152 L
+S
+3480 4152 M
+3519 4120 L
+S
+3519 4120 M
+3562 4087 L
+S
+3562 4087 M
+3607 4052 L
+S
+3607 4052 M
+3654 4016 L
+S
+3654 4016 M
+3704 3979 L
+S
+3704 3979 M
+3754 3943 L
+S
+3754 3943 M
+3805 3907 L
+S
+3805 3907 M
+3856 3872 L
+S
+3856 3872 M
+3907 3839 L
+S
+3907 3839 M
+3956 3807 L
+S
+3956 3807 M
+4004 3777 L
+S
+4004 3777 M
+4050 3749 L
+S
+4050 3749 M
+4094 3724 L
+S
+4094 3724 M
+4135 3700 L
+S
+4135 3700 M
+4174 3678 L
+S
+4174 3678 M
+4211 3659 L
+S
+4211 3659 M
+4245 3641 L
+S
+4245 3641 M
+4277 3624 L
+S
+4277 3624 M
+4306 3609 L
+S
+4306 3609 M
+4333 3596 L
+S
+4333 3596 M
+4357 3584 L
+S
+4357 3584 M
+4380 3573 L
+S
+4380 3573 M
+4401 3564 L
+S
+4401 3564 M
+4420 3555 L
+S
+4420 3555 M
+4437 3547 L
+S
+4437 3547 M
+4452 3540 L
+S
+4452 3540 M
+4467 3533 L
+S
+4467 3533 M
+4479 3528 L
+S
+1810 3787 M
+2487 4061 L
+S
+2487 4061 M
+2487 4061 L
+S
+2487 4061 M
+2487 4061 L
+S
+2487 4061 M
+2487 4061 L
+S
+2487 4061 M
+2488 4061 L
+S
+2488 4061 M
+2488 4061 L
+S
+2488 4061 M
+2489 4061 L
+S
+2489 4061 M
+2491 4061 L
+S
+2491 4061 M
+2493 4061 L
+S
+2493 4061 M
+2496 4061 L
+S
+2496 4061 M
+2500 4062 L
+S
+2500 4062 M
+2505 4062 L
+S
+2505 4062 M
+2512 4063 L
+S
+2512 4063 M
+2520 4063 L
+S
+2520 4063 M
+2531 4064 L
+S
+2531 4064 M
+2545 4065 L
+S
+2545 4065 M
+2561 4067 L
+S
+2561 4067 M
+2581 4069 L
+S
+2581 4069 M
+2605 4072 L
+S
+2605 4072 M
+2633 4075 L
+S
+2633 4075 M
+2667 4079 L
+S
+2667 4079 M
+2705 4084 L
+S
+2705 4084 M
+2750 4091 L
+S
+2750 4091 M
+2802 4099 L
+S
+2802 4099 M
+2862 4108 L
+S
+2862 4108 M
+2931 4119 L
+S
+2931 4119 M
+3010 4132 L
+S
+3010 4132 M
+3101 4147 L
+S
+3101 4147 M
+3204 4165 L
+S
+3204 4165 M
+3321 4185 L
+S
+3430 4204 M
+3321 4185 L
+S
+2606 3188 M
+3317 3292 L
+S
+3317 3292 M
+3317 3292 L
+S
+3317 3292 M
+3317 3292 L
+S
+3317 3292 M
+3318 3292 L
+S
+3318 3292 M
+3318 3292 L
+S
+3318 3292 M
+3319 3292 L
+S
+3319 3292 M
+3321 3293 L
+S
+3321 3293 M
+3322 3293 L
+S
+3322 3293 M
+3324 3293 L
+S
+3324 3293 M
+3326 3294 L
+S
+3326 3294 M
+3329 3294 L
+S
+3329 3294 M
+3332 3295 L
+S
+3332 3295 M
+3337 3296 L
+S
+3337 3296 M
+3342 3297 L
+S
+3342 3297 M
+3349 3298 L
+S
+3349 3298 M
+3357 3300 L
+S
+3357 3300 M
+3367 3302 L
+S
+3367 3302 M
+3380 3304 L
+S
+3380 3304 M
+3395 3308 L
+S
+3395 3308 M
+3415 3312 L
+S
+3415 3312 M
+3439 3317 L
+S
+3439 3317 M
+3469 3323 L
+S
+3469 3323 M
+3507 3330 L
+S
+3507 3330 M
+3555 3340 L
+S
+3555 3340 M
+3615 3352 L
+S
+3615 3352 M
+3691 3368 L
+S
+3691 3368 M
+3788 3388 L
+S
+3788 3388 M
+3913 3413 L
+S
+3913 3413 M
+4077 3447 L
+S
+4077 3447 M
+4293 3491 L
+S
+4488 3531 M
+4293 3491 L
+S
+2713 3426 M
+3466 4496 L
+S
+5 setlinewidth
+(.) 1 Pchar
+2713 3426 P
+3466 4496 P
+3463 3831 P
+5 setlinewidth
+2713 3426 M
+3463 3831 L
+3466 4496 L
+S
+3391 3792 M
+3391 3919 L
+3463 3957 L
+S
+grestore
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0 0 1 2713 3426 (   h) ST (0) 0 sup
+/Times-Bold F 0 0 1 3466 4496 ( y) T /Helvetica F
+0 0 1 3463 3831 ( h) ST (1) 0 sup
+0 0 1 3463 3861 ( ^) T
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

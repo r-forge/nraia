@@ -1,0 +1,836 @@
+\appendix{Pseudocode for Computing Algorithms}
+
+At several points in this book we have described how to compute
+estimates and summary results.  To aid the reader in understanding the
+computing methods and to provide guidance in implementing them, we
+present pseudocode for the more important algorithms in this appendix.
+\section{Nonlinear Least Squares}
+
+The Gauss--Newton algorithm for nonlinear least squares with a
+relative offset convergence criterion can be expressed in pseudocode
+as:
+\begin{verbatim}
+initialize iteration counter(0) and step factor $\lambda=1$
+repeat \{
+    increment iteration counter
+    error exit if maximum number of iterations exceeded
+    evaluate residuals and derivatives
+    decompose derivatives as $\bQ \bR$
+    error exit if $\bR$ is computationally singular
+    overwrite residuals by $\bQ \trans \bz$
+    solve for $\bdelta$
+    evaluate convergence criterion
+    normal exit if (criterion $<$ tolerance)
+    repeat \{
+        evaluate residuals at $\theta+\lambda \bdelta$
+        break loop if ($S ( \btheta+\lambda \bdelta )S( \btheta )$)
+        halve $\lambda$
+        error exit if ($\lambda$ $<$ minimum allowed)
+    \}
+    overwrite $S( \btheta )$ with $S( \btheta+\lambda \bdelta )$
+    overwrite $\btheta$ with $\btheta+\lambda \bdelta$
+    double $\lambda$ to maximum of 1
+\}
+\end{verbatim}
+We implement this algorithm in three high level languages, {\bf
+S},\cite{beck:cham:wilk:1988},
+%\glossary{ Becker, R.A.}
+%\glossary{ Chambers, J.M.}
+%\glossary{ Wilks, A.R.}
+{\bf GAUSS}\cite{edle:jone:1986},
+%\glossary{ Edlefsen, L.E.}
+%\glossary{ Jones, S.D.}
+and {\bf SAS/IML}\cite{SAS:1985:iml} in the following subsections.
+
+\subsection{Implementation in {\bf S}}
+
+One of the fundamental issues to be resolved in any implementation of
+nonlinear algorithms is the method of packaging the model function and
+the independent variables.  In {\bf S} we can use default
+values for arguments of functions for this.  For example, we define
+the Michaelis--Menten model with the Puromycin data as:
+\begin{verbatim}
+Puromycin  function(theta = (205., 0.08), derivs = F,
+    conc = (0.02, 0.02, 0.06, 0.06, 0.11, 0.11, 0.22,
+    0.22, 0.56, 0.56, 1.1, 1.1), rate = (76., 47., 97.,
+    107., 123., 139., 159., 152., 191., 201., 207., 200.))
+\{
+    denom  theta[2] + conc
+    res  rate -- (theta[1] * conc/denom)
+    if(!derivs) return(res)
+    grad  matrix((conc/denom,  -- theta[1] * conc/denom\^{}2), ncol = 2)
+    list(residual = res, gradient = grad)
+\}
+\end{verbatim}
+
+
+The function {\bf Puromycin} has four arguments ({\bf theta},
+{\bf derivs}, {\bf conc}, and {\bf rate}) but the only arguments which
+are changed between calls are {\bf theta}, the model parameters, and
+{\bf derivs}, a logical value which indicates if derivatives
+are to be calculated.  Any actual arguments specified for these two
+formal arguments will override the default values.  Using
+{\bf conc}, the observed concentrations, and
+{\bf rate}, the observed reaction rates, as arguments is a
+convenient way of incorporating information about the observed
+response and the regressor variables with the expressions which define
+the residuals and the derivatives of the model function.
+
+The Gauss--Newton nonlinear least squares algorithm is also specified
+as a function with default arguments to specify characteristics such
+as the maximum number of iterations and the minimum step factor.  This
+function, which we call {\bf nlsfit}, is:
+\begin{verbatim}
+nlsfit  function(model, theta = eval(model[["theta"]]), maxiter = 25 * P,
+    minfactor = 1/2\^{}10, tolerance = 0.001, verbose = T)
+\{
+    resid  model(theta, derivs = F)
+    newssq  sum(resid\^{}2)
+    P  length(theta)
+    N  length(resid)
+    ndof  N -- P
+    mult  sqrt(ndof/P)
+    iteration  0
+    stepfactor  1.
+    repeat \{
+        iteration  iteration + 1
+        if(iteration $>$ maxiter)
+            stop("Maximum number of iterations exceeded")
+        oldssq  newssq
+        resgrad  model(theta, derivs = T)
+        qrstr  qr(resgrad\$gradient)
+        if(qrstr\$rank!=P) stop("Singular derivative matrix")
+        qrslv  qr.coefqty(qrstr, resgrad\$residual)
+        incr  qrslv\$coef
+        converge  mult * sqrt(sum(qrslv\$qty[1:P]\^{}2)
+            /sum(qrslv\$qty[ -- (1:P)]\^{}2))
+        if(verbose) cat(iteration, "$<$", converge, "$>$", incr, fill = T)
+        if(converge $<$ tolerance) break
+        repeat \{
+            trial  theta + stepfactor * incr
+            if(stepfactor $<$ minfactor)
+                stop("Step factor reduced below minimum")
+            newssq  sum(model(trial, derivs = F)\^{}2)
+            if(verbose) cat("  ", stepfactor,
+                "(", newssq, ")", trial, fill = T)
+            if(newssq $<$= oldssq) break
+            stepfactor  stepfactor/2
+        \}
+        stepfactor  min(1., 2 * stepfactor)
+        theta  trial
+    \}
+    list(model = model, coef = theta, qr = qrstr,
+        residuals = resgrad\$residual, criterion = converge)
+\}
+\end{verbatim}
+
+
+The name {\bf nlsfit} is chosen to correspond to
+{\bf lsfit}, the {\bf S} function for fitting
+linear regression models.  Furthermore, the object returned by
+{\bf nlsfit} is similar to the object returned by {\bf lsfit}, so that
+other functions in {\bf S} for
+summarizing the results of a linear least squares fit can be used for
+linear approximation summaries of the nonlinear least squares fit.
+
+The {\bf S} code very closely follows the pseudocode given
+above.  An initial evaluation of the residuals at the starting values
+for {\bf theta} is used to set the sum of squares for later
+comparisons.  The length of this residual vector is the number of
+observations, {\bf n}, which, along with the number of
+parameters, {\bf p}, is used to calculate a multiplier,
+{\bf mult}, for the convergence criterion.  The
+{\bf S} function {{\bf qr} performs the $QR$
+decomposition of a matrix, and the function {\bf qr.coefqty}
+returns both the coefficient vector, which is $\bdelta$ in our case,
+and $\bQ \trans \by$, which is $\bQ \trans \bz$ in our case.  The
+convergence criterion is calculated from the sum of squares of the
+first $P$ elements of $\bQ \trans \bz$ (using the notation {\bf 1:P},
+and the sum of squares of everything but the first $P$ elements [using the
+notation {\bf -(1:P)}.
+
+If the argument {\bf verbose} has the value T (true),
+diagnostic output is produced by the function {bf cat}
+during each iteration of the outer loop and each iteration of the
+inner loop.  Diagnostic output for the Puromycin data appears as:
+\begin{verbatim}
+PUR.out <- nlsfit(Puromycin)
+1 < 2.8046 > 8.02889 -0.0171078
+     1.0000 ( 1205.66 ) 213.029 0.0628922
+2 < 0.204279 > -0.425519 0.00109553
+     1.0000 ( 1195.48 ) 212.603 0.0639878
+3 < 0.0103471 > 0.0720588 0.000120553
+     1.0000 ( 1195.45 ) 212.675 0.0641083
+4 < 0.00100142 > 0.0075058 1.17256e-05
+     1.0000 ( 1195.45 ) 212.683 0.06412
+5 < 9.65585e-05 > 0.000725621 1.13078e-06
+\end{verbatim}
+
+The output from the outer loop consists of the iteration numbers at
+the left margin, followed by the convergence criterion, in angle
+brackets, followed by the requested increment.  The output from the
+inner loop is indented and consists of the step factor, $\lambda$,
+followed by the residual sum of squares, in parentheses, followed by
+the parameter values.
+
+\subsection{Implementation in GAUSS}
+
+The principal input to the GAUSS {\bf lsfit}
+procedure (proc) is the model function, which we code as in the
+{\bf S} implementation, with two notable differences.
+First, the residuals and the derivative matrix are returned as an $N
+\times ( P+1 )$ matrix, because the current version of GAUSS
+(1.49b, revision 19) allows a proc to return only one matrix.  Second,
+the raw data are specified as global variables so that they are
+available for other purposes.  With these conditions, we define the
+Michaelis--Menten model with the Puromycin data as:
+\begin{verbatim}
+P\_MYCIN.PRG;
+let conc = .02 .02 .06 .06 .11 .11 .22 .22 .56 .56 1.1 1.1 ;
+let rate =  76  47  97 107 123 139 159 152 191 201 207 200 ;
+proc p\_mycin( theta, derivs);
+    local denom, resid, grad;
+    denom = theta[2,1] + conc;
+    resid  = rate  -- (  theta[1,1] *  conc./denom );
+    if not derivs;
+        retp(resid);
+    endif;
+    grad = conc./denom \~{} --theta[1,1] * conc./denom .\^{}2;
+    retp(resid\~{}grad);
+endp;
+
+\end{verbatim}
+
+The GAUSS procedure {\bf nlsfit} is similar to the {\bf S} routine, but
+because GAUSS has no facilities for defining default arguments, we
+include the number of iterations,
+the minimum step factor, and the tolerance in the calling sequence.  The
+procedure {\bf nlsfit} returns the $P+2$ vector
+{\bf (theta$|$ssq$|$criterion)}, (the least squares estimates,
+the sum of squares, and the convergence criterion, which is awkward to
+compute outside the procedure).  If convergence is not achieved, an
+error code can be returned by using the error function.  Diagnostic
+output is written when {\bf verbose} is nonzero by calling
+the procedure {\bf diagnost}.  If desired, the residuals and
+derivative matrix could be returned to global variables by means of
+the {\bf carput} function.  The procedure is:
+\begin{verbatim}
+proc nlsfit(\&model, theta, maxiter, minstep, tol, verbose);
+local model:proc, mult, iter, stepsize, resgrad, res, incr, fullrank,
+    criterion, ssq, trial, newssq;
+res  = model( theta, 1);
+nobs = rows( res );
+npar = rows( theta );
+mult = sqrt( (nobs -- npar) ./ npar );
+iter = 0;
+stepsize = 1;
+do while 1;
+    iter = iter + 1;
+    resgrad = model( theta, 1);
+    ssq = sumc( resgrad[ .,1] .\^{} 2 );
+    gosub qr\_solv;
+    pop incr;pop criterion;pop fullrank;
+    if verbose;
+        call diagnost(iter$|$"$<$"$|$criterion$|$"$>$"$|$incr,1);
+    endif;
+    if not fullrank;
+        "Singular derivative matrix";stop;
+    elseif criterion $<$ tol;
+        retp(theta$|$ssq$|$criterion);
+    elseif iter $>$ maxiter;
+        "Maximum iterations reached";stop;
+    endif;
+    gosub step;
+    pop stepsize;pop theta;
+endo;
+\end{verbatim}
+
+The subroutine {\bf step}, which follows, computes the new
+stepsize and
+the corresponding parameter  vector and  returns them  to the  body of
+the procedure, where they are ``pop''ed into the appropriate variables.
+The code is:
+\begin{verbatim}
+step:
+  do while 1;
+    trial = theta + stepsize * incr;
+    newssq = sumc( model( trial, 0 ) .\^{} 2 );
+    if verbose;
+        call diagnost(stepsize$|$"("$|$newssq$|$")"$|$trial,0);
+    endif;
+    if stepsize $<$ minstep;
+        " Stepsize reduced below minimum ";stop;
+    elseif newssq $<$ ssq;
+        return( trial, minc( 1 $|$ 2 * stepsize ));
+    endif;
+    stepsize = stepsize ./ 2 ;
+  endo;
+\end{verbatim}
+
+
+
+All that remains is to compute the $QR$ decomposition in the subroutine
+{\bf r\_solv}.  GAUSS implements $QR$
+decompositions via the LINPACK routines \cite{dong:bunc:mole:stew:1979}
+%\glossary{ Dongarra, J.J.}
+%\glossary{ Bunch, J.R.}
+%\glossary{ Moler, C.B.}
+%\glossary{ Stewart, G.W.}
+DQRDC and DQRSL using the
+oadexe/callexe\rm%
+(pp commands.  For iterative applications
+it is more efficient to preload the LINPACK code at startup:
+for discussion of how to do this, see the December 1986 GAUSS
+newsletter, vol. 2 no. 6.  Code for the subroutine
+r\_solv\rm%
+(pp using the allexe\rm%
+(pp command is:
+\begin{verbatim}
+qr\_solv:
+  local flag, qraux, work, jpvt, qty, dum, job, info, grad,
+      beta, karg, ss\_tan, ss\_orth;
+  flag = 1;
+  qraux = zeros( npar , 1 );
+  work = qraux;
+  jpvt = qraux;                      @--- all columns free ---@
+  qty = zeros( nobs, 1 );
+  dum = 0;
+  job = 100;                         @--- compute beta and Q'y---@
+  info = 0;
+  grad = submat(resgrad,0,seqa(2,1,npar))';
+  res = resgrad[ .,1];
+  callexe  gqrdc(grad,nobs,nobs,npar,qraux,jpvt,work,flag);
+  beta = abs( diag( trim( grad', 0, nobs--npar)));
+  karg = sumc( beta .$>$ beta[1,1] * 1e--14 );
+  beta = zeros(npar,1);
+  callexe
+      gqrsl(grad,nobs,nobs,karg,qraux,res,dum,qty,beta,dum,dum,job,info);
+  beta = submat( sortc( beta \~{} jpvt, 2 ), 0, 1 );
+  ss\_tan = sumc( submat( qty, seqa(1,1,npar), 0 ) .\^{}2 );
+  ss\_orth = sumc(submat( qty, seqa( npar+1, 1, nobs -- npar ), 0 ) .\^{}2 );
+  return( karg == npar, mult*sqrt(ss\_tan./ss\_orth) , beta);
+ endp;
+end;
+\end{verbatim}
+With these procs, the program
+lsfit(\&p\_mycin,205$|$.08,10,.001,.001,1)\rm%
+(pp; produces the
+output:
+\begin{verbatim}
+--------------Nonlinear estimation--------------
+ 
+Starting values:     205.00000000       0.08000000
+01 <    2.804604 >    8.028894   -0.017108
+    1.000000 ( 1205.661845 )  213.028894    0.062892
+02 <    0.204279 >   -0.425519    0.001096
+    1.000000 ( 1195.477124 )  212.603375    0.063988
+03 <    0.010347 >    0.072059    0.000121
+    1.000000 ( 1195.449080 )  212.675434    0.064108
+04 <    0.001001 >    0.007506    0.000012
+    1.000000 ( 1195.448817 )  212.682940    0.064120
+05 <    0.000097 >    0.000726    0.000001
+\end{verbatim}
+
+\subsection{Implementation in SAS/IML}
+
+The principal input to the SAS/IML module
+lsfit\rm%
+(pp is the model function, which we code in a
+submodule called odel\rm%
+(pp.  This submodule includes the
+data and code for the residuals and the derivatives.  For the
+Michaelis--Menten model with the Puromycin data, we have:
+\begin{verbatim}
+start model(theta,res,grad,derivs);
+ conc = \{ .02,.02,.06,.06,.11,.11,.22,.22,.56,.56,1.1,1.1\};
+ rate = \{ 76,47,97,107,123,139,159,152,191,201,207,200\};
+ denom = theta(|2,1|) + conc;
+ res = rate --(theta(|1,1|) * conc / denom );
+ if derivs = 1 then do;
+ grad = (conc/denom)||(--theta(|1,1|)*conc/(denom \#\# 2));
+ end;
+finish;
+\end{verbatim}
+
+In SAS/IML, the $QR$ decomposition is achieved by means of the
+{\bf GSORTH} function, which returns the $\bQ$ and $\bR$ matrices.
+The increment is determined using the solve function,
+{\bf ncr=solve(rhat,resid)}, and the convergence criterion
+is calculated by invoking the Pythagorean decomposition of the total
+sum of squares.
+
+Like GAUSS, SAS/IML lacks an explicit repeat/break
+structure, and so we use a {\bf until}
+loop to calculate the
+step factor.  The condition {\bf newssq $<$ oldssq}
+is evaluated at
+the end of the loop, so it is not necessary to initialize
+{\bf newssq}.  The step factor, however, is half the appropriate
+value on exit from the loop, so we multiply by 4, to a maximum of 1.
+
+The main loop is implemented as fHdo iter = 1 to maxfP.  On
+exit from the loop a message is printed and the program stops.  When
+convergence is obtained, the program links directly to the finish
+statement and returns.  One feature worth noting is that both the
+residuals and the derivatives are initialized to their starting values
+at the top of the module.  For each new iteration they are
+recalculated using the new parameters at the end of the main loop,
+saving a function evaluation.
+
+If the verbose option is chosen, the fHreset nonamefP option
+is set, and must be reset to its previous state after exit from the
+module.  Diagnostic output is similar to that from the
+{\bf S} function.  Code for the {\bf nlsfit} module is:
+\begin{verbatim}
+run model( theta, resid, grad, 1);
+p = nrow( theta );
+n = nrow( resid );
+ndof = n -- p;
+mult = sqrt( ndof / p );
+Stepsize = 1;
+do iter = 1 to maxiter;
+    oldssq = ssq(resid);
+    call gsorth( qhat, rhat, rank, grad);
+    if rank = 1 then do;
+        print "singular derivative matrix";
+        stop;
+    end;
+    tan = qhat` * resid;
+    ss\_tan = ssq( tan );
+    incr = solve( rhat, tan );
+    criterion = mult * sqrt( ss\_tan /( oldssq -- ss\_tan ) );
+    if verbose then
+        print iter($|$format=2.0$|$) criterion (incr`);
+    if criterion $<$ tol then link returns;
+    do until(newssq $<$ oldssq);
+        if stepsize $<$ minstep then do;
+            print "step factor reduced below minimum";
+            stop;
+        end;
+        trial = theta + stepsize * incr;
+        run model( trial, resid, grad, 0);
+        newssq = ssq( resid );
+        if verbose then
+            print stepsize newssq (trial`);
+        stepsize = stepsize / 2;
+    end;
+    theta = trial;
+    stepsize = min( 1 $|$$|$ 4 * stepsize );
+    run model( theta, resid, grad, 1);
+end;
+print " Maximum number of iterations reached: program terminated";
+stop;
+returns: finish;
+\end{verbatim}
+
+With these modules, the program
+\begin{verbatim}
+title NLSFIT to puromycin data;
+PROC IML;
+start model(theta,res,grad,derivs);
+ \ldots
+start nlsfit( theta, criterion, maxiter, minstep, tol, verbose);
+ \ldots
+theta = \{ 205, 0.08 \};
+run nlsfit(theta,criterion,10,.001,.001,1);
+reset name;print theta;
+\end{verbatim}
+
+produces the following output:
+\begin{verbatim}
+ NLSFIT to puromycin data
+ 
+  1     2.8046    8.0289  -0.0171
+1.0000    1205.7     213.0   0.0629
+  2     0.2043   -0.4255 .0010955
+1.0000    1195.5     212.6   0.0640
+  3     0.0103    0.0721  1.2E-04
+1.0000    1195.4     212.7   0.0641
+  4   .0010014  .0075058  1.2E-05
+1.0000    1195.4     212.7   0.0641
+  5    9.7E-05   7.3E-04  1.1E-06
+ 
+          THETA     COL1
+ 
+          ROW1     212.7
+          ROW2    0.0641
+\end{verbatim}
+
+\section{Linear Summaries and Studentized Residuals}
+
+It is straightfoward to calculate the linear summary for the parameter
+estimates using the method described in Section 1.2.3.  Pseudocode for
+this is:
+\begin{verbatim}
+set $s=\sqrt{S( \hat \btheta )/(N-P)}$
+calculate $\bR_1^{-1$}
+calculate the length of each rows of $\bR_1^{-1$}
+divide each row of $\bR_1^{-1$} by its length to produce $\bL$
+multiply each row length by $s$ to give the parameter standard errors
+form the correlation matrix, $\bL \bL \trans$
+\end{verbatim}
+
+To calculate the studentized residuals we need the diagonal of the
+%.q "hat matrix"
+$\bQ_1 \bQ_1 \trans$, but this is just the squared length of the
+rows of $\bQ_{1}$.  Pseudocode for calculating the studentized
+residuals is:
+\begin{verbatim}
+form the matrix $\bQ_{1}$ by applying the Householder transformations
+  which define $\bQ$ to the first $P$ columns of the $N \timesN$ identity matrix
+sum the squares of the elements of the rows of $\bQ_{1}$ to get $h_{nn}$
+divide the $n$th residual by $s \sqrt{1-h_{nn}}$
+\end{verbatim}
+
+It is convenient to combine the two operations of calculating the
+linear summary values and the studentized residuals into a single
+function, say s.summary\rm%
+(pp, which acts on the object
+returned by lsfit\rm%
+(pp.
+\section{Multiresponse Estimation}
+
+The algorithm for optimizing the multiresponse criterion is similar to
+the nonlinear least squares algorithm given in Section A3.1, the main
+difference being in calculation of the increment at each step.
+Pseudocode is:
+\begin{verbatim}
+initialize iteration counter(0) and step factor $\lambda=1$
+repeat \{
+    increment iteration counter
+    error exit if maximum number of iterations exceeded
+    evaluate residual matrix and derivative array
+    calculate $| \bZ \trans \bZ |$, $\bomega$, and $\bOMEGA$
+    attempt the Cholesky decomposition $\bOMEGA=\bC \trans \bC$
+    if ($\bOMEGA$ is not positive definite) then \{
+        criterion is LARGE (note 1)
+        decompose as $\bOMEGA=\bU \bD \bU \trans$ (note 2)
+        $\bdelta=- \bU ( \bD+2d_1 \bI )^{-1} \bU \trans \bomega$
+    \} else \{
+        solve $\bC \trans \bC \bdelta=- \bomega$ for $\bC \bdelta$
+        evaluate convergence criterion
+        solve for $\bdelta$
+    \}
+    normal exit if (criterion $<$ tolerance)
+    repeat \{
+        evaluate $\bZ$ at $\btheta+\lambda \bdelta$
+        break loop if ($| \bZ \trans \bZ |$previous value)
+        halve $\lambda$
+        error exit if ($\lambda$ $<$ minimum allowed)
+    \}
+    overwrite previous $| \bZ \trans \bZ |$ with current value
+    overwrite $\btheta$ with $\btheta+\lambda \bdelta$
+    double $\lambda$ to maximum of 1
+\}
+\end{verbatim}
+
+Notes:
+\begin{enumerate}
+\item When $\bOMEGA$ is not positive definite, the convergence
+  criterion is set to a predetermined value which is greater than the
+  tolerance, so convergence cannot be declared: this is because the
+  determinant cannot be minimized at this point unless $\bOMEGA$ is
+  positive definite.
+\item The decomposition $\bOMEGA=\bU \bD \bU \trans$ is an
+  eigenvalue--eigenvector decomposition of the symmetric matrix
+  $\bOMEGA$.  The diagonal matrix $\bD$ has diagonal entries $d_1 \le
+  d_2 \le\ldots\le d _{P}$, while $\bU$ is a $P\times P$ orthogonal matrix.
+\end{enumerate}
+
+The calculation of $| \bZ \trans \bZ |$, $\bomega$, and $\bOMEGA$ from the
+residual matrix and the gradient array is as described in Section
+4.2.2.  The pseudocode is
+\begin{verbatim}
+decompose $\bZ$ as $\bQ \bR$
+evaluate $| \bZ \trans \bZ |$ as the square of the product of the diagonal elements of $\bR_{1}$
+for $p=1,2 ,\ldots, P$ \{
+    overwrite $\bZ_{{(p)}}$ by $\bG_{p=\bQ} \trans \bZ_{{(p)}}\bR_1^{-1$}
+    calculate $\lb \bomega \rb_{p}$ from diagonal of $\bG_{p}$
+    for $q=1,2 ,\ldots,p$ \{
+        calculate $\lb \bOMEGA \rb_{pq}$ as in (4.24)
+        store $\lb \bOMEGA \rb_{qp=\lb} \bOMEGA \rb_{pq}$
+    \}
+\}
+\end{verbatim}
+FORTRAN implementations of these algorithms are given in \{.bates watts
+algorithm 1984.\}.
+%\glossary{ Bates, D.M.}
+%\glossary{ Watts, D.G.}
+\par\vspace{0.0\baselineskip}
+\section{Linear Systems of Differential Equations}
+
+Pseudocode for the methods described in Appendix 5 when $\bA$ is
+diagonalizable is given here.  Extensions for nondiagonalizable $\bA$
+or complex eigenvalues are obtained from the formulas in Sections A5.2
+and A5.3.
+
+Before presenting the pseudocode, however, we present a compact way of
+specifying the form of the system of linear differential equations and
+the way that the components of $\btheta$ enter the system.  We define a
+parameter use matrix $\bJ$ as described in Bates and Watts (1985,
+Section 3.3).
+%{.bates watts 1985 techno special.}
+%\glossary{ Bates, D.M.}
+%\glossary{ Watts, D.G.}
+The matrix $\bJ$ consists of three columns: the entry in the first
+column is the parameter number, the entry in the second column is the
+source compartment, and the entry in the third column is the sink
+compartment.  If the parameter is an initial condition instead of a
+rate constant, the value --1 is used in the third column: if the
+parameter is a dead time, the value 0 is used in the second and third
+column.  For Example $\alpha$-Pinene 3, which involves only rate
+constants, the parameter use matrix is
+$$
+\bJ =
+\left[ \matrix{
+  \matrix{1 \cr 2 \cr 3 \cr 4 \cr 5}
+  \matrix{1 \cr 1 \cr 3 \cr 3 \cr 5}
+  \matrix{2 \cr 3 \cr 4 \cr 5 \cr 3}
+}\right]
+$$
+For Example $\alpha$-Pinene 9, where the reaction path from 3 to 4 is
+dropped,
+$$
+\bJ =
+\left[ \matrix{
+  \matrix{1 \cr 2 \cr 3 \cr 4}
+  \matrix{1 \cr 1 \cr 3 \cr 5}
+  \matrix{2 \cr 3 \cr 5 \cr 3}
+}\right]
+$$
+The last two columns of the parameter use matrix correspond to the
+first two columns of the parameter summary tables which we used in
+these examples.
+
+In Example Tetracycline 2, the third parameter is the initial
+condition in compartment 1, so the parameter use matrix is
+$$
+\bJ =
+\left[ \matrix{
+   \matrix{1 \cr 2 \cr 3}
+   \matrix{1 \cr 2 \cr 1}
+   \matrix{2 \cr 0 \cr -1}
+}\right]
+$$
+When dead time is involved, as in Example Tetracycline 4, the source
+and sink compartments are coded as 0, so the parameter use matrix is
+extended to
+$$
+\bJ =
+\left[ \matrix{
+   \matrix{1 \cr 2 \cr 3 \cr 4}
+   \matrix{1 \cr 2 \cr 1 \cr 0}
+   \matrix{2 \cr 0 \cr -1 \cr 0}
+}\right]
+$$
+
+Pseudocode to generate the values of $\bA$,
+$\bgamma_{0}$,
+$t_{0}$,
+and
+$\bA_{(p)}$,
+$\bgamma_{(p)} (0)$, and
+$\partial t_0 / \partial \theta_{p}$, $p=1 ,\ldots, P$,
+from the parameter use matrix
+$\bJ$, the parameter vector $\btheta$, and the fixed part of the
+initial conditions, $\bgamma_{{{\rm }} fix}$, is
+\begin{verbatim}
+initialize $\bA$ to $ {\bf 0} $, $\bgamma_{0}$ to $\bgamma_{{{\rm }} fix}$
+for $p=1 ,\ldots, P$
+    initialize $\bA_{(p)$} to $ {\bf 0} $, $\bgamma_{(p)} (0)$ to $ {\bf 0} $
+initialize $d t_0 / d \btheta \trans$ to $ {\bf 0} $
+for $j=1 ,\ldots, J$ \{
+    $p=\lb \bJ \rb_{j1}$
+    $\phi=\exp ( \lb \btheta \rb_p )$
+    $i=\lb \bJ \rb_{j2}$
+    $k=\lb \bJ \rb_{j3}$
+    if ($i=0$) \{
+        $t_{0=\lb} \btheta \rb_{p}$
+        $\lb d t_0 / d \btheta \trans \rb_{p=1$}
+    \} else if ($k=-1$) \{
+        increment $\lb \bgamma_0 \rb_{i}$ by $\phi$
+        increment $\lb \bgamma_{(p)} (0) \rb_{i}$ by $\phi$
+    \} else \{
+        decrement $\lb \bA \rb_{ii}$ by $\phi$
+        decrement $\lb \bA_{(p)} \rb_{ii}$ by $\phi$
+        if ($k0$) \{
+            increment $\lb \bA \rb_{ki}$ by $\phi$
+            increment $\lb \bA_{(p)} \rb_{ki}$ by $\phi$
+        \}
+    \}
+\}
+\end{verbatim}
+In this code, logarithms of the rate parameters and the initial
+conditions are used, but the delay time parameter is not transformed.
+
+Pseudocode to use these values to create the predicted responses $\bH$
+and the derivatives $\bH_{(p),}p=1 ,\ldots, P$ at the times
+$t_n ,n=1 ,\ldots, N$, is
+\begin{verbatim}
+decompose $\bA=\bU \bLAMBDA \bU^{-1$}
+if (any complex eigenvalues) error exit
+decompose $\bU$ with an $LU$ decomposition and check condition (note 1)
+if (condition unacceptable) error exit
+solve $\bU \bxi_{0=\bgamma}_{0}$ for $\bxi_{0}$
+for $p=1 ,\ldots, P$
+    solve $\bU \bC_{(p)=\bA}_{(p)} \bU$ for $\bC_{(p)$}
+for $n=1 ,\ldots, N$ \{
+    $\tau=t_{n-t}_{0}$
+    if ($\tau0$) $\tau=0$
+    for $k=1 ,\ldots, K$ \{
+        $\lb \bxi \rb_{k=e}^{{\lambda}_k \tau}\lb \bxi_0 \rb_{k}$
+        for $j=1 ,\ldots, K$ \{
+            ${\rm dif=\lambda}_{j-\lambda}_{k}$
+            if ($\tau{\rm dif\epsilon$)}
+                $\lb \bB \rb_{kj=\taue}^{{\lambda}_k \tau}$
+            else
+                $\lb \bB \rb_{kj={e}^{{\lambda}_j \tau}-e^{{\lambda}_k \tau} \over {\rm dif}$}
+        \}
+    \}
+    store $\bgamma_{n=\bU} \bxi$
+    for $p=1 ,\ldots, P$ \{
+        $\bxi_{(p)} ( \tau )=e^{{LAMBDA} \tau}\bxi_{(p)} (0)+\tau_{(p)} e^{{LAMBDA} \tau} LAMBDA \bxi_{0}$
+        increment $\bxi_{(p)} ( \tau )$ by the componentwise product
+            of $\bC_{(p)$} and $\bB$ times $\bxi_{0}$
+        store $\bgamma_{(p)n=\bU} \bxi_{(p)} ( \tau )$
+    \}
+\}
+\end{verbatim}
+
+Notes:
+\begin{enumerate}
+\item The $LU$ decomposition \cite[Chapter
+  1]{dong:bunc:mole:stew:1979} of  $\bU$ with an 
+%\glossary{ Dongarra, J.J.}
+%\glossary{ Bunch, J.R.}
+%\glossary{ Moler, C.B.}
+%\glossary{ Stewart, G.W.}
+estimate of the condition of the matrix is used to determine if $\bU$
+is computationally singular and to solve linear systems based on $\bU$.
+\end{enumerate}
+
+\section{Profile Calculations}
+
+\subsection{Generation of $\btau$ and the Profile Traces}
+
+To generate the values of $\tau$ and the profile traces, we assume that
+the components of $\hat \btheta$ and their approximate standard errors
+are known.
+For each component $\theta_{p}$, we generate $\tau ( \theta_p )$ and
+the profile trace $\tilde \btheta_{-p} ( \theta_p )$ first to the left
+of $\hat \theta_{p}$, then to the right.
+We calculate the $\tau$ values until the absolute value exceeds
+$\tau_{max=\sqrt{\FPNP}}$ where $\alpha$ is small, say $\alpha=0.01$.
+In some cases, such as Example BOD 8 or Example Isomerization 5, the
+value of $\tau$ approaches an asymptote which is less than
+$\tau_{max}$, so we impose a condition on the maximum number of values
+$k_{max}$ to be calculated on either side of $\hat \theta_{p}$, say
+$k_{max} = 30$  A nominal step size of se$( \hat \theta_p ) /$step 
+with step$=8$ is used to start the process, but thereafter the
+step size is determined from the slope of the curve $\tau$ versus $t$,
+with limits to prevent the step size from becoming too large.
+
+Pseudocode for the calculation is:
+\begin{verbatim}
+for $p=1 ,\ldots, P$ \{
+    $\Delta=- {\rm se} ( \hat \theta_p ) /$'-1p'step
+    $t=0$
+    repeat \{
+        invslope$=1$
+        for $k=1 ,\ldots, k_{max}$ \{
+            $t=t+$invslope
+            minimize $S ( \btheta )$ with $\theta_\hat {p=\theta}_{p+\Delta}
+\timest$ obtaining $\tilde S ( \theta_p )$ and $\tilde \btheta_{-p$}
+            invslope$=$abs$ \left({\tau\timess^2 \over {\rm se\times\bz} \trans \bv_p}\right)$
+            record $\tau ( \theta_p )={\rm sign(} \Delta )\times\sqrt{\tilde \hat S} / s$'-4p', $\btheta$, and invslope
+            invslope$=$min(4,max(invslope,1/16))
+            if (abs$( \tau )\tau_{max}$) break loop
+        \}
+        $\Delta=- \Delta$
+        if ($\Delta0$) break loop
+    \}
+\}
+\end{verbatim}
+
+Minimizing $S ( \btheta )$ with
+$\hat\theta_{p}=\theta_{p+\Delta}\times k$ is done with a few simple
+modifications to the Gauss--Newton 
+code.  In addition to evaluating the residuals and derivatives we
+remove the $p$th column of the derivatives, then solve for the
+increment $\bdelta_{-p}$ and form $\bdelta$ from $\bdelta_{-p}$ with
+zero in the $p$th position.  Note that $\tilde \btheta_{-p}$ is used
+as the starting value for the next iteration.
+\subsection{Profile Pair Plots}
+
+In producing the profile pair plots, we first generate a vector of
+$\tau$ values, $\btau_{p},p=1 ,\ldots, P$, of length $n_{p}$ for
+each parameter, and the corresponding $n_{p\times P}$ matrix $\bM_{p}$
+of parameter values.  Each of these matrices is transformed to the
+$\tau$ scale in the following steps:
+\begin{verbatim}
+for $p=1,2 ,\ldots, P$ \{
+    store $s_{{\theta} \to \tau ,p}$, the interpolating spline for the $p$th
+        column of $\bM_{p}$ as a function of $\btau_{p}$.
+    store $s_{{\tau} \to \theta ,p}$, the interpolating spline for $\btau_{p}$
+        as a function of the $p$th column of $\bM_{p}$
+    for $q=1,2 ,\ldots, P$  and $q!=p$ \{
+        $\bg_{pq}=s_{{\theta} \to \tau ,p} ( p$th column of $\bM_q )$
+        overwrite $\bg_{pq}$ by arccos($\bg_{pq} / \btau_p )$
+        store $s_{{t} \to g ,pq}$ the interpolating spline for
+            $\bg_{pq}$ as a function of $\btau_{p}$
+    \}
+\}
+\end{verbatim}
+
+When determining the splines $s_{{\theta} \to \tau ,p}$ and $s_{{\tau}
+\to \theta ,p}$ we include a zero entry in $\btau_{p}$ with a
+corresponding row $\hat \btheta$ in $\bM_{p}$.  This entry and the
+corresponding row must be eliminated before the division by $\btau_{p}$.
+
+To interpolate the projection of the contours
+$S ( \btheta )=S^i ,i=1 ,\ldots,m$, into the
+$( \theta_p , \theta_q )$ plane, we convert the levels to the
+$\tau$ scale as
+$$
+k^i=\sqrt{S^{i-S(} \hat \btheta )}/s
+$$
+and determine the angles for the points on the traces as
+described in Appendix 6.
+These four angle pairs are
+\begin{eqnarray*}
+  \bp_1&=&(0,s_{{t} \to g ,pq}(+k^i ))\\
+  \bp_2&=&( \pi ,s_{{t} \to g ,pq}(-k^i ))\\
+  \bp_3&=&(s_{{t} \to g ,qp}(+k^i ),0)\\
+  \bp_4&=&(s_{{t} \to g ,qp}(-k^i ), \pi )
+\end{eqnarray*}
+We convert these angles to an average angle and a phase difference by
+\begin{verbatim}
+for $j=1 ,..., 4$\{
+    $a_{j=(} \lb \bp_j \rb_1+\lb \bp_j \rb_2 )/2$
+    $d_{j=\lb} \bp_j \rb_1-\lb \bp_j \rb_{2}$
+    if $(d_{j0)$} \{
+        replace $d_{j}$ by $- d_{j}$
+        replace $a_{j}$ by $- a_{j}$
+    \}
+\}
+\end{verbatim}
+and for $d_{j}$ as a function of $a_{j}$, determine
+$sp_{{a} \to d ,pqi}$, an interpolating spline with period $2\pi$.  A
+sequence of $K$ points (usually $K$ is between 50 and 100) on the
+interpolating contour is evaluated using
+\begin{verbatim}
+for $k=1 ,..., K$ \{
+    $a=(k-1)\times2\pi /(K-1)-\pi$
+    $d=sp_{{a} \to d ,pqi}(a)$
+    $\tau_p=\cos (a+d/2)$
+    $\tau_q=\cos (a-d/2)$
+    $\theta_{p=s}_{{\tau} \to \theta ,p}( \tau_p )$
+    $\theta_{q=s}_{{\tau} \to \theta ,q}( \tau_q )$
+\}
+\end{verbatim}
+and plotted.
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "nraia2"
+% End: 

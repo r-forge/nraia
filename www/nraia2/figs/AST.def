@@ -1,0 +1,14 @@
+
+/AT		% add a text string. Stack: srot cex string
+  { /str exch def
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate
+    str show
+    neg rotate
+  } def
+
+/AST		% add text in Symbol font. Stack: (as for AT)
+  {
+    /Symbol F AT /Helvetica F
+  } def

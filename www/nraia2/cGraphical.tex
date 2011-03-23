@@ -1,0 +1,932 @@
+\chapter{Exact Inference Regions for Nonlinear Models}
+
+\prologue{ ``What can we know?  or what can we discern, When error
+  chokes the windows of the mind?''}{Sir John Davies}
+
+In Chapter 2 we derived linear approximation inference regions for
+parameters in nonlinear models.
+Although these approximate regions are easy to compute and display, 
+it is unfortunately true that  in many nonlinear analyses they
+are woefully inadequate, and they give no information as to when they are adequate or not.
+\index{linear approximation!inference region}
+In this chapter we develop procedures for calculating exact 
+inference regions using the likelihood, Bayesian and sampling theory
+approach. 
+
+\section{Likelihood Regions}
+
+As we have seen in Section 2.2 and 2.4, the spherical normal assumption for the disturbance $\bZ$
+in the model (\ref{eqn:nlmatmodel}) dictates that statistical inference using the
+likelihood approach is directly related to the
+geometry of the expectation surface in the response space.
+For linear and nonlinear models with the spherical normal assumption,
+a likelihood contour consists of all values
+\index{likelihood!contour}
+\index{contour!likelihood}
+of $\btheta$ for which $\boeta ( \btheta )$ is a fixed
+distance from $ \by$, that is, all $\btheta$ for which
+$S ( \btheta )$ equals a constant.
+And as in Section 1.3 and 2.3, we associate a confidence
+level with a contour ({\em c.f.} equation \ref{eqn:nlikeS-Shat})  so that 
+the nominal $1-\alpha$ joint likelihood region consists
+\index{likelihood!region}
+of all values of $\btheta$ for which
+\begin{equation}
+  S ( \btheta ) = S( \hat \btheta ) + Ps^2 \FPNP
+  \label{eqn:ssc}
+\end{equation}
+Geometrically, as with the linear model, this is the intersection of the expectation
+surface with a sphere centered at $\by$.
+Now, however, the surface is not planar and there is no easy way
+to map the points on the expectation surface back to the
+parameter space even if we could determine those points on the
+intersection.
+
+When $P= 2$, we can determine a likelihood contour in $\btheta$
+by standard contouring methods, that is, by evaluating
+$S ( \btheta )$ for a grid of $\btheta$ values and
+approximating the contour by straight line segments in the grid.
+
+EXAMPLE:puro13 Puromycin likelihood contours
+%%%\input{puro13}
+
+EXAMPLE:bod7 BOD likelihood contours
+%%%\input{bod7}
+
+Determining the shape of badly distorted contours like those in
+Figure~\ref{fig:BODlikcont} can take several tries.
+We evaluated an initial grid of likelihood
+values and found that the contour went beyond the grid,
+so we changed the limits and reevaluated the grid, repeating the
+procedure until we obtained a satisfactory plot.
+The contours in Figure~\ref{fig:BODlikcont} illustrate another deficiency of
+standard contouring methods.
+The nominal 95\% contour appears to have two disjoint pieces---the main
+body and a thin region centered near $\btheta = ( 40 ,  0 ) \trans$.
+In fact, this contour should be one continuous curve, and the two pieces
+are an artifact of the way that the curve is traced by a computer
+program.
+Contouring programs typically have difficulty with long, thin segments
+of contours.
+
+This discussion has focused on 2-parameter models, but
+nonlinear models with many more parameters occur and, unfortunately,
+standard contouring methods are not easily extended beyond $P=2$.
+One approach for multiparameter models is to try to
+evaluate the likelihood on a $P$-dimensional grid.
+This can be expensive, since the amount of
+computing effort and the amount of storage required for the grid
+grows exponentially with $P$.
+Also, the analyst must choose the bounds of the grid before evaluating
+a contour, and
+these bounds may not encompass the entire contour, or they may be so
+wide that the resolution over the region of interest is poor.
+In this case, the analyst would have to guess at a new set of bounds and
+reevaluate the contour, thereby adding to the expense of the process.
+Even when the grid is evaluated, approximation of the contour and
+display of the approximation in many dimensions is difficult.
+
+One way of avoiding multidimensional grids
+is to evaluate the sum
+of squares function on a series of 2-dimensional grids
+corresponding to each pair of parameters.
+This requires one grid for the $( \theta_1 , \theta_2 )$
+pair, one grid for the $( \theta_1 , \theta_3 )$ pair, and
+so on, for a total of $P ( P - 1 ) / 2$ grids.
+Contours on the 2-dimensional grids can be easily calculated and
+displayed, and from these contours the analyst can gain insight
+into the multidimensional shape of the likelihood region.
+However, it is not clear which likelihood or sum of squares
+to evaluate at each point in these 2-dimensional grids.
+Two choices are to evaluate the {\em conditional likelihood}
+\index{conditional likelihood}
+\index{likelihood!conditional}
+function by varying a pair of parameters while
+holding the others fixed at their least squares
+estimates, or to evaluate the
+2-dimensional {\em profile likelihood}
+function by finding the minimum sum of squares over all the other
+coordinates for each point on the grid.
+
+Both these approaches have disadvantages.
+On the one hand,
+the conditional likelihood function does not always present
+a comprehensive view of the likelihood contour, since it only
+shows selected cross-sections of the contour, and
+the global behavior of the contour can be quite different from
+the sectional behavior.
+On the other hand,
+evaluating the profile likelihood requires solving a $( P - 2 )$-dimensional
+nonlinear least squares problem for each of the
+points on the $P ( P - 1 ) / 2$ grids, which could be computationally
+expensive.
+To mitigate these difficulties, we propose making profile $t$
+plots and profile pair sketches as described in the next section.
+
+\subsection{Profile $t$ Plots}
+
+To develop marginal likelihood intervals for nonlinear model
+parameters, we begin by relating a linear model interval to the sum
+of squares function.
+For a linear model,
+a $(1 - \alpha)$ marginal interval for $ \beta_{p}$ can be written
+in terms of the studentized parameter
+$$
+{\beta_{p}-\hat\beta_p \over {\rm se} ( \hat \beta_p )}
+ =\delta ( \beta_p )
+$$
+as
+$$
+- \tNP\le\delta ( \beta_p ) \le\tNP
+$$
+But the studentized parameter can also be written
+
+ATAMO!!!!!!
+
+\begin{equation}
+  {\beta_p-\hat\beta_p \over {{\rm se}} ( \hat \beta_p )} = {{\rm
+  sign}} ( \beta_p - \hat \beta_p ) \sqrt { { \tilde S ( \beta_p ) - S (
+  \hat{\bbeta}) }} / s
+  \label{eqn:tratio}
+\end{equation}
+where
+\begin{equation}
+  \tilde S ( \beta_p ) = min_{{\beta}_{-p}} S ( ( \beta_p ,
+  {\bbeta}_{-p} \trans ) \trans ) = S ( ( \beta_p , \tilde{\bbeta}_{-p}
+  \trans ) \trans )
+  \label{eqn:Stilde}
+\end{equation}
+is the profile sum of squares function and
+$\tilde {\bbeta}_{-p} =
+( \tilde \beta_1 ,\ldots, \tilde \beta_{p-1,} \tilde \beta_{p+1}
+ ,\ldots, \tilde \beta_P ) \trans$
+is the least squares estimate of ${\bbeta}_{-p}$
+conditional on $\beta_{p}$, {\em i.e.} the tangent point on the contour at $\beta_p$.  
+The notation $( \beta_p , \tilde {\bbeta}_{-p} \trans ) \trans$ indicates the
+vector with elements
+$( \tilde \beta_1 ,\ldots, \tilde \beta_{p-1,} \beta_p , \tilde \beta_{p+1}
+ ,\ldots, \tilde \beta_P )$.
+
+For a nonlinear model, we define the {\em profile t\/} function,
+$\tau ( \theta_p )$, as
+\index{profile $t$}
+\begin{equation}
+  \tau ( \theta_p )={{\rm sign}} ( \theta_p - \hat \theta_p )
+  \sqrt{\tilde S ( \theta_p ) - S ( \hat \btheta )}/s
+  \label{eqn:proft}  
+\end{equation}
+using the same notation.
+By analogy with the linear model, we define a nominal
+$(1 - \alpha)$ likelihood interval for
+\index{likelihood!interval}
+$\theta_{p}$ as the set of all $\theta_{p}$ for which
+$$
+- \tNP\le\tau ( \theta_p )\le\tNP
+$$
+The profile $t$ function is similar to the $\chi$ statistic used
+by \citeasnoun{blis:jame:1966}.
+%\glossary{ Bliss, C.I.}
+%\glossary{ James, A.T.}
+
+Plots of the profile $t$ function provide exact likelihood
+intervals for individual parameters and, in addition, reveal how
+nonlinear the estimation situation is.
+To see this, suppose the model were linear.
+Then a plot of $\tau ( \theta_p )$ versus
+$\theta_{p}$ would be a straight line.
+In particular, as seen from (\ref{eqn:tratio}), a plot of
+$\tau ( \theta_p )$ versus the studentized parameter,
+$\delta ( \theta_p )=( \theta_p-\hat\theta_p ) /
+{{{\rm se}} ( \hat \theta_p )}$,
+would be a straight line through the origin with unit slope.
+For a nonlinear model, a plot of
+$\tau ( \theta_p )$ versus $\delta ( \theta_p )$ will be curved,
+which reveals valuable information about the behavior of the estimate of that parameter.
+\index{nonlinearity!and profile $t$ plot}
+
+EXAMPLE:puro14 Puromycin profile t plots
+%%%\input{puro14}
+
+EXAMPLE:bod8 BOD profile t plots
+%%%\input{bod8}
+
+\subsection{Profile Traces}
+
+Another useful plot is the likelihood {\em profile trace\/}
+obtained by
+plotting the components of the conditional least squares vector
+$\tilde \btheta_{-p}$ as a function of $\theta_{p}$.
+\index{likelihood!profile trace}
+\index{profile!trace}
+For example, after evaluating the profile likelihood for $\theta_{1}$,
+we can plot $ \tilde \theta_{2}$ versus $\theta_{1}$,
+$\tilde \theta_{3}$ versus $\theta_{1}$, and so on,
+up to $\tilde \theta_{P}$
+versus $\theta_{1}$.
+Next, we evaluate the profile likelihood for $\theta_{2}$
+and plot $ \tilde \theta_{1}$ versus $\theta_{2}$,
+$ \tilde \theta_{3}$ versus $\theta_{2}$, and so on,
+up to $\tilde \theta_{P}$
+versus $\theta_{2}$.
+We continue to work through the parameters $\theta_3 $ to
+$\theta_{P}$, calculating the conditional minima of the other
+parameters, and plotting the profile traces.
+Finally, we combine the plots of
+$ \tilde \theta_{q}$ versus $\theta_{p}$ and
+$ \tilde \theta_{p}$ versus $\theta_{q}$,
+to generate the pairwise profile traces.
+As before, it is convenient to do the calculations
+using studentized parameters.
+
+Plots of the profile traces provide useful information on how the
+parameters interact.
+For a linear model with studentized parameters, the profile traces
+on a plot of $\delta ( \theta_q )$ versus $\delta ( \theta_p )$
+consist of straight lines intersecting at
+$( 0 ,  0 )$ with slopes of $\lb \bC \rb_{pq}$ for
+the trace of $\tilde \delta ( \theta_q )$ on $\delta ( \theta_p )$
+and $1/ \lb \bC \rb_{pq}$ for the trace of $\tilde \delta ( \theta_p )$
+on $\delta ( \theta_q )$, where $\bC$
+is the parameter estimate codependence matrix.
+If the codependence between the parameter estimates is small, the
+angle between the profile traces is $~90^\circ$.
+
+For nonlinear models, the profile traces will be curved,
+\index{nonlinearity!and profile traces}
+the curving of the lines providing information on
+how the parameter estimates affect one another and on
+the shape of the projection of the likelihood
+contours onto the $( \theta_p , \theta_q )$ plane.
+If the contours are long and thin, the profile traces will
+be close together; if the contours are fat, the profile
+traces will tend to be perpendicular; and if the contours are
+nearly elliptical, the profile traces will be straight.
+
+EXAMPLE:puro15 Puromycin profile t plots
+%%%\input{puro15}
+
+EXAMPLE:bod9 BOD profile t plots
+%%%\input{bod9}
+
+\subsection{Profile Pair Sketches}
+\index{profile pair sketches}
+
+As stated earlier, it is not generally feasible to determine and plot
+likelihood contours for models with several parameters.
+However, we can use the profile sums of squares and the profile traces
+to create very accurate approximations to the 2-dimensional
+projections of the likelihood region and thus get a visual indication
+of the extent of the region and the nonlinear dependence of parameter
+estimates upon each other.
+To determine the projections of the 95\% contour on the
+$( \theta_1 , \theta_2 )$ plane, for example, we use
+the profile sum of squares for $\theta_{1}$ to find where the contour
+intersects the trace of $\tilde \theta_{2}$ on $\theta_{1}$.
+This gives two points on the contour.
+In addition, we know that the tangent to the contour must be vertical
+at these points, since they represent the bounds of the contour in the
+$\theta_{1}$ direction.
+Similarly, from the profile sum of squares for $\theta_{2}$ and from
+the trace of $\tilde \theta_{2}$ on $\theta_{1}$, we determine two
+more points on the contour and we know that the contour will have
+horizontal tangents at these points.
+
+By using all of this information---the profile $t$ plots, the points on
+the contour, the directions of the tangent to the contour at these
+points, and the fact that the contour is bounded by the parameter
+values at these points---we can create a very accurate interpolation
+of a contour using the methods described in Appendix 6.  We call these
+interpolated curves {\em profile pair sketches}.
+\index{profile pair sketches}
+
+EXAMPLE:puro16 Puromycin sketches 
+%%%\input{puro16}
+
+EXAMPLE:bod10 BOD sketches 
+%%%\input{bod10}
+
+When there are more than two parameters, a similar procedure
+is followed to generate the sketches.
+For example, with three parameters, for each of a set of values of
+$\theta_{1}$ we converge to
+$\tilde \btheta_{-1} = ( \tilde \theta_2 ( \theta_1 ),
+\tilde \theta_3 ( \theta_1 )) \trans$,
+to produce $\tilde S ( \theta_1 )$.
+This information is used to calculate $\tau ( \theta_1 )$,
+the coordinates of the profile traces
+$\tilde \theta_2 ( \theta_1 ) $ and $\tilde \theta_3 ( \theta_1 )$,
+and the coordinates of some of the points on the joint likelihood
+contour for $ ( \theta_1 ,  \theta_2 )$
+and for $ ( \theta_1 ,  \theta_3 )$.
+Next, we choose a set of values for $\theta_{2}$ and converge
+to $\tilde \btheta_{-2}=
+( \tilde \theta_1 ( \theta_2 ),
+\tilde \theta_3 ( \theta_2 )) \trans $,
+this time producing $\tau ( \theta_2 )$,
+the coordinates of the profile traces
+$ \tilde \theta_1 ( \theta_2 )$
+and
+$ \tilde \theta_3 ( \theta_2 )$,
+and the coordinates of some of the points on the joint
+likelihood contour for $ ( \theta_1 ,  \theta_2 )$
+and for $ ( \theta_2 ,  \theta_3 )$.
+Then a range of values of $\theta_{3}$ is chosen and
+we converge to
+$\tilde \btheta_{-3} =
+( \tilde \theta_1 ( \theta_3 ),
+ \tilde \theta_2 ( \theta_3 ))$,
+this time producing $\tau ( \theta_3 )$,
+the coordinates of the profile traces
+$ \tilde \theta_1 ( \theta_3 )$
+and
+$ \tilde \theta_2 ( \theta_3 )$,
+and the coordinates of some of the points on the joint likelihood
+contour for $ ( \theta_1 ,  \theta_3 )$
+and for $ ( \theta_2 ,  \theta_3 )$.
+We then plot the interpolated contours for each pair of parameters.
+If the profile traces are fairly straight and distinct in both the
+original and the $\tau$ coordinates, the contour will be fairly
+elliptical and the sketches will be very accurate.
+If the traces are curved in the original coordinates and tend to be
+coincident in the $\tau$ coordinates over an appreciable range, then
+the contours will be decidedly nonelliptical in the original
+coordinates and the sketches may not be accurate.
+
+EXAMPLE:iso2 Isomerization profile t plots for original parameterization
+%%%\input{iso2}
+
+The computations to generate profile $t$ plots and profile traces 
+are very efficient because we start from the least squares estimates of the
+previous calculation, and because the problem is always of
+reduced dimension $P - 1$.
+Also, at each value of the parameter of interest, we simultaneously
+generate the profile $t$ value and the converged values of
+the vector $\tilde \btheta_{-p}$, which also provides most of the data
+necessary for sketching the profile pairs.
+Profile $t$ functions can also be used to determine exact likelihood
+intervals and bands for the expectation function.
+For all these calculations, only minor modifications to standard
+nonlinear regression software are necessary.
+
+\subsection{ Likelihood Bands}
+
+The profile $t$ function can be used to determine likelihood intervals
+for the expectation function at any point $\bx_{0}$ by
+reparametrizing the model function so that a new parameter, say
+$\phi_{1}$, is the response at $\bx_{0}$.
+The remaining parameters can be chosen as $\phi_p=\theta_{p}$,
+$p=2 ,\ldots, P$, and derivatives of the expectation function with
+respect to the new parameters can be determined simply by using the
+chain rule.
+To determine a likelihood interval for the response at a particular
+point we find the values of $\phi_{1}$ such that
+$\tau ( \phi_1 )=\pm\tNP$, and to determine a
+likelihood band for the fitted response function at any $\bx$, we find the
+values of $\phi_{1}$ such that $\tau ( \phi_1 )=\pm\FPNP$.
+
+EXAMPLE:purolbad Puromycin likelihood band
+%%%\input{purolband}
+
+EXAMPLE:bodlbad BOD likelihood band
+%%%\input{bodlband}
+
+\section{Using Profile Plots to Determine a Good Parameterization}
+\index{reparameterization}
+
+In addition to providing exact likelihood intervals for each parameter,
+the profile $t$ plots provide valuable information on the 
+behavior of each parameter estimate, as do the profile trace
+plots on the pair-wise behavior of the parameter estimates.
+This is of great use in determining parametrizations that should
+be used for future data sets with the same model function.
+Such parametrizations can also be used to provide accurate linear
+approximation marginal and joint parameter regions, and so obviate the
+need for plots.  Reparametrization can also be used to accelerate convergence.
+
+To determine useful parameterizations we use the technique introduced in
+Section 1.5.4 for straightening a curve.  This is best explained by means of examples.
+More applications are given in later Chapters.
+
+EXAMPLE:bodrepar BOD reparameterization
+%%%\input{bodrepar}
+
+EXAMPLE:iso3 isomerization reparameterization
+%%%\input{iso3}
+
+More applications to demonstrate how to use profiling for fun and profit are given in later Chapters.
+
+\section{Bayes Regions}
+
+Inferences about nonlinear models using the Bayesian approach
+\index{Bayes!inference for nonlinear models}
+involve the same difficulties as the likelihood approach, with the
+additional complexity of choosing a prior density for the parameters.
+\subsection{Choice of Bayes Prior on the Parameters}
+\index{prior density!for nonlinear model}
+
+In the Bayesian analysis of a linear regression model, described
+in Section 1.3.3, a prior density
+$$
+p ( \bbeta , \sigma )  \propto  \sigma^{-1}
+$$
+is often used.
+This does not correspond to an actual probability density, since
+the integral of this density over the parameter $\sigma$ or $\bbeta$
+is infinite, but the use of such ``uninformative''
+or ``improper''
+priors can be justified because the posterior density obtained by
+multiplying the prior by the likelihood function {\em is\/}
+a proper density.
+That is, the posterior density has a finite integral over all possible
+parameter values and can be normalized so that the integral is unity.
+This follows because, for linear models, whenever
+$\norm \bbeta \norm  \to  \infty$,
+$\norm \boeta ( \bbeta ) \norm  \to  \infty$, and since $\by$ is fixed, this
+means that $\norm \bz \norm \to \infty$, so $l ( \bbeta , \sigma | \by ) \to 0$.
+[Technically, more is required for the finite integral:
+we must have $l ( \bbeta , \sigma | \by )$ going to zero
+``quickly'', which it does.]
+
+An uninformative prior can usually be considered to be the limit of
+proper priors that are more and more diffuse
+(for example, a limit of multivariate
+normal priors on $\bbeta$ with variance--covariance matrices
+consisting of a fixed matrix multiplied by a factor that approaches infinity).
+In this limiting process, quantities calculated from the
+posterior densities, such as highest posterior density
+(HPD) regions, approach finite limits smoothly.
+However, for nonlinear models it is not always true that locally
+uniform priors produce proper posterior densities.
+Nonlinear models frequently have asymptotes, so
+$\norm \btheta \norm \to \infty$ does not imply that
+$\norm \boeta ( \btheta ) \norm \to \infty$ or $l ( \btheta , \sigma | \by ) \to 0$.
+[For example, as $\theta  \to  \infty$ the Rumford model approaches a
+finite limit, the point $(60 ,..., 60 ) \trans$.]
+This means that when an improper prior on the parameters
+is used, the posterior density will also be improper.
+Even if one regards the uninformative prior as being the limit of a
+sequence of proper prior densities, the situation is not improved
+because the properties of the posterior density do not approach a
+finite limit satisfactorily.
+For example, if one were to apply a uniform prior density on
+$\theta$ for the Rumford model over the interval $0 \le \theta  k$
+and let $k$ approach infinity while calculating a 95\% HPD interval
+for each value of $k$, the right hand end points of the
+HPD intervals would go to infinity.
+
+Consideration of the Rumford example enables us to see how to avoid
+obtaining improper posterior densities:
+instead of putting a locally uniform prior on the parameter
+space, we should put a locally uniform prior %
+{\em on the expectation surface }
+\index{expectation surface!prior density}
+\index{prior density!on expectation surface}
+to represent an uninformative prior \cite{bate:1978}.
+%\glossary{ Bates, D.M.}
+For linear models, a locally uniform prior in the
+parameter space produces a locally uniform prior on the expectation plane,
+so this prior is consistent with standard practice for the linear model.
+For a nonlinear model, the uninformative prior on $\btheta$ is
+proportional to the Jacobian of the mapping to the expectation plane,
+\index{Jacobian}
+so we set
+\begin{eqnarray*}
+  p ( \btheta )&\propto&{d A\over d \btheta }\\
+  &=&| \bV \trans \bV |^{{1/2}}
+\end{eqnarray*}
+where $dA$ represents an element of area on the expectation surface.
+
+For the Rumford example, the expectation surface is finite, so a uniform
+prior density over the expectation surface will be a proper prior
+density and hence the posterior density will be a proper density.
+When the expectation surface has infinite extent, so the
+uninformative prior is not a proper density, the
+likelihood will force the posterior density to be
+proper because the surface extends to infinity.
+(Mathematically it is possible to get surfaces of infinite extent
+which are restricted to a finite region in the response space, but
+such pathological cases would not occur as expectation surfaces.)
+
+We could also justify a locally uniform prior on the expectation surface
+by arguing that prior ignorance about the responses corresponds to a
+locally uniform prior on the sample space for the responses.
+This induces a locally uniform prior over the
+expectation surface as the prior for the model parameters $\btheta$.
+Note that this choice makes the prior
+{\em independent of the parametrization\/}
+used in the model function,
+since the Jacobian for the transformation cancels out.
+
+EXAMPLE:puro17 Puromycin Bayes prior
+%%%\input{puro14}
+
+EXAMPLE:bod11 BOD Bayes prior
+%%%\input{bod11}
+
+To complete the prior density, we must specify the joint prior
+for $\btheta$ and $\sigma$.
+Following \citeasnoun{box:tiao:1973}, we choose independent priors
+%\glossary{ Box, G.E.P.}
+%\glossary{ Tiao, G.C.}
+for $\btheta$ and $\sigma$ with $p ( \sigma ) \propto \sigma^{-1}$,
+so the joint prior density is
+\begin{eqnarray}
+  p ( \btheta , \sigma )&\propto&p ( \btheta )p ( \sigma )\\
+  &=&| \bV \trans \bV |^{{1/2}} \sigma^{-1}
+  \label{eqn:jointprior}
+\end{eqnarray}
+
+It is noteworthy that the prior density does not depend on the
+parametrization, but it is equally noteworthy that the prior
+depends on the design used by the experimenter.
+This makes good sense, since no scientific experiment is done in
+the complete absence of knowledge, and the prior subtly expresses
+the current knowledge of the experimenter through the design.
+
+To illustrate, suppose one wished to measure BOD
+of a river, and the model function
+$f = \theta_1 ( 1 - e^{ - \theta_2 x } )$ was considered
+appropriate.
+The BOD, and consequently the parameters, would
+depend on the season of the year, the latitude of the river, the rate
+of flow of the river, the number and types of sources of pollution
+along the river, the type of river bed, and so on.
+For fast-flowing northern mountain rivers with no immediate pollution
+sources, the rate constant $\theta_{2}$ would likely be very small,
+and so samples taken from the river should be analyzed at rather long
+intervals and over a long time, say every three days for three weeks.
+For a sluggish meandering river in an industrial area,
+on the other hand, the rate constant $\theta_{2}$ would
+likely be large, and so the samples should be analyzed at shorter
+intervals and over a shorter time, say every twelve hours for five days.
+These considerations clearly affect the design and, in turn, the prior
+on the parameters.
+
+\subsection{Joint HPD Regions}
+
+After choosing a prior density, we form the posterior density by
+multiplying the prior by the likelihood function.
+Thus the posterior density, $p ( \btheta , \sigma | \by )$, becomes
+\index{posterior density!for nonlinear model}
+$$
+p ( \btheta , \sigma | \by )\propto| \bV \trans \bV |^{{1/2}}
+\sigma^{-(N+1)}  \exp \left( -  { S ( \btheta )   \over  2 \sigma^2 
+}\right)
+$$
+where $S ( \btheta )$ is the residual sum of squares at $\btheta$.
+As shown in \citeasnoun{box:tiao:1973}, the marginal posterior density of
+%\glossary{ Box, G.E.P.}
+%\glossary{ Tiao, G.C.}
+$\btheta$ is obtained by integrating the joint posterior over the
+nuisance parameter $\sigma$
+to yield
+\begin{eqnarray}
+  p(\btheta|\by)&=&\int_{0}^{\infty}  p ( \btheta , \sigma | \by )  d \sigma\\
+  &\propto&| \bV \trans \bV |^{{1/2}} [ S ( \btheta ) ]^{-N/2}
+  \label{eqn:2.9d}
+\end{eqnarray}
+An HPD region will be bounded by a contour of this posterior
+\index{highest posterior density (HPD)!region for nonlinear model}
+density function, or equivalently, by a contour of
+$$
+{ S ( \btheta )   \over  | \bV \trans \bV |^{ 1 / N } }
+$$
+
+To assign a probability value to the region,
+we must determine the level of contour.
+The exact method for determining a $(1 - \alpha)$ HPD region
+is to integrate (\ref{eqn:2.9d}) over all possible values of $\btheta$,
+obtain the constant of proportionality, and then integrate
+the normalized posterior within contours of the posterior density until
+we find the one with the required probability content.
+
+All the integrations in this exact procedure make it too computationally
+intensive for general use, but fortunately there is a convenient
+approximation to the probability content of a contour.
+For any expectation surface, a set of {\em geodesic\/}
+parameters exists,
+say $\bphi$, for which the prior density will be
+approximately constant near $\hat{\bphi}$.
+That is,
+\begin{equation}
+  | \bV_{\phi} \trans \bV_{\phi} |  \approx  { {\rm constant}}
+  \label{eqn:2.9e}
+\end{equation}
+where
+$$
+\bV_{\phi} = {d \boeta  \over d \bphi \trans}
+$$
+If the expectation surface is perfectly flat or, more generally,
+if it has zero Gaussian curvature everywhere \cite{onei:1966},
+%\glossary{ Oneill, B.}
+(\ref{eqn:2.9e}) is an equality.
+
+Besides having a locally uniform prior density, the $\bphi$
+parameters also have an easily expressed likelihood function,
+since when
+the expectation surface is reasonably flat over the region of
+nonnegligible likelihood, the sum of squares function
+$S_{\phi} ( \bphi )$ is quadratic in $\bphi$.
+That is,
+\begin{eqnarray*}
+  p_{\phi} ( \bphi | \by )&\propto&[ S_{\phi} ( \bphi ) ]^{-N/2}\\
+  &\approx& \left[ S_{\phi} ( \hat{\bphi})  + \frac{1}{2}
+  ( \bphi-\hat{\bphi})\trans
+  \left.{ \partial^2 S_{\phi}   \over  \partial \bphi \partial \bphi
+  \trans} \right|_{\hat{\phi}}(\bphi-\hat{\bphi})\right]^{-N/2}  
+\end{eqnarray*}
+which is in the form of a multivariate T density
+\index{T distribution!multivariate}
+\cite{box:tiao:1973}.
+%\glossary{ Box, G.E.P.}
+%\glossary{ Tiao, G.C.}
+Thus, an approximate $1-\alpha$ HPD region consists of all
+values of $\bphi$ enclosed by the contour $S_{\phi} ( \bphi )$
+determined by
+$$
+{[ S_{\phi} ( \bphi ) - S_{\phi} ( \hat{\bphi} ) ] /  P   \over
+{S_{\phi} ( \hat{\bphi}) } / ( N -P )}\le\FPNP
+$$
+
+In terms of $\btheta$, the HPD region becomes a contour in
+${S ( \btheta )} / {| \bV \trans \bV |^{1/N}}$, and so the approximate
+$ (1 - \alpha)$ HPD region in $\btheta$ is bounded by the contour
+$$
+{ S ( \btheta )   \over  | \bV \trans \bV |^{1/N}} =
+{ S ( \hat{\btheta})   \over  | \hat{\bV}\trans\hat{\bV}|^{1/N}}
+\left[ 1 + {P \over N -P} \FPNP\right]
+$$
+Computationally, it is more convenient to determine
+contours of ${ | \bV \trans \bV |^{1/N}} / {S ( \btheta ) }$, since
+sometimes $| \bV \trans \bV | = 0$ on the boundary of the parameter
+region, as in Example BOD \ref{bod:1c}.
+
+EXAMPLE:puro18 Puromycin joint posterior
+%%%\input{puro18}
+
+EXAMPLE:bod12 BOD joint posterior
+%%%\input{bod12}
+
+Sketches could be made of the pairwise projections of HPD regions
+using the same approach as for likelihood regions.
+Instead of minimizing the conditional sum of squares, however,
+we determine the posterior profile traces by minimizing
+\index{profile trace!posterior}
+\index{posterior density!profile trace}
+$ { S ( \btheta ) }  / { | \bV \trans \bV |^{ 1 / N } } $.
+Minimizing this is much more difficult than minimizing the profile sum
+of squares, but fortunately the {\em locus\/} of the minima, say
+$\btheta_{-p}^* ( \theta_p ) $ (i.e., the posterior profile trace)
+will be essentially the same as
+$\tilde \btheta_{-p} ( \theta_p ) $ (the likelihood trace)
+because the term $| \bV \trans \bV |^{ 1 / N } $
+will usually vary more slowly than the term $ S ( \btheta ) $.
+It is therefore easy to evaluate the posterior density along the
+likelihood trace and so generate sketches of the projections of
+HPD regions using the methods of Appendix 6.
+
+In theory, Bayesian marginal inferences are straightforward:
+the posterior density is simply integrated over the nuisance
+parameters, as in eliminating $\sigma$.
+If $\theta_{1}$ is the single parameter of interest
+and $\btheta_{-1}$ represents the nuisance parameters, the
+marginal density for $\theta_{1}$ is
+$$
+p_{{\theta}_1} ( \theta_1 )  \propto
+\int  p_{\theta} ( \theta_1 , \btheta_{-1} \trans )
+d \btheta_{-1}
+$$
+This method of eliminating components of $\btheta$ would generally
+require a prohibitive amount of numerical integration, so approximations
+based on the density conditional on the parameter of interest are used.
+A first approximation is to use the analogue of the profile likelihood,
+$$
+\int_{\theta} p( \theta_1 , \btheta_{-1} \trans ) 
+d \btheta_{-1}\propto
+p_{\theta} ( \theta_1 , \btheta_{-1}^* ( \theta_1 ))
+$$
+where $\btheta_{-1}^* ( \theta_1 )$ is the value which maximizes
+$p_{\theta} ( \theta_1 , \btheta_{-1} )$ over $\btheta_{-1}$ for
+that value of $\theta_{1}$.
+That is, the marginal density for $\theta_{1}$
+is assumed to be proportional to the maximum
+value of the conditional density on $\theta_{1}$.
+To obtain more accurate intervals,
+a quadratic approximation could be used in which the integral
+of the joint density is replaced by the product of its maximum
+value and a measure of its spread at the maximum,
+as discussed in \citeasnoun{tier:kada:1986}.
+%\glossary{ Tierney, L.}
+%\glossary{ Kadane, J.B.}
+
+\section{Exact Sampling Theory Confidence Regions}
+
+Sampling theory methods for linear regression can be extended to provide
+joint confidence regions for parameters in nonlinear regression models.
+\index{confidence!region for nonlinear model}
+We only do this for completeness, however, because
+{\em we do not recommend the approach}.
+
+The method involves hypotheses of the form
+$$
+{\rm H}_{0:}  \btheta = \btheta_0
+$$
+versus
+$$
+{\rm H}_{{{\rm }} A}:  \btheta \ne \btheta_0
+$$
+where, as in the linear model, the test is based on the relative lengths
+of tangential and orthogonal components of the residual vector
+$\bz_0 = \by - \boeta ( \btheta_0 )$.
+For linear models, the tangent plane is independent of $\btheta$
+and the length of the orthogonal component of the residual vector
+is fixed.
+For nonlinear models, however,
+the tangent plane changes with the value of $\btheta$ and so does
+the length of the orthogonal component.
+
+Even with a nonlinear model, this test provides a
+locally most powerful, unbiased test of the hypothesis,
+and under
+the assumptions on the model, the confidence region
+\begin{equation}
+  {\norm \bQ_1 \trans ( \btheta ) \bz ( \btheta ) \norm^2 / P  \over
+  \norm \bQ_2 \trans ( \btheta ) \bz ( \btheta ) \norm^2 / ( N -P )} 
+  \le\FPNP
+  \label{eqn:2.12c}
+\end{equation}
+is an exact $ (1 - \alpha)$ confidence region.
+In (\ref{eqn:2.12c}), $\bQ_1 ( \btheta )$ and $\bQ_2 ( \btheta )$ are
+the orthogonal parts of the
+$QR$ decomposition of $\bV ( \btheta )$, the derivative matrix
+evaluated at $\btheta$.
+When there is an independent
+variance estimate $s_r^{2}$ with $\nu_{r}$
+degrees of freedom, an alternative form of the confidence region is
+$$
+\norm \bQ_1 \trans ( \btheta ) \bz ( \btheta ) \norm^2 
+\le P s_r^2 F ( P, \nu_r ; \alpha )
+$$
+EXAMPLE:puro19 Puromycin confidence regions
+%%%\input{puro19}
+
+EXAMPLE:bod13 BOD  confidence regions
+%%%\input{bod13}
+
+As pointed out in \citeasnoun{beal:1960}, sampling theory
+%\glossary{ Beale, E.M.L.}
+confidence regions have undesirable properties
+because they are determined by values of a
+ratio in which both the numerator and the denominator vary with $\btheta$.
+The ratio in (\ref{eqn:2.12c}) can be small because the
+tangential component is small or
+because the orthogonal component is large.
+When the expectation surface bends,
+the ratio often falls below the critical value for points which are
+very far away from the least squares values because the tangent
+plane has tilted.
+
+EXAMPLE:rum7 Rumford Confidence intervals
+%%%\input{rum7}
+
+
+We see that even for a simple 1-parameter model, exact confidence
+regions can consist of disjoint portions
+which include parameter values
+whose residual vectors are much longer than the residual
+vector at $\hat \btheta$.
+Moreover, even without producing confidence regions in disjoint
+portions, the method is subject to enclosing clearly
+inappropriate parameter values in the confidence sets.
+
+Marginal inferences are difficult to formulate using sampling theory
+because the method for constructing joint or marginal confidence regions
+for the parameters in a linear model does not generalize to
+nonlinear models except when conditional
+linearity can be exploited \cite{hami:1986}.
+%\glossary{ Hamilton, D.C.}
+As described in Section 1.2.3
+for linear models, the method involves decomposing
+the residual vector for a representative point on the subplane
+defined by $\beta_2 = c$ into three components:  one
+{\em orthogonal to\/} the expectation plane, one 
+{\em in\/} the expectation plane and 
+{\em orthogonal to\/} the subplane, and one {\em parallel to\/}
+the subplane.
+For a nonlinear model, both the expectation surface and
+the subsurface generated by a constraint such as
+$\theta_2 = c$ are nonlinear, and
+there is no general decomposition giving three orthogonal
+components.
+In theory, marginal confidence regions could be computed, but a
+reference distribution would have to be computed for each model,
+each data set, and each parameter value, and so there would be
+no straightforward way to obtain marginal
+confidence regions using standard (F or $t$) distributions.
+
+The only instance where the approach from linear models can be used
+is when there are conditionally linear parameters.
+If the model reduces to a linear model when a subset of the
+parameters is held fixed, then exact marginal confidence regions
+for the nonlinear parameters can be calculated.
+For example, the model
+$$
+f( x ,  \btheta ) = \theta_1 +  \theta_2 e^{ \theta_3 x }
+$$
+reduces to a linear model when $\theta_{3}$ is held fixed.
+Thus confidence intervals for $\theta_{3}$ can be determined
+using a $t$ distribution,
+as described in \citeasnoun{halp:1963} and \citeasnoun{will:1962}.
+%\glossary{ Halperin, M.}
+%\glossary{ Williams, E.J.}
+
+\section{Comparison of the Likelihood, Bayes, and Sampling Theory Approaches}
+\sectionmark{Comparison of Approaches}
+
+Four methods for summarizing joint and marginal inference regions
+have been given.
+In Chapter 2 we discussed linear approximations, and in this chapter
+we presented profile $t$ and profile pair plots,
+Bayes joint and marginal HPD procedures, and sampling theory procedures.
+The linear approximation methods are the easiest to use, and
+most nonlinear regression programs automatically provide the linear
+approximation standard errors and estimate codependence matrix 
+for the parameters.
+The major disadvantage of linear approximations is that the validity
+\index{linear approximation!to expectation function}
+of the approximation over the region of interest is not known.
+This approximation involves both the {\em planar\/}
+assumption and the
+\index{planar assumption}
+\index{assumptions!planar}
+{\em uniform coordinate\/}
+\index{uniform coordinate!assumption}
+\index{assumptions!uniform coordinate}
+assumption, one or both of which could be invalid---as shown in the
+next chapter, it is usually the uniform coordinate 
+assumption.
+
+The other approaches to inference produce joint regions
+defined by contours.
+Determining and displaying exact contours is generally too
+expensive when $P > 2$,
+but displaying profile $t$ plots, profile traces, and profile pair
+sketches is eminently practical.
+This approach requires a minor amount of extra
+computation over the linear approximation approach but provides
+valuable information on the behavior of the marginal and joint regions.
+Fortunately, the calculations only require slight modifications of
+standard nonlinear programs.
+The confidence level associated with likelihood regions is
+not well defined, but in
+contrast to the linear approximation intervals, the likelihood regions
+require only the planar assumption.
+
+Similarly, examination of the approximate marginal and joint
+HPD regions provides much more information than does
+the linear approximation.
+The Bayes prior moderates the tendency of likelihood contours to open
+as the model function approaches an asymptote, making the Bayes
+intervals more satisfactory.
+The probability associated with the HPD intervals is
+based on an approximation to the expectation surface that, like
+the likelihood approach, only requires the planar assumption.
+The Bayes approach has stronger justification for the
+probability content or level of a region than the likelihood approach.
+
+It is noteworthy that the prior density does not depend on the
+parametrization, but it is equally noteworthy that the prior
+depends on the design used by the experimenter.
+As demonstrated in Section 6.2.1, however,
+this makes good sense, since no scientific experiment is done in
+the complete absence of knowledge, and the prior expresses
+the current knowledge of the experimenter through the design.
+
+The sampling theory approach, which uses the ratio of lengths of
+components of the residual vector rather than the total length of
+the residual vector to determine the region, can result in regions
+which include inappropriate parameter values.
+In addition, the difficulty of defining marginal regions for a
+general case makes this approach completely unsuitable.
+
+\section*{Summary}
+
+In this Chapter we have presented 
+procedures for computing and presenting exact likelihood, 
+Bayesian, and sampling theory inference intervals.  
+When a nonlinear regression is performed
+we recommend producing the linear approximation
+standard errors and parameter estimate codependencies, and profile $t$ plots, profile
+traces, and possibly likelihood profile pair sketches.
+For models that are used repeatedly, it is recommended that the profile
+information be used to develop model parameterizations that yield
+nearly straight profile t and trace plots so as to obviate the need for profiling.
+
+In the next Chapter we discuss practical considerations in performing
+a successful nonlinear estimation, and apply profiling in more examples.
+
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "nraia2"
+% End: 

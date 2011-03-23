@@ -1,0 +1,227 @@
+%!PS-Adobe-1.0
+%%Creator: 
+%%CreationDate: Thu Oct 23 09:03:29 1986
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 252.0 522.0 540.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 100 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+%%Page: 1 1
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 2590 (Time \(days\)) T
+0.5 90 1 1690 4110 (Biochemical oxygen demand) T
+1947 2820 M 1947 2871 L S
+2578 2820 M 2578 2871 L S
+3210 2820 M 3210 2871 L S
+3841 2820 M 3841 2871 L S
+4472 2820 M 4472 2871 L S
+1947 2820 M 4472 2820 L S
+0.5 0 1 1947 2720 (0) T
+0.5 0 1 2578 2720 (2) T
+0.5 0 1 3210 2720 (4) T
+0.5 0 1 3841 2720 (6) T
+0.5 0 1 4472 2720 (8) T
+1920 2978 M 1971 2978 L S
+1920 3549 M 1971 3549 L S
+1920 4121 M 1971 4121 L S
+1920 4692 M 1971 4692 L S
+1920 5264 M 1971 5264 L S
+1920 2978 M 1920 5264 L S
+0.5 90 1 1820 2978 (0) T
+0.5 90 1 1820 3549 (5) T
+0.5 90 1 1820 4121 (10) T
+0.5 90 1 1820 4692 (15) T
+0.5 90 1 1820 5264 (20) T
+grestore
+gsave newpath
+1917 2817 M 4503 2817 L 4503 5403 L 1917 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1920 5400 M
+1920 2820 L
+4500 2820 L
+4500 5400 L
+1920 5400 L
+S
+(.) 1 Pchar
+2263 3927 P
+2578 4155 P
+2894 5150 P
+3210 4807 P
+3525 4761 P
+4156 5241 P
+1947 2978 M
+1998 3156 L
+2048 3320 L
+2099 3470 L
+2149 3608 L
+2200 3735 L
+2250 3852 L
+2301 3959 L
+2351 4057 L
+2402 4148 L
+2452 4231 L
+2503 4307 L
+2553 4377 L
+2604 4441 L
+2654 4500 L
+2705 4554 L
+2755 4604 L
+2806 4650 L
+2856 4692 L
+2907 4731 L
+2957 4766 L
+3008 4799 L
+3058 4829 L
+3109 4856 L
+3159 4881 L
+3210 4904 L
+3260 4926 L
+3310 4945 L
+3361 4963 L
+3411 4980 L
+3462 4995 L
+3512 5009 L
+3563 5022 L
+3613 5033 L
+3664 5044 L
+3714 5054 L
+3765 5063 L
+3815 5072 L
+3866 5079 L
+3916 5086 L
+3967 5093 L
+4017 5099 L
+4068 5104 L
+4118 5109 L
+4169 5114 L
+4219 5118 L
+4270 5122 L
+4320 5126 L
+4371 5129 L
+4421 5132 L
+4472 5135 L
+S
+[160 20 20 20] 0 setdash
+5 setlinewidth
+1920 4673 M 4500 4673 L S
+[40 40] 0 setdash
+1920 2942 M
+3846 5400 L
+S
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

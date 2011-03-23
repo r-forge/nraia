@@ -1,0 +1,907 @@
+%!PS-Adobe-1.0
+%%Creator: bates
+%%CreationDate: Tue Sep  9 17:07:18 1986
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 108.0 522.0 684.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 100 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+gsave newpath
+897 3957 M 5223 3957 L 5223 6843 L 897 6843 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 4210 (q) T (1) 0 Subs
+0.5 90 1 1849 5570 (q) T (2) 90 Subs
+2204 4410 M 2204 4456 L S
+2514 4410 M 2514 4456 L S
+2823 4410 M 2823 4456 L S
+3132 4410 M 3132 4456 L S
+3442 4410 M 3442 4456 L S
+3751 4410 M 3751 4456 L S
+4060 4410 M 4060 4456 L S
+4370 4410 M 4370 4456 L S
+2204 4410 M 4370 4410 L S
+0.5 0 1 2204 4310 (\2614) T
+0.5 0 1 2514 4310 (\2612) T
+0.5 0 1 2823 4310 (0) T
+0.5 0 1 3132 4310 (2) T
+0.5 0 1 3442 4310 (4) T
+0.5 0 1 3751 4310 (6) T
+0.5 0 1 4060 4310 (8) T
+0.5 0 1 4370 4310 (10) T
+2050 4564 M 2096 4564 L S
+2050 4874 M 2096 4874 L S
+2050 5183 M 2096 5183 L S
+2050 5492 M 2096 5492 L S
+2050 5802 M 2096 5802 L S
+2050 6111 M 2096 6111 L S
+2050 6420 M 2096 6420 L S
+2050 6730 M 2096 6730 L S
+2050 4564 M 2050 6730 L S
+0.5 90 1 1949 4564 (\2614) T
+0.5 90 1 1949 4874 (\2612) T
+0.5 90 1 1949 5183 (0) T
+0.5 90 1 1949 5492 (2) T
+0.5 90 1 1949 5802 (4) T
+0.5 90 1 1949 6111 (6) T
+0.5 90 1 1949 6420 (8) T
+0.5 90 1 1949 6730 (10) T
+grestore
+gsave newpath
+2047 4407 M 4373 4407 L 4373 6733 L 2047 6733 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+2050 6730 M
+2050 4410 L
+4370 4410 L
+4370 6730 L
+2050 6730 L
+S
+grestore
+gsave newpath
+897 3957 M 5223 3957 L 5223 6843 L 897 6843 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 4060 (\(a\)) T
+grestore
+gsave newpath
+2047 4407 M 4373 4407 L 4373 6733 L 2047 6733 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+4209 5883 P
+2823 5183 P
+grestore
+gsave newpath
+897 3957 M 5223 3957 L 5223 6843 L 897 6843 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0 0 1 4209 5883 ( h) ST (1) 0 sup
+0 0 1 4209 5933 ( ^) T
+0 0 1 2823 5183 (  h) ST (0) 0 sup
+grestore
+gsave newpath
+2045 4405 M 4375 4405 L 4375 6735 L 2045 6735 L closepath clip newpath
+[] 0 setdash
+10 setlinewidth
+0 setgray
+2823 5183 M
+2886 5218 L
+2936 5253 L
+2976 5288 L
+3004 5322 L
+3024 5355 L
+3034 5387 L
+3036 5418 L
+3030 5448 L
+3018 5476 L
+2999 5504 L
+2973 5529 L
+2942 5553 L
+2906 5576 L
+2865 5597 L
+2819 5616 L
+2770 5634 L
+2716 5650 L
+2658 5665 L
+2598 5678 L
+2534 5690 L
+S
+5 setlinewidth
+(.) 1.5 Pchar
+2823 5183 P
+3024 5355 P
+2999 5504 P
+2534 5690 P
+grestore
+gsave newpath
+897 3957 M 5223 3957 L 5223 6843 L 897 6843 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 2534 5767 ( h) ST (1) 0 sup
+grestore
+gsave newpath
+2045 4405 M 4375 4405 L 4375 6735 L 2045 6735 L closepath clip newpath
+[] 0 setdash
+10 setlinewidth
+0 setgray
+2050 4590 M
+3142 4410 L
+S
+2050 6308 M
+3393 6730 L
+S
+[40 40] 0 setdash
+5 setlinewidth
+2050 5099 M
+4370 5045 L
+S
+2050 5463 M
+4370 5645 L
+S
+2050 5712 M
+4370 6054 L
+S
+2050 5879 M
+4370 6329 L
+S
+2050 5993 M
+4370 6517 L
+S
+2050 6072 M
+4370 6647 L
+S
+2050 6128 M
+4330 6730 L
+S
+2050 6169 M
+4086 6730 L
+S
+2050 6200 M
+3917 6730 L
+S
+2050 6223 M
+3797 6730 L
+S
+2050 6240 M
+3708 6730 L
+S
+2050 6254 M
+3641 6730 L
+S
+2050 6265 M
+3590 6730 L
+S
+2050 6273 M
+3550 6730 L
+S
+2050 6280 M
+3519 6730 L
+S
+2050 6285 M
+3494 6730 L
+S
+2050 6290 M
+3475 6730 L
+S
+2050 6293 M
+3459 6730 L
+S
+2050 6296 M
+3447 6730 L
+S
+2050 6298 M
+3437 6730 L
+S
+2050 6300 M
+3428 6730 L
+S
+2050 6301 M
+3422 6730 L
+S
+2050 6303 M
+3416 6730 L
+S
+2050 6304 M
+3412 6730 L
+S
+2050 6304 M
+3408 6730 L
+S
+[160 20 20 20] 0 setdash
+902 4966 M
+1366 4977 L
+1775 5007 L
+2136 5049 L
+2456 5102 L
+2739 5162 L
+2991 5228 L
+3215 5297 L
+3415 5368 L
+3594 5440 L
+3755 5512 L
+3899 5584 L
+4028 5655 L
+4145 5724 L
+4251 5791 L
+4347 5856 L
+4433 5919 L
+4512 5980 L
+4584 6039 L
+4650 6095 L
+S
+1100 4884 M
+1658 4862 L
+2170 4857 L
+2640 4867 L
+3072 4889 L
+3469 4922 L
+3834 4964 L
+4171 5013 L
+4481 5067 L
+4768 5127 L
+5033 5191 L
+5278 5257 L
+5505 5326 L
+5715 5396 L
+5909 5468 L
+6090 5540 L
+6259 5612 L
+6415 5684 L
+6560 5756 L
+6696 5827 L
+S
+1208 4837 M
+1821 4793 L
+2396 4765 L
+2934 4751 L
+3438 4749 L
+3911 4758 L
+4355 4776 L
+4771 4803 L
+5162 4838 L
+5530 4879 L
+5876 4926 L
+6201 4977 L
+6507 5033 L
+6795 5092 L
+7067 5155 L
+7323 5219 L
+7565 5286 L
+7793 5355 L
+8008 5425 L
+8211 5496 L
+S
+1276 4807 M
+1925 4748 L
+2541 4703 L
+3125 4671 L
+3680 4651 L
+4206 4641 L
+4706 4640 L
+5181 4649 L
+5632 4665 L
+6060 4688 L
+6468 4718 L
+6856 4753 L
+7225 4794 L
+7576 4839 L
+7910 4889 L
+8229 4942 L
+8533 4998 L
+8822 5057 L
+9098 5119 L
+9361 5183 L
+S
+1323 4786 M
+1998 4716 L
+2643 4659 L
+3260 4614 L
+3851 4579 L
+4417 4554 L
+4958 4539 L
+5477 4531 L
+5974 4532 L
+6449 4540 L
+6906 4555 L
+7343 4575 L
+7762 4602 L
+8164 4633 L
+8549 4669 L
+8919 4710 L
+9274 4754 L
+9615 4802 L
+9942 4853 L
+10256 4907 L
+S
+1357 4771 M
+2051 4693 L
+2718 4626 L
+3360 4570 L
+3979 4524 L
+4575 4488 L
+5148 4460 L
+5701 4440 L
+6234 4428 L
+6747 4422 L
+7241 4424 L
+7718 4431 L
+8178 4445 L
+8621 4464 L
+9048 4487 L
+9461 4516 L
+9859 4548 L
+10243 4585 L
+10613 4625 L
+10971 4669 L
+S
+1383 4759 M
+2091 4675 L
+2776 4601 L
+3438 4536 L
+4078 4481 L
+4697 4435 L
+5297 4397 L
+5877 4367 L
+6438 4343 L
+6981 4327 L
+7507 4317 L
+8016 4314 L
+8509 4316 L
+8987 4323 L
+9449 4335 L
+9897 4353 L
+10331 4374 L
+10751 4400 L
+11158 4430 L
+11553 4464 L
+S
+1404 4749 M
+2123 4660 L
+2821 4580 L
+3499 4509 L
+4157 4447 L
+4795 4393 L
+5416 4346 L
+6018 4307 L
+6603 4274 L
+7171 4248 L
+7722 4229 L
+8258 4215 L
+8779 4207 L
+9285 4205 L
+9777 4207 L
+10255 4215 L
+10719 4226 L
+11171 4242 L
+11610 4262 L
+12037 4286 L
+S
+1420 4742 M
+2149 4648 L
+2858 4563 L
+3549 4487 L
+4221 4418 L
+4875 4357 L
+5513 4304 L
+6133 4257 L
+6738 4217 L
+7327 4183 L
+7900 4155 L
+8459 4133 L
+9003 4116 L
+9534 4104 L
+10050 4098 L
+10554 4096 L
+11045 4099 L
+11523 4106 L
+11989 4117 L
+12444 4132 L
+S
+1434 4735 M
+2170 4638 L
+2889 4549 L
+3590 4468 L
+4274 4395 L
+4942 4328 L
+5594 4268 L
+6230 4215 L
+6851 4168 L
+7458 4127 L
+8050 4091 L
+8628 4062 L
+9192 4037 L
+9743 4018 L
+10282 4004 L
+10807 3994 L
+11321 3989 L
+11822 3988 L
+12312 3991 L
+12791 3998 L
+S
+1445 4730 M
+2188 4630 L
+2915 4538 L
+3625 4453 L
+4319 4374 L
+4998 4303 L
+5663 4238 L
+6312 4179 L
+6948 4126 L
+7569 4079 L
+8177 4037 L
+8772 4001 L
+9354 3969 L
+9923 3943 L
+10480 3922 L
+11025 3905 L
+11558 3892 L
+12080 3884 L
+12591 3880 L
+13091 3879 L
+S
+1455 4725 M
+2203 4623 L
+2937 4528 L
+3654 4439 L
+4358 4357 L
+5047 4281 L
+5722 4211 L
+6383 4148 L
+7030 4089 L
+7665 4037 L
+8287 3990 L
+8896 3947 L
+9493 3910 L
+10078 3878 L
+10652 3850 L
+11214 3826 L
+11764 3807 L
+12304 3792 L
+12833 3781 L
+13352 3774 L
+S
+1463 4722 M
+2217 4617 L
+2955 4519 L
+3680 4427 L
+4391 4342 L
+5088 4262 L
+5773 4188 L
+6444 4120 L
+7102 4058 L
+7749 4000 L
+8383 3948 L
+9005 3901 L
+9615 3858 L
+10214 3820 L
+10802 3786 L
+11379 3757 L
+11945 3732 L
+12501 3711 L
+13046 3694 L
+13582 3680 L
+S
+1471 4718 M
+2228 4612 L
+2972 4511 L
+3703 4417 L
+4420 4328 L
+5125 4246 L
+5817 4168 L
+6497 4096 L
+7165 4030 L
+7822 3968 L
+8467 3911 L
+9100 3859 L
+9722 3811 L
+10334 3768 L
+10934 3730 L
+11525 3695 L
+12105 3665 L
+12675 3638 L
+13235 3615 L
+13785 3596 L
+S
+1477 4715 M
+2238 4607 L
+2987 4505 L
+3722 4408 L
+4446 4317 L
+5157 4231 L
+5857 4151 L
+6545 4075 L
+7221 4005 L
+7887 3939 L
+8541 3878 L
+9184 3822 L
+9817 3770 L
+10440 3722 L
+11052 3679 L
+11655 3640 L
+12247 3604 L
+12830 3573 L
+13403 3545 L
+13967 3521 L
+S
+1483 4712 M
+2247 4603 L
+2999 4499 L
+3740 4400 L
+4469 4306 L
+5186 4218 L
+5892 4135 L
+6587 4056 L
+7271 3983 L
+7944 3913 L
+8607 3849 L
+9260 3789 L
+9902 3733 L
+10535 3681 L
+11157 3633 L
+11771 3590 L
+12374 3550 L
+12969 3514 L
+13554 3481 L
+14130 3452 L
+S
+1488 4710 M
+2255 4599 L
+3011 4493 L
+3755 4393 L
+4489 4297 L
+5211 4206 L
+5923 4120 L
+6625 4039 L
+7315 3963 L
+7996 3890 L
+8667 3822 L
+9328 3759 L
+9979 3699 L
+10620 3644 L
+11252 3592 L
+11875 3545 L
+12489 3501 L
+13094 3460 L
+13690 3423 L
+14277 3390 L
+S
+1492 4708 M
+2262 4596 L
+3021 4488 L
+3770 4386 L
+4507 4289 L
+5235 4196 L
+5952 4107 L
+6658 4024 L
+7356 3944 L
+8043 3869 L
+8720 3798 L
+9389 3732 L
+10048 3669 L
+10697 3610 L
+11338 3555 L
+11970 3503 L
+12593 3456 L
+13207 3411 L
+13813 3370 L
+14411 3333 L
+S
+1496 4706 M
+2269 4593 L
+3031 4484 L
+3782 4380 L
+4524 4281 L
+5255 4186 L
+5977 4096 L
+6689 4010 L
+7392 3928 L
+8085 3850 L
+8769 3777 L
+9444 3707 L
+10110 3641 L
+10767 3579 L
+11416 3520 L
+12056 3466 L
+12687 3414 L
+13310 3367 L
+13925 3322 L
+14532 3281 L
+S
+10 setlinewidth
+1504 4703 M
+2094 4615 L
+2680 4529 L
+3260 4446 L
+3834 4366 L
+4404 4288 L
+S
+1509 4700 M
+2103 4611 L
+2691 4524 L
+3275 4439 L
+3853 4357 L
+4426 4277 L
+S
+1515 4698 M
+2110 4607 L
+2701 4519 L
+3287 4433 L
+3869 4350 L
+4446 4268 L
+S
+1523 4694 M
+2122 4602 L
+2717 4512 L
+3308 4424 L
+3894 4338 L
+4477 4253 L
+S
+1536 4688 M
+2141 4593 L
+2742 4500 L
+3341 4408 L
+3936 4318 L
+4529 4229 L
+S
+1549 4681 M
+2160 4584 L
+2768 4488 L
+3374 4392 L
+3979 4298 L
+4581 4205 L
+S
+1556 4678 M
+2169 4579 L
+2781 4481 L
+3391 4384 L
+4000 4288 L
+4607 4192 L
+S
+1560 4676 M
+2175 4577 L
+2789 4478 L
+3402 4379 L
+4013 4282 L
+4623 4185 L
+S
+1565 4674 M
+2183 4573 L
+2799 4473 L
+3415 4373 L
+4030 4274 L
+4644 4175 L
+S
+1568 4672 M
+2186 4571 L
+2805 4470 L
+3422 4370 L
+4039 4269 L
+4655 4170 L
+S
+grestore
+gsave newpath
+897 1077 M 5223 1077 L 5223 3963 L 897 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 1330 (q) T (1) 0 Subs
+0.5 90 1 1849 2690 (q) T (2) 90 Subs
+2204 1530 M 2204 1576 L S
+2514 1530 M 2514 1576 L S
+2823 1530 M 2823 1576 L S
+3132 1530 M 3132 1576 L S
+3442 1530 M 3442 1576 L S
+3751 1530 M 3751 1576 L S
+4060 1530 M 4060 1576 L S
+4370 1530 M 4370 1576 L S
+2204 1530 M 4370 1530 L S
+0.5 0 1 2204 1430 (\2614) T
+0.5 0 1 2514 1430 (\2612) T
+0.5 0 1 2823 1430 (0) T
+0.5 0 1 3132 1430 (2) T
+0.5 0 1 3442 1430 (4) T
+0.5 0 1 3751 1430 (6) T
+0.5 0 1 4060 1430 (8) T
+0.5 0 1 4370 1430 (10) T
+2050 1684 M 2096 1684 L S
+2050 1994 M 2096 1994 L S
+2050 2303 M 2096 2303 L S
+2050 2612 M 2096 2612 L S
+2050 2922 M 2096 2922 L S
+2050 3231 M 2096 3231 L S
+2050 3540 M 2096 3540 L S
+2050 3850 M 2096 3850 L S
+2050 1684 M 2050 3850 L S
+0.5 90 1 1949 1684 (\2614) T
+0.5 90 1 1949 1994 (\2612) T
+0.5 90 1 1949 2303 (0) T
+0.5 90 1 1949 2612 (2) T
+0.5 90 1 1949 2922 (4) T
+0.5 90 1 1949 3231 (6) T
+0.5 90 1 1949 3540 (8) T
+0.5 90 1 1949 3850 (10) T
+grestore
+gsave newpath
+2047 1527 M 4373 1527 L 4373 3853 L 2047 3853 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+2050 3850 M
+2050 1530 L
+4370 1530 L
+4370 3850 L
+2050 3850 L
+S
+grestore
+gsave newpath
+897 1077 M 5223 1077 L 5223 3963 L 897 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 1180 (\(b\)) T
+grestore
+gsave newpath
+2047 1527 M 4373 1527 L 4373 3853 L 2047 3853 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+4209 3003 P
+2823 2303 P
+grestore
+gsave newpath
+897 1077 M 5223 1077 L 5223 3963 L 897 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0 0 1 4209 3003 ( h) ST (1) 0 sup
+0 0 1 4209 3053 ( ^) T
+0 0 1 2823 2303 (   h) ST (0) 0 sup
+grestore
+gsave newpath
+2049 1529 M 4371 1529 L 4371 3851 L 2049 3851 L closepath clip newpath
+[40 40] 0 setdash
+5 setlinewidth
+0 setgray
+2050 1712 M 4370 1712 L S
+2050 2204 M 4370 2204 L S
+2050 2697 M 4370 2697 L S
+2050 3189 M 4370 3189 L S
+2050 3681 M 4370 3681 L S
+[160 20 20 20] 0 setdash
+2050 3756 M
+2422 3850 L
+S
+2050 3206 M
+4370 3791 L
+S
+2050 2657 M
+4370 3242 L
+S
+2050 2108 M
+4370 2693 L
+S
+2050 1559 M
+4370 2143 L
+S
+4113 1530 M
+4370 1594 L
+S
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

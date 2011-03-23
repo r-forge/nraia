@@ -1,0 +1,608 @@
+%!PS-Adobe-1.0
+%%Creator: bates
+%%CreationDate: Tue Apr  7 14:43:53 1987
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 252.0 522.0 540.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 100 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+%%Page: 1 1
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3210 2589 (t) ST (1) 0 Subs
+0.5 90 1 1690 4110 (t) ST (2) 90 Subs
+1995 2819 M 1995 2871 L S
+2602 2819 M 2602 2871 L S
+3210 2819 M 3210 2871 L S
+3817 2819 M 3817 2871 L S
+4424 2819 M 4424 2871 L S
+1995 2819 M 4424 2819 L S
+0.5 0 1 1995 2719 (\2614) T
+0.5 0 1 2602 2719 (\2612) T
+0.5 0 1 3210 2719 (0) T
+0.5 0 1 3817 2719 (2) T
+0.5 0 1 4424 2719 (4) T
+1920 2895 M 1971 2895 L S
+1920 3502 M 1971 3502 L S
+1920 4110 M 1971 4110 L S
+1920 4717 M 1971 4717 L S
+1920 5324 M 1971 5324 L S
+1920 2895 M 1920 5324 L S
+0.5 90 1 1820 2895 (\2614) T
+0.5 90 1 1820 3502 (\2612) T
+0.5 90 1 1820 4110 (0) T
+0.5 90 1 1820 4717 (2) T
+0.5 90 1 1820 5324 (4) T
+grestore
+gsave newpath
+1917 2817 M 4503 2817 L 4503 5403 L 1917 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1920 5400 M
+1920 2819 L
+4500 2819 L
+4500 5400 L
+1920 5400 L
+S
+1672 4940 M
+1724 4920 L
+1840 4875 L
+1955 4830 L
+2067 4785 L
+2177 4738 L
+2284 4690 L
+2387 4642 L
+2488 4592 L
+2585 4540 L
+2678 4488 L
+2767 4434 L
+2852 4379 L
+2933 4325 L
+3009 4270 L
+3080 4215 L
+3147 4162 L
+3210 4110 L
+3268 4058 L
+3322 4010 L
+3372 3963 L
+3419 3919 L
+3462 3877 L
+3502 3838 L
+3540 3800 L
+3574 3766 L
+3607 3733 L
+3637 3702 L
+3665 3674 L
+3691 3647 L
+3716 3621 L
+3739 3597 L
+3761 3575 L
+3782 3553 L
+3801 3533 L
+3819 3514 L
+3837 3496 L
+3853 3479 L
+3869 3463 L
+3883 3448 L
+3897 3433 L
+3911 3419 L
+3924 3406 L
+3936 3393 L
+3947 3381 L
+3958 3370 L
+3969 3359 L
+3979 3348 L
+3989 3338 L
+3998 3328 L
+4007 3319 L
+4016 3310 L
+4024 3301 L
+4032 3293 L
+4040 3285 L
+4048 3277 L
+4055 3270 L
+4062 3263 L
+4068 3256 L
+4075 3250 L
+4081 3243 L
+4087 3237 L
+4093 3231 L
+4099 3225 L
+4104 3219 L
+4110 3214 L
+4115 3208 L
+4120 3203 L
+4125 3198 L
+4129 3193 L
+4134 3188 L
+4138 3184 L
+4143 3179 L
+4147 3175 L
+4151 3171 L
+4155 3167 L
+4159 3163 L
+4163 3159 L
+4167 3155 L
+4170 3151 L
+4174 3148 L
+4177 3144 L
+4181 3141 L
+4184 3138 L
+4187 3135 L
+4190 3131 L
+4193 3128 L
+4196 3125 L
+4199 3123 L
+4202 3120 L
+4205 3117 L
+4207 3114 L
+4210 3112 L
+4213 3109 L
+4215 3107 L
+4218 3104 L
+4220 3102 L
+4223 3099 L
+4225 3097 L
+4227 3095 L
+4230 3092 L
+4232 3090 L
+4234 3088 L
+4236 3086 L
+4238 3084 L
+4240 3082 L
+4242 3080 L
+4244 3078 L
+4246 3076 L
+4248 3074 L
+4250 3073 L
+4252 3071 L
+4254 3069 L
+4256 3067 L
+4257 3066 L
+4259 3064 L
+4261 3062 L
+4262 3061 L
+4264 3059 L
+4266 3058 L
+4267 3056 L
+4269 3055 L
+4270 3053 L
+4272 3052 L
+4273 3050 L
+4275 3049 L
+4276 3048 L
+4278 3046 L
+4279 3045 L
+4280 3044 L
+4282 3042 L
+4283 3041 L
+4284 3040 L
+4286 3039 L
+4287 3037 L
+4288 3036 L
+4289 3035 L
+4290 3034 L
+4292 3033 L
+4293 3032 L
+4294 3030 L
+4295 3029 L
+4296 3028 L
+4297 3027 L
+4299 3026 L
+4300 3025 L
+4301 3024 L
+4302 3023 L
+4303 3022 L
+4304 3021 L
+4305 3020 L
+4306 3019 L
+4307 3018 L
+4308 3018 L
+4309 3017 L
+4310 3016 L
+4311 3015 L
+4312 3014 L
+4312 3013 L
+4313 3012 L
+4314 3011 L
+4315 3011 L
+4316 3010 L
+4317 3009 L
+4318 3008 L
+4319 3007 L
+4319 3007 L
+4320 3006 L
+4321 3005 L
+4322 3004 L
+4323 3004 L
+4323 3003 L
+4324 3002 L
+4325 3001 L
+4326 3001 L
+4326 3000 L
+4327 2999 L
+4328 2999 L
+4329 2998 L
+4329 2997 L
+4330 2997 L
+4331 2996 L
+4331 2995 L
+4332 2995 L
+4333 2994 L
+4333 2993 L
+4334 2993 L
+4335 2992 L
+4335 2992 L
+4336 2991 L
+4337 2990 L
+4337 2990 L
+4338 2989 L
+4339 2989 L
+4339 2988 L
+4340 2988 L
+4340 2987 L
+4341 2986 L
+4342 2986 L
+4342 2985 L
+4343 2985 L
+4343 2984 L
+4344 2984 L
+4344 2983 L
+4345 2983 L
+4345 2982 L
+4346 2982 L
+4347 2981 L
+4347 2981 L
+4348 2980 L
+4348 2980 L
+4349 2979 L
+4349 2979 L
+4350 2978 L
+4350 2978 L
+4351 2977 L
+4351 2977 L
+S
+4188 3128 M
+4065 3248 L
+3948 3361 L
+3837 3468 L
+3732 3568 L
+3636 3662 L
+3546 3750 L
+3465 3832 L
+3391 3909 L
+3324 3980 L
+3264 4047 L
+3210 4110 L
+3160 4168 L
+3116 4222 L
+3077 4273 L
+3040 4321 L
+3008 4366 L
+2977 4407 L
+2950 4447 L
+2925 4484 L
+2902 4519 L
+2881 4552 L
+2861 4583 L
+2843 4612 L
+2826 4639 L
+2810 4665 L
+2795 4690 L
+2782 4713 L
+2769 4735 L
+2757 4756 L
+2745 4776 L
+2735 4794 L
+2725 4812 L
+2715 4829 L
+2706 4845 L
+2698 4860 L
+2690 4875 L
+2683 4889 L
+2675 4902 L
+2669 4914 L
+2662 4926 L
+2656 4937 L
+2650 4948 L
+2644 4958 L
+2639 4968 L
+2634 4977 L
+2629 4986 L
+2625 4995 L
+2620 5003 L
+2616 5010 L
+2612 5018 L
+2609 5025 L
+2605 5031 L
+2602 5038 L
+2598 5044 L
+2595 5050 L
+2592 5055 L
+2590 5061 L
+2587 5066 L
+2584 5071 L
+2582 5075 L
+2579 5080 L
+2577 5084 L
+2575 5088 L
+2573 5092 L
+2571 5096 L
+2569 5099 L
+2567 5103 L
+2565 5106 L
+2563 5109 L
+2562 5112 L
+2560 5115 L
+2559 5118 L
+2557 5121 L
+2556 5123 L
+2554 5126 L
+2553 5128 L
+2552 5130 L
+2551 5132 L
+2550 5134 L
+2549 5136 L
+2548 5138 L
+2547 5140 L
+2546 5142 L
+2545 5144 L
+2544 5145 L
+2543 5147 L
+2542 5148 L
+2541 5150 L
+2541 5151 L
+2540 5152 L
+2539 5153 L
+2539 5155 L
+2538 5156 L
+2538 5157 L
+2537 5158 L
+2536 5159 L
+2536 5160 L
+2535 5161 L
+2535 5162 L
+2534 5163 L
+2534 5163 L
+2534 5164 L
+2533 5165 L
+2533 5166 L
+2532 5166 L
+2532 5167 L
+2532 5168 L
+2532 5168 L
+2531 5169 L
+2531 5169 L
+2530 5170 L
+2530 5171 L
+2530 5171 L
+2530 5172 L
+2529 5172 L
+2529 5172 L
+2529 5173 L
+2529 5173 L
+2528 5174 L
+2528 5174 L
+2528 5174 L
+2528 5175 L
+2528 5175 L
+2528 5175 L
+2528 5176 L
+2527 5176 L
+2527 5176 L
+2527 5177 L
+2527 5177 L
+2527 5177 L
+2527 5177 L
+2526 5178 L
+2526 5178 L
+2526 5178 L
+2526 5178 L
+2526 5178 L
+2526 5179 L
+2526 5179 L
+2526 5179 L
+2526 5179 L
+2526 5179 L
+2526 5179 L
+2526 5180 L
+2526 5180 L
+2525 5180 L
+2525 5180 L
+2525 5180 L
+2525 5180 L
+2525 5180 L
+2525 5180 L
+2525 5180 L
+2525 5181 L
+2525 5181 L
+2525 5181 L
+2525 5181 L
+2525 5181 L
+2525 5181 L
+2525 5181 L
+2524 5181 L
+2524 5181 L
+2524 5181 L
+2524 5181 L
+2524 5181 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5182 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+2524 5183 L
+S
+(.) 1 Pchar
+2078 4780 P
+2317 4675 P
+2602 4530 P
+2819 4401 P
+4341 2986 P
+4102 3221 P
+3817 3517 P
+3600 3740 P
+(.) 1 Pchar
+4342 2978 P
+4097 3217 P
+3801 3502 P
+3578 3719 P
+2620 5002 P
+2780 4717 P
+2914 4500 P
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

@@ -1,0 +1,159 @@
+\appendix{Data Sets Used in Problems}
+
+\section{BOD Data Set 2}
+
+Data on biochemical oxygen demand (BOD) were obtained by
+\citeasnoun{mars:1967} as described in Appendix 1, Section A1.3.
+A second set of data is reported in Table~\ref{atbl:A4bod2}.
+%\glossary{ Marske, D.}
+\begin{table}[tbp]
+  \caption{\label{atbl:A4bod2}
+  Biochemical oxygen demand versus time.}
+  \begin{center}
+    \begin{tabular}{r r r r}
+      \hline
+      &\multicolumn{1}{c}{Biochemical}&&\multicolumn{1}{c}{Biochemical}\\
+      &\multicolumn{1}{c}{Oxygen}&&\multicolumn{1}{c}{Oxygen}\\
+      \multicolumn{1}{c}{Time}&\multicolumn{1}{c}{Demand}&
+      \multicolumn{1}{c}{Time}&\multicolumn{1}{c}{Demand}\\
+      \multicolumn{1}{c}{(days)}&\multicolumn{1}{c}{(mg/l)}&
+      \multicolumn{1}{c}{(days)}&\multicolumn{1}{c}{(mg/l)}\\
+      \hline
+      1&0.47&5&1.60\\
+      2&0.74&7&1.84\\
+      3&1.17&9&2.19\\
+      4&1.42&11&2.17\\
+      \hline
+    \end{tabular}
+  \end{center}
+\begin{quote}\small
+  Copyright 1967 by D. Marske.  Reproduced from ``Biochemical Oxygen
+  Demand Data Interpretation Using Sum of Squares Surface,'' M. Sc.
+  Thesis, University of Wisconsin--Madison.  Reprinted with permission of
+  the author.
+\end{quote}
+\end{table}
+
+A model was derived based on exponential decay with a fixed rate
+constant as
+$$
+f(x, \btheta ) =\theta_1
+( 1 - e^{ \theta_2 x } )
+$$
+where $f$ is predicted biochemical oxygen demand and $x$ is time.
+
+\section{Nitrendipene}
+
+Data on binding of [$^{3}$H] nitrendipine to sites in rat
+heart homogenate were obtained by \citeasnoun{abdo:1986}.
+%\glossary{ Abdollah, S.}
+In this study, experiments were performed to investigate the competition
+for binding to the sites between nitrendipene (NTD), a calcium channel
+antagonist, and nifedipine (NIF), another calcium channel antagonist.
+Heart tissue was homogenated and incubated with radioactively tagged
+NTD at molar concentration
+$\approx5 \times 10^{-10}$ in the presence of different
+concentrations of NIF, which are given in Table A4.2 as
+\begin{table}
+  \caption{\label{atbl:ntd}
+  Radioactivity versus molar concentration of nifedipene for four
+  tissue samples.}
+  \begin{center}
+    \begin{tabular}{r r r r r}
+      \hline
+      &\multicolumn{1}{c}{Counts$^{a}$}\\
+      \multicolumn{1}{c}{$x=\log_{10}$(NIF)$^{b}$}&
+      \multicolumn{1}{c}{Tissue Sample 1}&\multicolumn{1}{c}{2}&
+      \multicolumn{1}{c}{3}&\multicolumn{1}{c}{4}\\
+      \hline
+      (0)&6696&4403&6133&5327\\
+      (0)&6211&5042&5688&6274\\
+      (0)&6385&*&6544&5210\\
+      $-11$&6396&5259&6783&6811\\
+      $-11$&6283&5598&6194&6751\\
+      $-11$&6071&*&6188&7289\\
+      $-10$&6545&4868&5674&7214\\
+      $-10$&6378&4769&5583&5652\\
+      $-10$&5932&*&6027&5700\\
+      $-9$&5509&3931&5458&6184\\
+      $-9$&6573&4503&5482&5175\\
+      $-9$&5932&*&5878&5802\\
+      $-8$&4763&2588&4173&3582\\
+      $-8$&5389&3089&3837&7021\\
+      $-8$&4131&*&4852&4187\\
+      $-7$&4583&4359&3838\\
+      $-7$&3815&3665&3936&3273\\
+      $-7$&3539&*&4468&4562\\
+      $-6$&3211&2149&3110&4004\\
+      $-6$&4263&2216&3860&3520\\
+      $-6$&3537&*&4297&4581\\
+      $-5$&*&1433&3471&3719\\
+      $-5$&*&1926&3674&2915\\
+      $-5$&*&*&3990&4504\\
+      (0)&*&*&5938&6396\\
+      (0)&*&*&5948&6071\\
+    \end{tabular}
+  \end{center}
+  $^{a}$ Total counts for $5 \times 10^{-10}$ Molar NTD additive.
+  (Missing values coded as *.)\\
+  $^{b}$ (0) means NIF concentration = 0.\\
+  \begin{quote}\small
+    Copyright 1986 by S. Abdollah.
+    Reproduced from
+    ``The Effect of Doxorbicin on the Specific Binding of
+    [$^3 H$] Nitrendipenes to Rat Heart Microsomes,''
+    M. Sc. Thesis, Queen's University.
+    Reprinted with permission of the author.
+  \end{quote}
+\end{table}
+$x= \log_{10} ( {\rm NIFconcentration})$, except for
+the rows with (0), for which the actual concentration was 0.
+The NIF has greater binding ability and so displaces the NTD.
+Counts on radioactive material were obtained to determine how much
+material was bound under different conditions.
+When the NIF concentration is 0, all of the radioactive NTD is bound to
+the sites, and so a large count is recorded:
+as the NIF concentration increases,
+it displaces NTD and so lower counts are recorded.
+Although the nominal NTD concentration was $5 \times 10^{-10}$,
+the actual concentrations were 4.76, 5.11, 4.78, and 5.02
+$\times 10^{-10}$ respectively, for the four tissue samples.
+
+The proposed model is
+$$
+f ( x ,\btheta ) =\theta_{1+{\theta}_2 \over 1+\exp [ - \theta_4 ( x-\theta_3 ) ]}
+$$
+where $f$ is the predicted total count and $x$ is $\log_{10}$(NIF
+concentration).
+\section{Saccharin Data Set 2}
+
+Data on the concentration of saccharin in plasma were reported in
+\citeasnoun{renw:1982} and are reproduced in Table A4.3.
+%\glossary{ Renwick, A.G.}
+\begin{table}
+  \caption{\label{atbl:A4sac2}
+    Saccharin concentration in plasma versus time.}
+  \begin{center}
+    \begin{tabular}{ r r r r}
+      \hline
+      &Saccharin&&Saccharin\\
+      Time&Conc.&Time&Conc.\\
+      (min)&($\mu$g/ml)&(min)&($\mu$g/ml)\\ \hline
+      0&0&60&14.1\\
+      5&184.3&75&8.0 \\
+      15&102.0&90&5.7 \\
+      30&50.5&105&4.0\\
+      45&24.9&120&2.9\\ \hline
+    \end{tabular}
+  \end{center}
+  \begin{quote}
+    From ``Pharmacokinetics in Toxicology'' by A. G. Renwick, in {\em
+      Principles and Methods of Toxicology}, A. Wallace Hayes, Ed.,
+    Raven Press, 1982.  Reprinted with permission of the publisher.
+  \end{quote}
+\end{table}
+
+% Local Variables: 
+% mode: latex
+% TeX-master: "nraia2"
+% End: 

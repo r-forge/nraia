@@ -1,0 +1,294 @@
+%!PS-Adobe-1.0
+%%Creator: 
+%%CreationDate: Wed Jul 30 17:19:03 1986
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 900 2520 5220 5400
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 90 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.365 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+%%EndProlog
+%%Page: 1 1
+%%Page: 1 1
+gsave newpath
+1986 2886 M 4404 2886 L 4404 5304 L 1986 5304 L closepath clip newpath
+[10 20] 0 setdash
+5 setlinewidth
+0 setgray
+3445 4094 M
+3380 4161 L
+3314 4227 L
+3248 4293 L
+3181 4358 L
+3115 4421 L
+3049 4484 L
+2983 4545 L
+2919 4604 L
+2855 4661 L
+2793 4716 L
+2732 4769 L
+2673 4819 L
+2617 4866 L
+2562 4910 L
+2510 4950 L
+2461 4988 L
+2414 5022 L
+2371 5052 L
+2331 5078 L
+2294 5101 L
+2261 5119 L
+2232 5134 L
+2206 5144 L
+2184 5150 L
+2167 5152 L
+2153 5150 L
+2143 5144 L
+2138 5134 L
+2137 5119 L
+2140 5101 L
+2147 5078 L
+2158 5052 L
+2173 5022 L
+2192 4988 L
+2216 4950 L
+2243 4910 L
+2274 4866 L
+2308 4819 L
+2346 4769 L
+2388 4716 L
+2432 4661 L
+2480 4604 L
+2530 4545 L
+2583 4484 L
+2639 4421 L
+2696 4358 L
+2756 4293 L
+2817 4227 L
+2880 4161 L
+2944 4094 L
+3009 4028 L
+3075 3962 L
+3141 3896 L
+3208 3831 L
+3274 3768 L
+3340 3705 L
+3406 3644 L
+3470 3585 L
+3534 3528 L
+3596 3473 L
+3657 3420 L
+3716 3370 L
+3772 3323 L
+3827 3279 L
+3879 3239 L
+3928 3201 L
+3975 3167 L
+4018 3137 L
+4058 3111 L
+4095 3088 L
+4128 3070 L
+4157 3055 L
+4183 3045 L
+4205 3039 L
+4222 3037 L
+4236 3039 L
+4246 3045 L
+4251 3055 L
+4252 3070 L
+4249 3088 L
+4242 3111 L
+4231 3137 L
+4216 3167 L
+4197 3201 L
+4173 3239 L
+4146 3279 L
+4115 3323 L
+4081 3370 L
+4043 3420 L
+4001 3473 L
+3957 3528 L
+3909 3585 L
+3859 3644 L
+3806 3705 L
+3750 3768 L
+3693 3831 L
+3633 3896 L
+3572 3962 L
+3509 4028 L
+3445 4094 L
+S
+grestore
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+2053 2888 M 2053 2937 L S
+2567 2888 M 2567 2937 L S
+3082 2888 M 3082 2937 L S
+3597 2888 M 3597 2937 L S
+4111 2888 M 4111 2937 L S
+2053 2888 M 4111 2888 L S
+0.5 0 1 2053 2753 (-3.5) T
+0.5 0 1 2567 2753 (-3.0) T
+0.5 0 1 3082 2753 (-2.5) T
+0.5 0 1 3597 2753 (-2.0) T
+0.5 0 1 4111 2753 (-1.5) T
+1989 3206 M 2037 3206 L S
+1989 3561 M 2037 3561 L S
+1989 3916 M 2037 3916 L S
+1989 4271 M 2037 4271 L S
+1989 4626 M 2037 4626 L S
+1989 4982 M 2037 4982 L S
+1989 3206 M 1989 4982 L S
+0.5 90 1 1854 3206 (1.8) T
+0.5 90 1 1854 3561 (2.0) T
+0.5 90 1 1854 3916 (2.2) T
+0.5 90 1 1854 4271 (2.4) T
+0.5 90 1 1854 4626 (2.6) T
+0.5 90 1 1854 4982 (2.8) T
+grestore
+gsave newpath
+1986 2886 M 4404 2886 L 4404 5304 L 1986 5304 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1989 5300 M
+1989 2888 L
+4401 2888 L
+4401 5300 L
+1989 5300 L
+S
+(+) 1 Pchar
+3195 4094 P
+grestore
+gsave newpath
+897 2517 M 5223 2517 L 5223 5403 L 897 5403 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 3195 2573 (b) ST (1) 0 Subs
+0.5 90 1 1674 4094 (b) ST (2) 90 Subs
+grestore
+gsave newpath
+1986 2886 M 4404 2886 L 4404 5304 L 1986 5304 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1989 5300 M
+1989 2888 L
+4401 2888 L
+4401 5300 L
+1989 5300 L
+S
+(.) 1.3 Pchar
+2167 5152 P
+4222 3037 P
+4252 3067 P
+2137 5122 P
+(.) 1.3 Pchar
+3321 4221 P
+3068 3968 P
+grestore
+end
+%%Trailer
+%%Pages: 0

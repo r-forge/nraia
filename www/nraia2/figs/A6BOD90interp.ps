@@ -1,0 +1,579 @@
+%!PS-Adobe-1.0
+%%Title: S QPE graphics
+%%Creator: bates
+%%CreationDate: Thu May 12 14:39:22 1988
+%%Pages: (atend)
+%%BoundingBox: 9.0 18.0 52.2 61.2
+%%EndComments
+% beginning of preamble
+100 dict begin
+% drawing commands
+/I {Coord SetPage 1 setlinecap 1 setlinejoin
+    LineTypes {RastersPerPoint ScaleArray} forall
+    /Helvetica findfont
+    PointSize RastersPerPoint mul Cex mul scalefont setfont} def
+/A {PageBegin} def
+/B {newpath} def
+/C {currentpoint stroke moveto} def
+/E {stroke} def
+/M {moveto} def
+/L {lineto} def
+/S {moveto lineto stroke} def
+/F {closepath fill} def
+/P {gsave moveto Pch-x Pch-y rmoveto Pch Show grestore} def
+/T {/Adjust exch def gsave translate StringRot rotate 0 0 moveto
+    dup stringwidth pop neg Adjust mul
+    Text-y rmoveto Show grestore} def
+/sT {/Adjust exch def gsave translate StringRot rotate 0 0 moveto
+    dup stringwidth pop neg Adjust mul
+    Text-y rmoveto Show currentfont 0.75 scalefont setfont
+    0 Text-y rmoveto show currentfont 1 0.75 div scalefont setfont grestore} def
+/X {erasepage InPage {PageEnd} if} def
+/Z {gsave showpage grestore PageEnd} def
+/W {end} def
+
+% parameter setting commands
+/St {1 sub LineTypes dup 3 1 roll length Rem floor get 0 setdash} def
+/Sw {abs 2 div RastersPerPoint mul setlinewidth SetClip} def
+/Sc {dup dup 1 lt exch 0 ge and {1 exch sub setgray}
+     {1 sub Colors dup 3 1 roll length Rem floor get setgray} ifelse} def
+/Sp {Pch exch 0 exch put
+     gsave
+     newpath 0 0 moveto Pch false charpath flattenpath pathbbox
+     exch 3 1 roll
+     add 2 div neg /Pch-y exch def
+     add 2 div neg /Pch-x exch def
+     grestore} def
+/Sx {dup Cex div /Ratio exch def
+     /Cex exch def
+     currentfont Ratio scalefont setfont
+     /Pch-x Pch-x Ratio mul def
+     /Pch-y Pch-y Ratio mul def
+     /Text-y Text-y Ratio mul def} def
+/So {4 1 roll exch 4 -1 roll Plot astore pop SetClip} def
+/Sg {4 1 roll exch 4 -1 roll Figure astore pop SetClip} def
+/Sr {/StringRot exch def} def
+/Sd {0 eq /ClipToPlot exch def SetClip} def
+/Sf {dup 0 lt /Outline exch def abs
+     1 sub Fonts dup 3 1 roll length Rem floor get
+     findfont PointSize Cex mul RastersPerPoint mul scalefont dup setfont
+     dup /FontMatrix get /Matrix exch def /FontBBox get aload pop
+     Matrix transform 4 2 roll Matrix transform
+     exch pop add 2 div neg /Text-y exch def pop} def
+
+% other variable definitions
+/InPage false def
+/Clip 4 array def
+/Page 4 array def
+/Figure [0 0 1 1] def
+/Plot [0 0 1 1] def
+/ClipToPlot true def
+/Cex 1 def
+/Outline false def
+/Pch 1 string def
+/Pch-x 0 def
+/Pch-y 0 def
+/Text-y 0 def
+/LineTypes [ % in default units
+	[]		[1 2]		[4 4]		[8 4]
+	[13 3]		[16 2 2 2]	[8 2 2 2]	[1 13]
+	[6 5]		[12 4]
+] def
+/Colors [0 .6 .3 .9 .4 .7 .1 .5 .8 .2] def
+/Fonts [
+	/Helvetica
+	/Courier
+	/Times-Roman
+	/Helvetica-Oblique
+	/Helvetica-Bold
+	/Helvetica-BoldOblique
+	/Courier-Oblique
+	/Courier-Bold
+	/Courier-BoldOblique
+	/Times-Italic
+	/Times-Bold
+	/Times-BoldItalic
+	/Symbol
+	/AvantGarde-Book
+	/AvantGarde-BookOblique
+	/AvantGarde-Demi
+	/AvantGarde-DemiOblique
+	/Bookman-Demi
+	/Bookman-DemiItalic
+	/Bookman-Light
+	/Bookman-LightItalic
+	/Helvetica-Narrow
+	/Helvetica-Narrow-Bold
+	/Helvetica-Narrow-BoldOblique
+	/Helvetica-Narrow-Oblique
+	/NewCenturySchlbk-Roman
+	/NewCenturySchlbk-Bold
+	/NewCenturySchlbk-Italic
+	/NewCenturySchlbk-BoldItalic
+	/Palatino-Roman
+	/Palatino-Bold
+	/Palatino-Italic
+	/Palatino-BoldItalic
+	/ZapfChancery-MediumItalic
+	/ZapfDingbats
+] def
+
+% other procedure definitions
+/Rem {2 copy div floor mul sub floor cvi} def
+/RastersPerPoint {RastersPerInch 72 div} def
+/ScaleArray {/Factor exch def /Array exch def
+	     0 1 Array length 1 sub
+	     {dup Array exch get Factor mul Array 3 1 roll put} for} def
+/Coord {72 72 scale
+	Landscape {90 rotate 0 -8.5 translate
+		   11 Width sub 2 div 8.5 Height sub 2 div translate}
+		  {8.5 Width sub 2 div 11 Height sub 2 div translate} ifelse
+	1 RastersPerInch div dup scale} def
+/Show {Outline {false charpath stroke} {show} ifelse} def
+/BoxClip {/CLW currentlinewidth def
+	  2 {CLW add 4 1 roll} repeat
+	  2 {CLW sub 4 1 roll} repeat
+	  initclip newpath 2 index exch 2 index exch dup 6 index exch
+	  moveto 3 {lineto} repeat closepath clip newpath} def
+/Subregion {/A exch def /Uy exch def /Ux exch def /Ly exch def /Lx exch def
+	    Ux Lx sub A 0 get mul Lx add
+	    Uy Ly sub A 1 get mul Ly add
+	    Ux Lx sub A 2 get mul Lx add
+	    Uy Ly sub A 3 get mul Ly add
+} def
+/SetFigure {Page aload pop Figure Subregion} def
+/SetPlot {SetFigure Plot Subregion} def
+/SetClip {ClipToPlot {SetPlot} {SetFigure} ifelse BoxClip} def
+/SetPage {0 0 Width 72 mul Height 72 mul Page astore
+	   RastersPerPoint ScaleArray} def
+/PageBegin {save /PageContext exch def /InPage true def} def
+/PageEnd {PageContext restore /InPage false def} def
+% end of preamble
+
+% fixed controlling parameters
+/Landscape false def
+/Width 6 def
+/Height 6 def
+/RastersPerInch 300 def
+/PointSize 11 def
+
+% all initialization action here
+I
+
+0.1 0.1 scale
+%%EndProlog
+
+
+%%Page: 1 1
+A
+1 St
+1 Sw
+1 Sc
+183 Sp
+1 Sx
+0.229167 0.954167 0.275 1 So
+0 0.5 0.5 1 Sg
+0 Sr
+0 Sd
+1 Sf
+B
+206 1445 M
+219 1483 L
+232 1520 L
+245 1557 L
+258 1593 L
+271 1627 L
+284 1659 L
+297 1688 L
+310 1714 L
+323 1736 L
+336 1754 L
+349 1766 L
+362 1774 L
+375 1775 L
+388 1771 L
+402 1762 L
+415 1748 L
+428 1730 L
+441 1709 L
+454 1683 L
+467 1655 L
+480 1625 L
+493 1593 L
+506 1559 L
+519 1524 L
+532 1488 L
+545 1452 L
+558 1417 L
+571 1382 L
+584 1348 L
+597 1316 L
+610 1287 L
+623 1259 L
+636 1235 L
+649 1214 L
+662 1197 L
+676 1184 L
+689 1175 L
+702 1171 L
+715 1172 L
+728 1177 L
+741 1187 L
+754 1202 L
+767 1222 L
+780 1246 L
+793 1273 L
+806 1304 L
+819 1336 L
+832 1371 L
+845 1408 L
+858 1445 L
+E
+1 Sd
+(Angle) 532 1021 0.5 T
+90 Sr
+(Phase) 79 1473 0.5 T
+0 Sr
+220 1147 220 1134 S
+324 1147 324 1134 S
+428 1147 428 1134 S
+532 1147 532 1134 S
+636 1147 636 1134 S
+740 1147 740 1134 S
+844 1147 844 1134 S
+220 1147 844 1147 S
+(\2613) 220 1092 0.5 T
+(\2612) 324 1092 0.5 T
+(\2611) 428 1092 0.5 T
+(0) 532 1092 0.5 T
+(1) 636 1092 0.5 T
+(2) 740 1092 0.5 T
+(3) 844 1092 0.5 T
+90 Sr
+206 1294 193 1294 S
+206 1445 193 1445 S
+206 1596 193 1596 S
+206 1747 193 1747 S
+206 1294 206 1747 S
+(2.4) 151 1294 0.5 T
+(2.6) 151 1445 0.5 T
+(2.8) 151 1596 0.5 T
+(3.0) 151 1747 0.5 T
+0 Sr
+0 Sd
+B
+206 1799 M
+206 1147 L
+858 1147 L
+858 1799 L
+206 1799 L
+E
+363 1774 P
+374 1775 P
+651 1212 P
+741 1187 P
+1 Sd
+(\(a\)) 532 955 0.5 T
+0.5 1 0.5 1 Sg
+0 Sd
+B
+1106 1147 M
+1121 1157 L
+1137 1168 L
+1153 1178 L
+1168 1189 L
+1184 1200 L
+1199 1211 L
+1214 1222 L
+1229 1233 L
+1243 1244 L
+1257 1256 L
+1271 1268 L
+1285 1281 L
+1298 1294 L
+1311 1307 L
+1323 1321 L
+1335 1335 L
+1347 1349 L
+1359 1364 L
+1370 1379 L
+1381 1394 L
+1392 1409 L
+1403 1424 L
+1414 1439 L
+1424 1455 L
+1435 1470 L
+1446 1486 L
+1456 1501 L
+1467 1517 L
+1478 1532 L
+1488 1547 L
+1499 1562 L
+1511 1577 L
+1522 1592 L
+1534 1607 L
+1545 1621 L
+1558 1635 L
+1570 1648 L
+1583 1662 L
+1596 1675 L
+1609 1687 L
+1623 1700 L
+1637 1712 L
+1652 1724 L
+1666 1735 L
+1681 1746 L
+1696 1757 L
+1712 1768 L
+1727 1778 L
+1743 1789 L
+1758 1799 L
+E
+1 Sd
+(1) (s) 1432 1020 0.5 sT
+90 Sr
+(2) (s) 979 1473 0.5 sT
+0 Sr
+1193 1147 1193 1134 S
+1297 1147 1297 1134 S
+1401 1147 1401 1134 S
+1505 1147 1505 1134 S
+1609 1147 1609 1134 S
+1712 1147 1712 1134 S
+1193 1147 1712 1147 S
+(\2611) 1193 1092 0.5 T
+(0) 1297 1092 0.5 T
+(1) 1401 1092 0.5 T
+(2) 1505 1092 0.5 T
+(3) 1609 1092 0.5 T
+(4) 1712 1092 0.5 T
+90 Sr
+1106 1193 1093 1193 S
+1106 1297 1093 1297 S
+1106 1401 1093 1401 S
+1106 1504 1093 1504 S
+1106 1608 1093 1608 S
+1106 1712 1093 1712 S
+1106 1193 1106 1712 S
+(\2614) 1051 1193 0.5 T
+(\2613) 1051 1297 0.5 T
+(\2612) 1051 1401 0.5 T
+(\2611) 1051 1504 0.5 T
+(0) 1051 1608 0.5 T
+(1) 1051 1712 0.5 T
+0 Sr
+0 Sd
+B
+1106 1799 M
+1106 1147 L
+1758 1147 L
+1758 1799 L
+1106 1799 L
+E
+1286 1282 P
+1297 1293 P
+1535 1608 P
+1623 1700 P
+1 Sd
+(\(b\)) 1432 954 0.5 T
+0 0.5 0 0.5 Sg
+0 Sd
+B
+451 492 M
+496 464 L
+541 436 L
+586 409 L
+630 384 L
+671 361 L
+709 340 L
+742 321 L
+771 304 L
+794 291 L
+812 280 L
+825 274 L
+832 271 L
+834 273 L
+831 280 L
+824 292 L
+814 310 L
+799 332 L
+782 360 L
+762 393 L
+740 429 L
+716 469 L
+690 512 L
+663 556 L
+634 601 L
+605 646 L
+574 689 L
+544 729 L
+513 766 L
+482 798 L
+451 825 L
+421 846 L
+391 862 L
+363 872 L
+336 875 L
+311 873 L
+288 866 L
+269 853 L
+253 836 L
+240 815 L
+233 792 L
+230 765 L
+233 737 L
+241 708 L
+255 677 L
+276 646 L
+302 615 L
+333 584 L
+369 553 L
+408 522 L
+451 492 L
+E
+1 Sd
+13 Sf
+(1) (t) 532 121 0.5 sT
+90 Sr
+(2) (t) 79 573 0.5 sT
+1 Sf
+0 Sr
+230 247 230 234 S
+381 247 381 234 S
+532 247 532 234 S
+683 247 683 234 S
+834 247 834 234 S
+230 247 834 247 S
+(\2611.0) 230 192 0.5 T
+(\2610.5) 381 192 0.5 T
+(0.0) 532 192 0.5 T
+(0.5) 683 192 0.5 T
+(1.0) 834 192 0.5 T
+90 Sr
+206 271 193 271 S
+206 422 193 422 S
+206 573 193 573 S
+206 724 193 724 S
+206 875 193 875 S
+206 271 206 875 S
+(\2611.0) 151 271 0.5 T
+(\2610.5) 151 422 0.5 T
+(0.0) 151 573 0.5 T
+(0.5) 151 724 0.5 T
+(1.0) 151 875 0.5 T
+0 Sr
+0 Sd
+B
+206 900 M
+206 247 L
+858 247 L
+858 900 L
+206 900 L
+E
+832 271 P
+834 273 P
+333 875 P
+230 765 P
+1 Sd
+(\(c\)) 532 55 0.5 T
+0.5 1 0 0.5 Sg
+0 Sd
+B
+1204 353 M
+1223 340 L
+1246 329 L
+1271 318 L
+1302 309 L
+1339 300 L
+1382 293 L
+1435 287 L
+1494 281 L
+1556 277 L
+1625 274 L
+1686 272 L
+1723 271 L
+1734 272 L
+1720 274 L
+1684 278 L
+1631 283 L
+1573 291 L
+1520 300 L
+1475 312 L
+1431 326 L
+1392 343 L
+1359 363 L
+1331 386 L
+1305 413 L
+1283 445 L
+1264 482 L
+1247 524 L
+1231 571 L
+1217 628 L
+1204 677 L
+1192 729 L
+1182 798 L
+1172 854 L
+1163 875 L
+1155 863 L
+1148 818 L
+1142 753 L
+1137 700 L
+1133 661 L
+1131 617 L
+1130 571 L
+1131 534 L
+1133 501 L
+1137 471 L
+1144 445 L
+1152 423 L
+1162 402 L
+1174 384 L
+1188 368 L
+1204 353 L
+E
+1 Sd
+13 Sf
+(1) (q) 1432 120 0.5 sT
+90 Sr
+(2) (q) 979 573 0.5 sT
+1 Sf
+0 Sr
+1155 247 1155 234 S
+1259 247 1259 234 S
+1363 247 1363 234 S
+1467 247 1467 234 S
+1571 247 1571 234 S
+1674 247 1674 234 S
+1155 247 1674 247 S
+(15) 1155 192 0.5 T
+(20) 1259 192 0.5 T
+(25) 1363 192 0.5 T
+(30) 1467 192 0.5 T
+(35) 1571 192 0.5 T
+(40) 1674 192 0.5 T
+90 Sr
+1106 387 1093 387 S
+1106 536 1093 536 S
+1106 686 1093 686 S
+1106 835 1093 835 S
+1106 387 1106 835 S
+(0.5) 1051 387 0.5 T
+(1.0) 1051 536 0.5 T
+(1.5) 1051 686 0.5 T
+(2.0) 1051 835 0.5 T
+0 Sr
+0 Sd
+B
+1106 899 M
+1106 247 L
+1758 247 L
+1758 899 L
+1106 899 L
+E
+1 Sd
+(\(d\)) 1432 54 0.5 T
+
+showpage
+%%Trailer
+W
+%%Pages: 1

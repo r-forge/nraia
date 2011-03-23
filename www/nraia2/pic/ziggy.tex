@@ -1,0 +1,61 @@
+\expandafter\ifx\csname graph\endcsname\relax \csname newbox\endcsname\graph\fi
+\expandafter\ifx\csname graphtemp\endcsname\relax \csname newdimen\endcsname\graphtemp\fi
+\setbox\graph=\vtop{\vskip 0pt\hbox{%
+    \special{pn 8}%
+    \special{ar 250 650 250 250 0 6.28319}%
+    \graphtemp=.5ex\advance\graphtemp by 0.650in
+    \rlap{\kern 0.250in\lower\graphtemp\hbox to 0pt{\hss $\gamma_{1}$\hss}}%
+    \special{pa 500 650}%
+    \special{pa 1000 650}%
+    \special{fp}%
+    \special{sh 1.000}%
+    \special{pa 900 625}%
+    \special{pa 1000 650}%
+    \special{pa 900 675}%
+    \special{pa 900 625}%
+    \special{fp}%
+    \graphtemp=\baselineskip\multiply\graphtemp by -1\divide\graphtemp by 2
+    \advance\graphtemp by .5ex\advance\graphtemp by 0.650in
+    \rlap{\kern 0.750in\lower\graphtemp\hbox to 0pt{\hss $\theta_{1}$\hss}}%
+    \special{ar 1250 650 250 250 0 6.28319}%
+    \graphtemp=.5ex\advance\graphtemp by 0.650in
+    \rlap{\kern 1.250in\lower\graphtemp\hbox to 0pt{\hss $\gamma_{2}$\hss}}%
+    \special{pa 1500 650}%
+    \special{pa 2000 650}%
+    \special{fp}%
+    \special{sh 1.000}%
+    \special{pa 1900 625}%
+    \special{pa 2000 650}%
+    \special{pa 1900 675}%
+    \special{pa 1900 625}%
+    \special{fp}%
+    \graphtemp=\baselineskip\multiply\graphtemp by -1\divide\graphtemp by 2
+    \advance\graphtemp by .5ex\advance\graphtemp by 0.650in
+    \rlap{\kern 1.750in\lower\graphtemp\hbox to 0pt{\hss $\theta_{2}$\hss}}%
+    \special{ar 2250 650 250 250 0 6.28319}%
+    \graphtemp=.5ex\advance\graphtemp by 0.650in
+    \rlap{\kern 2.250in\lower\graphtemp\hbox to 0pt{\hss $\gamma_{3}$\hss}}%
+    \special{pa 1250 900}%
+    \special{pa 1250 1400}%
+    \special{fp}%
+    \special{sh 1.000}%
+    \special{pa 1275 1300}%
+    \special{pa 1250 1400}%
+    \special{pa 1225 1300}%
+    \special{pa 1275 1300}%
+    \special{fp}%
+    \graphtemp=.5ex\advance\graphtemp by 1.150in
+    \rlap{\kern 1.250in\lower\graphtemp\hbox to 0pt{\hss $\theta_{3}$ }}%
+    \special{ar 1250 2132 2000 2000 -2.094395 -1.047198}%
+    \special{sh 1.000}%
+    \special{pa 2176 328}%
+    \special{pa 2250 400}%
+    \special{pa 2151 372}%
+    \special{pa 2176 328}%
+    \special{fp}%
+    \graphtemp=.5ex\advance\graphtemp by 0.000in
+    \rlap{\kern 1.250in\lower\graphtemp\hbox to 0pt{\hss $\theta_{4}$\hss}}%
+    \hbox{\vrule depth1.400in width0pt height 0pt}%
+    \kern 2.500in
+  }%
+}%

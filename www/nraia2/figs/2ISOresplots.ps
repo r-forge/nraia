@@ -1,0 +1,449 @@
+%!PS-Adobe-1.0
+%%Creator: bates
+%%CreationDate: Mon Jul  6 16:47:09 1987
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 180.0 522.0 612.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 90 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+%%Page: 1 1
+gsave newpath
+1234 4362 M 2995 4362 L 2995 6123 L 1234 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+1764 5078 P
+2605 5161 P
+1780 5501 P
+2591 5008 P
+1845 5076 P
+2596 4922 P
+1793 4891 P
+2611 5154 P
+1458 4472 P
+2884 4969 P
+2162 5433 P
+2169 5924 P
+2151 4499 P
+2221 5156 P
+2186 5006 P
+2162 5672 P
+2185 5452 P
+2184 5662 P
+2162 4923 P
+1345 5142 P
+2657 5013 P
+1955 4822 P
+1952 6012 P
+1507 5311 P
+grestore
+gsave newpath
+897 3957 M 3063 3957 L 3063 6123 L 897 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 2115 4158 (Hydrogen partial pressure \(psia\)) T
+0.5 90 1 1030 5242 (Studentized residuals) T
+1317 4365 M 1317 4400 L S
+1739 4365 M 1739 4400 L S
+2162 4365 M 2162 4400 L S
+2585 4365 M 2585 4400 L S
+1317 4365 M 2585 4365 L S
+0.5 0 1 1317 4275 (100) T
+0.5 0 1 1739 4275 (200) T
+0.5 0 1 2162 4275 (300) T
+0.5 0 1 2585 4275 (400) T
+1237 4467 M 1272 4467 L S
+1237 4834 M 1272 4834 L S
+1237 5201 M 1272 5201 L S
+1237 5568 M 1272 5568 L S
+1237 5935 M 1272 5935 L S
+1237 4467 M 1237 5935 L S
+0.5 90 1 1147 4467 (\2612) T
+0.5 90 1 1147 4834 (\2611) T
+0.5 90 1 1147 5201 (0) T
+0.5 90 1 1147 5568 (1) T
+0.5 90 1 1147 5935 (2) T
+grestore
+gsave newpath
+1234 4362 M 2995 4362 L 2995 6123 L 1234 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1237 6120 M
+1237 4365 L
+2992 4365 L
+2992 6120 L
+1237 6120 L
+S
+[40 40] 0 setdash
+5 setlinewidth
+1237 5201 M 2992 5201 L S
+grestore
+gsave newpath
+897 3957 M 3063 3957 L 3063 6123 L 897 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 2115 4050 (\(a\)) T
+grestore
+gsave newpath
+3394 4362 M 5155 4362 L 5155 6123 L 3394 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+3659 5078 P
+3672 5161 P
+4231 5501 P
+4314 5008 P
+3671 5076 P
+3736 4922 P
+4312 4891 P
+4351 5154 P
+3998 4472 P
+4022 4969 P
+3505 5433 P
+4501 5924 P
+4008 4499 P
+4039 5156 P
+4007 5006 P
+4018 5672 P
+4000 5452 P
+4003 5662 P
+3605 4923 P
+4467 5142 P
+3611 5013 P
+5044 4822 P
+4047 6012 P
+5021 5311 P
+grestore
+gsave newpath
+3057 3957 M 5223 3957 L 5223 6123 L 3057 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 4275 4158 (Isopentane partial pressure \(psia\)) T
+0.5 90 1 3190 5242 (Studentized residuals) T
+3721 4365 M 3721 4400 L S
+4061 4365 M 4061 4400 L S
+4401 4365 M 4401 4400 L S
+4742 4365 M 4742 4400 L S
+5082 4365 M 5082 4400 L S
+3721 4365 M 5082 4365 L S
+0.5 0 1 3721 4275 (100) T
+0.5 0 1 4061 4275 (150) T
+0.5 0 1 4401 4275 (200) T
+0.5 0 1 4742 4275 (250) T
+0.5 0 1 5082 4275 (300) T
+3397 4467 M 3432 4467 L S
+3397 4834 M 3432 4834 L S
+3397 5201 M 3432 5201 L S
+3397 5568 M 3432 5568 L S
+3397 5935 M 3432 5935 L S
+3397 4467 M 3397 5935 L S
+0.5 90 1 3307 4467 (\2612) T
+0.5 90 1 3307 4834 (\2611) T
+0.5 90 1 3307 5201 (0) T
+0.5 90 1 3307 5568 (1) T
+0.5 90 1 3307 5935 (2) T
+grestore
+gsave newpath
+3394 4362 M 5155 4362 L 5155 6123 L 3394 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+3397 6120 M
+3397 4365 L
+5152 4365 L
+5152 6120 L
+3397 6120 L
+S
+[40 40] 0 setdash
+5 setlinewidth
+3397 5201 M 5152 5201 L S
+grestore
+gsave newpath
+3057 3957 M 5223 3957 L 5223 6123 L 3057 6123 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 4275 4050 (\(b\)) T
+grestore
+gsave newpath
+1234 2202 M 2995 2202 L 2995 3963 L 1234 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+1624 2918 P
+1616 3001 P
+1753 3341 P
+1706 2848 P
+2456 2916 P
+2588 2762 P
+2646 2731 P
+2651 2994 P
+2154 2312 P
+2147 2809 P
+2092 3273 P
+2302 3764 P
+1345 2339 P
+2884 2996 P
+2138 2846 P
+2182 3512 P
+2152 3292 P
+2148 3502 P
+1932 2763 P
+1581 2982 P
+1580 2853 P
+1670 2662 P
+1389 3852 P
+1762 3151 P
+grestore
+gsave newpath
+897 1797 M 3063 1797 L 3063 3963 L 897 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 2115 1997 (n-Pentane partial pressure \(psia\)) T
+0.5 90 1 1030 3082 (Studentized residuals) T
+1760 2204 M 1760 2240 L S
+2285 2204 M 2285 2240 L S
+2810 2204 M 2810 2240 L S
+1760 2204 M 2810 2204 L S
+0.5 0 1 1760 2114 (50) T
+0.5 0 1 2285 2114 (100) T
+0.5 0 1 2810 2114 (150) T
+1237 2307 M 1272 2307 L S
+1237 2674 M 1272 2674 L S
+1237 3041 M 1272 3041 L S
+1237 3408 M 1272 3408 L S
+1237 3775 M 1272 3775 L S
+1237 2307 M 1237 3775 L S
+0.5 90 1 1147 2307 (\2612) T
+0.5 90 1 1147 2674 (\2611) T
+0.5 90 1 1147 3041 (0) T
+0.5 90 1 1147 3408 (1) T
+0.5 90 1 1147 3775 (2) T
+grestore
+gsave newpath
+1234 2202 M 2995 2202 L 2995 3963 L 1234 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+1237 3960 M
+1237 2204 L
+2992 2204 L
+2992 3960 L
+1237 3960 L
+S
+[40 40] 0 setdash
+5 setlinewidth
+1237 3041 M 2992 3041 L S
+grestore
+gsave newpath
+897 1797 M 3063 1797 L 3063 3963 L 897 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 2115 1889 (\(c\)) T
+grestore
+gsave newpath
+3394 2202 M 5155 2202 L 5155 3963 L 3394 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+(.) 1 Pchar
+3933 2918 P
+3764 3001 P
+4310 3341 P
+4107 2848 P
+3526 2916 P
+3505 2762 P
+3856 2731 P
+3772 2994 P
+3964 2312 P
+3740 2809 P
+3514 3273 P
+4028 3764 P
+4299 2339 P
+3598 2996 P
+3821 2846 P
+3814 3512 P
+3812 3292 P
+3815 3502 P
+3643 2763 P
+5044 2982 P
+3731 2853 P
+4797 2662 P
+4401 3852 P
+5020 3151 P
+grestore
+gsave newpath
+3057 1797 M 5223 1797 L 5223 3963 L 3057 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 4275 1997 (Fitted values) T
+0.5 90 1 3190 3082 (Studentized residuals) T
+3425 2204 M 3425 2240 L S
+3703 2204 M 3703 2240 L S
+3980 2204 M 3980 2240 L S
+4257 2204 M 4257 2240 L S
+4534 2204 M 4534 2240 L S
+4811 2204 M 4811 2240 L S
+5089 2204 M 5089 2240 L S
+3425 2204 M 5089 2204 L S
+0.5 0 1 3425 2114 (0) T
+0.5 0 1 3703 2114 (2) T
+0.5 0 1 3980 2114 (4) T
+0.5 0 1 4257 2114 (6) T
+0.5 0 1 4534 2114 (8) T
+0.5 0 1 4811 2114 (10) T
+0.5 0 1 5089 2114 (12) T
+3397 2307 M 3432 2307 L S
+3397 2674 M 3432 2674 L S
+3397 3041 M 3432 3041 L S
+3397 3408 M 3432 3408 L S
+3397 3775 M 3432 3775 L S
+3397 2307 M 3397 3775 L S
+0.5 90 1 3307 2307 (\2612) T
+0.5 90 1 3307 2674 (\2611) T
+0.5 90 1 3307 3041 (0) T
+0.5 90 1 3307 3408 (1) T
+0.5 90 1 3307 3775 (2) T
+grestore
+gsave newpath
+3394 2202 M 5155 2202 L 5155 3963 L 3394 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+3397 3960 M
+3397 2204 L
+5152 2204 L
+5152 3960 L
+3397 3960 L
+S
+[40 40] 0 setdash
+5 setlinewidth
+3397 3041 M 5152 3041 L S
+grestore
+gsave newpath
+3057 1797 M 5223 1797 L 5223 3963 L 3057 3963 L closepath clip newpath
+[] 0 setdash
+5 setlinewidth
+0 setgray
+0.5 0 1 4275 1889 (\(d\)) T
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

@@ -1,0 +1,531 @@
+%!PS-Adobe-1.0
+%%Creator: pedula
+%%CreationDate: Thu Dec  4 18:34:35 1986
+%%Pages: (atend)
+%%DocumentFonts: Helvetica Symbol
+%%BoundingBox: 90.0 252.0 522.0 540.0
+%%EndComments
+/$Sdict 25 dict def $Sdict begin
+%   variables
+
+/basesize 90 def
+
+/oldcex	1 def
+/cex	1 def
+/ratio	1 def
+/pch	(*) def
+/coffset basesize -0.345 mul def	% vertical offset for characters
+/pcxshift 0 def
+
+%   procedures
+
+/checksize	% adjust font size if needed.  Stack: cex
+  {
+     /cex exch def
+     oldcex cex ne	% scale sizes
+       { 
+	 /ratio cex oldcex div def
+	 /TextFont TextFont ratio scalefont def
+	 /PchFont PchFont ratio scalefont def
+	 /coffset coffset ratio mul def
+	 /oldcex cex def
+       } if
+  } def
+
+/Pchar		%  the plot character.  Stack: string cex
+  {
+     checksize
+     /pch exch def
+     pch (.) eq		% replace period by bullet
+       { (\267) pch copy pop } if
+     pch (,) eq		% replace comma by middot
+       { (\264) pch copy pop } if
+     /PchFont TextFont def
+     pch (*) eq pch (+) eq or  % switch to symbol font for these characters
+       { /PchFont /Symbol findfont basesize oldcex mul scalefont def } if
+     PchFont setfont
+     pch stringwidth pop neg 2 div /pcxshift exch def
+  } def
+
+/M {moveto} def	% move to a point.  Stack: x y
+
+/L {lineto} def % line to a point.  Stack: x y
+
+/S {stroke} def
+
+/P		% plot a character at a point.   Stack: x y
+  {
+     M			% move to the point
+     pcxshift coffset rmoveto	% offset for the character
+     pch show
+  } def
+
+/T		% show a text string. Stack: adj srot cex x y string
+  { /str exch def
+    M			% move to the point (pops x and y)
+    checksize		% change size if necessary (pops cex)
+    TextFont setfont
+    dup rotate exch	% (moves adj to top)
+    str stringwidth pop neg mul	% pops adj
+    coffset rmoveto
+    str show
+    neg rotate
+  } def
+
+/Subs 	%add a subscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/sup 	%add a superscript.  Stack: string srot
+  {
+     oldcex 0.75 mul checksize
+     TextFont setfont
+     dup rotate
+     oldcex 0.5 mul basesize mul 0 exch rmoveto
+     exch show
+     oldcex -0.5 mul basesize mul 0 exch rmoveto
+     neg rotate
+     oldcex 4 3 div mul checksize TextFont setfont
+  } def
+
+/F		% change the base font. Stack: fontname
+  {
+    /TextFont exch findfont basesize oldcex mul scalefont def
+    /PchFont TextFont def
+  } def
+
+/ST		% text in Symbol font. Stack: (as for T)
+  {
+    /Symbol F T /Helvetica F
+  } def
+
+1 setlinecap 1 setlinejoin
+/Helvetica F
+0.1 0.1 scale
+%%EndProlog
+%%Page: 1 1
+gsave newpath
+895 2515 M 3065 2515 L 3065 5405 L 895 5405 L closepath clip newpath
+S
+[10 20] 0 setdash
+1778 2783 M
+1453 4413 L
+2173 5091 L
+2474 3534 L
+1778 2783 L
+gsave 0.85 setgray fill grestore
+S
+[] 0 setdash
+10 setlinewidth
+0 setgray
+1778 2783 M
+1776 3015 L
+1757 3006 L
+1796 3024 L
+1776 3015 L
+1776 3015 L
+1774 3252 L
+1755 3243 L
+1794 3261 L
+1774 3252 L
+1774 3252 L
+1773 3493 L
+1753 3484 L
+1792 3502 L
+1773 3493 L
+1773 3493 L
+1771 3738 L
+1751 3729 L
+1791 3746 L
+1771 3738 L
+1771 3738 L
+1769 3987 L
+1749 3978 L
+1789 3996 L
+1769 3987 L
+1768 4113 L
+1748 4092 L
+1768 4177 L
+1788 4109 L
+1768 4113 L
+S
+1778 2783 M
+1671 2939 L
+1652 2930 L
+1690 2948 L
+1671 2939 L
+1671 2939 L
+1566 3092 L
+1547 3084 L
+1585 3101 L
+1566 3092 L
+1566 3092 L
+1463 3243 L
+1445 3234 L
+1482 3251 L
+1463 3243 L
+1463 3243 L
+1363 3390 L
+1344 3381 L
+1381 3398 L
+1363 3390 L
+1363 3390 L
+1264 3534 L
+1246 3526 L
+1283 3542 L
+1264 3534 L
+1216 3605 L
+1202 3590 L
+1191 3641 L
+1239 3606 L
+1216 3605 L
+S
+1778 2783 M
+1969 2873 L
+1980 2858 L
+1958 2889 L
+1969 2873 L
+1969 2873 L
+2157 2963 L
+2168 2948 L
+2146 2978 L
+2157 2963 L
+2157 2963 L
+2344 3052 L
+2355 3036 L
+2333 3067 L
+2344 3052 L
+2344 3052 L
+2528 3139 L
+2539 3124 L
+2517 3154 L
+2528 3139 L
+2528 3139 L
+2710 3226 L
+2721 3211 L
+2699 3241 L
+2710 3226 L
+2800 3269 L
+2803 3250 L
+2845 3290 L
+2780 3279 L
+2800 3269 L
+S
+[10 20] 0 setdash
+5 setlinewidth
+2710 3226 M
+2166 3935 L
+1264 3534 L
+S
+[] 0 setdash
+10 setlinewidth
+(.) 1 Pchar
+1658 4766 P
+/Times-Bold F
+0 0 1 1658 4766 ( y) T
+/Helvetica F
+0 0 1 2186 2852 (1) T
+0 0 1 2559 3031 (2) T
+0 0 1 2890 3311 (h) ST (1) 0 Subs
+1 0 1 1288 3356 (2) T
+1 0 1 1111 3687 (h) ST (2) 0 Subs
+[40 40] 0 setdash
+5 setlinewidth
+2321 3368 M
+2403 3869 L
+S
+2290 4486 M
+2055 3081 L
+S
+2173 5091 M
+1778 2783 L
+S
+1904 4838 M
+1654 3407 L
+S
+1625 4574 M
+1528 4036 L
+S
+[160 20 20 20] 0 setdash
+1488 4446 M
+1480 4278 L
+S
+1618 4568 M
+1580 3776 L
+S
+1745 4688 M
+1679 3277 L
+S
+1870 4806 M
+1778 2783 L
+S
+1993 4921 M
+1904 2918 L
+S
+2114 5035 M
+2027 3052 L
+S
+2220 4851 M
+2149 3183 L
+S
+2312 4372 M
+2268 3312 L
+S
+2404 3896 M
+2385 3438 L
+S
+[10 20] 0 setdash
+1778 2783 M
+1453 4413 L
+2173 5091 L
+2474 3534 L
+1558 2545 L
+1225 4198 L
+1453 4413 L
+S
+[160 20 20 20] 0 setdash
+(.) 1 Pchar
+1872 3332 P
+1470 2982 P
+2090 2806 P
+0 0 1 1872 3332 ( q) T (1) 0 Subs
+0 0 1 2090 2806 ( q) T (3) 0 Subs
+1 0 1 1383 2982 (q) T(2) 0 Subs
+[] 0 setdash
+5 setlinewidth
+1778 2783 M 1872 3332 L S
+1778 2783 M 1470 2982 L S
+1778 2783 M 2090 2806 L S
+5 setlinewidth
+1729 2814 M
+1741 2884 L
+1790 2853 L
+S
+1790 2853 M
+1844 2857 L
+1832 2787 L
+S
+[160 20 20 20] 0 setdash
+0.5 0 1 1980 2545 (\(a\)) T
+grestore
+gsave newpath
+3055 2515 M 5225 2515 L 5225 5405 L 3055 5405 L closepath clip newpath
+[] 0 setdash
+10 setlinewidth
+0 setgray
+3936 2859 M
+3935 3123 L
+3915 3116 L
+3954 3130 L
+3935 3123 L
+3935 3123 L
+3933 3390 L
+3914 3383 L
+3953 3397 L
+3933 3390 L
+3933 3390 L
+3932 3660 L
+3912 3654 L
+3952 3667 L
+3932 3660 L
+3932 3660 L
+3931 3934 L
+3911 3928 L
+3951 3940 L
+3931 3934 L
+3931 3934 L
+3929 4211 L
+3909 4205 L
+3949 4218 L
+3929 4211 L
+3929 4351 L
+3909 4331 L
+3928 4422 L
+3949 4343 L
+3929 4351 L
+S
+3936 2859 M
+3828 2979 L
+3809 2972 L
+3848 2986 L
+3828 2979 L
+3828 2979 L
+3723 3096 L
+3704 3090 L
+3742 3103 L
+3723 3096 L
+3723 3096 L
+3620 3211 L
+3601 3204 L
+3639 3217 L
+3620 3211 L
+3620 3211 L
+3520 3323 L
+3501 3317 L
+3538 3329 L
+3520 3323 L
+3520 3323 L
+3421 3433 L
+3403 3426 L
+3440 3439 L
+3421 3433 L
+3373 3486 L
+3359 3475 L
+3349 3513 L
+3396 3487 L
+3373 3486 L
+S
+3936 2859 M
+4129 2929 L
+4140 2917 L
+4118 2941 L
+4129 2929 L
+4129 2929 L
+4319 2997 L
+4330 2986 L
+4308 3009 L
+4319 2997 L
+4319 2997 L
+4507 3065 L
+4518 3054 L
+4495 3077 L
+4507 3065 L
+4507 3065 L
+4692 3132 L
+4703 3121 L
+4680 3144 L
+4692 3132 L
+4692 3132 L
+4875 3198 L
+4886 3187 L
+4863 3209 L
+4875 3198 L
+4965 3231 L
+4968 3216 L
+5010 3247 L
+4945 3239 L
+4965 3231 L
+S
+[10 20] 0 setdash
+5 setlinewidth
+4875 3198 M
+4326 3736 L
+3421 3433 L
+3936 2859 L
+4875 3198 L
+gsave 0.85 setgray fill grestore
+S
+[] 0 setdash
+10 setlinewidth
+0 setgray
+3936 2859 M
+3935 3123 L
+3915 3116 L
+3954 3130 L
+3935 3123 L
+3935 3123 L
+3933 3390 L
+3914 3383 L
+3953 3397 L
+3933 3390 L
+3933 3390 L
+3932 3660 L
+3912 3654 L
+3952 3667 L
+3932 3660 L
+3932 3660 L
+3931 3934 L
+3911 3928 L
+3951 3940 L
+3931 3934 L
+3931 3934 L
+3929 4211 L
+3909 4205 L
+3949 4218 L
+3929 4211 L
+3929 4351 L
+3909 4331 L
+3928 4422 L
+3949 4343 L
+S
+[] 0 setdash
+10 setlinewidth
+(.) 1 Pchar
+4868 3419 P
+/Times-Bold F
+0 0 1.1 4868 3419 ( w) T
+/Helvetica F
+[10 20] 0 setdash
+5 setlinewidth
+4868 3419 M
+4870 3544 L
+5136 3292 L
+3936 2859 L
+3690 3133 L
+4870 3544 L
+S
+[] 0 setdash
+10 setlinewidth
+0 0 1 4348 2912 (1) T
+0 0 1 4724 3049 (2) T
+0 0 1 5102 3218 (q) T (1) 0 Subs
+1 0 1 3646 3070 (1) T
+1 0 1 3444 3297 (2) T
+1 0 1 3891 3921 (2) T
+1 0 1 3269 3549 (q) T (2) 0 Subs
+/Times-Bold F
+1 0 1 3887 4537 (w) T (2) 0 Subs
+/Helvetica F
+[160 20 20 20] 0 setdash
+5 setlinewidth
+3456 3394 M
+3712 3530 L
+S
+3532 3309 M
+4327 3735 L
+S
+3610 3222 M
+4408 3655 L
+S
+3689 3134 M
+4491 3575 L
+S
+3770 3044 M
+4575 3492 L
+S
+3852 2952 M
+4660 3409 L
+S
+3936 2859 M
+4747 3323 L
+S
+4593 3096 M
+4835 3237 L
+S
+[40 40] 0 setdash
+4875 3198 M
+3936 2859 L
+S
+4719 3351 M
+3789 3023 L
+S
+4567 3500 M
+3647 3181 L
+S
+4420 3644 M
+3509 3335 L
+S
+0.5 0 1 4140 2545 (\(b\)) T
+grestore
+showpage
+%%Trailer
+%%Pages: 0
+end

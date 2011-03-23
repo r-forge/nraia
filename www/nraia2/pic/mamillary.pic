@@ -1,0 +1,12 @@
+.PS
+G1: circle "$\gamma_{1}$";
+move right;
+G3: circle "$\gamma_{3}$";
+move up from G1;
+G2: circle "$\gamma_{2}$";
+arrow down from G1.s "$\theta_{1}$ "rjust;
+arrow -> from G1.nw to G2.sw "$\theta_{2}$ " rjust;
+arrow <- from G1.ne to G2.se "$\theta_{3}$ " rjust;
+arrow -> from G1.ne to G3.nw "$\theta_{4}$" above;
+arrow <- from G1.se to G3.sw "$\theta_{5}$" above;
+.PE

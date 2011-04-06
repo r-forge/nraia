@@ -89,8 +89,8 @@ cont <- function(sij, sji, levels, nseg = 101)
 
 splom.profile.nls <-
     function (x, data, ## unused - only for compatibility with generic
-              levels = sqrt(df[1] *
-              qf(pmax.int(0, pmin.int(1, conf)), df[1], df[2])),
+              levels = sqrt(2 *
+              qf(pmax.int(0, pmin.int(1, conf)), 2, df[2])),
               conf = c(50, 80, 90, 95, 99)/100, ...)
 {
     df <- attr(x, "summary")$df
@@ -98,12 +98,18 @@ splom.profile.nls <-
     mlev <- max(levels)
     spl <- lapply(x, function(x)
                   interpSpline(x$par.vals[, attr(x, "parameters")$par], x$tau))
+    frange <- sapply(spl, function(x) range(x$knots))
     bsp <- lapply(spl, backSpline)
+    brange <- sapply(bsp, function(x) range(x$knots))
     pfr <- do.call(cbind, lapply(bsp, predy, c(-mlev, mlev)))
-    fr <- as.data.frame(x)
+    pfr[1, ] <- pmax.int(pfr[1, ], frange[1, ], na.rm = TRUE)
+    pfr[2, ] <- pmin.int(pfr[2, ], frange[2, ], na.rm = TRUE)
     nms <- names(spl)
-    for (nm in nms) fr[[nm]] <- predy(spl[[nm]], fr[[nm]])
     np <- length(nms)
+
+    ## Create data frame fr of par. vals in tau coordinates
+    fr <- as.data.frame(x)
+    for (nm in nms) fr[[nm]] <- predy(spl[[nm]], fr[[nm]])
     ## create a list of lists with the names of the parameters
     traces <- lapply(x, function(el) lapply(x, function(el1) list()))
     for (j in seq_along(nms)[-1]) {
@@ -117,10 +123,9 @@ splom.profile.nls <-
         }
     }
     ## panel function for lower triangle
-    lp <- function(x, y, groups, subscripts, ...) {
-        tr <- traces[[eval.parent(expression(j))]][[
-            eval.parent(expression(i))]]
-        pushViewport(viewport(xscale = c(-1.07, 1.07) * mlev,
+    lp <- function(x, y, groups, subscripts, i, j, ...) {
+        tr <- traces[[j]][[i]]
+        grid::pushViewport(viewport(xscale = c(-1.07, 1.07) * mlev,
                               yscale = c(-1.07, 1.07) * mlev))
         dd <- sapply(current.panel.limits(), diff)/50
         psij <- predict(tr$sij)
@@ -132,27 +137,27 @@ splom.profile.nls <-
         with(ll$tki, lsegments(y - dd[1], x, y + dd[1], x, ...))
         with(ll$tkj, lsegments(x, y - dd[2], x, y + dd[2], ...))
         for (k in seq_along(levels)) llines(ll$pts[k, , ], ...)
-        popViewport(1)
+        grid::popViewport(1)
     }
     ## panel function for upper triangle
-    up <- function(x, y, groups, subscripts, ...) {
+    up <- function(x, y, groups, subscripts, i, j, ...) {
         ## panels are transposed so reverse i and j
-        i <- eval.parent(expression(j))
-        j <- eval.parent(expression(i))
-        tr <- traces[[j]][[i]]
+        jj <- i
+        ii <- j
+        tr <- traces[[jj]][[ii]]
         ll <- tr$ll
         pts <- ll$pts
         limits <- current.panel.limits()
         psij <- predict(tr$sij)
-        psji <- predict(tr$sji)        
+        psji <- predict(tr$sji)
         ## do the actual plotting
         panel.grid(h = -1, v = -1)
-        llines(predy(bsp[[i]], psij$y), predy(bsp[[j]], psij$x), ...)
-        llines(predy(bsp[[i]], psji$x), predy(bsp[[j]], psji$y), ...)
+        llines(predy(bsp[[ii]], psij$y), predy(bsp[[jj]], psij$x), ...)
+        llines(predy(bsp[[ii]], psji$x), predy(bsp[[jj]], psji$y), ...)
         for (k in seq_along(levels))
-            llines(predy(bsp[[i]], pts[k, , 1]),
-                   predy(bsp[[j]], pts[k, , 2]), ...)
-    }        
+            llines(predy(bsp[[ii]], pts[k, , 1]),
+                   predy(bsp[[jj]], pts[k, , 2]), ...)
+    }
     dp <- function(x = NULL,            # diagonal panel
                    varname = NULL, limits, at = NULL, lab = NULL,
                    draw = TRUE,
@@ -163,38 +168,35 @@ splom.profile.nls <-
                    varname.font = add.text$font,
                    varname.fontfamily = add.text$fontfamily,
                    varname.fontface = add.text$fontface,
-                   
+
                    axis.text.col = axis.text$col,
                    axis.text.alpha = axis.text$alpha,
                    axis.text.cex = axis.text$cex,
                    axis.text.font = axis.text$font,
                    axis.text.fontfamily = axis.text$fontfamily,
                    axis.text.fontface = axis.text$fontface,
-                   
+
                    axis.line.col = axis.line$col,
                    axis.line.alpha = axis.line$alpha,
                    axis.line.lty = axis.line$lty,
                    axis.line.lwd = axis.line$lwd,
+                   i, j, 
                    ...)
     {
-        j <- eval.parent(expression(j))
         n.var <- eval.parent(expression(n.var))
         add.text <- trellis.par.get("add.text")
         axis.line <- trellis.par.get("axis.line")
         axis.text <- trellis.par.get("axis.text")
-        
         if (!is.null(varname))
-            grid.text(varname,
-                      gp =
-                      gpar(col = varname.col,
-                           cex = varname.cex,
-                           lineheight = varname.lineheight,
-                           fontface = lattice:::chooseFace(varname.fontface,
-                           varname.font),
-                           fontfamily = varname.fontfamily))
-        
-        if (draw)    
-        {
+            grid::grid.text(varname,
+                            gp =
+                            gpar(col = varname.col,
+                                 cex = varname.cex,
+                                 lineheight = varname.lineheight,
+                                 fontface = lattice:::chooseFace(varname.fontface,
+                                 varname.font),
+                                 fontfamily = varname.fontfamily))
+        if (draw) {
             at <- pretty(limits)
             sides <- c("left", "top")
             if (j == 1) sides <- "top"
@@ -206,22 +208,22 @@ splom.profile.nls <-
                            tick = TRUE,
                            check.overlap = TRUE,
                            half = side == "top" && j > 1,
-                           
-                           tck = 1, rot = 0, 
-                           
+
+                           tck = 1, rot = 0,
+
                            text.col = axis.text.col,
                            text.alpha = axis.text.alpha,
                            text.cex = axis.text.cex,
                            text.font = axis.text.font,
                            text.fontfamily = axis.text.fontfamily,
                            text.fontface = axis.text.fontface,
-                           
+
                            line.col = axis.line.col,
                            line.alpha = axis.line.alpha,
                            line.lty = axis.line.lty,
                            line.lwd = axis.line.lwd)
             lims <- c(-1.07, 1.07) * mlev
-            pushViewport(viewport(xscale = lims, yscale = lims))
+            grid::pushViewport(viewport(xscale = lims, yscale = lims))
             side <- ifelse(j == 1, "right", "bottom")
             which.half <- ifelse(j == 1, "lower", "upper")
             at <- pretty(lims)
@@ -235,15 +237,14 @@ splom.profile.nls <-
                        text.font = axis.text.font,
                        text.fontfamily = axis.text.fontfamily,
                        text.fontface = axis.text.fontface,
-                           
+
                        line.col = axis.line.col,
                        line.alpha = axis.line.alpha,
                        line.lty = axis.line.lty,
                        line.lwd = axis.line.lwd)
-            popViewport(1)
+            grid::popViewport(1)
         }
     }
 
     splom(~ pfr, lower.panel = lp, upper.panel = up, diag.panel = dp, ...)
 }
-

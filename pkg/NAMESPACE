@@ -3,6 +3,7 @@ import(splines)
 import(lattice)
 import(grid)
 
+#exportPattern("^[^\\.]")
 export(plotfit, SSRichards)
 
 S3method(plotfit, nls)

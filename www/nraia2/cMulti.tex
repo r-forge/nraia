@@ -100,7 +100,7 @@ analyzed the dielectric relaxation data for 21 polymers, and
 proposed a general model of the form
   \begin{equation}\label{eqn:4.1}
     \epsilon *  =  \epsilon_{\infty} +
-    {\epsilon_0-\epsilon_{\infty}\over\left[1+(i 2\pi f/f_0)^\alpha
+    \frac{\epsilon_0-\epsilon_{\infty}}{\left[1+(i 2\pi f/f_0)^\alpha
     \right]^{\beta}}
   \end{equation}
 
@@ -180,17 +180,17 @@ Following \citeasnoun{box:drap:1965}, the model used to describe the
 %\glossary{ Box, G.E.P.}
 %\glossary{ Draper, N.R.}
 disturbance term is a normal distribution with
-$$
+\begin{displaymath}
 \mbox{\rm E} [ {\rm Z}_{nm} ] = 0
-$$
+\end{displaymath}
 and
-$$
+\begin{displaymath}
 \mbox{\rm E} [ {\rm Z}_{nm} {\rm Z}_{ri} ] = \left\{
 \begin{array}{c l}
   \{\bSIGMA\}_{mi}&n=r\\
   0&n\ne r
 \end{array}\right.
-$$
+\end{displaymath}
 where $\bSIGMA$ is a fixed $M \times M$ covariance matrix.
 \index{covariance!matrix}
 \index{matrix!covariance}
@@ -203,9 +203,9 @@ all the unknown parameters, is then
 \begin{eqnarray}\label{eqn:4.4}
   p(\bY|\btheta,\bSIGMA)&\sim&
   | \bSIGMA |^{- N/2}
-  \exp\left[-{\tr[(\bY-\bH)\bSIGMA^{-1}(\bY-\bH)\trans]\over 2}\right]\\
+  \exp\left[-\frac{\tr[(\bY-\bH)\bSIGMA^{-1}(\bY-\bH)\trans]}{2}\right]\\
   &=& | \bSIGMA^{-1} |^{N/2} \exp
-  \left[ -{\tr ( \bZ \bSIGMA^{-1} \bZ \trans ) \over 2 }\right]\nonumber
+  \left[ -\frac{\tr(\bZ \bSIGMA^{-1} \bZ \trans )}{2}\right]\nonumber
 \end{eqnarray}
 where the vertical bars denote a determinant.
 
@@ -217,8 +217,8 @@ derived using a likelihood or Bayesian argument.
 The loglikelihood function for the parameters $\btheta$ and
 $\bSIGMA^{-1}$ is
 \begin{equation}\label{eqn:4.5}
-  L ( \btheta ,  \bSIGMA^{-1} ) = k + {N \over 2 }\ln | \bSIGMA^{-1} |-
-  {\tr ( \bZ\bSIGMA^{-1} \bZ \trans ) \over 2 }
+  L ( \btheta ,  \bSIGMA^{-1} ) = k+\frac{N}{2}\ln | \bSIGMA^{-1} |-
+  \frac{\tr(\bZ\bSIGMA^{-1}\bZ\trans)}{2}
 \end{equation}
 where $k$ is an unimportant constant.
 To maximize the loglikelihood function we write the last term as
@@ -228,26 +228,28 @@ respect to the elements $\sigma^{mi}$ of $\bSIGMA^{-1}$.
 Using the result \cite[p.~296]{bard:1974}
 %\glossary{ Bard, Y.}
 \begin{equation}\label{eqn:4.6}
-  {\partial \ln | \bSIGMA^{-1} | \over \partial \sigma^{mi}}=
+  \frac{\partial\ln|\bSIGMA^{-1}|}{\partial\sigma^{mi}}=
   \lb \bSIGMA \rb_{mi}
 \end{equation}
 allows us to write
-$$
-{\partial L ( \btheta , \bSIGMA^{-1} ) \over \partial \sigma^{mi}}=
-{N \over 2 }\{\bSIGMA\}_{mi}{-1\over 2}\{\bZ\trans\bZ\}_{mi}
-$$
+\begin{displaymath}
+\frac{\partial L ( \btheta , \bSIGMA^{-1} )}{\partial \sigma^{mi}}=
+\frac{N}{2}\{\bSIGMA\}_{mi}\frac{-1}{2}\{\bZ\trans\bZ\}_{mi}
+\end{displaymath}
 Setting this derivative to zero provides the conditional estimates
-$$
-\lb \hat{\bSIGMA}( \btheta ) \rb_{mi}={\lb \bZ \trans \bZ \rb_{mi} \over N }$$
+\begin{displaymath}
+\lb \hat{\bSIGMA}( \btheta ) \rb_{mi}=\frac{\lb\bZ\trans\bZ\rb_{mi}}{N}
+\end{displaymath}
 or
-$$
-\hat{\bSIGMA}( \btheta )={\bZ \trans \bZ \over N }$$
+\begin{displaymath}
+\hat{\bSIGMA}( \btheta )=\frac{\bZ\trans\bZ}{N}
+\end{displaymath}
 which, when substituted into (\ref{eqn:4.5}), gives the conditional loglikelihood
 \index{loglikelihood!conditional}
 function
 \begin{equation}\label{eqn:4.7}
   L ( \btheta ,  \hat{\bSIGMA}( \btheta ) ) =
-  k' - {N \over 2 }\ln | \bZ \trans \bZ |
+  k'-\frac{N}{2}\ln | \bZ \trans \bZ |
 \end{equation}
 The maximum likelihood estimates are then obtained
 \index{maximum likelihood estimate}
@@ -260,10 +262,9 @@ A Bayesian argument was used by
 the marginal posterior density for $\btheta$ by integrating over
 the unknown variances and covariances after incorporating an
 noninformative prior of the form
-$$
-p ( \bSIGMA ,  \btheta ) \sim
-| \bSIGMA |^{ - ( M + 1 ) /2 }
-$$
+\begin{displaymath}
+  p(\bSIGMA,\btheta)\sim|\bSIGMA|^{-(M+1)/2}
+\end{displaymath}
 The marginal posterior density is then
 \begin{equation}\label{eqn:4.8}
   p ( \btheta | \bY ) \sim | \bZ \trans \bZ |^{{-} N/2}
@@ -306,7 +307,7 @@ $\hat{\btheta}$ to give an approximate marginal posterior density function.
 From (\ref{eqn:4.8}),
 \begin{equation}\label{eqn:4.9}
   p(\btheta|\bY)\approx\left[{1+(\btheta-\hat{\btheta})\trans
-  { { \bOMEGA   \over  2 | \hat{\bZ}\trans \hat{\bZ}| } }
+  { \frac{\bOMEGA}{2|\hat{\bZ}\trans \hat{\bZ}| } }
   ( \btheta - \hat{\btheta}) }\right]^{{-}N/2}
 \end{equation}
 where $\bOMEGA$ is the Hessian of the determinant evaluated at
@@ -328,7 +329,7 @@ An approximate $1 - \alpha $ HPD region for
 the parameters is given by
 \begin{equation}\label{eqn:4.10}
   ( \btheta - \hat \btheta ) \trans
-  {\bOMEGA  \over 2 }( \btheta - \hat \btheta )  \le 
+  \frac{\bOMEGA}{2}( \btheta - \hat \btheta )  \le 
   P s^2 \FPNP
 \end{equation}
 so that the square of the volume in the parameter space enclosed by
@@ -341,12 +342,12 @@ these approximations even for cases where the model functions
 are linear.
 More accurate HPD regions can be written as either
 \begin{equation}\label{eqn:Fregion}
-  {( | \bZ \trans \bZ |-| \hat \bZ \trans \hat \bZ | ) / P \over s^2 }\FPNP
+  \frac{(|\bZ\trans\bZ|-|\hat\bZ\trans\hat\bZ|)/P}{s^2}\FPNP
 \end{equation}
 or
 \begin{equation}\label{eqn:Chiregion}
   \ln [p ( \hat \btheta | \bY ) ] - \ln [p ( \btheta | \bY ) ] 
-  {1 \over 2 }\chi^2 ( P ; \alpha )
+  \frac{1}{2}\chi^2(P;\alpha)
 \end{equation}
 \cite{box:tiao:1973}, where $\chi^2 ( P ; \alpha )$ is the upper
 %\glossary{ Box, G.E.P.}
@@ -369,10 +370,10 @@ parameter $\theta_{p}$ is given by
 and an approximate $1 - \alpha $ HPD band for the
 \index{highest posterior density (HPD)!approximate band in multiresponse estimation}
 $m$th expectation function $f_m ( \bx , \btheta )$ is
-$$
+\begin{displaymath}
 f_m(\bx,\hat \btheta )\pm s\sqrt{2\bv_m \trans\bOMEGA^{-1} \bv_m}
 \sqrt{P\FPNP}
-$$
+\end{displaymath}
 where $\bv_{m}$ is the gradient of $f_{m}$
 with respect to $\btheta$ evaluated at $\bx$ and $\hat{\btheta}$.
 
@@ -476,9 +477,9 @@ To evaluate the determinant, following \citeasnoun{bate:watt:1987},
 \index{determinant!evaluation by QR decomposition}
 we take a {\it QR} decomposition of $\bZ ( \btheta )$,
 \index{QR decomposition!of residual matrix}
-$$
+\begin{displaymath}
 \bZ ( \btheta ) = \bQ \bR = \bQ_1 \bR_1
-$$
+\end{displaymath}
 Then, since
 \begin{eqnarray*}
   | \bZ ( \btheta ) \trans  \bZ ( \btheta ) |&=&| \bR_1 \trans \bR_1 |\\
@@ -496,21 +497,21 @@ determinant criterion.
 To simplify notation we omit the dependence on
 $\btheta$ and use a subscript enclosed in parentheses to
 denote differentiation, as
-$$
-{ \partial \bZ   \over  \partial \theta_p } = \bZ_{(p)}
-$$
+\begin{displaymath}
+\frac{\partial\bZ}{\partial\theta_p} = \bZ_{(p)}
+\end{displaymath}
 Using the result (1.1.34) from \citeasnoun{fedo:1972},
 %\glossary{ Fedorov, V.V.}
 we have
 \begin{equation}\label{eqn:4.14}
-  {\partial | \bZ \trans \bZ |  \over \partial \theta_p } =
+  \frac{\partial | \bZ \trans \bZ |}{\partial \theta_p } =
   | \bZ \trans \bZ |  \tr \left[ ( \bZ \trans \bZ )^{-1}
-  {\partial ( \bZ \trans \bZ )  \over \partial \theta_p }
+  \frac{\partial(\bZ\trans\bZ)}{\partial\theta_p}
   \right]
 \end{equation}
 with
 \begin{equation}\label{eqn:4.15}
-  { \partial ( \bZ \trans \bZ )   \over  \partial \theta_p } =
+  \frac{\partial(\bZ\trans\bZ)}{\partial\theta_p} =
   \bZ \trans \bZ_{(p)} + \bZ_{(p)} \trans \bZ
 \end{equation}
 so the gradient
@@ -557,7 +558,7 @@ and then use the expressions for the derivative of the pseudoinverse
 From (\ref{eqn:4.17a}), a second derivative term for
 $| \bZ \trans \bZ |$ is then
 \begin{equation}\label{eqn:omega}
-  {\partial^2 | \bZ \trans \bZ |  \over \partial \theta_p \partial \theta_q} =
+  \frac{\partial^2|\bZ\trans\bZ|}{\partial\theta_p\partial\theta_q} =
   | \bZ \trans \bZ | [ g_{(p)} g_{(q)} + g_{(pq)} ]
 \end{equation}
 
@@ -574,7 +575,7 @@ $\bU_p = ( \bZ \trans \bZ )^{-1}
 ( \bZ \trans \bZ_{(p)} + \bZ_{(p)} \trans \bZ ) $.
 Differentiating (\ref{eqn:4.21}) with respect to $\theta_{q}$ gives
 \begin{eqnarray}\label{eqn:4.22}
-  {\partial^2 | \bZ \trans \bZ | \over \partial \theta_q \partial \theta_p }&=&
+  \frac{\partial^2|\bZ \trans \bZ |}{\partial \theta_q \partial \theta_p }&=&
   \lb \bomega \rb_q \tr [ \bU_p ]+| \bZ \trans \bZ | \lb
   - \tr [ \bU_q \bU_p ] +
   \tr [ ( \bZ \trans \bZ )^{-1}
@@ -683,9 +684,9 @@ solving
   \bOMEGA \bdelta^0 = - \bomega
 \end{equation}
 for $\bdelta^{0}$ and setting
-$$
+\begin{displaymath}
 \btheta^1 =  \btheta^0 + \lambda \bdelta^0
-$$
+\end{displaymath}
 where $\lambda$ is a step size factor chosen to ensure that
 \index{step factor}
 $ | \bZ ( \btheta^1 ) \trans \bZ ( \btheta^1 ) | 
@@ -717,9 +718,9 @@ be calculated.
 As in Section 3.5, we restore positive definiteness to the
 Hessian by inflating the diagonal and
 modifying the increment to be the solution of
-$$
+\begin{displaymath}
 ( \bOMEGA + k \bI ) \bdelta^0 = - \bomega
-$$
+\end{displaymath}
 where $k$ is large enough to make $\bOMEGA + k \bI$ positive
 definite.
 Such a $k$ can be calculated by determining the eigenvalues of
@@ -748,9 +749,9 @@ The convergence criterion is then \cite{bate:watt:1987}
 %\glossary{ Bates, D.M.}
 %\glossary{ Watts, D.G.}
 \index{convergence!criterion for multiresponse estimation}
-$$
-{ \norm \bC \bdelta \norm^2 / P   \over  2 s^2 }  \epsilon^2
-$$
+\begin{displaymath}
+\frac{\norm\bC\bdelta\norm^2/P}{2 s^2 }  \epsilon^2
+\end{displaymath}
 where $\epsilon$ is the tolerance level and $s^{2}$ is the scale
 factor (\ref{eqn:4.101}).
 When the criterion is small, it indicates that the requested
@@ -797,21 +798,21 @@ They showed that the real and imaginary components can be written
 ( \epsilon_0 - \epsilon_{\infty} ) R^{{-} \beta}  \sin\beta \phi
   \end{eqnarray*}
 where
-$$
+\begin{displaymath}
 R^2 =
 \left[ 1 + ( 2 \pi f / f_0 )^{\alpha}
 \cos ( \pi \alpha / 2 )\right]^2
 + \left[ ( 2 \pi f / f_0 )^{\alpha}
 \sin ( \pi \alpha / 2 )\right]^2
-$$
+\end{displaymath}
 and
-$$
+\begin{displaymath}
 \phi = \arctan \left[
-{ ( 2 \pi f / f_0 )^{\alpha}
-\sin ( \pi \alpha / 2 )  
-\over   1+( 2 \pi f / f_0 )^{\alpha}
+\frac{ ( 2 \pi f / f_0 )^{\alpha}
+\sin ( \pi \alpha / 2 )}{
+1+( 2 \pi f / f_0 )^{\alpha}
 \cos ( \pi \alpha / 2 ) }\right]
-$$
+\end{displaymath}
 The parameters $\epsilon_{0}$ and $\epsilon_{\infty}$ are the
 limiting low and high frequency intercepts of the locus with the
 real axis, when the function is plotted in the complex plane.
@@ -823,11 +824,11 @@ locus at the frequency $\tilde f $ for which
 $2 \pi \tilde f / f_0 = 1$.
 And finally, $\alpha$ is related to $ \psi_L $
 through
-$$
+\begin{displaymath}
 \psi_L = - \pi \alpha
-{ \ln \left( \tilde {R \over  \epsilon_0 - \epsilon_{\infty} }\right)  
-\over \ln[ 2+2\cos( \pi \alpha / 2 ) ]}
-$$
+\frac{\ln\left(\tilde{R}{\epsilon_0-\epsilon_{\infty}}\right)}
+{\ln[2+2\cos(\pi\alpha/2)]}
+\end{displaymath}
 where $\tilde R $ is the length of the line from
 $( \epsilon_{\infty} , 0 )$ to $\epsilon * ( \tilde f ) $.
 
@@ -883,12 +884,12 @@ in \citeasnoun{box:hunt:macg:erja:1973} for the
 %\glossary{ Erjavec, J.}
 $\alpha$-pinene data, of the form
   \begin{eqnarray*}
-    {d \gamma_1 \over dt}&=&-(\theta_1+\theta_2)\gamma_1\\
-    {d \gamma_2 \over dt}&=&\theta_1 \gamma_1\\
-    {d \gamma_3 \over dt}&=&\theta_2\gamma_1-(\theta_3+\theta_4)\gamma_3 +
+    \frac{d\gamma_1}{dt}&=&-(\theta_1+\theta_2)\gamma_1\\
+    \frac{d\gamma_2}{dt}&=&\theta_1 \gamma_1\\
+    \frac{d\gamma_3}{dt}&=&\theta_2\gamma_1-(\theta_3+\theta_4)\gamma_3 +
     \theta_5 \gamma_5\\
-    {d \gamma_4 \over dt}&=&\theta_3 \gamma_3\\
-    {d \gamma_5 \over dt}&=&\theta_4 \gamma_3 - \theta_5 \gamma_5
+    \frac{d\gamma_4}{dt}&=&\theta_3 \gamma_3\\
+    \frac{d\gamma_5}{dt}&=&\theta_4 \gamma_3 - \theta_5 \gamma_5
   \end{eqnarray*}
 The explicit solution to this set of linear differential
 equations was given in \citeasnoun{box:hunt:macg:erja:1973}, and
@@ -899,27 +900,22 @@ equations was given in \citeasnoun{box:hunt:macg:erja:1973}, and
 involves long complicated expressions.
 
 An alternative form is the matrix equation
-$$
-\left[  \matrix {
-\matrix { \dot \gamma_1 \cr \dot \gamma_2 \cr \dot \gamma_3
-\cr \dot \gamma_4 \cr \dot \gamma_5 } }\right] =
-\left[ \matrix {
-\matrix { - \theta_1 - \theta_2 \cr \theta_1 \cr \theta_2
-\cr 0 \cr 0 }
-\matrix { 0 \cr 0 \cr 0 \cr 0 \cr 0 }
-\matrix { 0 \cr 0 \cr - \theta_3 - \theta_4 \cr
-\theta_3 \cr \theta_4 }
-\matrix { 0 \cr 0 \cr 0 \cr 0 \cr 0 }
-\matrix { 0 \cr 0 \cr 0 \theta_5 \cr
-0 \cr - \theta_5 } }\right]
-\left[  \matrix {
-\matrix { \gamma_1 \cr \gamma_2 \cr \gamma_3
-\cr \gamma_4 \cr \gamma_5 } }\right]
-$$
+\begin{displaymath}
+\begin{bmatrix}
+   \dot\gamma_1 \\ \dot\gamma_2 \\ \dot\gamma_3 \\ \dot\gamma_4 \\ \dot\gamma_5
+\end{bmatrix}=
+\begin{bmatrix}
+  -\theta_1-\theta_2 & 0 & 0                 & 0 & 0\\
+  \theta_1           & 0 & 0                 & 0 & 0\\
+  \theta_2           & 0 & -\theta_3-\theta_4& 0 & 0\\
+  0                  & 0 & \theta_3          & 0 & \theta_5\\
+  0                  & 0 & \theta_4          & 0 &-\theta_5
+\end{bmatrix}
+\end{displaymath}
 or
-$$
+\begin{displaymath}
 \dot{\bgamma}= \bA \bgamma
-$$
+\end{displaymath}
 where $\bA$ is the system transfer matrix, and
 \index{transfer matrix}
 \index{matrix!system transfer}
@@ -929,29 +925,29 @@ is given in Chapter 5.
 
 To derive an expression useful for obtaining starting values,
 we rewrite the matrix equation as
-$$
-\left[ \matrix {
-\matrix { \dot \gamma_1 \cr \dot \gamma_2 \cr \dot \gamma_3
-\cr \dot \gamma_4 \cr \dot \gamma_5 } }\right] =
-\left[ \matrix {
-\matrix { - \theta_1 \gamma_1 - \theta_2 \gamma_1
-\cr \theta_1 \gamma_1
-\cr \theta_2 \gamma_1 - \theta_3 \gamma_3 - \theta_4
- \gamma_3 + \theta_5 \gamma_5
-\cr \theta_3 \gamma_3
-\cr \theta_4 \gamma_3 - \theta_5 \gamma_5 } }\right] =
-\bX ( t ) \btheta
-$$
+% \begin{displaymath}
+% \left[ \matrix {
+% \matrix { \dot \gamma_1 \cr \dot \gamma_2 \cr \dot \gamma_3
+% \cr \dot \gamma_4 \cr \dot \gamma_5 } }\right] =
+% \left[ \matrix {
+% \matrix { - \theta_1 \gamma_1 - \theta_2 \gamma_1
+% \cr \theta_1 \gamma_1
+% \cr \theta_2 \gamma_1 - \theta_3 \gamma_3 - \theta_4
+%  \gamma_3 + \theta_5 \gamma_5
+% \cr \theta_3 \gamma_3
+% \cr \theta_4 \gamma_3 - \theta_5 \gamma_5 } }\right] =
+% \bX ( t ) \btheta
+% \end{displaymath}
 where
-$$
-\bX ( t ) = \left[ \matrix {
- \matrix{- \gamma_1 \cr \gamma_1 \cr 0 \cr 0 \cr 0}
- \matrix{- \gamma_1 \cr 0 \cr 0 \gamma_1 \cr 0 \cr 0}
- \matrix{ 0 \cr 0 \cr - \gamma_3 \cr \gamma_3 \cr 0}
- \matrix{ 0 \cr  0 \cr - \gamma_3 \cr  0 \cr \gamma_3}
- \matrix{ 0 \cr  0 \cr  \gamma_5 \cr  0 \cr - \gamma_5}
-}\right]
-$$
+% \begin{displaymath}
+% \bX ( t ) = \left[ \matrix {
+%  \matrix{- \gamma_1 \cr \gamma_1 \cr 0 \cr 0 \cr 0}
+%  \matrix{- \gamma_1 \cr 0 \cr 0 \gamma_1 \cr 0 \cr 0}
+%  \matrix{ 0 \cr 0 \cr - \gamma_3 \cr \gamma_3 \cr 0}
+%  \matrix{ 0 \cr  0 \cr - \gamma_3 \cr  0 \cr \gamma_3}
+%  \matrix{ 0 \cr  0 \cr  \gamma_5 \cr  0 \cr - \gamma_5}
+% }\right]
+% \end{displaymath}
 
 At any time $t$, therefore, if we have estimates for the rates and
 the concentrations, we could estimate $\btheta$ by linear
@@ -964,28 +960,28 @@ average concentrations, and
 stack them to form the $\bX$ matrix.
 
 For example, the estimated rates at $t=1230$ are
-$$
+\begin{displaymath}
 ( -9.47 , 5.93 , 1.87 , 0.33 , 1.43 ) \trans \times 10^{-3}
-$$
+\end{displaymath}
 and the average concentrations, inserted into the appropriate matrix, are
-$$
-\left[ \matrix {
-\matrix { - 94.2 \cr 94.2 \cr 0 \cr 0 \cr 0 }
-\matrix { - 94.2 \cr 0 \cr 94.2 \cr 0 \cr 0 }
-\matrix { 0 \cr 0 \cr -1.15 \cr 1.15 \cr 0 }
-\matrix { 0 \cr 0 \cr -1.15 \cr 0 \cr 1.15 }
-\matrix { 0 \cr 0 \cr 0.88 \cr 0 \cr - 0.88 }
-}\right]
-$$
+% \begin{displaymath}
+% \left[ \matrix {
+% \matrix { - 94.2 \cr 94.2 \cr 0 \cr 0 \cr 0 }
+% \matrix { - 94.2 \cr 0 \cr 94.2 \cr 0 \cr 0 }
+% \matrix { 0 \cr 0 \cr -1.15 \cr 1.15 \cr 0 }
+% \matrix { 0 \cr 0 \cr -1.15 \cr 0 \cr 1.15 }
+% \matrix { 0 \cr 0 \cr 0.88 \cr 0 \cr - 0.88 }
+% }\right]
+% \end{displaymath}
 Finally, we stack the vectors from each time to form a single vector,
 stack the matrices to form a single matrix, and then perform a simple
 linear regression with no intercept term to get the starting
 estimates.
 The starting values so obtained are
-$$
+\begin{displaymath}
 \btheta^0 = ( 5.84 ,  2.65 ,  1.63 ,  27.77 ,  4.61 ) \trans
 \times 10^{-5}
-$$
+\end{displaymath}
 Because the parameters are rate constants, which are necessarily
 positive, we fit the model in the parameters
 $ \phi_p = \ln\theta_p $ (see Section 3.4.1).
@@ -1306,10 +1302,10 @@ However, if the reaction follows first order kinetics so that
 $f_{n1}=\gamma_n^0 e^{{-} \theta t_n }$ and
 $f_{n2}=\gamma_n^0 ( 1 - e^{ - \theta t_n } )$,
 then the residual matrix $\bZ$ with $n$th row
-$$
+\begin{displaymath}
 ( z_{n1} , z_{n2} ) =
 ( y_{n1} - f_{n1} ,  y_{n2} - f_{n2} )
-$$
+\end{displaymath}
 involves the linear dependency $z_{n1}+z_{n2}=0$
 for all $n$, and the residual matrix is singular.
 It would be futile, therefore, to try to estimate the parameter $\btheta$
@@ -1320,27 +1316,27 @@ $ \bY - \bar \bY $ but no singularities in $\bZ$,
 suppose that in the example above, the
 two responses are obtained from chromatograph area
 fractions, so the measurement for $y_{n1} $ is
-$$
+\begin{displaymath}
 y_{n1} = a_1 +
-b_1 \left({{\rm area}_{n1} \over {\rm area}_{n1+{\rm }} area_{n2}}
+b_1 \left(\frac{{\rm area}_{n1}}{{\rm area}_{n1+{\rm }} area_{n2}}
 \right)
-$$
+\end{displaymath}
 and that for $ y_{n2} $ is
-$$
+\begin{displaymath}
 y_{n2} = a_2 +
-b_2 \left({{\rm area}_{n2} \over {\rm area}_{n1+{\rm }} area_{n2}}
+b_2 \left(\frac{{\rm area}_{n2}}{{\rm area}_{n1+{\rm }} area_{n2}}
 \right)
-$$
+\end{displaymath}
 where $a_{1}$, $b_{1}$, $a_{2}$, and $b_{2}$ are calibration
 constants.
 Then a linear dependency will exist in the data of the form
 $ b_2  y_{n1}+b_1 y_{n2} = \mbox{\rm constant}$ for all n, and so $  \bY - \bar \bY  $ will be singular.
 However, unless for every case
-$$
+\begin{displaymath}
  \gamma_n^0 \left[ b_1 + ( b_2 - b_1 )
 e^{ - \theta t_n } \right] =
 a_2 b_1 + a_1 b_2 + b_1 b_2
-$$
+\end{displaymath}
 the residual matrix will not be singular because of the linear
 dependence in the data.
 
@@ -1492,12 +1488,16 @@ For the $\alpha$-pinene data, we have decided that response 4
 should not be used in estimation, and that there is a mass
 balance relation in the data.
 The dependency matrix is therefore
-$$
-\bD = \left[ \matrix {
-\matrix { 0 \cr 0 \cr 0 \cr 1 \cr 0 }
-\matrix { 1 \cr 1 \cr 1 \cr 1 \cr 1 }
-}\right]
-$$
+\begin{displaymath}
+\bD =
+\begin{bmatrix}
+  0 & 1 \\
+  0 & 1 \\
+  0 & 1 \\
+  1 & 1 \\
+  0 & 1
+\end{bmatrix}
+\end{displaymath}
 Performing a $QR$ decomposition produces $\bB$ as the last three
 columns of $\bQ$.
 Again, as discussed in Appendix 2, although $\bQ$ is required to obtain
@@ -1510,9 +1510,9 @@ rows to give $( \bZ_{(p)} \bB ) \trans$, and then transposing the result.
 To minimize $ | ( \bZ \bB ) \trans ( \bZ \bB ) |$ using the generalized
 Gauss--Newton method of Section 4.2, we need $( \bZ \bB )_{(p)} $.
 This is easily obtained because $\bB$ is independent of $\btheta$, and so
-$$
+\begin{displaymath}
 ( \bZ \bB )_{(p)} = \bZ_{(p)} \bB
-$$
+\end{displaymath}
 Thus, the terms in the determinant, the gradient and the approximate
 Hessian for the reduced data set can be calculated by simply using
 $ \bZ $ and $ \bZ_{(p)} , p = 1 ,\ldots, P$.
@@ -1580,13 +1580,16 @@ matrix by deleting columns corresponding to the unused responses.
 Suppose we wished to estimate the
 parameters using only the responses $y_{1}$, $y_{2}$, and $y_{5}$.
 Then we would use as the rotation matrix
-$$
-\bB = \left[ \matrix {
-\matrix { 1 \cr 0 \cr 0 \cr 0 \cr 0 }
-\matrix { 0 \cr 1 \cr 0 \cr 0 \cr 0 }
-\matrix { 0 \cr 0 \cr 0 \cr 0 \cr 1 }
-}\right]
-$$
+\begin{displaymath}
+  \bB =
+  \begin{bmatrix}
+    0 & 0 & 1\\
+    0 & 1 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 0\\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{displaymath}
 \end{example}
 
 \subsection{Comparing Models}
@@ -1671,13 +1674,14 @@ observations with the large residuals as missing.
   
   \prob Use the data for responses 1 and 2 in the $\alpha$-pinene data
   set, Appendix 4, Section A4.6, to fit the multiresponse model
-  $$
-  \bgamma( t )=\left[ \matrix{
-      \matrix {e^{{-} ( \theta_1 +\theta_2 )t} \cr
-        {\theta_1 \over \theta_1 +\theta_2}
-        \left( 1-e^{{-} ( \theta_1 +\theta_2 )t}\right)}
-    }\right]
-  $$
+  \begin{displaymath}
+    \bgamma( t )=
+    \begin{bmatrix}
+      e^{-(\theta_1+\theta_2)t}\\
+      \frac{\theta_1}{\theta_1 +\theta_2}\\
+      \left( 1-e^{{-} ( \theta_1 +\theta_2 )t}\right)
+    \end{bmatrix}
+  \end{displaymath}
   Assume the initial concentration of $\alpha$-pinene (response 1)
   is 100\% and of dipentene (response 2) is 0\%.
   

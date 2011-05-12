@@ -53,20 +53,21 @@ subsequently into nonlinear regression.
 \section{The Linear Regression Model}
 
 Linear regression provides estimates and other inferential results for
-the {\em parameters\/} $\bbeta=(\beta_1,\beta_2,\ldots,\beta_P)\trans$
+the \emph{parameters} $\bbeta=(\beta_1,\beta_2,\ldots,\beta_P)\trans$
 in the model
-\begin{eqnarray} \label{eqn:model}
+\begin{eqnarray}
+  \label{eqn:model}
   Y_n&=&\beta_1 x_{n1} + \beta_2 x_{n2} +\cdots+ \beta_P x_{nP}+Z_n\\
   &=&(x_{n1},\ldots,x_{nP})\bbeta+Z_n\nonumber
 \end{eqnarray}
 In this model, the random variable\index{random variable} $Y_n$, which
-represents the {\em response\/} for {\em case\/} $n$, $n
-=1,2,\ldots,N$, has a {\em deterministic\/} part and a {\em
-  stochastic\/} part.  The deterministic part, $( x_{n1} ,\ldots,
+represents the \emph{response} for \emph{case} $n$, $n
+=1,2,\ldots,N$, has a \emph{deterministic} part and a
+\emph{stochastic} part.  The deterministic part, $( x_{n1} ,\ldots, 
 x_{nP} ) \bbeta$, depends upon the parameters $\bbeta$ and upon the
-{\em predictor\/} or {\em regressor variables\/} $x_{np}$,
+\emph{predictor} or \emph{regressor variables} $x_{np}$,
 $p=1,2,\ldots,P$.  The stochastic part, represented by the random
-variable $Z_n$, is a {\em disturbance\/} which perturbs the response
+variable $Z_n$, is a \emph{disturbance} which perturbs the response
 for that case.  The superscript $ \trans$ denotes the transpose of a
 matrix.
 
@@ -102,16 +103,16 @@ or, equivalently,
 \begin{displaymath}
   \mbox{\rm E}[\bY] = \bX \bbeta
 \end{displaymath}
-We therefore call $\bX \bbeta$ the {\em expectation function\/}
+We therefore call $\bX \bbeta$ the \emph{expectation function}
 \index{expectation function}
 for the regression model.
-The matrix $\bX$ is called the {\em derivative matrix\/},
+The matrix $\bX$ is called the \emph{derivative matrix},
 \index{derivative matrix} 
 since the $( n , p)$th term is the derivative of the $n$th row of the
 expectation function with respect to the $p$th parameter.
 
 Note that for linear models,\index{ linear model} 
-{\em derivatives with respect to any of the
+\emph{derivatives with respect to any of the
   parameters are independent of all the parameters}.
 
 If we further assume that $\bZ$ is normally distributed with
@@ -121,15 +122,14 @@ If we further assume that $\bZ$ is normally distributed with
 \end{equation}
 where $\bI$ is an $N\times N$ identity matrix, then the joint
 probability density function\index{probability density function}
-for $\bY$, given  $\bbeta$ and the {\em variance\/}\index{variance}
+for $\bY$, given  $\bbeta$ and the \emph{variance}\index{variance}
 $\sigma^2$, is
 \begin{eqnarray}\label{eqn:1.4}
   p(\by|\bbeta,\sigma^2)&=&\left(2\pi\sigma^2\right)^{-N/2}\exp
-  \left({ -\left( \by -\bX\bbeta\right)\trans\left(\by-\bX\bbeta\right)
-      \over 2 \sigma^2}\right)\\
+  \left(\frac{ -\left(\by -\bX\bbeta\right)\trans\left(\by-\bX\bbeta\right)}
+    {2\sigma^2}\right)\\
   &=&\left(2 \pi \sigma^2\right)^{-N/2}\exp\left(
-    {-\norm\by-\bX\bbeta\norm^2
-      \over 2 \sigma^2}\right)\nonumber
+    \frac{-\norm\by-\bX\bbeta\norm^2}{2\sigma^2}\right)\nonumber
 \end{eqnarray}
 where the double vertical bars denote the length of a vector.
 When provided with a derivative matrix $\bX$ and a vector of observed
@@ -173,11 +173,11 @@ print(p + scale_y_log2() + scale_x_sqrt(), FALSE, vp=viewport(0.75, 0.5, 0.5, 1)
 @ 
 %    \centerline{\includegraphics{1PCBlogs}}%,height=2.25in}}
     \caption[PCB concentration]{
-      Plot of PCB concentration versus age for lake trout.
-      The concentration, on a logarithmic scale, is plotted versus age in
-      part $a$ and versus $\cubage$ in part $b$.}
-    \label{fig:1.PCBlogs}
-  \end{figure}
+    Plot of PCB concentration versus age for lake trout.
+    The concentration, on a logarithmic scale, is plotted versus age in
+    part $a$ and versus $\cubage$ in part $b$.}
+  \label{fig:1.PCBlogs}
+\end{figure}
   nicely stabilizes the variance and produces a more nearly linear
   relationship.
   Thus, a linear expectation function of the form
@@ -214,8 +214,8 @@ print(p + scale_y_log2() + scale_x_sqrt(), FALSE, vp=viewport(0.75, 0.5, 0.5, 1)
 \end{example}
 
 \subsection{The Least Squares Estimates}
-The {\em likelihood function},\index{ likelihood function} 
-or more simply, the {\em likelihood},
+The \emph{likelihood function},\index{ likelihood function} 
+or more simply, the \emph{likelihood},
 $l ( \bbeta , \sigma | \by )$,
 for $\bbeta$ and $\sigma$ is identical in form to
 the joint probability density (\ref{eqn:1.4}) except that
@@ -226,11 +226,11 @@ on the values of the parameters.
 Suppressing the constant $ ( 2 \pi )^{-N/2}$ we write
 \begin{equation}\label{eqn:1.5a}
   l ( \bbeta , \sigma | \by ) \propto\sigma^{-N}  \exp
-  \left( { - \norm \by -\, \bX \bbeta \norm^2   \over  2 \sigma^2 }
+  \left(\frac{ - \norm \by -\, \bX \bbeta \norm^2}{2\sigma^2 }
   \right)
 \end{equation}
 The likelihood is maximized with respect to $\bbeta$ when the
-{\em residual sum of squares}\index{residual "sum
+\emph{residual sum of squares}\index{residual "sum
   of squares"}\index{sum of squares}\index{residual}
 \begin{eqnarray}\label{eqn:1.6}
   S( \bbeta )&=&\norm \by -\, \bX \bbeta \norm^2\\
@@ -238,10 +238,10 @@ The likelihood is maximized with respect to $\bbeta$ when the
     \right)\right]^2\nonumber
 \end{eqnarray}
 is a minimum.
-Thus the {\em maximum likelihood estimate\/}
+Thus the \emph{maximum likelihood estimate}
 \index{maximum likelihood estimate}
 $\hat{\bbeta}$ is the value of $\bbeta$ which minimizes $S ( \bbeta )$.
-This $\hat{\bbeta}$ is called the {\em least squares\/} estimate
+This $\hat{\bbeta}$ is called the \emph{least squares} estimate
 \index{least squares!estimate}
 \index{estimate!least squares}
 and can be written
@@ -304,7 +304,7 @@ as shown, for example, in \citeasnoun{sebe:1977}:%\glossary{Seber, G.A.}
   )^{-1} $:  the covariance matrix of the least squares
   estimator \index{ covariance matrix} depends on the variance
   of the disturbances and on the derivative matrix $\bX$.
-\item A $1-\alpha$ {\em joint confidence region\/} for $\bbeta$
+\item A $1-\alpha$ \emph{joint confidence region} for $\bbeta$
   \index{ confidence region}
   is the ellipsoid
   \begin{equation}\label{eqn:1.8}
@@ -313,18 +313,18 @@ as shown, for example, in \citeasnoun{sebe:1977}:%\glossary{Seber, G.A.}
   \end{equation}
   where
   \begin{displaymath}
-    s^2 =\  {S ( \hat{\bbeta})  \over N -P}    
+    s^2 =\frac{S ( \hat{\bbeta})}{N -P}    
   \end{displaymath}
-  is the {\em residual mean square\/} or {\em variance estimate\/}
+  is the \emph{residual mean square} or \emph{variance estimate}
   \index{residual "mean square"}
   \index{ variance estimate}
-  based on $N -P$ {\em degrees of freedom\/},
+  based on $N -P$ \emph{degrees of freedom},
   \index{ "degrees of freedom"}
   and $\FPNP$ is the upper $\alpha$
   quantile for Fisher's F distribution with $P\/$ and $N-P\/$
   \index{ "F distribution"}
   degrees of freedom.
-\item A $1-\alpha$ {\em marginal confidence interval\/} for the 
+\item A $1-\alpha$ \emph{marginal confidence interval} for the 
   \index{ confidence interval}
   \index{ parameter "confidence interval"}
   parameter $\beta_p$ is
@@ -387,7 +387,7 @@ where $c$ is a constant.
 A likelihood region bounded by the contour for which
 \index{likelihood!region}
   \begin{displaymath}
-    c=\ S( \hat{\bbeta}) \left[1+{P\over N-P}\FPNP\right]    
+    c=\ S( \hat{\bbeta}) \left[1+\frac{P}{N-P}\FPNP\right]    
   \end{displaymath}
 is identical to a $1-\alpha$ joint confidence region from the
 sampling theory approach.
@@ -412,12 +412,12 @@ for $\bbeta$ and $\sigma$ of the form
 is
   \begin{equation}\label{eqn:1.13}
     p(\bbeta|\by)\propto\left\{
-    {1 +\, {( \bbeta \,-\, \hat{\bbeta}) \trans \bX \trans \bX
-    ( \bbeta -\, \hat{\bbeta})   \over  \nu s^2 }}\right\}^{ - ( \nu + P )/2}
+    {1 +\,\frac{( \bbeta \,-\, \hat{\bbeta}) \trans \bX \trans \bX
+    ( \bbeta -\, \hat{\bbeta})}{\nu s^2 }}\right\}^{ - ( \nu + P )/2}
   \end{equation}
 which is in the form of a $P\/$-variate Student's T density with
 \index{T distribution!multivariate}
-{\em location parameter\/} $\hat{\bbeta}$, {\em scaling matrix\/}
+\emph{location parameter} $\hat{\bbeta}$, \emph{scaling matrix}
 $ s^2 ( \bX \trans \bX )^{-1} $,
 and $\nu=N-P$ degrees of freedom.
 Furthermore, the marginal posterior density for a single parameter
@@ -432,7 +432,7 @@ $ \bx_0 \trans \hat{\bbeta}$, scale parameter
 $s^2 \bx_0 \trans ( \bX \trans \bX )^{-1} \bx_0$,
 and degrees of freedom $N -P\/$.
 
-A {\em highest posterior density\/} (HPD) region of content $1-\alpha$
+A \emph{highest posterior density} (HPD) region of content $1-\alpha$
 is defined \cite{box:tiao:1973} as
 \index{highest posterior density (HPD)!region}
 \index{Bayes!HPD region}
@@ -452,7 +452,7 @@ Although the three approaches to statistical inference differ
 considerably, they lead to essentially identical inferences.
 In particular, since the joint confidence, likelihood,
 and Bayesian HPD regions are identical, we refer to them
-all as {\em inference regions}.
+all as \emph{inference regions}.
 \index{inference!region}
 
 In addition, when referring to standard errors or correlations, we
@@ -560,7 +560,7 @@ usual Euclidean distance between vectors.
 In this way the Euclidean geometry of the $N\/$-dimensional response
 space becomes statistically meaningful.
 This connection between geometry and statistics is exemplified by the
-use of the term {\em spherical normal\/}
+use of the term \emph{spherical normal}
 \index{normal!spherical distribution}
 for the normal distribution with the assumptions (\ref{eqn:1.2}) and
 (\ref{eqn:1.3}), because then contours of constant probability are
@@ -569,8 +569,8 @@ spheres.
 Note that when we speak of the linear form of the expectation function
 $\bX \bbeta$, we are regarding it as a function of the parameters
 $\bbeta$, and that when determining parameter estimates we are only
-concerned with how the expected response depends on the {\em
-parameters}, not with how it depends on the {\em variables}.
+concerned with how the expected response depends on the
+\emph{parameters}, not with how it depends on the \emph{variables}.
 In the PCB example we fit the response to $\cubage$ using linear least
 squares because the parameters $\bbeta$ enter the model linearly.
 
@@ -583,7 +583,7 @@ involves two steps:
     \item Using the $P\/$-dimensional parameter vector $\bbeta$ and the
           $N \times P\/$ derivative matrix $\bX$ to obtain the
           $N\/$-dimensional
-          {\em expected response vector\/}\index{ "expected response" vector}
+          \emph{expected response vector}\index{ "expected response" vector}
           $\boeta ( \bbeta ) = \bX  \bbeta$, and
     \item Calculating the squared distance from $\boeta ( \bbeta )$ to
           the observed response $\by$,
@@ -591,11 +591,11 @@ involves two steps:
   \end{enumerate}
 
 The possible expected response vectors $\boeta(\bbeta)$ form a
-$P\/$-dimensional {\em expectation surface\/} in the $N\/$-dimensional
+$P\/$-dimensional \emph{expectation surface} in the $N\/$-dimensional
 response space. 
 \index{response!space}
 This surface is a linear subspace of the response space, so we call it
-the {\em expectation plane\/}\index{ expectation plane} when dealing
+the \emph{expectation plane}\index{ expectation plane} when dealing
 with a linear model.
 
 \begin{example}\label{pcb:3}
@@ -663,8 +663,8 @@ between the lines of constant $\beta_2$.
 Also, the vectors $\bx_1$ and $\bx_2$ are not orthogonal.
 The angle $\omega$ between them can be calculated from
   \begin{eqnarray*}
-    \cos\omega&=&{\bx_1\trans\bx_2\over\norm\bx_1\norm\norm\bx_2\norm}\\
-    &=&{5.30\over\sqrt{(3)(9.83)}}\\
+    \cos\omega&=&\frac{\bx_1\trans\bx_2}{\norm\bx_1\norm\norm\bx_2\norm}\\
+    &=&\frac{5.30}{\sqrt{(3)(9.83)}}\\
     &=&0.98
   \end{eqnarray*}
 to be about 11$^\circ$, so the parameter lines on the expectation
@@ -681,7 +681,7 @@ The area of the parallelogram is
     ( \bx_1 \trans \bx_2 )^2 }\nonumber\\
     &=&\sqrt {\left| \bX \trans \bX \right|}\nonumber
   \end{eqnarray}
-That is, the {\em Jacobian determinant\/} of the transformation
+That is, the \emph{Jacobian determinant} of the transformation
 \index{Jacobian!determinant}
 \index{determinant!Jacobian}
 from the parameter plane to the expectation plane
@@ -720,14 +720,14 @@ value of $\bbeta$ corresponding to $\hat{\boeta}$.
 One approach to defining this projection is to observe that, after
 the projection, the residual vector $\by -\hat{\boeta}$ will
 \index{residual!vector}
-be {\em orthogonal}, or {\em normal}, to the expectation plane.
+be \emph{orthogonal}, or \emph{normal}, to the expectation plane.
 Equivalently, the residual vector must be orthogonal to all the
 columns of the $\bX$ matrix, so
   \begin{displaymath}
     \bX\trans(\by-\bX\hat{\bbeta})= {\bf 0}     
   \end{displaymath}
 which is to say that the least squares estimate $\hat{\bbeta}$
-satisfies the {\em normal equations}
+satisfies the \emph{normal equations}
 \index{normal!equations}
   \begin{equation}\label{eqn:1.15}
     \bX\trans\bX\hat{\bbeta}=\bX \trans \by
@@ -738,13 +738,13 @@ written $\hat{\bbeta}=(\bX\trans\bX)^{-1}\bX\trans\by$ as in (\ref{eqn:1.7}).
 However, another way of expressing the estimate, and a more
 stable way of computing it, involves decomposing $\bX$ into the
 product of an orthogonal matrix and an easily inverted matrix.
-Two such decompositions are the {\em QR\/} decomposition and the singular
+Two such decompositions are the \emph{QR} decomposition and the singular
 value decomposition \cite[Chapters 9 and 11]{dong:bunc:mole:stew:1979}.
 %\glossary{ Dongarra, J.J.}
 %\glossary{ Bunch, J.R.}
 %\glossary{ Moler, C.B.}
 %\glossary{ Stewart, G.W.}
-We use the {\em QR\/} decomposition, where
+We use the \emph{QR} decomposition, where
 \index{QR decomposition}
   \begin{displaymath}
     \bX=\bQ\bR
@@ -766,11 +766,11 @@ of $\bQ$, we have
   \begin{equation}\label{eqn:qrq1r1}
     \bX =\bQ\bR=\bQ_1 \bR_1
   \end{equation}
-Performing a {\em QR\/} decomposition is straightforward, as is shown in
+Performing a \emph{QR} decomposition is straightforward, as is shown in
 Appendix 2.
 
-Geometrically, the columns of $\bQ$ define an {\em orthonormal}, or
-{\em orthogonal}, basis
+Geometrically, the columns of $\bQ$ define an \emph{orthonormal}, or
+\emph{orthogonal}, basis
 \index{orthogonal!basis}
 for the response space with the property that the first $P$
 columns span the expectation plane.
@@ -802,7 +802,7 @@ in the original coordinates.
 
 \begin{example}\label{pcb:4}
 
-As shown in Appendix 2, the {\em QR\/} decomposition (\ref{eqn:qrq1r1})
+As shown in Appendix 2, the \emph{QR} decomposition (\ref{eqn:qrq1r1})
 of the matrix
   \begin{displaymath}
     \bX =
@@ -934,19 +934,18 @@ Now the joint density for the random variables
 $\biZ = (Z_1 ,\ldots, Z_n ) \trans $ is
     \begin{displaymath}
       p_{\biZ} ( \bz ) =
-( 2 \pi \sigma^2 )^{-N/2} \exp \left( { - \bz \trans \bz  
-\over  2 \sigma^2 }\right)
+( 2 \pi \sigma^2 )^{-N/2} \exp \left(\frac{-\bz\trans\bz}{2\sigma^2}\right)
     \end{displaymath}
 and, after transformation, the joint density for
 $\biU = \bQ \trans \biZ $ is
 \begin{displaymath}
   p_{\biU} ( \bu )   =
   (2 \pi \sigma^2 )^{-N/2} | \bQ |
-  \exp \left( {- \bu \trans \bQ \trans \bQ \bu  \over  2 \sigma^2 }\right)
+  \exp \left(\frac{- \bu \trans \bQ \trans \bQ \bu}{2 \sigma^2 }\right)
 \end{displaymath}
 \begin{displaymath}
   = ( 2 \pi \sigma^2 )^{-N/2}
-  \exp \left( {- \bu \trans \bu  \over  2 \sigma^2 }\right)
+  \exp \left( \frac{- \bu \trans \bu}{2\sigma^2}\right)
 \end{displaymath}
 
 From (\ref{eqn:1.19}), the form of $\bR$ leads
@@ -963,7 +962,7 @@ vector $\bZ$ leads to independence of the elements of $\bU$, so the
 components $\bU_1$ and $\bU_2$ are independent.
 
 The dimensions $\nu_i$ of the components $\bU_i$, called the
-{\em degrees of freedom}, are
+\emph{degrees of freedom}, are
 \index{degrees of freedom}
 $\nu_1=P$ and $\nu_2=N-P$.
 The sum of squares of the coordinates of a $\nu$-dimensional spherical
@@ -977,7 +976,7 @@ of freedom, so
 where the symbol $\sim$ is read ``is distributed as.''
 Using the independence of $\bU_1$ and $\bU_2$, we have
 \begin{equation}\label{eqn:1.20}
-  {\norm\bU_1 \norm^2 / P \over \norm \bU_2 \norm^2 / (N-P)} \sim
+  \frac{\norm\bU_1 \norm^2 / P}{\norm \bU_2 \norm^2 / (N-P)} \sim
   F(P,N-P)
 \end{equation}
 since the scaled ratio of two independent $\chi^2$ random
@@ -1003,8 +1002,7 @@ suspiciously large component in the $\bQ_1$ plane.
 
 Note that
     \begin{displaymath}
-      { \norm \bu_2^0 \norm^2 \over N-P}=
-{S ( \hat{\bbeta} )   \over N-P}= s^2
+      \frac{ \norm \bu_2^0 \norm^2}{N-P}=\frac{S(\hat{\bbeta})}{N-P}= s^2
     \end{displaymath}
 and
     \begin{equation}\label{eqn:normu1}
@@ -1013,7 +1011,7 @@ and
     \end{equation}
 and so the ratio (\ref{eqn:1.20}) becomes
     \begin{equation}\label{eqn:frat}
-      {\norm \bR_1 \bbeta^0 - \bw_1 \norm^2  \over P s^2}
+      \frac{\norm \bR_1 \bbeta^0 - \bw_1 \norm^2}{P s^2}
     \end{equation}
 
 \begin{example}\label{pcb:fullht}
@@ -1077,7 +1075,7 @@ the above hypothesis test is not rejected at level $\alpha$.
 Thus, a value $\bbeta^0$ is within a $ 1-\alpha$
 confidence region if
     \begin{displaymath}
-      {\norm\bu_1^0\norm^2/P\over\norm\bu_2^0\norm^2/(N-P)}\le\FPNP
+      \frac{\norm\bu_1^0\norm^2/P}{\norm\bu_2^0\norm^2/(N-P)}\le\FPNP
     \end{displaymath}
 Since $s^2$ does not depend on
 $\bbeta^0$, the points inside the confidence region
@@ -1171,7 +1169,7 @@ $\beta_1 = \beta_1^0$, and, assuming that the true $\beta_1$ is
 $\beta_1^0$, the scaled ratio of the corresponding random variables
 $U_2$ and $\bU_3$ has the distribution
     \begin{displaymath}
-      {U_2^2 / 1 \over\norm\bU_3\norm^2/(N-P)}\sim F(1,N-P)
+      \frac{U_2^2 / 1}{\norm\bU_3\norm^2/(N-P)}\sim F(1,N-P)
     \end{displaymath}
 Thus we reject $\mbox{\rm H}_0$ at level $\alpha$ if
     \begin{displaymath}
@@ -1208,7 +1206,7 @@ as shown in
   \end{figure}
 Figure \ref{fig:PCBpartialht} and calculate the ratio
     \begin{eqnarray*}
-      {\left( u_2^0 \right)^2   \over  s^2 }&=&{0.240 \over 0.246 }\\
+      \frac{\left( u_2^0 \right)^2}{s^2}&=&\frac{0.240}{0.246}\\
        &=&0.97
     \end{eqnarray*}
 This corresponds to a $p$ value of 0.33, and so we do not reject the
@@ -1259,7 +1257,7 @@ The quantity
     \begin{equation}\label{eqn:stderr}
       \mbox{\rm se} ( \hat{\beta}_p ) = s \norm \br^p\norm
     \end{equation}
-is called the {\em standard error\/}
+is called the \emph{standard error}
 \index{standard error}
 for the $p$th parameter.
 Since
@@ -1279,7 +1277,7 @@ $\bR_1^{-1}$ as
     \end{equation}
 where $\bL$ has unit length rows.
 The diagonal matrix provides the parameter standard errors, while the
-{\em correlation matrix}
+\emph{correlation matrix}
 \index{correlation!matrix}
     \begin{equation}\label{eqn:corr}
       \bC = \bL \bL \trans
@@ -1355,7 +1353,7 @@ bands for the PCB example was given in Figure \ref{fig:1.PCBregionband}$b$.
 
 \citeasnoun{ansl:1985} gives derivations of other sampling theory results in
 %\glossary{ Ansley, C.F.}
-linear regression using the {\em QR\/} decomposition, which, as we have seen,
+linear regression using the \emph{QR} decomposition, which, as we have seen,
 is closely related to the geometric approach to regression.
 
 \subsection{The Geometry of Likelihood Results}
@@ -1413,7 +1411,7 @@ As with any statistical analysis, if the assumptions on the model and
 data are not appropriate, the results of the analysis will not be
 valid.
 
-Since we cannot guarantee {\em a priori\/} that the different
+Since we cannot guarantee \emph{a priori} that the different
 assumptions are all valid, we must proceed in an iterative fashion as
 described, for example, in
 \citeasnoun{box:hunt:hunt:1978}.
@@ -1421,7 +1419,7 @@ described, for example, in
 %\glossary{ Hunter, W.G.}
 %\glossary{ Hunter, J.S.}
 We entertain a plausible statistical model for the data, analyze the
-data using that model, then go back and use {\em diagnostics\/}
+data using that model, then go back and use \emph{diagnostics}
 \index{diagnostics}
 such as plots of the residuals to assess the assumptions.
 \index{residual}
@@ -1432,10 +1430,10 @@ the model or the analysis and repeat the cycle.
 It is important to recognize that the design of the experiment and the
 method of data collection can affect the chances of assumptions being
 valid in a particular experiment.
-In particular {\em randomization\/}
+In particular \emph{randomization}
 \index{randomization}
 can be of great help in ensuring the appropriateness of all the
-assumptions, and {\em replication\/}
+assumptions, and \emph{replication}
 \index{replication}
 allows greater ability to check the appropriateness of specific
 assumptions.
@@ -1444,7 +1442,7 @@ assumptions.
 
 The assumptions, as listed in Section 1.1.1, are:
 \begin{enumerate}
-\item {\em The expectation function is correct}.
+\item \emph{The expectation function is correct}.
   \index{ "expectation function" "correct model"}
   \index{ assumptions "of correct model"}
   Ensuring the validity of this assumption is, to some extent,
@@ -1470,7 +1468,7 @@ The assumptions, as listed in Section 1.1.1, are:
   Nevertheless, assumption (1) is a strong one, since it
   implies that the expectation function includes all the
   important predictor variables in precisely the correct form,
-  and that it does {\em not\/} include any unimportant predictor
+  and that it does \emph{not} include any unimportant predictor
   variables.
   A useful technique to enable checking the adequacy of a
   model function is to include replications in the experiment.
@@ -1479,10 +1477,10 @@ The assumptions, as listed in Section 1.1.1, are:
   variables and randomize the order in which the experiments
   are done,
   \index{ randomization}
-  to ensure that {\em causation}, not {\em correlation},
+  to ensure that \emph{causation}, not \emph{correlation},
   is being determined \cite{box:1960}.
                                 %\glossary{ Box, G.E.P.}
-\item {\em The response is expectation function plus
+\item \emph{The response is expectation function plus
     disturbance}.
   \index{ disturbance "additive assumption"}
   \index{ assumptions "additive disturbance"}
@@ -1514,7 +1512,7 @@ The assumptions, as listed in Section 1.1.1, are:
   In both cases, the corrective action is the same---either
   use weighted least squares or take a transformation of the
   response as was done in Example PCB 1.
-\item {\em The disturbance is independent of the expectation
+\item \emph{The disturbance is independent of the expectation
     function}.
   \index{ assumptions "independence of disturbances"}
   \index{ disturbance "independent of expectation function"}
@@ -1526,8 +1524,8 @@ The assumptions, as listed in Section 1.1.1, are:
   control or predictor variables are measured perfectly.
   Also, as a converse to the implication in assumption (1)
   that all important variables are included in the model, this
-  assumption implies that {\em any important variables which
-    are not included are not systematically related\/} to the
+  assumption implies that \emph{any important variables which
+    are not included are not systematically related} to the
   response.
   An important technique to improve the chances that this is
   true is to randomize the order in which the experiments are
@@ -1542,7 +1540,7 @@ The assumptions, as listed in Section 1.1.1, are:
   hence bias the parameter estimates).
   And, of course, it is important to actually manipulate the
   predictor variables not merely record their values.
-\item {\em Each disturbance has a normal distribution}.
+\item \emph{Each disturbance has a normal distribution}.
   \index{ normal distribution}
   \index{ disturbance "normal assumption"}
   \index{ assumptions "normal disturbances"}
@@ -1562,7 +1560,7 @@ The assumptions, as listed in Section 1.1.1, are:
   to show [Gauss's theorem \cite{sebe:1977}] that the least
   squares estimates
                                 %\glossary{ Seber, G.A.}
-  are the best {\em both individually and in any linear
+  are the best \emph{both individually and in any linear
     combination}, in the sense that they have the smallest
   mean square error of any linear estimators.
   The normality assumption can be justified by appealing to
@@ -1579,7 +1577,7 @@ The assumptions, as listed in Section 1.1.1, are:
   residuals.
   \index{ normal assumption}
   \index{ assumptions "normal disturbances"}
-\item {\em Each disturbance has zero mean}.
+\item \emph{Each disturbance has zero mean}.
   \index{ disturbance "zero mean"}
   \index{ assumptions "zero mean of disturbances"}
   This assumption is primarily a simplifying one, which
@@ -1595,7 +1593,7 @@ The assumptions, as listed in Section 1.1.1, are:
   systematic bias in the disturbances such as could be caused
   by an unsuspected influential variable.
   Hence, we see again the value of randomization.
-\item {\em The disturbances have equal variances}.
+\item \emph{The disturbances have equal variances}.
   \index{ variance constant}
   \index{ assumptions "constant variance"}
   \index{ disturbance "constant variance"}
@@ -1616,7 +1614,7 @@ The assumptions, as listed in Section 1.1.1, are:
   independently of the nuisance parameter $\sigma^2$.
   \index{ parameter nuisance}
   The main implication of this assumption is that all data
-  values are {\em equally unreliable}, and so the simple
+  values are \emph{equally unreliable}, and so the simple
   least squares criterion can be used.
   The appropriateness of this assumption can sometimes be
   checked after a model has been fitted by plotting the
@@ -1625,8 +1623,8 @@ The assumptions, as listed in Section 1.1.1, are:
   With replications, we can check the assumption before even
   \index{ replication "importance of"}
   fitting a model, and can in fact use the replication
-  averages and variances to determine a suitable {\em
-    variance-stabilizing\/}\index{ variance "-stabilizing
+  averages and variances to determine a suitable
+  \emph{variance-stabilizing}\index{ variance "-stabilizing
     transformation"}\index{ transformation "variance-stabilizing"}
   transformation; see Section 1.3.2.
   Transforming to constant variance often has the additional
@@ -1635,7 +1633,7 @@ The assumptions, as listed in Section 1.1.1, are:
   independent of the mean (and anything else, for that
   matter), and this independence property is fundamental to
   the normal density.
-\item {\em The disturbances are distributed independently}.
+\item \emph{The disturbances are distributed independently}.
   \index{ disturbance "independence"}
   The final assumption is that the disturbances in different
   experiments are independent of one another.
@@ -1681,7 +1679,7 @@ In Chapter 3 we discuss model assessment for nonlinear models.
 \index{plot!of residuals}
 
 A simple, effective method for checking the adequacy of a model
-is to plot the {\em studentized residuals},
+is to plot the \emph{studentized residuals},
 \index{residual!studentized}
 ${\hat{z}_n} / {s \sqrt{1-h_{nn}}}$, versus the predictor variables
 \index{variable!predictor}
@@ -1734,7 +1732,7 @@ A quantile--quantile plot \cite{cham:clev:klei:tuke:1983}
 of the studentized residuals versus a normal distribution gives a
 direct check on the assumption of normality.
 If the expectation function is correct and the assumption of normality
-is appropriate, such a {\em normal probability plot\/} of the residuals
+is appropriate, such a \emph{normal probability plot} of the residuals
 \index{normal!probability plot}
 should be a fairly straight line.
 Departures from a straight line therefore suggest inappropriateness of
@@ -1842,7 +1840,7 @@ variance.
 \index{assessing fit}
 
 When the data set includes replications, it is also possible to
-perform tests for {\em lack of fit\/} of the expectation function.
+perform tests for \emph{lack of fit} of the expectation function.
 Such analyses are based on an analysis of variance in which the
 \index{analysis of variance}
 residual sum of squares $S(\hat{\bbeta})$ with $N-P$ degrees
@@ -1850,14 +1848,14 @@ residual sum of squares $S(\hat{\bbeta})$ with $N-P$ degrees
 \index{residual!degrees of freedom}
 \index{degrees of freedom!residual}
 \index{sum of squares!residual}
-of freedom is decomposed into the {\em replication\/} sum of squares
+of freedom is decomposed into the \emph{replication} sum of squares
 $S_r$ (equal to the total sum of squares of deviations of the
 replication values about their averages) with,
 \index{sum of squares!replication}
 \index{replication!sum of squares}
 \index{degrees of freedom!replication}
 \index{replication!degrees of freedom}
-say, $\nu_r$ degrees of freedom, and the {\em lack of fit\/} sum of
+say, $\nu_r$ degrees of freedom, and the \emph{lack of fit} sum of
 squares $S_l=S(\hat{\bbeta})-S_r$,
 \index{sum of squares!lack of fit}
 \index{lack of fit!sum of squares}
@@ -1870,7 +1868,7 @@ That is, we compare
 \index{lack of fit!mean square}
 \index{replication!mean square}
 $$
-{ S_l / \nu_l\over S_r/\nu_r}\mbox{{\rm\ with\ }} F(\nu_l,\nu_r;\alpha)
+\frac{S_l /\nu_l}{S_r/\nu_r}\mbox{{\rm\ with\ }} F(\nu_l,\nu_r;\alpha)
 $$
 to determine whether there is significant lack of fit at level
 $\alpha$.
@@ -1961,7 +1959,7 @@ Residuals & 26 & 6.398 & 0.246\\ \hline
   
   \prob
   \subprob
-    Fit the model $\ln(\mbox{\rm PCB})=\beta_1+\beta_2\mbox{\rm age}$
+    Fit the model $\ln(\text{PCB})=\beta_1+\beta_2\text{age}$
     to the PCB data and perform a lack of fit analysis of
     the model.
     What do you conclude about the adequacy of this model?
@@ -1982,6 +1980,7 @@ Residuals & 26 & 6.398 & 0.246\\ \hline
   \subprob
     Explain the difference between your answers in (a),
     (b), and (d).
+
 \end{problems}
 
 % Local Variables: 

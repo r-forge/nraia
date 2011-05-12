@@ -6,28 +6,28 @@ To compute the $QR$ decomposition of an $N \times P$ matrix
 $\bX$, we use Householder transformations \cite{hous:1958},
 a generalization of reflections in the plane.
 These are $N \times N$ matrices of the form
-$$
+\begin{displaymath}
 \bH_{{\bu}} = \bI - 2 \bu \bu \trans
-$$
+\end{displaymath}
 where $\bI$ is the $N \times N$ identity matrix and $\bu$ is an
 $N$-dimensional unit vector
 (that is, $\norm \bu \norm  = \sqrt {\bu \trans \bu} = 1$).
 $ \bH_{\bu}$ is symmetric and orthogonal, since
-$$
+\begin{displaymath}
 \bH_{\bu} \trans =
 \bI \trans -  2 \bu \bu \trans = \bH_{\bu}
-$$
+\end{displaymath}
 and
-$$
+\begin{displaymath}
 \bH_{\bu} \trans \bH_{\bu} = \bI - 4 \bu \bu \trans +
 4 \bu \bu \trans \bu \bu \trans = \bI
-$$
+\end{displaymath}
 
 Multiplying a vector $\by$ by $\bH_{\bu}$, as
-$$
+\begin{displaymath}
 \bH_{\bu} \by =
 \by - 2 \bu \bu \trans \by
-$$
+\end{displaymath}
 corresponds to reflecting $\by$ about the line through the origin
 perpendicular to $\bu$, as shown in
 Figure~\ref{fig:Householder}.
@@ -39,13 +39,13 @@ Figure~\ref{fig:Householder}.
 \end{figure}
 By choosing
 \begin{equation}
-  \bu={\by-\norm\by\norm\be_1\over\norm(\by-\norm\by\norm\be_1)\norm}
   \label{eqn:1.16a}
+  \bu=\frac{\by-\norm\by\norm\be_1}{\norm(\by-\norm\by\norm\be_1)\norm}
 \end{equation}
 or
 \begin{equation}
-  \bu={\by+\norm\by\norm\be_1\over\norm(\by+\norm\by\norm\be_1)\norm}
   \label{eqn:1.16b}
+  \bu=\frac{\by+\norm\by\norm\be_1}{\norm(\by+\norm\by\norm\be_1)\norm}
 \end{equation}
 where $\be_1=(1,0,\ldots,0)\trans$,
 the Householder transformation can be made to take the
@@ -55,26 +55,26 @@ $( \pm \norm \by \norm , 0 ,..., 0 ) \trans$.
 \begin{example}
 
 To perform the $QR$ decomposition of the matrix
-$$
-\bX = \left[ \matrix {
-\matrix { 1 \cr 1 \cr 1}
-\matrix { 1.26 \cr 1.82 \cr 2.22 }
-}  \right]
-$$
+\begin{displaymath}
+  \bX = \left[ \matrix {
+      \matrix { 1 \cr 1 \cr 1}
+      \matrix { 1.26 \cr 1.82 \cr 2.22 }
+    }  \right]
+\end{displaymath}
 from Example PCB 3,
 we choose a transformation $\bH_{\bu_1}$ to take the first
 column $\bx_{1}$ of $\bX$ to the $x$ axis using (\ref{eqn:1.16a}) and obtain
-$$
-\bu_1={(1,1,1)\trans-\sqrt 3 (1,0,0) \trans  \over 1.5925 }=
-{(-0.7321,1,1) \trans  \over 1.5925 }
-$$
+\begin{displaymath}
+  \bu_1=\frac{(1,1,1)\trans-\sqrt 3 (1,0,0)\trans}{1.5925}=
+  \frac{(-0.7321,1,1)\trans}{1.5925}
+\end{displaymath}
 so that
-$$
+\begin{displaymath}
 \bX_1 = \bH_{\bu_1}\bX = \left[ \matrix {
 \matrix { 1.7321 \cr 0 \cr 0}
 \matrix { 3.0600 \cr -0.6388 \cr -0.2388}
 }  \right]
-$$
+\end{displaymath}
 We now perform a second rotation, orthogonal to the first, by
 choosing $\bu_{2}$ so that $\bH_{{\bu}_2}$
 zeros the rows below the diagonal of the second column of $\bX_{1}$
@@ -82,16 +82,16 @@ without changing the first column.
 To ensure that we do not change the first column, we
 make the first element of $\bu_{2}$ be zero.
 The vector $\bu_{2}$ is therefore chosen to be
-$$
-\bu_2 = {(0,-0.6388,-0.2388) \trans -
-0.6820 (0,1,0) \trans   \over 1.3422 }$$
+\begin{displaymath}
+  \bu_2 = \frac{(0,-0.6388,-0.2388)\trans-0.6820(0,1,0)\trans}{1.3422}
+\end{displaymath}
 which gives
-$$
-\bR = \bH_{\bu_2} \bH_{\bu_1} \bX = \left[ \matrix {
-\matrix { 1.7321 \cr 0 \cr 0}
-\matrix { 3.0600 \cr 0.6820 \cr 0}
-}  \right]
-$$
+\begin{displaymath}
+  \bR = \bH_{\bu_2} \bH_{\bu_1} \bX = \left[ \matrix {
+      \matrix { 1.7321 \cr 0 \cr 0}
+      \matrix { 3.0600 \cr 0.6820 \cr 0}
+    }  \right]
+\end{displaymath}
 \end{example}
 
 
@@ -102,10 +102,10 @@ The corresponding $\bQ$ is determined from $\bR = \bQ \trans \bX$,
 that is,
 $\bQ \trans = \bH_{{\bu}_P} ... \bH_{{\bu}_1}$.
 Because Householder transformations are symmetric, this gives
-$$
+\begin{displaymath}
 \bQ = \bH_{{\bu}_1} \trans ... \bH_{{\bu}_P} \trans
  = \bH_{\bu_1} \ldots \bH_{\bu_P}
-$$
+\end{displaymath}
 Note that $\bQ$ is almost never calculated explicitly, as any
 multiplications by $\bQ$ or $\bQ \trans$ are performed by applying
 Householder transformations in the appropriate order.
@@ -130,9 +130,9 @@ calculate the residual standard deviation.
 \begin{example}\label{pcb:qr2}
 
 For the data from Example PCB 3 with
-$$
+\begin{displaymath}
   \by=\left[ \matrix {\matrix{0.92 \cr 2.15 \cr 2.52}}\right]
-$$
+\end{displaymath}
 we calculate
 \begin{eqnarray*}
   \bQ\trans\by&=&\bH_{{\bu}_2}(\by-2\bu_1\bu_1\trans\by)\\

@@ -684,7 +684,7 @@ for $n=1 ,\ldots, N$ \{
             if ($\tau{\rm dif\epsilon$)}
                 $\lb \bB \rb_{kj=\taue}^{{\lambda}_k \tau}$
             else
-                $\lb \bB \rb_{kj={e}^{{\lambda}_j \tau}-e^{{\lambda}_k \tau} \over {\rm dif}$}
+                $\lb \bB \rb_{kj={e}^{{\lambda}_j \tau}-e^{\frac{\lambda}_k\tau}{\rm dif}$}
         \}
     \}
     store $\bgamma_{n=\bU} \bxi$
@@ -741,7 +741,7 @@ for $p=1 ,\ldots, P$ \{
             $t=t+$invslope
             minimize $S ( \btheta )$ with $\theta_\hat {p=\theta}_{p+\Delta}
 \timest$ obtaining $\tilde S ( \theta_p )$ and $\tilde \btheta_{-p$}
-            invslope$=$abs$ \left({\tau\timess^2 \over {\rm se\times\bz} \trans \bv_p}\right)$
+            invslope$=$abs$ \left(\frac{\tau\timess^2}{{\rm se\times\bz}\trans\bv_p}\right)$
             record $\tau ( \theta_p )={\rm sign(} \Delta )\times\sqrt{\tilde \hat S} / s$'-4p', $\btheta$, and invslope
             invslope$=$min(4,max(invslope,1/16))
             if (abs$( \tau )\tau_{max}$) break loop

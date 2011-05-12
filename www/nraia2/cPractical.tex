@@ -3721,16 +3721,14 @@ Then the variance--covariance matrix of the $P_{2}$
 parameters is proportional to $\bD_{2,2}$, where
 \begin{eqnarray*}
   \bD&=&({\bV^0}\trans \bV^0 )^{-1}\\
-  % && = \left[  \matrix {
-  % \matrix{{{\bV_1^{0}}\trans \bV_1^0}
-  % \cr{{\bV_2^{0}}\trans \bV_1^0}}
-  % \matrix{{{\bV_1^{0}}\trans \bV_2^0}
-  % \cr{{\bV_2^{0}}\trans \bV_2^0}}
-  % }\right]^{-1}\\
-  % && = \left[ \matrix {
-  % \matrix { \bD_{1,1} \cr \bD_{1,2} \trans }
-  % \matrix { \bD_{1,2} \cr \bD_{2,2} }
-  % }\right]
+  && = \begin{bmatrix}
+    {\bV_1^{0}}\trans \bV_1^0 & {\bV_1^{0}}\trans \bV_2^0\\
+    {\bV_2^{0}}\trans \bV_1^0 & {\bV_2^{0}}\trans \bV_2^0
+  \end{bmatrix}^{-1}\\
+  && = \begin{bmatrix}
+    \bD_{1,1}& \bD_{1,2}\\
+    \bD_{1,2}\trans& \bD_{2,2}
+  \end{bmatrix}
 \end{eqnarray*}
 and so the $D$-optimal criterion is changed to minimization of
 \begin{displaymath}

@@ -46,9 +46,9 @@ Geometrically, the linear approximation inference region (\#eqn linreg\#)
 \index{tangent plane!approximation to expectation surface}
 assumes that, over the region of interest, the mapping of
 $\btheta$ to $\boeta ( \btheta )$ is
-$$
+\begin{displaymath}
 \hat{\boeta}+ \hat{\bV}( \btheta - \hat{\btheta})
-$$
+\end{displaymath}
 This approximation, as pointed out by
 \citeasnoun{beal:1960} and as
 %\glossary{ Beale, E.M.L.}
@@ -94,33 +94,32 @@ Thus for a nonlinear model $\boeta ( \btheta )$, the $N \times P$
 derivative matrix is written as $\dot{\bV}$ with elements
 \index{derivative matrix}
 \begin{equation}
-  \lb \dot \bV \rb_{np} = {\partial f ( \bx_n , \btheta ) \over
-  \partial \theta_p}
+  \lb \dot \bV \rb_{np} =\frac{\partial f(\bx_n,\btheta)}{\partial\theta_p}
   \label{eqn:8.1}
 \end{equation}
 and the $N \times P \times P$ second derivative array is written as
 $\ddot{\bV}$ with elements
 \begin{equation}
-  \lb \ddot{\bV}\rb_{npq} = {\partial^2 f ( \bx_n , \btheta ) \over
-  \partial \theta_{p}\partial \theta_q}
+  \lb \ddot{\bV}\rb_{npq} = \frac{\partial^2 f(\bx_n,\btheta)}
+  {\partial \theta_{p}\partial \theta_q}
   \label{eqn:8.2}
 \end{equation}
 In (\ref{eqn:8.1}) and (\ref{eqn:8.2}), $n$ runs from 1 to $N$
 while $p$ and $q$ run from 1 to $P$.
 In matrix notation,
-$$
-\dot{\bV} = {\partial \boeta  \over \partial \btheta \trans}
-$$
+\begin{displaymath}
+\dot{\bV} =\frac{\partial\boeta}{\partial\btheta\trans}
+\end{displaymath}
 where each row of $\dot{\bV}$ is the gradient of one coordinate of
 $\boeta ( \btheta )$ with respect to $\btheta$.
 Alternatively, we may regard $\dot{\bV}$ as consisting of
 vectors $\dot{\bv}_p , p = 1, 2 ,\ldots, P$.
 
 Also,
-$$
-\ddot{\bV}= {\partial^2 \boeta  \over \partial \btheta  \partial
-\btheta \trans}
-$$
+\begin{displaymath}
+  \ddot{\bV}=\frac{\partial^2\boeta}
+  {\partial\btheta\partial\btheta\trans}
+\end{displaymath}
 where each face $\ddot{\bV}_n $ of $\ddot{\bV}$ is a complete
 $P \times P$ second derivative matrix, or Hessian, of one element
 \index{second derivative!array}
@@ -141,20 +140,20 @@ Accordingly, the vectors $\ddot{\bv}$ are called
 \index{vector!acceleration}
 of the velocity vectors with respect to the parameters.
 That is,
-$$
-\ddot{\bv}_{pq} = {\partial \dot{\bv}_p  \over \partial \theta_q}
-$$
+\begin{displaymath}
+\ddot{\bv}_{pq}=\frac{\partial\dot{\bv}_p}{\partial\theta_q}
+\end{displaymath}
 
 \begin{example}\label{mic:11}
 
 For the Michaelis--Menten expectation function
-$$
-f ( x , \btheta ) = {\theta_1 x  \over  \theta_2 + x }
-$$
+\begin{displaymath}
+  f(x,\btheta)=\frac{\theta_1 x}{\theta_2+x}
+\end{displaymath}
 the elements in $\dot{\bV}$ are
 \begin{eqnarray*}
-  \lb \dot{\bV} \rb_{n1}&=&{x_n \over \theta_2 + x_n }\\
-  \lb \dot{\bV}\rb_{n2}&=&{ - \theta_1 x_n \over (\theta_2 + x_n)^2 }
+  \lb \dot{\bV} \rb_{n1}&=&\frac{x_n}{\theta_2 + x_n }\\
+  \lb \dot{\bV}\rb_{n2}&=&\frac{-\theta_1 x_n}{(\theta_2 + x_n)^2}
 \end{eqnarray*}
 Evaluating these functions at each $x_{n}$ value for a
 particular parameter pair $\btheta$ produces the matrix $\dot{\bV}$.
@@ -162,9 +161,9 @@ particular parameter pair $\btheta$ produces the matrix $\dot{\bV}$.
 The elements in $\ddot{\bV}$ can also be evaluated, as
 \begin{eqnarray*}
   \lb \ddot{\bV}\rb_{n11}&=&0  \\
-  \lb \ddot{\bV}\rb_{n12}&=&{-x_n\over(\theta_2+x_n)^2 }\\
+  \lb \ddot{\bV}\rb_{n12}&=&\frac{-x_n}{(\theta_2+x_n)^2}\\
   \lb \ddot{\bV}\rb_{n21}&=&\lb\ddot{\bV}\rb_{n12}\\
-  \lb \ddot{\bV}\rb_{n22}&=&{2\theta_1 x_n\over(\theta_2+x_n)^3}
+  \lb \ddot{\bV}\rb_{n22}&=&\frac{2\theta_1x_n}{(\theta_2+x_n)^3}
 \end{eqnarray*}
 
 For the Puromycin data, the concentrations and the velocity and
@@ -290,10 +289,10 @@ $p$th row, and $q$th column of the
 product $ \bA = [ \bB ][ \bC ]$, where $\bB$ is an
 $N_1 \times N_{2}$
 matrix and $\bC$ is an $N_2 \times N_3 \times N_{4}$ array, is
-$$
+\begin{displaymath}
 \lb \bA \rb_{npq} = \sum_{i=1}^{ N_2 } { \lb \bB \rb_{ni}
 \lb \bC \rb_{ipq} }
-$$
+\end{displaymath}
 and $ \bA $ is an $N_1 \times N_3 \times N_4 $ array.)
 
 \begin{example}\label{mic:adotdot}
@@ -302,21 +301,21 @@ To illustrate these calculations, we use the velocity and
 acceleration vectors from Example Puromycin~\ref{mic:11}, Table 7.1,
 to form the matrix $\bD$.
 Performing a $QR$ decomposition on $\bD$ gives
-\begin{eqnarray*}
-  \bR_1&=&[ ( \bQ_1 | \bQ '_1 ) \trans ] [ \bD ] =
-  \left[ \matrix {
-  \matrix { \bR_{11} \cr  {\bf 0}  }
-  \matrix { \bR_{12} \cr \bR_{22} } }
-  \right]\\
-  &=&
-  \left[ \matrix {
-  \matrix { -2.44 \cr 0 \cr 0 }
-  \matrix { 1568.7 \cr 1320.3 \cr 0 }
-  \matrix { 0 \cr 0 \cr 0 }
-  \matrix {  7.378 \cr 6.210 \cr 0 }
-  \matrix { -16185.7 \cr -25030.4 \cr 8369.1 } }
-  \right]
-\end{eqnarray*}
+% \begin{eqnarray*}
+%   \bR_1&=&[ ( \bQ_1 | \bQ '_1 ) \trans ] [ \bD ] =
+%   \left[ \matrix {
+%   \matrix { \bR_{11} \cr  {\bf 0}  }
+%   \matrix { \bR_{12} \cr \bR_{22} } }
+%   \right]\\
+%   &=&
+%   \left[ \matrix {
+%   \matrix { -2.44 \cr 0 \cr 0 }
+%   \matrix { 1568.7 \cr 1320.3 \cr 0 }
+%   \matrix { 0 \cr 0 \cr 0 }
+%   \matrix {  7.378 \cr 6.210 \cr 0 }
+%   \matrix { -16185.7 \cr -25030.4 \cr 8369.1 } }
+%   \right]
+% \end{eqnarray*}
 The left upper $2\times2$ matrix, $\bR_{11} $, is simply $\hat{\bR}_{1}$
 from the $QR$ decomposition of $\dot \bV$ (cf. Example Puromycin 7),
 and the right upper $2\times3$ matrix, $\bR_{12} $, gives the
@@ -330,20 +329,20 @@ In this example, this extra space has dimension $P' = 1 $.
 
 Reforming the elements of $\bR_{12}$ and $\bR_{22}$
 into a $3\times2\times2$ acceleration array $\ddot{\bA}$ gives
-$$
-\ddot{\bA} = \left[ \matrix {
-  \matrix { 0 \cr 7.378 }
-  \matrix { 7.378 \cr -16185.7 } }
-\right]
-  \left[ \matrix {
-  \matrix { 0 \cr 6.210 }
-  \matrix { 6.210 \cr -25030.4 } }
-\right]
-  \left[ \matrix {
-  \matrix { 0 \cr 0 }
-  \matrix { 0  \cr 8369.1 } }
-\right]
-$$
+% \begin{displaymath}
+% \ddot{\bA} = \left[ \matrix {
+%   \matrix { 0 \cr 7.378 }
+%   \matrix { 7.378 \cr -16185.7 } }
+% \right]
+%   \left[ \matrix {
+%   \matrix { 0 \cr 6.210 }
+%   \matrix { 6.210 \cr -25030.4 } }
+% \right]
+%   \left[ \matrix {
+%   \matrix { 0 \cr 0 }
+%   \matrix { 0  \cr 8369.1 } }
+% \right]
+% \end{displaymath}
 These are the values which, when scaled as in Example Puromycin~\ref{mic:12}, were
 used to generate Figure~\ref{fig:PURtanvec}.
 \end{example}
@@ -389,13 +388,13 @@ In Figure \ref{fig:RUM2expsurf}$a$
 we show the expectation surface (curve) $\boeta ( \theta )$
 for the Rumford model with the design $\bx=( 4,41) \trans$ and
 the parametrization
-$$
+\begin{displaymath}
 f=60+70e^{ - x\theta }
-$$
+\end{displaymath}
 The marks on the expectation curve correspond to
-$$
+\begin{displaymath}
 \theta=0.01 ,0.02 ,\ldots,0.08 ,0.1 ,0.2 ,\ldots,0.9 ,1.0
-$$
+\end{displaymath}
 and as pointed out in Chapter 2, equally spaced
 values of $\theta$ map to unequally spaced values on $\boeta$.
 This is a manifestation of the parameter effects nonlinearity,
@@ -405,13 +404,13 @@ intrinsic nonlinearity.
 In Figure~\ref{fig:RUM2expsurf}$b$ we show the expectation surface
 $\boeta ( \phi )$ for the Rumford model with the same design and the
 reparametrization $\phi=\log_{10} \theta $,
-$$
+\begin{displaymath}
 f=60+70\exp ( - x 10^{\phi} )
-$$
+\end{displaymath}
 The marks on the expectation curve correspond to the values
-$$
+\begin{displaymath}
 \phi=-2.0 ,-1.9 ,-1.8 ,\ldots,-0.1 ,0
-$$
+\end{displaymath}
 so that the same range of $\theta$ is covered.
 Note that the expectation curves are identical, and that the only
 change is a relabeling of the points on the curve.
@@ -489,9 +488,9 @@ are obtained by differentiating with respect to $b$ and
 evaluating the derivatives at $b = 0$.
 Thus,
 \begin{eqnarray*}
-  \left. {{d \boeta_{\bu} \over d b}} \right|_0&=& \sum_{p=1}^P \left.
-  {\partial \boeta \over \partial \theta_p} \right|_{\hat {\theta}}
-  \left. {d \theta_p \over d b} \right|_0\\
+  \left. \frac{d \boeta_{\bu}}{d b} \right|_0&=& \sum_{p=1}^P \left.
+  \frac{\partial\boeta}{\partial\theta_p}\right|_{\hat{\theta}}
+  \left.\frac{d\theta_p}{d b} \right|_0\\
   &=&\sum_{p=1}^P \dot{\bv}_p u_p
 \end{eqnarray*}
 or, more compactly,
@@ -502,10 +501,9 @@ or, more compactly,
 Similarly, the acceleration vector corresponding to the direction
 $\bu$ is
 \begin{eqnarray}
-  \left. {d^2 \boeta_{\bu} \over d b^2} \right|_0&=& \sum_{q=1}^P
-  \left.  { \partial { \sum_{p=1}^P { \dot \bv_p u_p}}
-  \over
-  \partial \theta_q} \right|_{\hat\theta} \left.  { d \theta_q \over d
+  \left.\frac{d^2 \boeta_{\bu}}{d b^2} \right|_0&=& \sum_{q=1}^P
+  \left.\frac{\partial{\sum_{p=1}^P{\dot\bv_p u_p}}}
+    {\partial \theta_q} \right|_{\hat\theta} \left.\frac{d\theta_q}{ d
   b} \right|_0\\
   \label{eqn:8.4a}
   &=& \sum_{p=1}^P \sum_{q=1}^P \ddot \bv_{pq} u_p u_q\nonumber
@@ -551,12 +549,12 @@ in the array $\ddot \bA $.
 Note that these are simply columns from the matrix $\bR_{1}$ from the $QR$
 decomposition of $\bD$, equation (\ref{eqn:boldd}).
 Writing the matrix
-\begin{equation}
-  \left[ \matrix { \matrix {\bR_{12} \cr \bR_{22} } } \right] = \left[
-  \matrix { \matrix { \br_{11} , \br_{12} , \br_{22} ,\ldots, \br_{PP}}
-  }\right]
-  \label{eqn:boldr2}
-\end{equation}
+% \begin{equation}
+%   \left[ \matrix { \matrix {\bR_{12} \cr \bR_{22} } } \right] = \left[
+%   \matrix { \matrix { \br_{11} , \br_{12} , \br_{22} ,\ldots, \br_{PP}}
+%   }\right]
+%   \label{eqn:boldr2}
+% \end{equation}
 then (\ref{eqn:8.42}) can be expressed as
 \begin{equation} 
   \bQ \trans \ddot{\boeta}_{\bu} = \sum_{p=1}^P { \br_{pp} u_p^2 } + 2
@@ -572,16 +570,16 @@ we calculate the acceleration corresponding to the direction
 $\bu  = (0.6 , 0.8 ) \trans$.
 Using (\ref{eqn:8.43}) and the values in $\bR_{1}$ from
 Example Puromycin \ref{mic:adotdot},
-\begin{eqnarray*}  
-  \bQ \trans \ddot{\boeta}_{\bu}&=&(0.6)^2 \br_{11} + (0.8)^2
-  \br_{22} + 2(0.6)(0.8) \br_{12}\\
-  &=&0.36 \left[ \matrix { \matrix { 0
-  \cr 0 \cr 0 } } \right] + 0.64 \left[ \matrix { \matrix { -16185.7 \cr
-  -25030.4 \cr 8369.1 } } \right] + 0.96 \left[ \matrix { \matrix {
-  7.378 \cr 6.210 \cr 0 } } \right]\\
-  &=&\left[ \matrix { \matrix { -10351.8 \cr -16013.5 \cr 5356.2 } }
-  \right]
-\end{eqnarray*}
+% \begin{eqnarray*}  
+%   \bQ \trans \ddot{\boeta}_{\bu}&=&(0.6)^2 \br_{11} + (0.8)^2
+%   \br_{22} + 2(0.6)(0.8) \br_{12}\\
+%   &=&0.36 \left[ \matrix { \matrix { 0
+%   \cr 0 \cr 0 } } \right] + 0.64 \left[ \matrix { \matrix { -16185.7 \cr
+%   -25030.4 \cr 8369.1 } } \right] + 0.96 \left[ \matrix { \matrix {
+%   7.378 \cr 6.210 \cr 0 } } \right]\\
+%   &=&\left[ \matrix { \matrix { -10351.8 \cr -16013.5 \cr 5356.2 } }
+%   \right]
+% \end{eqnarray*}
 \end{example}
 
 \section{Relative Curvatures}
@@ -601,24 +599,24 @@ The {\em curvature\/} $c_{\bu}$ in the direction $\bu$ at a point
 \index{curvature!definition}
 is defined as the ratio of the length of the acceleration vector
 to the squared length of the tangent vector,
-$$
-c_{\bu} = { \norm \ddot{\boeta}_{\bu} \norm  
-\over  \norm \dot{\boeta}_{\bu} \norm^2 }
-$$
+\begin{displaymath}
+  c_{\bu}=\frac{\norm\ddot{\boeta}_{\bu}\norm}
+  {\norm\dot{\boeta}_{\bu}\norm^2}
+\end{displaymath}
 For parameter effects curvature, we have
 \index{parameter effects!curvature}
 \index{curvature!parameter effects}
 \begin{equation}
-  c_{\bu}^{\theta} = { \norm \ddot{\boeta}_{\bu}^{\theta} \norm \over
-  \norm \dot{\boeta}_{\bu} \norm^2 }
+  c_{\bu}^{\theta} =\frac{\norm \ddot{\boeta}_{\bu}^{\theta} \norm}
+  {\norm \dot{\boeta}_{\bu} \norm^2 }
   \label{eqn:8.7}  
 \end{equation}
 and for intrinsic curvature,
 \index{intrinsic!curvature}
 \index{curvature!intrinsic}
 \begin{equation}
-  c_{\bu}^{iota} = { \norm \ddot{\boeta}_{\bu}^{iota} \norm \over
-  \norm \dot{\boeta}_{\bu} \norm^2 }
+  c_{\bu}^{iota}=\frac{ \norm \ddot{\boeta}_{\bu}^{iota} \norm}
+  {\norm\dot{\boeta}_{\bu}\norm^2}
   \label{eqn:8.6}
 \end{equation}
 
@@ -626,16 +624,16 @@ Multiplying the acceleration and tangent vectors by $\bQ \trans$
 does not change the magnitude of either the denominator or the numerator,
 and so we use the more compact array $\bA^{\theta} $ to
 calculate the numerator in (\ref{eqn:8.7}) using
-$$
+\begin{displaymath}
 \norm \bu \trans \bA^{\theta} \bu \norm^2 = \sum_{ p = 1 }^P
 { ( \bu \trans \ddot \bA_p \bu )^2 }
-$$
+\end{displaymath}
 and the numerator in (\ref{eqn:8.6}) using
-$$
+\begin{displaymath}
 \norm \bu \trans \bA^{iota} \bu \norm^2 =
 \sum_{ p = P + 1 }^{ P + P' }
 { ( \bu \trans \ddot \bA_p \bu )^2 }
-$$
+\end{displaymath}
 The denominators are calculated using
 \begin{eqnarray*}
   \norm \dot{\boeta}_{\bu} \norm^2&=&\norm \dot \bV \bu \norm^2\\  
@@ -686,37 +684,37 @@ This affords a convenient scale of measurement for the curvatures.
 \begin{example}\label{mic:15}
 
 For the Puromycin data, $s = 10.93$, $P = 2 $,
-$$
-\bR_{11}^{-1} = \left[ \matrix {
-  \matrix { -0.4092 \cr 0 }
-  \matrix { 0.4861 \cr 0.0007574 } }
-\right]
-$$
+% \begin{displaymath}
+% \bR_{11}^{-1} = \left[ \matrix {
+%   \matrix { -0.4092 \cr 0 }
+%   \matrix { 0.4861 \cr 0.0007574 } }
+% \right]
+% \end{displaymath}
 and, from Example Puromycin~\ref{mic:adotdot},
-$$
-\ddot \bA = \left[ \matrix {
-  \matrix { 0 \cr 7.378 }
-  \matrix { 7.378 \cr -16185.7 } }
-\right]
-  \left[ \matrix {
-  \matrix { 0 \cr 6.210 }
-  \matrix { 6.210 \cr -25030.4 } }
-\right]
-  \left[ \matrix {
-  \matrix { 0 \cr 0 }
-  \matrix { 0  \cr 8369.1 } }
-\right]
-$$
+% \begin{displaymath}
+% \ddot \bA = \left[ \matrix {
+%   \matrix { 0 \cr 7.378 }
+%   \matrix { 7.378 \cr -16185.7 } }
+% \right]
+%   \left[ \matrix {
+%   \matrix { 0 \cr 6.210 }
+%   \matrix { 6.210 \cr -25030.4 } }
+% \right]
+%   \left[ \matrix {
+%   \matrix { 0 \cr 0 }
+%   \matrix { 0  \cr 8369.1 } }
+% \right]
+% \end{displaymath}
 so that
-$$
-\bC =
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix {-0.035 \cr -0.059} }\right]
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix {-0.030 \cr -0.151} }\right]
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix {0.000 \cr 0.074} }\right]
-$$
+% \begin{displaymath}
+% \bC =
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix {-0.035 \cr -0.059} }\right]
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix {-0.030 \cr -0.151} }\right]
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix {0.000 \cr 0.074} }\right]
+% \end{displaymath}
 where the first two matrices give $\bC^{\theta}$, and the
 third, $\bC^{iota}$.
 Since each face of $\bC$ is symmetric, we only display the upper
@@ -789,12 +787,12 @@ triangular.
 They assume $\dot \bV$ is nonsingular but do not require $\bD$ to be so.
 
 Partitioning $\bR$ as
-$$
-\bR = \left[ \matrix {
-\matrix { \bR_{11} \cr  {\bf 0}  \cr  {\bf 0}  }
-\matrix { \bR_{12} \cr \bR_{22}  \cr  {\bf 0}  }
-}\right]
-$$
+% \begin{displaymath}
+% \bR = \left[ \matrix {
+% \matrix { \bR_{11} \cr  {\bf 0}  \cr  {\bf 0}  }
+% \matrix { \bR_{12} \cr \bR_{22}  \cr  {\bf 0}  }
+% }\right]
+% \end{displaymath}
 provides $\bR_{11}$, which is used to produce $\bphi$,
 $\bR_{12}$, which is used to produce $\bC^{\theta}$, and
 $\bR_{22}$, which is used to produce $\bC^{iota}$.
@@ -832,13 +830,13 @@ parameter pair.
 \begin{example}\label{mic:15mat}
 
 From Example Puromycin~\ref{mic:15}, the curvature matrix is
-$$
-\left[ \matrix {
-  \matrix { 0 \cr 0 \cr 0 }
-  \matrix { -0.035 \cr -0.030 \cr 0 }
-  \matrix { -0.059 \cr -0.151 \cr 0.074 } }
-\right]
-$$
+% \begin{displaymath}
+% \left[ \matrix {
+%   \matrix { 0 \cr 0 \cr 0 }
+%   \matrix { -0.035 \cr -0.030 \cr 0 }
+%   \matrix { -0.059 \cr -0.151 \cr 0.074 } }
+% \right]
+% \end{displaymath}
 For this model and data set, all the relative curvatures are
 small, and so the estimation situation is probably not badly affected
 by the nonlinearity.
@@ -897,11 +895,11 @@ The surface is extremely flat, and so the tangent plane provides an
 excellent approximation to the expectation surface near $\hat \btheta$.
 This is expected, given the magnitudes of the entries in the
 intrinsic curvature array
-$$
-\bC^{iota} =
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix { 0.000  \cr  0.074} }\right]
-$$
+% \begin{displaymath}
+% \bC^{iota} =
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix { 0.000  \cr  0.074} }\right]
+% \end{displaymath}
 \end{example}
 
 \subsubsection{Parameter Effects Curvatures}
@@ -932,18 +930,18 @@ be approximately
 \begin{eqnarray*}
   \dot \bv_1 ( \bdelta )&\approx&
   \dot \bv_1 (  {\bf 0}  ) +
-  \delta_1 \left. { \partial \dot \bv_1   \over  \partial \phi_1 }
+  \delta_1 \left.\frac{\partial\dot\bv_1}{\partial\phi_1}
   \right|_{{\phi} =  {\bf 0}  } + 
-  \delta_2 \left. { \partial \dot \bv_1   \over  \partial \phi_2 }
+  \delta_2\left.\frac{\partial\dot\bv_1}{\partial\phi_2}
   \right|_{{\phi} =  {\bf 0}  }\\
   &=&\bq_1 + \delta_1 \ddot \bv_{11} +\delta_2 \ddot \bv_{12}
 \end{eqnarray*}
 and
-$$
+\begin{displaymath}
 \dot \bv_2 ( \bdelta )  \approx
 \bq_2 + \delta_1 \ddot \bv_{21} +
 \delta_2 \ddot \bv_{22}
-$$
+\end{displaymath}
 Collecting terms in $\bq_{1}$ and $\bq_{2}$ gives
 \begin{eqnarray*}
   \dot \bv_1 ( \bdelta )&=&
@@ -1012,13 +1010,13 @@ direction $\bu$.
 \begin{example}
 
 For the BOD data, the parameter effects curvature array is
-$$
-\bC^{\theta} =
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix {-0.157 \cr 2.100} }\right]
-\left[ \matrix {
-\matrix {0.000 \cr } \matrix {-0.096 \cr 0.497} }\right]
-$$
+% \begin{displaymath}
+% \bC^{\theta} =
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix {-0.157 \cr 2.100} }\right]
+% \left[ \matrix {
+% \matrix {0.000 \cr } \matrix {-0.096 \cr 0.497} }\right]
+% \end{displaymath}
 Examination of the terms in $\bC^{\theta}$ reveals the following:
 \begin{enumerate}
 \item the $\phi_{2}$ parameter lines will be perfectly uniformly
@@ -1108,21 +1106,21 @@ Fortunately this work can be avoided.
 Suppose we wish to determine the parameter effects array,
 $\bC^{\beta}$, corresponding to a reparametrization in which the
 new parameters $\bbeta$ are nonlinear transformations of $\btheta$,
-$$
+\begin{displaymath}
 \bbeta = \bG ( \btheta )
-$$
+\end{displaymath}
 or
-$$
+\begin{displaymath}
 \beta_p = \bG_p ( \btheta )  p=1,2 ,..., P
-$$
+\end{displaymath}
 We assume the inverse transformation is
-$$
+\begin{displaymath}
 \btheta = \bD ( \bbeta )
-$$
+\end{displaymath}
 or
-$$
+\begin{displaymath}
 \theta_p = \bD_p ( \bbeta ) p=1,2 ,..., P
-$$
+\end{displaymath}
 and write the $P \times P$ Jacobian matrices as $\dot \bD$ and
 \index{Jacobian!matrix}
 $\dot \bG$ with $(n,p)$th elements
@@ -1150,10 +1148,10 @@ Using the chain rule for differentiation, the new tangent vectors
 at the least squares estimates $ \hat{\bbeta}=\bG(\hat{\btheta})$
 are
 \begin{eqnarray*}
-  \dot\bb_p&=&\left.{\partial \boeta \over \partial \beta_p}
+  \dot\bb_p&=&\left.\frac{\partial\boeta}{\partial\beta_p}
   \right|_{\hat {\beta}}\\
   &=& \sum_{q=1}^P
-  \left( \left. { \partial \boeta   \over  \partial \theta_q }
+  \left(\left.\frac{\partial\boeta}{\partial\theta_q}
   \right|_{\hat {\theta}}\right) 
   \lb \dot \bD \rb_{qp}\\
  &=&
@@ -1170,9 +1168,9 @@ Equivalently, we have
 Similarly the new second derivative vectors are
 \begin{eqnarray*}
   \ddot\bb_{pq}&=&\left.
-  { \partial^2 \boeta   \over  \partial \beta_p \partial \beta_q }
+  \frac{\partial^2\boeta}{\partial \beta_p \partial \beta_q}
   \right|_{\hat {\beta}}\\
-  &=&{\partial\over\partial\beta_q}\left(\sum_{r=1}^P\dot \bv_r \lb
+  &=&\frac{\partial}{\partial\beta_q}\left(\sum_{r=1}^P\dot \bv_r \lb
   \dot \bD \rb_{rp}\right)\\
   &=&\sum_{r=1}^P \dot \bv_r \lb \ddot \bD \rb_{rpq}  +
   \sum_{r=1}^P\sum_{s=1}^P
@@ -1187,24 +1185,24 @@ Thus
   \label{eqn:8.24}
 \end{equation}
 so
-$$
+\begin{displaymath}
 \bA^{\beta} = [ \bQ_1 \trans ] [ \ddot \bB ] =
 \dot \bD \trans \bA^{\theta} \dot \bD +
 [ \bR_1 ] [ \ddot \bD ]
-$$
+\end{displaymath}
 where, again, the square brackets imply that the summation involved in
 the multiplication is over the numerator index.
 Now
-$$
+\begin{displaymath}
 \bC^{\theta} =
 \bR_1 \invtrans \bA^{\theta} \bR_1^{-1}
-$$
+\end{displaymath}
 and the equivalent expression for $\bC^{\beta} $ is, from (\ref{eqn:8.23}),
-$$
+\begin{displaymath}
 \bC^{\beta} =
 ( \bR_1 \dot \bD ) \invtrans \bA^{\beta}
 ( \bR_1 \dot \bD )^{-1}
-$$
+\end{displaymath}
 so
 \begin{eqnarray}
   \bC^{\beta}&=&
@@ -1237,30 +1235,30 @@ acceleration/velocity$^{2}$.
 
 Thus, the array $ \bC^{\beta} $ equals the original array
 $\bC^{\theta}$ minus an adjustment,
-$$
+\begin{displaymath}
 \bC^{\beta} = \bC^{\theta} -
 [ \bR_1 ] [ \bR_1 \invtrans \bT \bR_1^{-1} ]
-$$
+\end{displaymath}
 Now $\bT$ is given in terms of derivatives with respect to $\bbeta$,
 and it is more convenient to have it in terms of the
 original parameters $\btheta$.
 By writing
-$$
-\bbeta = \bG ( \bD ( \bbeta ) )
-$$
+\begin{displaymath}
+  \bbeta = \bG ( \bD ( \bbeta ) )
+\end{displaymath}
 and differentiating with respect to $ \bbeta $, we have
-$$
-{\partial \bbeta   \over  \partial \bbeta \trans } = \bI = \dot \bG \dot \bD
-$$
+\begin{displaymath}
+  \frac{\partial\bbeta}{\partial\bbeta\trans}=\bI=\dot\bG\dot\bD
+\end{displaymath}
 and
-$$
-{\partial^2 \bbeta   \over  \partial \bbeta \partial \bbeta \trans } =
+\begin{displaymath}
+\frac{\partial^2\bbeta}{\partial\bbeta \partial \bbeta \trans } =
  {\bf 0}  = \dot \bD \trans \ddot \bG \dot \bD + [ \dot \bG ] [ \ddot \bD ]
-$$
+\end{displaymath}
 and so, from (\ref{eqn:8.26}),
-$$
+\begin{displaymath}
 \bT:= [ \dot \bG^{-1} ] [ \ddot \bG ]
-$$
+\end{displaymath}
 Finally, we have the result
 \begin{equation}
   \bC^{\beta} = \bC^{\theta} - [ \bR_1 ] [ \bR_1 \invtrans [ \dot
@@ -1272,139 +1270,139 @@ Finally, we have the result
 
 The Michaelis--Menten model is a ratio of polynomials, and so, as noted
 at the end of Section 6.1.2, reparametrizing in the form
-$$
-f = {x \over  \beta_1 + \beta_2 x }
-$$
+\begin{displaymath}
+  f=\frac{x}{\beta_1+\beta_2 x}
+\end{displaymath}
 should reduce the parameter effects (although for this example, they are
 already small).
 The reparametrization in this case is
-$$
-\bbeta = \left[ \matrix {
-  \matrix {{{ \theta_2   \over  \theta_1 }} \cr
-        { {1 \over  \theta_1 } } }
-}\right]
-$$
+% \begin{displaymath}
+% \bbeta = \left[ \matrix {
+%   \matrix {{\frac{\theta_2}{\theta_1}} \cr
+%         { \frac{1}{\theta_1}}}
+% }\right]
+% \end{displaymath}
 and so
-$$
-\dot \bG = \left[ \matrix {
-  \matrix {
-    {{- \theta_2 \over \theta_1^2}}\cr
-    {{-1 \over \theta_1^2}}
-  }
-  \matrix {{1 \over \theta_1} \cr 0}
-}\right]
-$$
+% \begin{displaymath}
+% \dot \bG = \left[ \matrix {
+%   \matrix {
+%     {\frac{-\theta_2}{\theta_1^2}}\cr
+%     {\frac{-1}{\theta_1^2}}
+%   }
+%   \matrix {\frac{1}{\theta_1} \cr 0}
+% }\right]
+% \end{displaymath}
 and
-$$
-\ddot \bG=\left[ \matrix {
-  \matrix {
-    {{2 \theta_2  \over \theta_1^3}} \cr
-    {{-1 \over \theta_1^2}}
-  }
-  \matrix {{{-1 \over \theta_1^2}} \cr 0}
-}\right] 
-\left[ \matrix {
-  \matrix {{2 \over \theta_1^3} \cr \matrix{ \cr 0}}
-  \matrix {0 \cr \matrix{ \cr 0}}
-}\right]
-$$
+% \begin{displaymath}
+% \ddot \bG=\left[ \matrix {
+%   \matrix {
+%     {\frac{2 \theta_2}{\theta_1^3}} \cr
+%     {\frac{-1}{\theta_1^2}}
+%   }
+%   \matrix {{\frac{-1}{\theta_1^2}} \cr 0}
+% }\right] 
+% \left[ \matrix {
+%   \matrix {\frac{2}{\theta_1^3} \cr \matrix{ \cr 0}}
+%   \matrix {0 \cr \matrix{ \cr 0}}
+% }\right]
+% \end{displaymath}
 The product $\bT = [ \dot \bG^{-1} ] [ \ddot \bG ]$ is then
-$$
-\bT = \left[ \matrix {
-  \matrix {{-2 \over \theta_1} \cr \matrix{ \cr 0}}
-  \matrix {0 \cr \matrix{ \cr 0}}
-}\right]
-\left[ \matrix {
-  \matrix {0 \cr {-1 \over \theta_1}}
-  \matrix {{-1 \over \theta_1} \cr 0}
-}\right]
-$$
+% \begin{displaymath}
+% \bT = \left[ \matrix {
+%   \matrix {\frac{-2}{\theta_1} \cr \matrix{ \cr 0}}
+%   \matrix {0 \cr \matrix{ \cr 0}}
+% }\right]
+% \left[ \matrix {
+%   \matrix {0 \cr\frac{-1}{\theta_1}}
+%   \matrix {\frac{-1}{\theta_1} \cr 0}
+% }\right]
+% \end{displaymath}
 Finally, substituting the parameter values and
 performing the remaining multiplications and subtractions as in
 (\ref{eqn:8.30}) gives
-\begin{eqnarray*}
-  \bC^{\beta}&=&
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix {-0.035 \cr -0.059} }\right]
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix {-0.030 \cr -0.151} }\right]
-  -
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix { 0.003 \cr -0.027} }\right]
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix { 0.002 \cr -0.005} }\right]\\
-  &=&
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix {-0.038 \cr -0.032} }\right]
-  \left[ \matrix {
-  \matrix {0.000 \cr } \matrix {-0.032 \cr -0.146} }\right]
-\end{eqnarray*}
+% \begin{eqnarray*}
+%   \bC^{\beta}&=&
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix {-0.035 \cr -0.059} }\right]
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix {-0.030 \cr -0.151} }\right]
+%   -
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix { 0.003 \cr -0.027} }\right]
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix { 0.002 \cr -0.005} }\right]\\
+%   &=&
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix {-0.038 \cr -0.032} }\right]
+%   \left[ \matrix {
+%   \matrix {0.000 \cr } \matrix {-0.032 \cr -0.146} }\right]
+% \end{eqnarray*}
 As expected, the change in the parameter effects is slight.
 \end{example}
 
 \begin{example}\label{iso:repar}
 
 For the isomerization data,
-$$
-\bC^{\theta}=
-\left[ \matrix {
-\matrix {0.000 \cr  \cr  \cr  }
-\matrix {-0.110 \cr -0.064 \cr  \cr  }
-\matrix {-0.256 \cr  1.762 \cr 8.180 \cr  }
-\matrix { 0.361 \cr -18.157 \cr -48.275 \cr 119.610 }
-}\right] 
-\left[ \matrix {
-\matrix {0.000 \cr  \cr  \cr  }
-\matrix { 0.000 \cr  0.013 \cr  \cr  }
-\matrix { -0.032 \cr -0.102 \cr 0.413 \cr  }
-\matrix { 0.000 \cr  -0.004 \cr -4.919 \cr 0.009 }
-}\right] \matrix{
-\left[ \matrix {
-\matrix {0.000 \cr  \cr  \cr  }
-\matrix {-0.032 \cr -0.264 \cr  \cr  }
-\matrix { 0.000 \cr  0.269 \cr 0.008 \cr  }
-\matrix { 0.000 \cr  -4.898 \cr -0.004 \cr 0.008 }
-}\right] \cr
-\left[ \matrix {
-\matrix {0.000 \cr  \cr  \cr  }
-\matrix { 0.000 \cr  0.020 \cr  \cr  }
-\matrix { 0.000 \cr -0.004 \cr -0.001 \cr  }
-\matrix { -0.032 \cr  -0.102 \cr  0.265 \cr -9.826 }
-}\right]}
-$$
+% \begin{displaymath}
+% \bC^{\theta}=
+% \left[ \matrix {
+% \matrix {0.000 \cr  \cr  \cr  }
+% \matrix {-0.110 \cr -0.064 \cr  \cr  }
+% \matrix {-0.256 \cr  1.762 \cr 8.180 \cr  }
+% \matrix { 0.361 \cr -18.157 \cr -48.275 \cr 119.610 }
+% }\right] 
+% \left[ \matrix {
+% \matrix {0.000 \cr  \cr  \cr  }
+% \matrix { 0.000 \cr  0.013 \cr  \cr  }
+% \matrix { -0.032 \cr -0.102 \cr 0.413 \cr  }
+% \matrix { 0.000 \cr  -0.004 \cr -4.919 \cr 0.009 }
+% }\right] \matrix{
+% \left[ \matrix {
+% \matrix {0.000 \cr  \cr  \cr  }
+% \matrix {-0.032 \cr -0.264 \cr  \cr  }
+% \matrix { 0.000 \cr  0.269 \cr 0.008 \cr  }
+% \matrix { 0.000 \cr  -4.898 \cr -0.004 \cr 0.008 }
+% }\right] \cr
+% \left[ \matrix {
+% \matrix {0.000 \cr  \cr  \cr  }
+% \matrix { 0.000 \cr  0.020 \cr  \cr  }
+% \matrix { 0.000 \cr -0.004 \cr -0.001 \cr  }
+% \matrix { -0.032 \cr  -0.102 \cr  0.265 \cr -9.826 }
+% }\right]}
+% \end{displaymath}
 so that the parameter effects nonlinearities are disastrous.
 If we reparametrize using the $\bbeta$ parameters of
 Example Isomerization 5, it is clear from the discussion in Chapter 6
 that the parameter effects will be reduced to an extremely small amount.
 Using the above techniques we find the following parameter effects
 array for the $\bbeta$ parameters:
-$$
-\bC^{\beta}=
-\left[ \matrix {
-\matrix {-0.069 \cr  \cr  \cr  }
-\matrix { 0.011 \cr -0.062 \cr  \cr  }
-\matrix {-0.007 \cr  0.001 \cr -0.060 \cr  }
-\matrix { 0.006 \cr  0.004 \cr  0.003 \cr -0.052 }
-}\right] 
-\left[ \matrix {
-\matrix {-0.007 \cr  \cr  \cr  }
-\matrix { 0.001 \cr -0.016 \cr  \cr  }
-\matrix {-0.060 \cr -0.015 \cr 0.018 \cr  }
-\matrix { 0.003 \cr  0.005 \cr -0.005 \cr -0.035 }
-}\right] \matrix{
-\left[ \matrix {
-\matrix { 0.011 \cr  \cr  \cr  }
-\matrix {-0.062 \cr -0.032 \cr  \cr  }
-\matrix { 0.001 \cr -0.016 \cr -0.015 \cr  }
-\matrix { 0.004 \cr  0.007 \cr  0.005 \cr -0.039 }
-}\right] \cr
-\left[ \matrix {
-\matrix { 0.006 \cr  \cr  \cr  }
-\matrix { 0.004 \cr  0.007 \cr  \cr  }
-\matrix { 0.003 \cr  0.005 \cr -0.005 \cr  }
-\matrix { -0.052 \cr -0.039 \cr -0.035 \cr -0.088 }
-}\right]}
-$$
+% \begin{displaymath}
+% \bC^{\beta}=
+% \left[ \matrix {
+% \matrix {-0.069 \cr  \cr  \cr  }
+% \matrix { 0.011 \cr -0.062 \cr  \cr  }
+% \matrix {-0.007 \cr  0.001 \cr -0.060 \cr  }
+% \matrix { 0.006 \cr  0.004 \cr  0.003 \cr -0.052 }
+% }\right] 
+% \left[ \matrix {
+% \matrix {-0.007 \cr  \cr  \cr  }
+% \matrix { 0.001 \cr -0.016 \cr  \cr  }
+% \matrix {-0.060 \cr -0.015 \cr 0.018 \cr  }
+% \matrix { 0.003 \cr  0.005 \cr -0.005 \cr -0.035 }
+% }\right] \matrix{
+% \left[ \matrix {
+% \matrix { 0.011 \cr  \cr  \cr  }
+% \matrix {-0.062 \cr -0.032 \cr  \cr  }
+% \matrix { 0.001 \cr -0.016 \cr -0.015 \cr  }
+% \matrix { 0.004 \cr  0.007 \cr  0.005 \cr -0.039 }
+% }\right] \cr
+% \left[ \matrix {
+% \matrix { 0.006 \cr  \cr  \cr  }
+% \matrix { 0.004 \cr  0.007 \cr  \cr  }
+% \matrix { 0.003 \cr  0.005 \cr -0.005 \cr  }
+% \matrix { -0.052 \cr -0.039 \cr -0.035 \cr -0.088 }
+% }\right]}
+% \end{displaymath}
 
 The parameter effects are reduced to negligible values, as
 expected from the analysis in Chapter 6.
@@ -1454,8 +1452,7 @@ $c_{\bu}^{2}$ over all directions $\bu$ and dividing by the surface
 area $A$ of the $P$-dimensional sphere.
 That is,
 \begin{equation}
-  c^2 = { 1 \over A } \int { \sum_n { ( \bu \trans \bC_n \bu )^2
-  } d A }
+  c^2=\frac{1}{A}\int{\sum_n{(\bu\trans\bC_n\bu)^2}d A}
   \label{eqn:8.11}
 \end{equation}
 where $dA$ is the element of surface area on the sphere.
@@ -1464,7 +1461,7 @@ final result \cite{bate:watt:1980}
 %\glossary{ Bates, D.M.}
 %\glossary{ Watts, D.G.}
 \begin{equation}
-  c^2 = { 1 \over P ( P + 2 ) } \sum_n \left[ 2 \sum_{p=1}^P
+  c^2=\frac{1}{P(P+2)} \sum_n \left[ 2 \sum_{p=1}^P
   \sum_{q=1}^P c_{npq}^2 + \left( \sum_{p=1}^P c_{npp}
   \right)^2\right]
 \label{eqn:8.12}
@@ -1479,13 +1476,13 @@ The mean square curvature for 2-parameter models can be
 expressed as a 1-dimensional integral over an angle $\omega$,
 since then $\bu = [ \cos\omega ,\sin\omega ] \trans$.
 Equation (\ref{eqn:8.11}) then becomes
-$$
-c^2 = { 1   \over  2 \pi }
+\begin{displaymath}
+  c^2=\frac{1}{2\pi}
 \sum_n { \int_0^{{2} \pi} {
 \left[ c_{n11} \cos^2 \omega +
 2 c_{n12} \sin  \omega  \cos  \omega +
 c_{n22} \sin^2 \omega\right]^2 d \omega } }
-$$
+\end{displaymath}
 After expanding the square in the integral, all terms involving
 odd powers of sines or cosines integrate to 0.
 The remaining integrals contribute the amounts
@@ -1799,10 +1796,10 @@ To obtain a quadratic approximation,
 consider a point $\btheta$ in the parameter space.
 This point maps through the nonlinear transformation,
 $\boeta ( \btheta )$, to the point on the tangent plane with coordinates
-$$
+\begin{displaymath}
 \btau = \bQ_1 \trans
 [ \boeta ( \btheta )- \boeta ( \hat \btheta )]
-$$
+\end{displaymath}
 The coordinates $\btau$ provide a natural reference system for
 the expectation surface,
 in particular, a local set of coordinates with no
@@ -1810,11 +1807,10 @@ parameter effects nonlinearity.
 
 An approximation to the expectation surface by a quadratic
 surface centered at $ \boeta ( \hat \btheta )$ is
-$$
-\boeta ( \btau ) = \boeta ( \hat \btheta ) +
-\bQ_1 \btau + { [ \bQ '_1 ][ \btau \trans \bC^{iota} \btau ]  
-\over 2 }
-$$
+\begin{displaymath}
+  \boeta ( \btau ) = \boeta ( \hat \btheta ) +
+  \bQ_1 \btau +\frac{ [ \bQ '_1 ][ \btau \trans \bC^{iota} \btau ]}2
+\end{displaymath}
 where $\bC$ is the relative curvature array and $\bQ_{1}$ and
 $\bQ_{1}'$ are obtained from the $QR$ decomposition of the matrix
 $\bD$ consisting of the first derivative and nonredundant second
@@ -1827,8 +1823,8 @@ An approximate expectation surface likelihood region and its
 projection onto the tangent plane can then be defined by
 rewriting equation (6.1) as
 \begin{equation}
-  { \bz \trans \bz \over \hat \bz \trans \hat \bz } = \left[ 1 +{P
-  \over N -P}\FPNP\right]
+  \frac{\bz\trans\bz}{\hat\bz\trans\hat\bz}=
+  \left[1+\frac{P}{N-P}\FPNP\right]
   \label{eqn:8.13}
 \end{equation}
 and replacing the exact residual vector
@@ -1839,17 +1835,18 @@ $\tilde \bz = \by - \tilde {\boeta}( \btau )$, where $\btau$ is a point on
 the tangent plane in the coordinates given by the columns of $\bQ$.
 Now the approximate residual vector at the point
 $\tilde{\boeta}( \btau )$ is
-$$
+\begin{displaymath}
 \tilde \bz = \hat \bz - \bQ_1 \btau -
-{ [ \bQ '_1 ][ \btau \trans \bC^{iota} \btau ]   \over 2 }$$
+\frac{[ \bQ '_1 ][ \btau \trans \bC^{iota} \btau ]}{2 }
+\end{displaymath}
 and so
 \begin{eqnarray}
   \bz \trans \bz&\approx&\tilde \bz \trans \tilde \bz\\
   \label{eqn:8.14}
   &=&\hat \bz \trans \hat \bz +
   \btau \trans ( \bI - \bB ) \btau +
-  { ( \btau \trans \bC^{iota} \btau ) \trans
-  ( \btau \trans \bC^{iota} \btau )   \over 4 }\nonumber
+  \frac{ ( \btau \trans \bC^{iota} \btau ) \trans
+  ( \btau \trans \bC^{iota} \btau )}{4}\nonumber
 \end{eqnarray}
 where $\bB=[ ( {\bQ'}_1\trans \hat \bz ) \trans ] [ \bC^{iota} ]$ is
 the $P\times P$ matrix obtained from the inner product of the rotated
@@ -1909,19 +1906,19 @@ Since the model for the BOD data is a 2-parameter model with a
 conditionally linear parameter, the normal acceleration space has
 dimension 1.
 For these data,
-$$
-\bC^{iota} = \left[ \matrix {
-\matrix{0 \cr 0}
-\matrix{0 \cr 0.301}
-}\right]
-$$
+% \begin{displaymath}
+% \bC^{iota} = \left[ \matrix {
+% \matrix{0 \cr 0}
+% \matrix{0 \cr 0.301}
+% }\right]
+% \end{displaymath}
 and ${\bQ'}_1\trans\hat\bz=0.056$, so
-$$
-\bB = \left[ \matrix {
-\matrix{0 \cr 0}
-\matrix{0 \cr 0.017}
-}\right]
-$$
+% \begin{displaymath}
+% \bB = \left[ \matrix {
+% \matrix{0 \cr 0}
+% \matrix{0 \cr 0.017}
+% }\right]
+% \end{displaymath}
 (Whenever the normal acceleration space is 1-dimensional, $\bB$
 is a multiple of the single face in $\bC^{iota}$.)
 The effective residual curvature is extremely small, indicating that the
@@ -1931,14 +1928,14 @@ expectation surface curves only slightly towards the observed response.
 \citeasnoun{box:cout:1956} recommended using
 %\glossary{ Box, G.E.P.}
 %\glossary{ Coutie, G.A.}
-$$
+\begin{displaymath}
 ( \btheta - \hat \btheta ) \trans \bW ( \btheta - \hat \btheta )
-$$
+\end{displaymath}
 as an approximate confidence region for $\btheta$, where
-$$
-\bW = {1 \over 2 }\left. { \partial^2 S   \over  \partial
+\begin{displaymath}
+\bW=\frac{1}{2}\left.\frac{\partial^2S}{\partial
 \btheta\partial \btheta \trans } \right|_{\hat {\theta}}
-$$
+\end{displaymath}
 In our notation,
 \begin{eqnarray*}
   \bW&=&\dot \bV \trans \dot \bV -
@@ -1960,7 +1957,7 @@ linear approximation spheres.
 We do this by calculating the ratios of the lengths of the axes
 of the ellipsoid to the radius of the linear approximation sphere.
 The ratio for the $p $th axis is simply
-$ \rho_p = ( 1 - \lambda_p )^{{-} {1\over 2}}$, where
+$ \rho_p = ( 1 - \lambda_p )^{-{1/2}}$, where
 $\lambda_p $ is the $p $th eigenvalue of $\bB$, and so
 the {\em extreme axis length ratios}, $\rho_{1}$
 and $\rho_{P}$, can be used as direct indicators of the

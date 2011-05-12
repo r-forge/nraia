@@ -120,11 +120,12 @@ the actual concentrations were 4.76, 5.11, 4.78, and 5.02
 $\times 10^{-10}$ respectively, for the four tissue samples.
 
 The proposed model is
-$$
-f ( x ,\btheta ) =\theta_{1+{\theta}_2 \over 1+\exp [ - \theta_4 ( x-\theta_3 ) ]}
-$$
+\begin{displaymath}
+  f(x,\btheta)=\theta_1+\frac{\theta_2}{1+\exp[-\theta_4(x-\theta_3)]}
+\end{displaymath}
 where $f$ is the predicted total count and $x$ is $\log_{10}$(NIF
 concentration).
+
 \section{Saccharin Data Set 2}
 
 Data on the concentration of saccharin in plasma were reported in

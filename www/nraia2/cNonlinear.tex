@@ -22,7 +22,7 @@ This model is of exactly the same form as (1.1)
 except that the expected responses are nonlinear functions of the
 parameters.
 That is, for nonlinear models\index{nonlinear model},
-{\em at least one of the derivatives of the
+\emph{at least one of the derivatives of the
 expectation function with respect to the parameters depends on at
 least one of the parameters}.
 
@@ -80,7 +80,7 @@ The Michaelis--Menten model for enzyme kinetics relates the initial
 ``velocity'' of an enzymatic reaction to the substrate concentration
 $x$ through the equation
 \begin{equation}\label{eqn:2.3}
-  f(x,\btheta)={\theta_1 x  \over \theta_{2+x}}
+  f(x,\btheta)=\frac{\theta_1 x}{\theta_2+x}
 \end{equation} 
 In Appendix A, Section~\ref{atbl:mic} we present data from
 \citeasnoun{trel:1974}
@@ -99,9 +99,8 @@ Figure \ref{fig:MICdata}.
 
 Differentiating $f$ with respect to $\theta_1$ and $\theta_2$ gives
   \begin{eqnarray}\label{eqn:2.4}
-    {\partial f  \over \partial \theta_1}&=&{x \over  \theta_2 + x}\\
-    {\partial f  \over \partial \theta_2}&=&{-\theta_1 x
-    \over(\theta_2+ x )^2}\nonumber
+    \frac{\partial f}{\partial\theta_1}&=&\frac{x}{\theta_2 + x}\\
+    \frac{\partial f}{\partial \theta_2}&=&\frac{-\theta_1 x}{(\theta_2+ x )^2}\nonumber
   \end{eqnarray}
 and since both these derivatives involve at least one of the
 parameters, the model is recognized as nonlinear.
@@ -115,7 +114,7 @@ The Michaelis--Menten model (\ref{eqn:2.3}) can be transformed to a
 linear model by expressing the reciprocal of the velocity as a
 function of the reciprocal substrate concentration,
   \begin{eqnarray}\label{eqn:transmm}
-    {1\over f}&=&{1\over\theta_1}+{\theta_2\over\theta_1}{1\over x}\\
+    \frac{1}{f}&=&\frac{1}{\theta_1}+\frac{\theta_2}{\theta_1}\frac{1}{x}\\
     &=&\beta_1 + \beta_2 u\nonumber
   \end{eqnarray}
 
@@ -215,7 +214,7 @@ term $\bZ$ leads us to consider the Euclidean geometry of the
 $N$-dimensional response space, because again we will be interested in
 the least squares estimates $\hat{ \btheta}$ of the parameters.
 The $N$-vectors $\boeta ( \btheta )$ define a $P$-dimensional surface
-called the {\em expectation surface\/} in the response space, and the
+called the \emph{expectation surface} in the response space, and the
 least
 \index{response!space}
 squares estimates correspond to the point on the expectation
@@ -257,7 +256,7 @@ shown in Figure \ref{fig:RUM2esurf}.
   \end{figure}
 
 Note that the expectation surface is {\it curved} and of {\it finite
-extent\/}, which is in contrast to the linear model in which 
+extent}, which is in contrast to the linear model in which 
 the expectation surface is a plane of infinite extent.
 Note, too, that points with equal spacing on the parameter line
 ($\theta$) map to points with unequal spacing on the expectation
@@ -334,9 +333,9 @@ $P$ parameters, it is generally true that:
   \item parameter {\it lines} in the parameter space map to {\it
         curves} on the curved expectation surface; 
 
-  \item the {\it Jacobian determinant\/}, which measures how large
+  \item the {\it Jacobian determinant}, which measures how large
         unit areas in $\btheta$ become in $\boeta ( \btheta )$, is
-        {\it not constant\/}.
+        {\it not constant}.
 
 \end{enumerate}
 
@@ -410,7 +409,7 @@ series about $\btheta^0$ as
   \end{displaymath}
 where
   \begin{displaymath}
-    \mbox{\rm v}_{np}=\left. {\partial f  ( \bx_n ,\btheta )  \over
+    \mbox{\rm v}_{np}=\left. \frac{\partial f  ( \bx_n ,\btheta )}{
     \partial \theta_p} \right|_{ \theta^0} p = 1, 2 ,\ldots, P
   \end{displaymath}
 Incorporating all $N$ cases, we write
@@ -431,7 +430,7 @@ $\bz ( \btheta )   = \by - \boeta ( \btheta )$, by
   \end{equation}
 where $\bz^0=\by-\boeta(\btheta^0)$ and $\bdelta=\btheta-\btheta^0$.
 
-We then calculate the {\em Gauss increment\/}\index{Gauss increment}
+We then calculate the \emph{Gauss increment}\index{Gauss increment}
 $\bdelta^0$ to minimize the approximate residual sum of squares
 $\norm \bz^0 - \bV^0 \bdelta \norm^2$, using
   \begin{eqnarray*}
@@ -488,7 +487,7 @@ evaluated at $\btheta^0$, are shown in Table \ref{tbl:2.1}.
 \end{table}
 
 Collecting these derivatives into the derivative matrix $\bV^0$, we then
-perform a {\em QR\/} decomposition, from which we generate
+perform a \emph{QR} decomposition, from which we generate
 $\bw_1=\bQ_1 \trans \bz^0$
 and then solve for $\bdelta^0$ using
 $\bR_1 \bdelta^0=\bw_1$.
@@ -531,7 +530,7 @@ we must modify the increment as discussed below.
 \index{step factor}
 
 As seen in the last example, the Gauss--Newton increment can produce
-an {\em increase\/}
+an \emph{increase}
 in the sum of squares when the requested increment
 extends beyond the region where the linear approximation
 is valid.  Even in these circumstances, however, the linear
@@ -540,7 +539,7 @@ a sufficiently small region around $\boeta ( \btheta^0 )$.
 Thus a small step in the direction $\bdelta^0$ should produce
 a decrease in the
 sum of squares.
-We therefore introduce a {\em step factor\/}
+We therefore introduce a \emph{step factor}
 $\lambda$,
 and calculate
   \begin{displaymath}
@@ -585,13 +584,13 @@ Geometrically a Gauss--Newton iteration consists of:
 
 The first step actually involves two distinct approximations:
   \begin{enumerate}
-    \item the {\em planar\/} assumption, in which we approximate the
+    \item the \emph{planar} assumption, in which we approximate the
           expectation surface
           \index{assumptions!planar}
           \index{planar assumption}
           $\boeta ( \btheta )$ near $\boeta ( \btheta^0 )$ by its
           tangent plane at $\boeta ( \btheta^0 )$, and
-    \item the {\em uniform coordinate\/} assumption, in which we
+    \item the \emph{uniform coordinate} assumption, in which we
           \index{assumptions!uniform coordinate}
           \index{uniform coordinate!assumption}
           impose a linear coordinate system $\bV(\btheta-\btheta^0)$
@@ -649,7 +648,7 @@ system on it.
 
 Next we use linear least squares to obtain the point
 $\hat{ \boeta}^1$ on the tangent line which is closest to $\by$.
-We then calculate the {\em apparent\/} parameter increment
+We then calculate the \emph{apparent} parameter increment
 $\delta^0$ corresponding to $\hat{ \boeta}^1$ and from this
 obtain $\theta^1 = \theta^0 + \delta^0$.
 For this example,
@@ -895,7 +894,7 @@ In practice, it would be unusual to obtain exact orthogonality in
 the presence of numerical roundoff, and we do not want to waste
 effort calculating small changes in the parameter vector while
 trying to achieve perfect orthogonality.
-We therefore need to establish a {\em tolerance level\/}
+We therefore need to establish a \emph{tolerance level}
 \index{convergence!tolerance level}
 which we
 can use to declare the residual vector to be ``sufficiently orthogonal.''
@@ -922,15 +921,15 @@ $\btheta^i$, for $\hat{ \btheta}$, and
 measure the scaled length of the tangent plane component of the residual
 vector relative to the scaled length of the orthogonal component of the
 residual vector at $\btheta^i$.
-This leads to a {\em relative offset convergence criterion\/}
+This leads to a \emph{relative offset convergence criterion}
 \index{convergence!relative offset criterion}
   \begin{equation}\label{eqn:2.7}
-  {{\norm \bQ_1 \trans ( \by - \boeta ( \btheta^i ) ) \norm} / \sqrt P
-  \over {\norm \bQ_2 \trans ( \by - \boeta ( \btheta^i ) ) \norm} /
+  \frac{{\norm \bQ_1 \trans ( \by - \boeta ( \btheta^i ) ) \norm} / \sqrt P
+  }{{\norm \bQ_2 \trans ( \by - \boeta ( \btheta^i ) ) \norm} /
   \sqrt{N -P}}
   \end{equation}
 where $\bQ_1$ and $\bQ_2$ are the first $P$ and last $N - P$
-columns respectively of the matrix $\bQ$ from a {\em QR\/} decomposition
+columns respectively of the matrix $\bQ$ from a \emph{QR} decomposition
 of $\bV$.
 The criterion is related to the cotangent of the angle
 that the residual vector makes with the tangent plane, so that a
@@ -1034,7 +1033,7 @@ In the Gauss--Newton algorithm for calculating $\hat{ \btheta}$,
 the derivative matrix $\bV$ is evaluated at each iteration and used
 to calculate the increment and the convergence criterion.
 It is natural, then, to apply the linear approximation to
-{\em inference\/} for nonlinear models with the derivative matrix
+\emph{inference} for nonlinear models with the derivative matrix
 \index{inference!in nonlinear regression}
 \index{inference!linear approximation}
 evaluated at the least squares parameter estimates.
@@ -1211,7 +1210,7 @@ Appendix A, Section~\ref{atbl:iso}, and plotted in Figure \ref{fig:ISOdata}.
 A proposed model function for these data is
   \begin{equation}\label{eqn:2.9a}
   f ( \bx , \btheta ) =
-  {\theta_1 \theta_3 ( x_2 - x_3 / 1.632 )  \over 1 + \theta_2 x_1 +
+  \frac{\theta_1 \theta_3 ( x_2 - x_3 / 1.632 )}{1 + \theta_2 x_1 +
   \theta_3 x_2 + \theta_4 x_3} 
   \end{equation}
 Parameter estimates and summary statistics are given in
@@ -1283,7 +1282,7 @@ $f ( \bx_0 , \hat{ \btheta} )$, the matrix $\bX$ by $\hat{ \bV}$,
 and the derivative vector $\bx_0$ by
 \index{derivative!vector}
   \begin{displaymath}
-    \bv_0=\left.{\partial f ( \bx_0 , \btheta )  \over \partial
+    \bv_0=\left.\frac{\partial f ( \bx_0 , \btheta )}{\partial
     \btheta \trans }\right|_{\hat{ {\theta}}}
   \end{displaymath}
 The $1 - \alpha $ approximate inference interval is then
@@ -1380,7 +1379,7 @@ summarized by:
           \index{ Hessian "of sum of squares function"}
           function,
           \begin{displaymath}
-            {\partial^2 S ( \bbeta )  \over \partial \bbeta \partial \bbeta
+            \frac{\partial^2 S ( \bbeta )}{\partial \bbeta \partial \bbeta
             \trans}= \bX \trans \bX    
           \end{displaymath}
   \end{itemize}
@@ -1399,7 +1398,7 @@ has been achieved.
 The linear approximation to $\boeta ( \btheta )$ based at $\btheta^0$,
 (\ref{eqn:2.5}), produces a linear approximation to the
 residual vector $\bz ( \btheta )$, (\ref{eqn:2.5a}), and hence a
-{\em quadratic\/} approximation $ \tilde S ( \btheta )$ to the sum of
+\emph{quadratic} approximation $ \tilde S ( \btheta )$ to the sum of
 squares function $S(\btheta)$, since
   \begin{eqnarray}\label{eqn:quada}
         S(\btheta)&=&\norm \by - \boeta ( \btheta ) \norm^2\\

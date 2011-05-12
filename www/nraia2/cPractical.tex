@@ -37,7 +37,7 @@ characteristics of the disturbance.
 \subsection{The Expectation Function}
 
 Ideally, physical, biological, chemical, or other theoretical
-considerations will lead to a {\em mechanistic\/} model for the
+considerations will lead to a \emph{mechanistic} model for the
 expectation function.
 The analyst's job is then to find the simplest form of the
 model and the parameter estimates which provide an adequate fit of
@@ -105,12 +105,12 @@ Fuguitt and Hawkins (1945, 1947), and
 proposed a model consisting of a set of five nonlinear differential
 equations
   \begin{eqnarray*}
-    {df_1 \over dt }&=&-( \theta_1+\theta_2) f_1 -2 \theta_3 f_1^2\\
-    {df_2 \over dt }&=&- \theta_4 f_2 + \theta_5 f_4\\
-    {df_3 \over dt }& =& \theta_1 f_1\\
-    {df_4 \over dt }&=&\theta_2 f_1 + \theta_4 f_2 -\theta_5 f_4 -2
+    \frac{df_1}{dt}&=&-( \theta_1+\theta_2) f_1 -2 \theta_3 f_1^2\\
+    \frac{df_2}{dt}&=&- \theta_4 f_2 + \theta_5 f_4\\
+    \frac{df_3}{dt}& =& \theta_1 f_1\\
+    \frac{df_4}{dt}&=&\theta_2 f_1 + \theta_4 f_2 -\theta_5 f_4 -2
     \theta_6 f_4^2 +2 \theta_7 f_5\\
-    {df_5 \over dt }&=& \theta_8 f_1^2 +\theta_6 f_4^2-\theta_7 f_5
+    \frac{df_5}{dt}&=& \theta_8 f_1^2 +\theta_6 f_4^2-\theta_7 f_5
   \end{eqnarray*}
 where $f_i ,i=1 ,\ldots,5$, represent the theoretical responses
 at time $t$.
@@ -135,7 +135,7 @@ Methods for obtaining derivatives of the response functions at
 the observation times by means of the
 ``sensitivity functions''
       \begin{displaymath}
-        {\partial f_i(t)\over\partial\theta_p}\quad
+        \frac{\partial f_i(t)}{\partial\theta_p}\quad
         i=1,\ldots,5\quad p = 1 ,\ldots, P 
       \end{displaymath}
 are given in \citeasnoun{cara:stew:1985}.
@@ -257,7 +257,7 @@ computer program with the expectation function in some form
 and, unless numerical derivatives or derivative-free
 methods are used, its derivatives with respect to the parameters.
 Naturally, the expectation function and derivatives must be
-{\em correctly specified\/} and {\em correctly coded\/}, but (as
+\emph{correctly specified} and \emph{correctly coded}, but (as
 most nonlinear analysts know from experience) a great many errors
 occur at this stage.
 
@@ -276,13 +276,12 @@ differences between the derivatives calculated in the two ways.
 If $v_{np}$ is the analytic derivative for case $n$ and
 parameter $p$ while $\tilde v_{np}$ is the finite difference
 approximation, then the relative difference is
-      \begin{displaymath}
-        \matrix {
- \matrix { {| v_{np} -  \tilde v_{np} |  \over | v_{np} |} \cr | v_{np} - \, \tilde v_{np} | }
- \matrix {\ \ \  if \  v_{np}  != \  0 \cr
-   \ \ \ if \   v_{np}  = \  0}
-}
-      \end{displaymath}
+\begin{displaymath}
+  \begin{cases}
+    \frac{| v_{np}-\tilde v_{np}|}{|v_{np}|} & v_{np} != 0\\
+    |\tilde v_{np} | & v_{np} = 0
+  \end{cases}
+\end{displaymath}
 Verifying that the relative differences are small
 not only provides a check on the derivatives, but,
 indirectly, a check on the expectation function, because a
@@ -301,8 +300,8 @@ reduce a function to its simplest form.
 \begin{example}
 For the isomerization data of Example Isomerization 1, the function
       \begin{displaymath}
-        f ( \bx , \btheta ) = {\theta_1 \theta_3 ( x_2 - x_3 / 1.632 )
-        \over 1 + \theta_2 x_1 \,+\, \theta_3 x_2 \,+\, \theta_4 x_3} 
+        f ( \bx , \btheta ) =\frac{\theta_1 \theta_3 ( x_2 - x_3 / 1.632 )
+        }{1 + \theta_2 x_1+\theta_3 x_2 +\theta_4 x_3} 
       \end{displaymath}
 is considered appropriate.
 To code the function and its derivatives,
@@ -466,36 +465,36 @@ Linear least squares can be used on the reciprocal data to
 estimate the linear parameters, which can then be used to obtain
 starting values for $\btheta$.
 The model from Example Isomerization 1,
-      \begin{displaymath}
-        f ( \bx ,  \btheta ) = { \theta_1 \theta_3
-( x_2 - x_3 / 1.632)   \over  1 + \theta_2 x_1 + \theta_3 x_2 + \theta_4 x_3}
-      \end{displaymath}
+\begin{displaymath}
+  f ( \bx ,  \btheta ) = \frac{\theta_1 \theta_3
+    ( x_2 - x_3 / 1.632)}{1 + \theta_2 x_1 + \theta_3 x_2 + \theta_4 x_3}
+\end{displaymath}
 is also transformably linear, since
-      \begin{displaymath}
-        { x_2 - x_3 / 1.632   \over  f ( \bx ,  \btheta ) } = {1 \over  \theta_1 \theta_3} +
-{\theta_2  \over  \theta_1 \theta_3 }  x_1 +
-{1 \over \theta_1}  x_2 +
-{\theta_4  \over  \theta_1 \theta_3 }  x_3
-      \end{displaymath}
+\begin{displaymath}
+  \frac{ x_2 - x_3 / 1.632 }{f(\bx,\btheta)}=\frac{1}{\theta_1 \theta_3} +
+  \frac{\theta_2}{\theta_1 \theta_3 }  x_1 +
+  \frac{1}{\theta_1}x_2+\frac{\theta_4}{\theta_1\theta_3} x_3
+\end{displaymath}
 A linear regression (with a constant term)
 of $(x_2 - x_3 / 1.632) / y$ on $x_{1}$, $x_{2}$,
 and $x_{3}$ would yield starting values
-      \begin{displaymath}
-        \theta_1^0  = {1 \over \hat \beta_2} 
-\theta_2^0  =  {\hat \beta_1  \over \hat \beta_0} 
-\theta_3^0  =  {\hat \beta_2  \over \hat \beta_0} 
-\theta_4^0  =  {\hat \beta_3  \over \hat \beta_0}
-      \end{displaymath}
+\begin{displaymath}
+  \begin{aligned}
+  \theta_1^0&=\frac{1}{\hat\beta_2}\\
+  \theta_2^0&=\frac{\hat\beta_1}{\hat \beta_0}\\
+  \theta_3^0&=\frac{\hat\beta_2}{\hat\beta_0}\\
+  \theta_4^0 &= \frac{\hat\beta_3 }{\hat\beta_0}
+  \end{aligned}
+\end{displaymath}
 
 For the model
 $f(\bx,\btheta)=\exp [ - \theta_1 x_{1\exp} ( - \theta_2 / x_2 ) ]$,
 used in a chemical kinetics example \cite[p.~124]{bard:1974},
 %\glossary{ Bard, Y.}
 taking logarithms twice gives
-      \begin{displaymath}
-        \ln  \ln f =\ln  x_1  +
-\ln ( - \theta_1 )-{ \theta_2  \over  x_2 }
-      \end{displaymath}
+\begin{displaymath}
+  \ln \ln f=\ln  x_1+\ln(-\theta_1)-\frac{\theta_2}{x_2}
+\end{displaymath}
 and one could again use linear least squares to obtain starting
 values.
 
@@ -507,10 +506,9 @@ see when one portion of the model is dominant, and hence where one
 can measure a rate and associate it with a particular parameter.
 
 For example, the double exponential model
-      \begin{displaymath}
-        f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x } +
-\theta_3  e^{ - \theta_4 x }
-      \end{displaymath}
+\begin{displaymath}
+  f(x,\btheta)=\theta_1 e^{-\theta_2 x}+\theta_3  e^{-\theta_4 x}
+\end{displaymath}
 with $\theta_2  \theta_{4}$ is approximately
 $\ln  f = \ln  \theta_3 - \theta_4 x$
 at large $x$, which gives a
@@ -522,7 +520,7 @@ residuals $\tilde y = y - \theta_3 e^{ - \theta_4 x }$ can
 be derived.
 Plotting $\tilde y$ versus $x$ on semilog paper then enables one to
 estimate $\theta_{1}$ and $\theta_{2}$.
-This process, known as {\em peeling}, can be used when the
+This process, known as \emph{peeling}, can be used when the
 \index{peeling}
 \index{starting values!peeling}
 expectation function is a sum of several exponentials.
@@ -540,41 +538,37 @@ In this experiment, sulfisoxazole was administered
 to a subject intravenously, blood samples were taken at specified times,
 and the concentration of sulfisoxazole in the plasma was measured.
 The data are plotted in Figure~\ref{fig:SULFdata}.
-  \begin{figure}
-    \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.SULFdata,height=3in}}
-    \caption{\label{fig:SULFdata}
+\begin{figure}
+  \centerline{\includegraphics{3SULFdata}}
+  \caption{\label{fig:SULFdata}
     Plot of sulfisoxazole concentration in plasma versus time.}
-  \end{figure}
-
+\end{figure}
 
 Plotting the sulfisoxazole concentration on a log scale versus $x$ as
-  \begin{figure}
-    \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.SULFstart,width=\textwidth}}
-    \caption[Sulfisoxazole curve peeling]{\label{fig:SULFstart}
+\begin{figure}
+  \centerline{\includegraphics{3SULFstart}}%,width=\textwidth}}
+  \caption[Sulfisoxazole curve peeling]{\label{fig:SULFstart}
     Curve peeling using the Sulfisoxazole data.
     In part $a$ we show the data, plotted on a log scale, together with a
     straight line fit (dashed line) to the last six points.
     In part $b$ we show, on a log scale, the residuals for the first six
     data points from the straight line fit in part $a$.
     The dashed line is the fitted line through these (log) residuals.}
-  \end{figure}
+\end{figure}
 in Figure~\ref{fig:SULFstart}$a$ reveals monotonic decay with straight
 line behavior for large $x$, which suggests a model of the form
-      \begin{displaymath}
-        f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x }
- + \theta_3 e^{ - \theta_4 x }
-      \end{displaymath}
+\begin{displaymath}
+  f(x,\btheta)=\theta_1 e^{-\theta_2 x}+\theta_3e^{-\theta_4 x}
+\end{displaymath}
 with all positive parameters.
 Fitting a straight line to the last six (log) data values gives an
 intercept of 5.05 and a slope of $-0.153$, so that the
 starting values are $\theta_3^{0}= e^{{5.05}}=156$ and
 $\theta_4^0 = 0.153$.
 Calculating the residuals
-      \begin{displaymath}
-        \tilde y_n = y_n - 156  e^{ - 0.153  x_n }
-      \end{displaymath}
+\begin{displaymath}
+  \tilde y_n = y_n - 156  e^{ - 0.153  x_n }
+\end{displaymath}
 and plotting $\ln  \tilde y $ versus $x$
 for the first six data values, as in Figure~\ref{fig:SULFstart}$b$,
 again reveals straight line behavior.
@@ -701,7 +695,7 @@ In these situations, one should impose the constraints throughout the
 estimation process.
 
 General techniques for optimizing functions whose parameters are
-constrained, called {\em nonlinear programming\/}, are beyond the
+constrained, called \emph{nonlinear programming}, are beyond the
 scope of this book.
 See, for example, \citeasnoun{gill:murr:wrig:1981} or
 \citeasnoun{bard:1974} for details.
@@ -717,7 +711,7 @@ reparametrize to $ \phi_p = \ln\theta_p $,
 so throughout the iterations
 the value of $\theta_p = e^{ \phi_p }$ remains positive.
 
-An {\em interval\/} constraint on a parameter, say
+An \emph{interval} constraint on a parameter, say
 \index{constraint!interval}
   \begin{displaymath}
     a  \le  \theta  \le  b
@@ -725,9 +719,9 @@ An {\em interval\/} constraint on a parameter, say
 can be enforced by
 a logistic transformation of the form
   \begin{displaymath}
-    \theta = a + { b - a  \over  1 + e^{ - \phi }}
+    \theta = a + \frac{b-a}{1 + e^{ - \phi }}
   \end{displaymath}
-while an {\em order\/} constraint
+while an \emph{order} constraint
 \index{constraint!order}
 on parameters $\theta_j ,\ldots, \theta_{k}$, say
   \begin{displaymath}
@@ -747,7 +741,7 @@ As an example of such a model, consider the double exponential model
   \end{displaymath}
 where the pairs of parameters $ ( \theta_1 , \theta_2 )$
 and $( \theta_3 , \theta_4 )$ are
-{\em exchangeable\/}---that is, exchanging the parameter pair
+\emph{exchangeable}---that is, exchanging the parameter pair
 $(\theta_1,\theta_2)$ with the pair $(\theta_3,\theta_4)$ will not 
 alter the values of the expected responses.
 Exchangeable parameters can create nasty optimization
@@ -786,41 +780,38 @@ improve the estimation situation by improving conditioning of
 the derivative matrix $\bV$.
 \index{derivative matrix!conditioning}
 Frequently this is done
-by {\em centering\/} or {\em scaling\/} the data.
+by \emph{centering} or \emph{scaling} the data.
 \index{parameter transformation!centering and scaling}
 \index{improving convergence!centering and scaling}
 For example, the simple model
 $f ( x , \btheta ) = \theta_1 e^{ - \theta_2  x }$ has derivatives
-  \begin{displaymath}
-    { \partial f   \over  \partial \theta_1 }   =
-e^{{-} \theta_2  x}
-  \end{displaymath}
-  \begin{displaymath}
-    { \partial f   \over  \partial \theta_2 }  =
- - x \theta_1 e^{ - \theta_2  x}
-  \end{displaymath}
+\begin{displaymath}
+  \frac{\partial f}{\partial \theta_1}=e^{-\theta_2 x}
+\end{displaymath}
+\begin{displaymath}
+  \frac{\partial f}{\partial\theta_2}=-x\theta_1e^{-\theta_2 x}
+\end{displaymath}
 and the derivative vectors tend to be collinear when the values
 \index{practical considerations!collinearity}
 \index{collinearity}
 of $x$ are all positive.
 Rewriting the model as
-  \begin{displaymath}
-    f ( x , \btheta ) =
-\theta_1 e^{ - \theta_2 ( x - x_0 + x_0 )}
-  \end{displaymath}
+\begin{displaymath}
+  f(x,\btheta)=\theta_1 e^{-\theta_2(x-x_0+x_0)}
+\end{displaymath}
 and reparametrizing with
-  \begin{displaymath}
-    \phi_1  = \theta_1 e^{ - \theta_2 x_0 }
-  \end{displaymath}
-  \begin{displaymath}
-    \phi_2   = \theta_2
-  \end{displaymath}
-gives $f ( x , \bphi ) = \phi_1 e^{ - \phi_2 ( x - x_0 )}$,
+\begin{displaymath}
+  \phi_1=\theta_1e^{-\theta_2 x_0}
+\end{displaymath}
+\begin{displaymath}
+  \phi_2=\theta_2
+\end{displaymath}
+gives $f(x,\bphi)=\phi_1e^{-\phi_2(x-x_0)}$,
 and now the derivatives with respect to $\bphi$ will be more
 nearly orthogonal.
-A useful choice is $x_{0=} \bar x$.
+A useful choice is $x_0=\bar{x}$.
 
-{\em Scaling\/} the variables and the parameters can
+\emph{Scaling} the variables and the parameters can
 also improve conditioning by making the derivative matrix have
 column vectors which are more nearly equal in length.
 
@@ -831,7 +822,7 @@ the model so that reciprocal absolute temperature is used rather
 than temperature $T$.
 Combining this with centering would then modify a term involving
 temperature to the form
-$1/T - 1/T_{0}$.
+$1/T-1/T_{0}$.
 
 The effect of parameter transformations on parameter effects
 nonlinearities and the adequacy of linear approximation inference
@@ -856,54 +847,53 @@ considered as a special case of the more general Newton--Raphson method
 %\glossary{ Bard, Y.}
 objective function.
 Near $\btheta^{0}$, we approximate
-  \begin{displaymath}
-    S ( \btheta ) \approx S ( \btheta^0 )
-    + {\bomega} \trans ( \btheta - \btheta^0 )
-    + ( \btheta - \btheta^0 ) \trans{\bOMEGA \over 2 }( \btheta - \btheta^0 )
-  \end{displaymath}
+\begin{displaymath}
+  S ( \btheta ) \approx S ( \btheta^0 )
+  + {\bomega} \trans ( \btheta - \btheta^0 )
+  + ( \btheta - \btheta^0 )\trans\frac{\bOMEGA}{2}(\btheta-\btheta^0)
+\end{displaymath}
 where
-  \begin{displaymath}
-    \bomega  = {\partial S \over \partial \btheta}
-  \end{displaymath}
-is the {\em gradient\/}
+\begin{displaymath}
+  \bomega  = \frac{\partial S}{\partial \btheta}
+\end{displaymath}
+is the \emph{gradient}
 \index{gradient!of sum of squares function}
 of $S ( \btheta )$ evaluated at $\btheta^{0}$
 and
-  \begin{displaymath}
-    \bOMEGA = {\partial^2 S \over \partial \btheta \partial \btheta \trans}
-  \end{displaymath}
-is the {\em Hessian}
+\begin{displaymath}
+  \bOMEGA=\frac{\partial^2 S}{\partial\btheta\partial\btheta\trans}
+\end{displaymath}
+is the \emph{Hessian}
 \index{Hessian!of sum of squares function}
-of $S ( \btheta )$ evaluated at $\btheta^{0}$.
+of $S(\btheta)$ evaluated at $\btheta^{0}$.
 The approximating sum of squares function will have
 a stationary point when its gradient is zero---that is, when
-  \begin{displaymath}
-    \bomega  + \bOMEGA  ( \btheta - \btheta^0 ) =  {\bf 0} 
-  \end{displaymath}
+\begin{displaymath}
+  \bomega+\bOMEGA(\btheta-\btheta^0)=\bm0 
+\end{displaymath}
 and this stationary point will be a minimum if $\bOMEGA$ is positive
 definite (all its eigenvalues positive).
 If $\bOMEGA$ is positive definite, the Newton--Raphson step is
-  \begin{displaymath}
-    \bdelta^0 = - \bOMEGA^{-1} \bomega
-  \end{displaymath}
+\begin{displaymath}
+  \bdelta^0=-\bOMEGA^{-1}\bomega .
+\end{displaymath}
 
 For the function
-  \begin{displaymath}
-    S ( \btheta ) = ( \by - \boeta ) \trans ( \by - \boeta )
-  \end{displaymath}
+\begin{displaymath}
+  S(\btheta)=(\by-\boeta)\trans(\by-\boeta)
+\end{displaymath}
 the gradient is
-  \begin{displaymath}
-    \bomega = - 2 \bV \trans ( \by - \boeta )
-  \end{displaymath}
+\begin{displaymath}
+  \bomega=-2\bV\trans(\by-\boeta)
+\end{displaymath}
 and the Hessian is
-  \begin{displaymath}
-    \bOMEGA = 2 \bV \trans \bV -
-    2 {\partial \bV \trans  \over \partial \btheta \trans} ( \by - \boeta )
-  \end{displaymath}
+\begin{displaymath}
+  \bOMEGA=2\bV\trans\bV-2\frac{\partial\bV\trans}{\partial\btheta\trans}(\by-\boeta)
+\end{displaymath}
 where $\bV$ is the derivative matrix.
 The Gauss--Newton increment is therefore equivalent to the
 Newton--Raphson increment with the second derivative term
-${\partial \bV \trans } / {\partial \btheta \trans}$ set to zero.
+${\partial\bV\trans}/{\partial\btheta\trans}$ set to zero.
 
 \citeasnoun{denn:gay:wels:1981} describe a nonlinear least squares
 %\glossary{ Dennis, J.E.Jr.}
@@ -965,14 +955,14 @@ as suggested in \citeasnoun{marq:1963}, where $k$ is a conditioning factor
 %\glossary{ Marquardt, D.W.}
 and $\bD$ is a diagonal matrix with entries equal to the
 diagonal elements of $\bV \trans \bV$.
-This is called the {\em Levenberg--Marquardt compromise\/}
+This is called the \emph{Levenberg--Marquardt compromise}
 because
 \index{practical considerations!Levenberg--Marquardt compromise}
 \index{Levenberg--Marquardt compromise}
 the direction of $\bdelta (k)$ is intermediate between the direction
 of the Gauss--Newton increment ($k\to 0$)
 \index{Gauss-Newton increment}
-and the direction of {\em steepest descent\/}
+and the direction of \emph{steepest descent}
 \index{steepest descent}
 $\bV\trans(\by-\boeta)/\norm\bV\trans(\by-\boeta)\norm$ ($k\to\infty$).
 
@@ -1012,18 +1002,18 @@ rotations \cite{golu:pere:1973,dong:bunc:mole:stew:1979}, (Chapter 10),
 %\glossary{Stewart, G.W.}
 since the Levenberg increment (\ref{eqn:levenberg}) is the least squares
 solution to the system with derivative matrix
-  \begin{displaymath}
-    \left[ \matrix { \matrix { \bV \cr \sqrt k \bI }}\right]
-  \end{displaymath}
+\begin{displaymath}
+  \begin{bmatrix}\bV\\\sqrt k\bI \end{bmatrix}
+\end{displaymath}
 and response vector
-  \begin{displaymath}
-    \left[ \matrix {\matrix { \by - \boeta \cr{\bf 0}}}\right]
-  \end{displaymath}
+\begin{displaymath}
+  \begin{bmatrix}\by-\boeta\\\bm0\end{bmatrix}
+\end{displaymath}
 For the Marquardt increment (\ref{eqn:marquardt}), the derivative matrix
 is changed to
-  \begin{displaymath}
-    \left[ \matrix{\matrix{\bV \cr \sqrt k \bD^{{1/2}}}}\right]
-  \end{displaymath}
+\begin{displaymath}
+  \begin{bmatrix}\bV\\\sqrt k\bD^{1/2}\end{bmatrix}
+\end{displaymath}
 \subsection{Numerical Derivatives}
 \index{practical considerations!numerical derivatives}
 
@@ -1113,7 +1103,7 @@ and $\theta^2=0.10$.
 Figure~\ref{fig:RUM2dud} shows the expectation surface
   \begin{figure}
     \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.RUM2dud,height=3in}}
+    \centerline{\includegraphics{3RUM2dud}}%,height=3in}}
     \caption[Geometric representation of DUD]{
     A geometric interpretation of the calculation of the DUD
     increment using the 2-case Rumford data.
@@ -1141,60 +1131,51 @@ The linear coordinate system is also shown in Figure~\ref{fig:RUM2dud}.
 
 For this example, $T=\theta^2-\theta^1=0.08$,
 $\theta=\theta^1+T\alpha$, so 
-  \begin{displaymath}
-    \alpha ={\theta-\theta^1 \over T }
-  \end{displaymath}
-  \begin{eqnarray*}
-    \bH&=&\left[ \matrix{
-    \matrix{60+70e^{{-4(0.1)}} \cr 60+70e^{ -41(0.1)}}
-    }\right]-
-    \left[ \matrix{
-    \matrix{60+70e^{{-4(0.02)}} \cr 60+70e^{ -41(0.02)}}
-    }\right]\\
-    &=&\left[ \matrix{
-    \matrix {106.92 \cr 61.16}
-    }\right]-
-    \left[ \matrix{
-    \matrix{124.62 \cr 90.83}
-    }\right]\\
-    &=&\left[ \matrix{
-    \matrix{-17.70 \cr -29.67}
-    }\right]\\
-  \end{eqnarray*}
+\begin{displaymath}
+  \alpha =\frac{\theta-\theta^1}{T}
+\end{displaymath}
+\begin{eqnarray*}
+  \bH&=&
+  \begin{bmatrix}
+    60+70e^{{-4(0.1)}}\\
+    60+70e^{ -41(0.1)}
+  \end{bmatrix} -
+  \begin{bmatrix}
+    60+70e^{-4(0.02)}\\
+    60+70e^{-41(0.02)}
+  \end{bmatrix}\\
+  &=&\begin{bmatrix}106.92 \\ 61.16\end{bmatrix} -
+  \begin{bmatrix}124.62 \\ 90.83\end{bmatrix}\\
+  &=&\begin{bmatrix}-17.70 \\ -29.67\end{bmatrix}
+\end{eqnarray*}
 and
-  \begin{eqnarray*}
-    \bl&=&\boeta ( \theta^1 )+\bH \alpha\\
-    =&\left[ \matrix{ \matrix {124.62 \cr 90.83}
-    }\right]+\left[ \matrix{
-    \matrix{-17.70 \cr -29.67}
-    }\right]\alpha\\
-  \end{eqnarray*}
+\begin{eqnarray*}
+  \bl&=&\boeta ( \theta^1 )+\bH \alpha\\
+  &=&\begin{bmatrix}124.62 \\ 90.83\end{bmatrix} +
+  \begin{bmatrix}-17.70 \\ -29.67\end{bmatrix}
+  \alpha
+\end{eqnarray*}
 We now use linear least squares to project the residual vector
-  \begin{eqnarray*}
-    \by-\bl (0)&=&\left[ \matrix {
-    \matrix { 126 \cr 110 }
-    }\right]-\left[ \matrix {
-    \matrix { 124.62 \cr 90.83}
-    }\right]\\
-    &=&\left[ \matrix {
-    \matrix { 1.38 \cr 19.17}
-    }\right]
-  \end{eqnarray*}
+\begin{eqnarray*}
+  \by-\bl (0)&=&\begin{bmatrix}126 \\ 110\end{bmatrix} -
+  \begin{bmatrix}124.62 \\ 90.83\end{bmatrix}\\
+  &=&\begin{bmatrix}1.38 \\ 19.17\end{bmatrix}
+\end{eqnarray*}
 onto $\bl$ to obtain
-  \begin{displaymath}
-    \hat{\alpha}=( \bH \trans \bH )^{-1}
-    \bH \trans ( \by - \bl ( 0 ) )
-  \end{displaymath}
+\begin{displaymath}
+  \hat{\alpha}=( \bH \trans \bH )^{-1}
+  \bH \trans ( \by - \bl ( 0 ) )
+\end{displaymath}
 For this example
-  \begin{displaymath}
-    \hat{\alpha}=-0.49
-  \end{displaymath}
+\begin{displaymath}
+  \hat{\alpha}=-0.49
+\end{displaymath}
 so new value of $\theta$ is
-  \begin{eqnarray*}
-    \theta_{\mbox{\rm new}}&=&0.02+T ( - 0.49 )\\
-    &=&0.02 + 0.08 ( -0.49 )\\
-    &=&-0.019
-  \end{eqnarray*}
+\begin{eqnarray*}
+  \theta_{\mbox{\rm new}}&=&0.02+T ( - 0.49 )\\
+  &=&0.02 + 0.08 ( -0.49 )\\
+  &=&-0.019
+\end{eqnarray*}
 Evaluating the sum of squares at this point reveals that this new
 point is farther from $\by$ than either of the two starting
 points, and so a step factor $\lambda$ is introduced to
@@ -1425,23 +1406,23 @@ temperature ($x_{1}$) and pressure ($x_{2}$).  The data, discussed
 in \citeasnoun{lins:1975}, are reproduced in
 %\glossary{ Linssen, H.N.}
 Appendix A, Section~\ref{atbl:lub}, and plotted in Figure \ref{fig:LUBdata}.
-  \begin{figure}
-    \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.LUBdata,height=3in}}
-    \caption{
+\begin{figure}
+  \vspace{3in}
+  \centerline{\includegraphics{3LUBdata}}%,height=3in}}
+  \caption{
     Plot of the logarithm of the kinematic viscosity of a lubricant versus
     pressure for four different temperatures.
-    }\label{fig:LUBdata}
-  \end{figure}
+  }\label{fig:LUBdata}
+\end{figure}
 The model function is
-  \begin{eqnarray}\label{eqn:lub}
-    f (\bx,\btheta)&=& {\theta_1 \over  \theta_2+x_1 }+
-    \theta_3 x_2+\theta_4 x_2^2 +
-    \theta_5 x_2^3\\
-    &&+( \theta_6 + \theta_7 x_2^2 )  x_2 
-    \exp \left( { - x_1   \over  \theta_8+\theta_9 x_2^2 }
-    \right)\nonumber
-  \end{eqnarray}
+\begin{eqnarray}\label{eqn:lub}
+  f (\bx,\btheta)&=&\frac{\theta_1}{\theta_2+x_1}+
+  \theta_3 x_2+\theta_4 x_2^2 +
+  \theta_5 x_2^3\\
+  &&+( \theta_6 + \theta_7 x_2^2 )  x_2 
+  \exp \left(\frac{-x_1}{\theta_8+\theta_9 x_2^2}
+  \right)\nonumber
+\end{eqnarray}
 
 To begin, we note that six of the nine parameters are
 conditionally linear, which is most helpful.
@@ -1467,12 +1448,9 @@ these two.
 We simplify the situation even more by assuming that
 when $w_{2}$ is small,
 the model function is essentially linear in $w_{2}$, so that
-$$
-f ( \bx , \btheta )  \approx  {\theta_1 \over  \theta_2 +
-x_1 } + \theta_3 w_2 +
-\theta_6 w_2 
-e^{ - x_1 / \theta_8 }
-$$
+\begin{displaymath}
+  f(\bx,\btheta)\approx\frac{\theta_1}{\theta_2+x_1}+\theta_3w_2+\theta_6w_2e^{-x_1/\theta_8}
+\end{displaymath}
 That is, we can ignore the terms involving $\theta_{4}$,
 $\theta_{5}$, $\theta_{7}$, and $\theta_{9}$.
 By examining the plot, we see that the data for each temperature
@@ -1485,16 +1463,16 @@ exponential term are constant and we may rearrange the model as
     &=&w_2  \beta
   \end{eqnarray*}
 where
-$$
-y'={y-983 \over  192 + x_1 }
-$$
-$$
+\begin{displaymath}
+  y'=\frac{y-983}{192+x_1}
+\end{displaymath}
+\begin{displaymath}
 g = e^{ - x_1 / \theta_8 }
-$$
+\end{displaymath}
 and
-$$
+\begin{displaymath}
 \beta = \theta_3 + \theta_6 g
-$$
+\end{displaymath}
 
 Regressing $y'$ on $w_{2}$ for each of the four temperatures
 0, 25, 37.8, 98.9 gives $\beta$ values of 1.57, 1.49, 1.39, 1.37.
@@ -1514,9 +1492,9 @@ The value for $\theta_{6}$ is then estimated as
 $1.57 - 1.35 = 0.22$.
 Finally, since $\beta=\theta_3 + \theta_6 g$, so
 $( \beta-\theta_3 ) / \theta_6 =g$, we regressed
-$$
-ln \left({\beta-1.35 \over 0.22 }\right)
-$$
+\begin{displaymath}
+ln \left(\frac{\beta-1.35}{0.22}\right)
+\end{displaymath}
 on $x_1 $ to give $\theta_8 = 35.5$.
 
 Using these parameter estimates for
@@ -1531,10 +1509,10 @@ The new values were $\theta_2=209$ and $\theta_8=47.55$.
 Finally, we used these values plus the starting value
 $\theta_9 = 0$ to converge on the full model.
 The final parameter estimates were
-$$
+\begin{displaymath}
 \hat{\btheta}=
 (1053,206.1,1.464,-0.259,0.0224,0.398,0.09354, 56.97,-0.463)\trans
-$$
+\end{displaymath}
 with a residual sum of squares of 0.08996.
 \end{example}
 
@@ -1724,11 +1702,11 @@ as discussed in Sections 1.3.2, 3.10, and 3.12.
 Whenever time or distance is involved as a factor in a regression analysis,
 it is prudent to check the assumption of independent disturbances.
 Correlation of the disturbances can be detected from
-a {\em time series\/}
+a \emph{time series}
 plot of the residuals versus time (or
 \index{plot!time series}
 \index{time series}
-order of the experiments) or from a {\em lag\/} plot of the
+order of the experiments) or from a \emph{lag} plot of the
 \index{plot!lag}
 \index{lag}
 residual on the $n$th case versus the residual on the
@@ -1749,7 +1727,7 @@ are listed in Appendix A, Section~\ref{atbl:chloride}, and
 plotted in Figure \ref{fig:CHLdata}.
 \begin{figure}
   \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.CHLdata,height=3in}}
+    \centerline{\includegraphics{3CHLdata}}%,height=3in}}
     \caption{Plot of chloride concentration versus time for the chloride
     transport data.}
     \label{fig:CHLdata}
@@ -1758,10 +1736,10 @@ The observation $y_{n}$ gives the chloride
 concentration (in percent) at time $x_{n}$ (in minutes).
 
 The model function
-$$
+\begin{displaymath}
 f ( x_n , \btheta ) = \theta_1
 ( 1 - \theta_2 e^{ - \theta_3 x_n } )
-$$
+\end{displaymath}
 was derived from the theory of ion transport,
 where $\theta_{1}$ represents the final percentage
 concentration of chlorine, $\theta_{3}$ is a rate constant,
@@ -1784,7 +1762,7 @@ $\hat{\btheta}= (39.09, 0.828,0.159)\trans$
 with a residual sum of squares of 1.88.
 \begin{figure}
   \vspace{2.25in}
-  %\centerline{\psfig{figure=figs/3.CHLres1,height=2.25in}}
+  \centerline{\includegraphics{3CHLres1}}%,height=2.25in}}
   \caption{Plots of the residuals $\hat z$ from the original nonlinear
     least squares fit to the chloride data.  The residuals are plotted
     as a time series in part $a$ and as a lag plot in part $b$.}
@@ -1802,10 +1780,10 @@ the expectation function.
 When the disturbances are not independent, the
 model for the observations must be altered to account for
 dependence.
-Common forms for dependence, or {\em autocorrelation}, of
+Common forms for dependence, or \emph{autocorrelation}, of
 \index{autocorrelation!of residuals}
-disturbances are {\em moving average\/}
-or {\em autoregressive\/}
+disturbances are \emph{moving average}
+or \emph{autoregressive}
 \index{time series!moving average model}
 \index{time series!autoregressive model}
 models of variable order \cite{box:jenk:1976}.
@@ -1813,28 +1791,28 @@ models of variable order \cite{box:jenk:1976}.
 %\glossary{ Jenkins, G.M.}
 Simple examples of such forms are a moving average process of
 order 1 where
-$$
+\begin{displaymath}
 Z_n = \epsilon_n - \omega_1 \epsilon_{n-1}
-$$
+\end{displaymath}
 or an autoregressive process of order 1 where
-$$
+\begin{displaymath}
 Z_n = \epsilon_n + \phi_1 Z_{n-1}
-$$
+\end{displaymath}
 and the $\epsilon_n , n = 1, 2 ,\ldots, N$, are independent random
 disturbances with zero mean and constant variance,
-or more simply, {\em white noise}.
+or more simply, \emph{white noise}.
 
 In regression situations,
 when the data are equally spaced in time, it is relatively easy
 to determine an appropriate form for the dependence of the
-disturbances by calculating and plotting the {\em residual
+disturbances by calculating and plotting the \emph{residual
 autocorrelation function},
 \index{residual!autocorrelation function}
-$$
+\begin{displaymath}
 r_k = \sum_{n=k+1}^N
-{ \hat z_n  \hat z_{n-k}   \over N s^2 }   
+\frac{\hat z_n\hat z_{n-k}}{N s^2}   
 k = 1,  2,\ldots
-$$
+\end{displaymath}
 versus the lag $k$.
 In the definition of $r_{k}$, $s^{2}$ is the
 variance estimate,
@@ -1850,7 +1828,7 @@ to zero, then the process may be identified as an autoregressive
 process.
 Alternatively, to determine the order of the autoregressive
 process, it may be necessary to calculate the
-{\em partial autocorrelation function\/}
+\emph{partial autocorrelation function}
 \cite{box:jenk:1976}.
 %\glossary{ Box, G.E.P.}
 %\glossary{ Jenkins, G.M.}
@@ -1864,7 +1842,7 @@ autoregressive processes are often adequate.
 The residual autocorrelation function for the chloride
   \begin{figure}
     \vspace{2.25in}
-%    \centerline{\psfig{figure=figs/3.CHLauto,height=2.25in}}
+    \centerline{\includegraphics{3CHLauto}}%,height=2.25in}}
     \caption{
     Autocorrelation function of the residuals from the original nonlinear
     least squares fit to the chloride data.
@@ -1888,16 +1866,16 @@ To estimate the parameters $\btheta$ and $\phi$, we
 reduce the problem to an ordinary nonlinear least
 squares problem by subtracting $\phi$ times the equation for
 $Y_{n-1}$ from $Y_{n}$, as
-$$
+\begin{displaymath}
 Y_n - \phi Y_{n-1} =
 f ( x_n , \btheta ) - \phi 
 f ( x_{n-1} , \btheta ) + Z_n - \phi  Z_{n-1}
-$$
+\end{displaymath}
 or
-$$
+\begin{displaymath}
 Y_n = \phi Y_{n-1} +
 f ( x_n , \btheta ) - \phi  f ( x_{n-1} , \btheta ) + \epsilon_n
-$$
+\end{displaymath}
 
 Starting values for $\btheta$ were taken from $\hat{\btheta}$
 above, and the starting value for $\phi$ was taken as the lag
@@ -1907,8 +1885,7 @@ $( \btheta \trans , \phi ) = ( 37.58,  0.849,  0.178,  0.69 )$
 with a residual sum of squares of 0.98.
 The residuals $\hat \epsilon$ from this fit are
 \begin{figure}
-  \vspace{2.25in}
-%    \centerline{\psfig{figure=figs/3.CHLres2,height=2.25in}}
+  \centerline{\includegraphics{3CHLres2}}%,height=2.25in}}
   \caption{Plots of the residuals $\hat z$ from the nonlinear least
     squares fit to the chloride data using $\phi=0.69$.  The residuals
     are plotted as a time series in part $a$ and as a lag plot in part
@@ -1917,8 +1894,7 @@ The residuals $\hat \epsilon$ from this fit are
 \end{figure}
 well behaved, as shown in Figure \ref{fig:CHLres2} and
 \begin{figure}
-  \vspace{2.25in}
-%    \centerline{\psfig{figure=figs/3.CHLacf2,height=2.25in}}
+  \centerline{\includegraphics{3CHLacf2}}%,height=2.25in}}
   \caption{Autocorrelation function of the residuals from the nonlinear
     least squares fit to the chloride data using $\phi=0.69$.  The
     dotted lines enclose the interval in which approximately 95\% of
@@ -1949,7 +1925,7 @@ For a more complicated application of this technique, see
 \index{accumulated data}
 
 In some studies, when it is impractical to measure instantaneous
-concentrations, {\em accumulated\/}
+concentrations, \emph{accumulated}
 responses are recorded.
 \label{eth:1}
 \begin{example}
@@ -1980,8 +1956,7 @@ in Appendix~\ref{atbl:co2} \cite{watt:debe:stir:1986}, and
 the cumulative CO$_{2}$ data are plotted
 in Figure \ref{fig:CO2data}.
 \begin{figure}
-  \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.CO2data,height=3in}}
+  \centerline{\includegraphics{3CO2data}}%,height=3in}}
   \caption{Plot of cumulative exhaled CO$_{2}$ amounts versus
     collection interval end point for the ethyl acrylate data.}
   \label{fig:CO2data}
@@ -2025,10 +2000,10 @@ Suppose that the theoretical response to the input stimulus at time
 $t$ is $f ( t, \btheta )$.
 Then the accumulated output in the interval
 $t_{n-1}$ to $t_{n}$ is
-$$
+\begin{displaymath}
 F_n =
 \int_{t_{n-1}}^{t_n} f(t,\btheta) dt
-$$
+\end{displaymath}
 We therefore use the integrated function values $F_n $ and the observed
 accumulated data pairs $( y_n ,t_n )$ to estimate the
 parameters.
@@ -2042,219 +2017,204 @@ To determine a tentative form for $f ( t , \btheta )$, we plot the
 approximate rates
 ${y_n} / {x_{2n}}$ versus
 $x_{1n}+x_{2n} / 2$ on semilog paper and use peeling to
-obtain {\em starting\/} estimates for the parameters.
+obtain \emph{starting} estimates for the parameters.
 The final estimation is done using nonlinear least squares.
 Note that if the variance is not constant, it may be necessary to
 transform the data and the function, as in the following example.
-\label{eth:2}
-\begin{example}
 
-The CO$_{2}$ data are reproduced in Table~\ref{tbl:CO2rate} together
-with the derived quantities (interval midpoint
-$x_{1n}+ x_{2n} / 2$ and approximate rate
-$y_n / x_{2n}$) which are plotted in Figure~\ref{fig:CO2apconc}.
-\begin{table}
-  \caption{
-  Collection intervals and averages of normalized exhaled CO$_{2}$
-  for the ethyl acrylate data together with the derived quantities:
-  interval midpoint and approximate rate }\label{tbl:CO2rate}
-  \begin{center}
-    \begin{tabular}{cclll} \hline
-      \multicolumn{2}{c}{Collection} & &
-      \multicolumn{2}{c}{Derived}\\ \multicolumn{2}{c}{Interval (hr)} &
-      & \multicolumn{2}{c}{Quantities}\\ \multicolumn{1}{c}{Start} &
-      \multicolumn{1}{c}{Length} & \multicolumn{1}{c}{CO$_{2}$} &
-      \multicolumn{1}{c}{Interval} & \multicolumn{1}{c}{Approx.}\\
-      \multicolumn{1}{c}{$x_{1}$} & {$x_{2}$} & \multicolumn{1}{c}{(g)}
-      & \multicolumn{1}{c}{Midpoint} & \multicolumn{1}{c}{Rate}\\ \hline
-      0.0&0.25&0.01563&0.125&0.0625\\ 0.25&0.25&0.04190&0.375&0.1676\\
-      0.5&0.25&0.05328&0.625&0.2131\\ 0.75&0.25&0.05226&0.875&0.2090\\
-      1.0&0.5&0.08850&1.25&0.1770\\ 1.5&0.5&0.06340&1.75&0.1268\\
-      2.0&2.0&0.13419&3.0&0.0671\\ 4.0&2.0&0.04502&5.0&0.0225\\
-      6.0&2.0&0.02942&7.0&0.0147\\ 8.0&16.0&0.02716&16.0&0.0017\\
-      24.0&24.0&0.01037&36.0&0.0004\\ 48.0&24.0&0.00602&60.0&0.0003\\
-      \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-\begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.CO2apconc,height=3in}}
-  \caption{Approximate CO$_{2}$ exhalation rate versus collection
-    interval midpoint for the ethyl acrylate data.}
-  \label{fig:CO2apconc}
-\end{figure}
-We can see from the figure that an
-appropriate model for the data involves three exponentials
-(two to account for the peak, and another to account for the
-change in slope of the decay from the peak).
-Because the radioactivity prior to injection must be zero,
-the concentration at $ t = 0$ must be zero.
-A plausible model for the concentration at time $t$ is therefore
-$$
-f(t, \btheta )=- ( \theta_4 + \theta_5 ) e^{ - \theta_1 t }
-+ \theta_4 e^{{-} \theta_2 t }
-+ \theta_5 e^{{-} \theta_3 t }
-$$
-An appropriate model for the accumulated data in the
-collection interval starting at $t_{n-1} $ is then
+\begin{example}\label{eth:2}
+  The CO$_{2}$ data are reproduced in Table~\ref{tbl:CO2rate} together
+  with the derived quantities (interval midpoint
+  $x_{1n}+ x_{2n} / 2$ and approximate rate
+  $y_n / x_{2n}$) which are plotted in Figure~\ref{fig:CO2apconc}.
+  \begin{table}
+    \caption{
+      Collection intervals and averages of normalized exhaled CO$_{2}$
+      for the ethyl acrylate data together with the derived quantities:
+      interval midpoint and approximate rate }\label{tbl:CO2rate}
+    \begin{center}
+      \begin{tabular}{cclll} \hline
+        \multicolumn{2}{c}{Collection} & &
+        \multicolumn{2}{c}{Derived}\\ \multicolumn{2}{c}{Interval (hr)} &
+        & \multicolumn{2}{c}{Quantities}\\ \multicolumn{1}{c}{Start} &
+        \multicolumn{1}{c}{Length} & \multicolumn{1}{c}{CO$_{2}$} &
+        \multicolumn{1}{c}{Interval} & \multicolumn{1}{c}{Approx.}\\
+        \multicolumn{1}{c}{$x_{1}$} & {$x_{2}$} & \multicolumn{1}{c}{(g)}
+        & \multicolumn{1}{c}{Midpoint} & \multicolumn{1}{c}{Rate}\\ \hline
+        0.0&0.25&0.01563&0.125&0.0625\\ 0.25&0.25&0.04190&0.375&0.1676\\
+        0.5&0.25&0.05328&0.625&0.2131\\ 0.75&0.25&0.05226&0.875&0.2090\\
+        1.0&0.5&0.08850&1.25&0.1770\\ 1.5&0.5&0.06340&1.75&0.1268\\
+        2.0&2.0&0.13419&3.0&0.0671\\ 4.0&2.0&0.04502&5.0&0.0225\\
+        6.0&2.0&0.02942&7.0&0.0147\\ 8.0&16.0&0.02716&16.0&0.0017\\
+        24.0&24.0&0.01037&36.0&0.0004\\ 48.0&24.0&0.00602&60.0&0.0003\\
+        \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  \begin{figure}
+    \centerline{\includegraphics{3CO2apconc}}%,height=3in}}
+    \caption{Approximate CO$_{2}$ exhalation rate versus collection
+      interval midpoint for the ethyl acrylate data.}
+    \label{fig:CO2apconc}
+  \end{figure}
+  We can see from the figure that an
+  appropriate model for the data involves three exponentials
+  (two to account for the peak, and another to account for the
+  change in slope of the decay from the peak).
+  Because the radioactivity prior to injection must be zero,
+  the concentration at $ t = 0$ must be zero.
+  A plausible model for the concentration at time $t$ is therefore
+  \begin{displaymath}
+    f(t, \btheta )=- ( \theta_4 + \theta_5 ) e^{ - \theta_1 t }
+    + \theta_4 e^{{-} \theta_2 t }
+    + \theta_5 e^{{-} \theta_3 t }
+  \end{displaymath}
+  An appropriate model for the accumulated data in the
+  collection interval starting at $t_{n-1} $ is then
   \begin{eqnarray*}
-    F_n&=&-{\theta_4+\theta_5\over\theta_1}( e^{ - \theta_1 t_{n-1} } -
+    F_n&=&-\frac{\theta_4+\theta_5}{\theta_1}( e^{ - \theta_1 t_{n-1} } -
     e^{ - \theta_1 t_n } )\\
-    &&+{\theta_4\over\theta_2}( e^{ - \theta_2 t_{n-1} } -
-    e^{ - \theta_2 t_n } )
-    + { \theta_5   \over  \theta_3 }
+    &&+\frac{\theta_4}{\theta_2}(e^{-\theta_2 t_{n-1} }-e^{-\theta_2 t_n})
+    +\frac{\theta_5}{\theta_3}
     ( e^{{-} \theta_3 t_{n-1} } - e^{{-} \theta_3 t_n} )
   \end{eqnarray*}
-or
+  or
   \begin{eqnarray*}
-    F ( \bx , \btheta )&=&
-    -  { \theta_4 + \theta_5   \over  \theta_1 }
-    e^{ - \theta_1 x_1 }
-    ( 1 -e^{ - \theta_1 x_2 } )\\
- &&+ { \theta_4   \over  \theta_2 }
- e^{ - \theta_2 x_1 }
- ( 1 - e^{ - \theta_2 x_2} )
- + { \theta_5   \over  \theta_3 }
- e^{ - \theta_3 x_1 }
- ( 1 - e^{ - \theta_3 x_2} )
+    F(\bx,\btheta)&=&
+    -\frac{\theta_4+\theta_5}{\theta_1}e^{-\theta_1 x_1}(1-e^{-\theta_1 x_2})\\
+    &&+\frac{\theta_4}{\theta_2}e^{-\theta_2 x_1}(1-e^{-\theta_2 x_2})
+    +\frac{\theta_5}{\theta_3}e^{-\theta_3 x_1}(1-e^{-\theta_3 x_2})
   \end{eqnarray*}
-Because of the nonconstant variance, the logarithms of $F$ were
-fitted to the logarithms of the data.
-The results of this analysis together with the starting estimates
-are presented
-in Table~\ref{tbl:5.2}.
-\begin{table}
-  \caption{
-  Parameter summary for the 3-exponential model fitted to the
-  ethyl acrylate data.  }\label{tbl:5.2}
-  \begin{center}
-    \begin{tabular}{cllc}\hline
-      & & \multicolumn{2}{c}{Nonlinear Least Squares}\\ & & &
-      \multicolumn{1}{c}{Approx.}\\ \multicolumn{1}{c}{Parameter} &
-      \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{Estimate} &
-      \multicolumn{1}{c}{Std. Err.}\\ \hline
-      $\theta_{1}$&4.461&3.025&0.752\\ $\theta_{2}$&0.571&0.481&0.038\\
-      $\theta_{3}$&0.0434&0.0258&0.0096\\ $\theta_{4}$&0.355&0.310&0.049\\
-      $\theta_{5}$&0.0034&0.0011&0.0005\\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-
-
-In an analysis of the logarithmic data for the individual rats, due
-attention was paid to the behavior of the residuals.
-The triple rate constant model fitted the data very well.
+  Because of the nonconstant variance, the logarithms of $F$ were
+  fitted to the logarithms of the data.
+  The results of this analysis together with the starting estimates
+  are presented
+  in Table~\ref{tbl:5.2}.
+  \begin{table}
+    \caption{
+      Parameter summary for the 3-exponential model fitted to the
+      ethyl acrylate data.}\label{tbl:5.2}
+    \begin{center}
+      \begin{tabular}{cllc}\hline
+        & & \multicolumn{2}{c}{Nonlinear Least Squares}\\ & & &
+        \multicolumn{1}{c}{Approx.}\\ \multicolumn{1}{c}{Parameter} &
+        \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{Estimate} &
+        \multicolumn{1}{c}{Std. Err.}\\ \hline
+        $\theta_{1}$&4.461&3.025&0.752\\ $\theta_{2}$&0.571&0.481&0.038\\
+        $\theta_{3}$&0.0434&0.0258&0.0096\\ $\theta_{4}$&0.355&0.310&0.049\\
+        $\theta_{5}$&0.0034&0.0011&0.0005\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  In an analysis of the logarithmic data for the individual rats, due
+  attention was paid to the behavior of the residuals.
+  The triple rate constant model fitted the data very well.
 \end{example}
 
 \begin{example}\label{sac:1}
-
-As a second example of treating accumulated data,
-we analyze the saccharin data in \citeasnoun{renw:1982}.
+  As a second example of treating accumulated data,
+  we analyze the saccharin data in \citeasnoun{renw:1982}.
+  % \glossary{ Renwick, A.G.}
+  In this experiment, the measured response was the amount of
+  saccharin accumulated in the urine of a rat after receiving a
+  single bolus of saccharin.
+  The data are recorded in Appendix~\ref{atbl:sac}, and plotted
+  in Figure~\ref{fig:SACdata}.
+  \begin{figure}
+    \centerline{\includegraphics{3SACdata}}%,height=3in}}
+    \caption{Plot of cumulative excreted amount versus collection
+      interval end point for the saccharin data.}
+    \label{fig:SACdata}
+  \end{figure}
+  
+  The function involved only two rate constants, and the
+  response was modeled as
+  \begin{displaymath}
+    f(t, \btheta ) = \theta_3 e^{ - \theta_1 t }
+    + \theta_4 e^{{-} \theta_2 t }
+  \end{displaymath}
+  so
+  \begin{displaymath}
+    F(\bx,\btheta)=\frac{\theta_3}{\theta_1}e^{-\theta_1 x_1}
+    ( 1 - e^{ - \theta_1 x_2} )
+    +\frac{\theta_4}{\theta_2}
+    e^{ - \theta_2 x_1 }
+    ( 1 - e^{ - \theta_2 x_2} )
+  \end{displaymath}
+  As in the ethyl acrylate example, the integrated model was fitted to
+  the logarithms of the accumulated data to stabilize
+  variance.
+  
+  The curve peeling and the sigma--minus method results from \citeasnoun{renw:1982}
+  % \glossary{ Renwick, A.G.}
+  are given in columns 2 and 3 of
+  Table \ref{tbl:3}, and the
+  results using the direct integration method are given in column 4.
+  \begin{table}
+    \caption{
+      Parameter summary for the saccharin data, comparing estimates
+      obtained using the sigma--minus method, using the approximate rate
+      method, and using nonlinear least squares to fit the integrated
+      response function.  }\label{tbl:3}
+    \begin{center}
+      \begin{tabular}{clclc} \hline
+        \multicolumn{5}{c}{Estimate by}\\ & & &
+        \multicolumn{2}{c}{Nonlinear Least Squares}\\ & & & &
+        \multicolumn{1}{c}{Approx.}\\ \multicolumn{1}{c}{Parameter} &
+        \multicolumn{1}{c}{Peeling$^{a}$} &
+        \multicolumn{1}{c}{Sigma--Minus$^{a}$} & \multicolumn{1}{c}{Value}
+        & \multicolumn{1}{c}{Std. Err.}\\ \hline
+        $\theta_{1}$&0.0710&0.0833&0.122&0.031\\
+        $\theta_{2}$&0.0234&0.0255&0.0279&0.003\\
+        $\theta_{3}$&830&932&1345&249\\
+        $\theta_{4}$&270&314&402&98\\
+        \hline
+      \end{tabular}
+    \end{center}
+     $^{a}$ From \citeasnoun{renw:1982}.
 %\glossary{ Renwick, A.G.}
-In this experiment, the measured response was the amount of
-saccharin accumulated in the urine of a rat after receiving a
-single bolus of saccharin.
-The data are recorded in Appendix~\ref{atbl:sac}, and plotted
-in Figure~\ref{fig:SACdata}.
-\begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.SACdata,height=3in}}
-  \caption{Plot of cumulative excreted amount versus collection
-    interval end point for the saccharin data.}
-  \label{fig:SACdata}
-\end{figure}
-
-The function involved only two rate constants, and the
-response was modeled as
-$$
-f(t, \btheta ) = \theta_3 e^{ - \theta_1 t }
- + \theta_4 e^{{-} \theta_2 t }
-$$
-so
-$$
-F ( \bx , \btheta ) = 
- { \theta_3   \over  \theta_1 }
-e^{ - \theta_1 x_1 }
-( 1 - e^{ - \theta_1 x_2} )
- + { \theta_4   \over  \theta_2}
-e^{ - \theta_2 x_1 }
-( 1 - e^{ - \theta_2 x_2} )
-$$
-As in the ethyl acrylate example, the integrated model was fitted to
-the logarithms of the accumulated data to stabilize
-variance.
-
-The curve peeling and the sigma--minus method results from \citeasnoun{renw:1982}
-%\glossary{ Renwick, A.G.}
-are given in columns 2 and 3 of
-Table \ref{tbl:3}, and the
-results using the direct integration method are given in column 4.
-\begin{table}
-  \caption{
-  Parameter summary for the saccharin data, comparing estimates
-  obtained using the sigma--minus method, using the approximate rate
-  method, and using nonlinear least squares to fit the integrated
-  response function.  }\label{tbl:3}
-  \begin{center}
-    \begin{tabular}{clclc} \hline
-      \multicolumn{5}{c}{Estimate by}\\ & & &
-      \multicolumn{2}{c}{Nonlinear Least Squares}\\ & & & &
-      \multicolumn{1}{c}{Approx.}\\ \multicolumn{1}{c}{Parameter} &
-      \multicolumn{1}{c}{Peeling$^{a}$} &
-      \multicolumn{1}{c}{Sigma--Minus$^{a}$} & \multicolumn{1}{c}{Value}
-      & \multicolumn{1}{c}{Std. Err.}\\ \hline
-      $\theta_{1}$&0.0710&0.0833&0.122&0.031\\
-      $\theta_{2}$&0.0234&0.0255&0.0279&0.003\\
-      $\theta_{3}$&830&932&1345&249\\
-      $\theta_{4}$&270&314&402&98\\
-      \hline
-    \end{tabular}
-    $^{a}$ From \citeasnoun{renw:1982}.
-    %\glossary{ Renwick, A.G.}
-  \end{center}
-\end{table}
-
-Note the considerable differences between the results based on
-peeling and those obtained by nonlinear least squares.
-Note too, that the peeling and sigma--minus methods do not
-provide parameter standard errors.
-
-There were two very large residuals from the nonlinear least
-squares fit, at $x_1=5$ and $x_1=105$.
-A second analysis was done by simply combining the observations
-at $x_1=5$ and  $x_1=15$ and at
-$x_1=90$ and $x_1=105$, as shown in Table \ref{tbl:SACHed}.
-\begin{table}
-  \caption{
-  Collection intervals and excreted amounts for original and
-  combined saccharin data.  }\label{tbl:SACHed}
-  \begin{center}
-    \begin{tabular}{cccccc} \hline
-      \multicolumn{3}{c}{Original} & \multicolumn{3}{c}{Combined}\\
-      \hline \multicolumn{2}{c}{Collection} & &
-      \multicolumn{2}{c}{Collection} &\\ \multicolumn{2}{c}{Interval (hr)}
-      & & \multicolumn{2}{c}{Interval (hr)} & \\ \multicolumn{1}{c}{Start}
-      & \multicolumn{1}{c}{Length} & \multicolumn{1}{c}{Saccharin} &
-      \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{Length} &
-      \multicolumn{1}{c}{Saccharin}\\ \multicolumn{1}{c}{$x_{1}$} &
-      \multicolumn{1}{c}{$x_{2}$} & \multicolumn{1}{c}{$(\mu$g)} &
-      \multicolumn{1}{c}{$x_{1}$} & \multicolumn{1}{c}{$x_{2}$} &
-      \multicolumn{1}{c}{$(\mu$g)}\\ \hline 0&5&7518&0&5&7518\\
-      5&10&6275&5&25&11264\\ 15&15&4989&\\ 30&15&2580&30&15&2580\\
-      45&15&1485&45&15&1485\\ 60&15&861&60&15&861\\ 75&15&561&75&15&561\\
-      90&15&363&90&30&663\\ 105&15&300\\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
- 
-The residuals from this fit were very well behaved, and the
-residual variance was reduced to 0.0071 from 0.0158.
-The parameter estimates (standard errors in parentheses) were
-$\theta_1 = 0.154 (0.035)$,
-$\theta_2 = 0.030 (0.002)$,
-$\theta_3 = 1506  (233)$, and
-$\theta_4 =  472 (70)$.
+   \end{table}
+  
+  Note the considerable differences between the results based on
+  peeling and those obtained by nonlinear least squares.
+  Note too, that the peeling and sigma--minus methods do not
+  provide parameter standard errors.
+  
+  There were two very large residuals from the nonlinear least
+  squares fit, at $x_1=5$ and $x_1=105$.
+  A second analysis was done by simply combining the observations
+  at $x_1=5$ and  $x_1=15$ and at
+  $x_1=90$ and $x_1=105$, as shown in Table \ref{tbl:SACHed}.
+  \begin{table}
+    \caption{
+      Collection intervals and excreted amounts for original and
+      combined saccharin data.  }\label{tbl:SACHed}
+    \begin{center}
+      \begin{tabular}{cccccc} \hline
+        \multicolumn{3}{c}{Original} & \multicolumn{3}{c}{Combined}\\
+        \hline \multicolumn{2}{c}{Collection} & &
+        \multicolumn{2}{c}{Collection} &\\ \multicolumn{2}{c}{Interval (hr)}
+        & & \multicolumn{2}{c}{Interval (hr)} & \\ \multicolumn{1}{c}{Start}
+        & \multicolumn{1}{c}{Length} & \multicolumn{1}{c}{Saccharin} &
+        \multicolumn{1}{c}{Start} & \multicolumn{1}{c}{Length} &
+        \multicolumn{1}{c}{Saccharin}\\ \multicolumn{1}{c}{$x_{1}$} &
+        \multicolumn{1}{c}{$x_{2}$} & \multicolumn{1}{c}{$(\mu$g)} &
+        \multicolumn{1}{c}{$x_{1}$} & \multicolumn{1}{c}{$x_{2}$} &
+        \multicolumn{1}{c}{$(\mu$g)}\\ \hline 0&5&7518&0&5&7518\\
+        5&10&6275&5&25&11264\\ 15&15&4989&\\ 30&15&2580&30&15&2580\\
+        45&15&1485&45&15&1485\\ 60&15&861&60&15&861\\ 75&15&561&75&15&561\\
+        90&15&363&90&30&663\\ 105&15&300\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  
+  The residuals from this fit were very well behaved, and the
+  residual variance was reduced to 0.0071 from 0.0158.
+  The parameter estimates (standard errors in parentheses) were
+  $\theta_1 = 0.154 (0.035)$,
+  $\theta_2 = 0.030 (0.002)$,
+  $\theta_3 = 1506  (233)$, and
+  $\theta_4 =  472 (70)$.
 \end{example}
 
 \section{Comparing Models}
@@ -2263,35 +2223,35 @@ $\theta_4 =  472 (70)$.
 In some situations there may be more than one function
 which could be used as a model.
 For example, in fitting a double exponential model,
-$$
-f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x } +
-\theta_3 e^{ - \theta_4 x}
-$$
+\begin{displaymath}
+  f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x } +
+  \theta_3 e^{ - \theta_4 x}
+\end{displaymath}
 $\theta_{4}$ could be $0$, in which case the model reduces to
-$$
-f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x } + \theta_3
-$$
+\begin{displaymath}
+  f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x } + \theta_3
+\end{displaymath}
 or $\theta_{3}$ could be 0, in which case the model reduces to
-$$
-f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x }
-$$
-In this situation of {\em nested\/} models, we would be
+\begin{displaymath}
+  f ( x , \btheta ) = \theta_1 e^{ - \theta_2 x }
+\end{displaymath}
+In this situation of \emph{nested} models, we would be
 \index{nested model}
 \index{model!nested}
 interested in finding the simplest model which adequately fits the data.
 
-In other situations, we might compare {\em non-nested\/}
+In other situations, we might compare \emph{non-nested}
 \index{model!non-nested}
 models---for example, model 1
-$$
-f ( x , \btheta ) = \theta_1 ( 1 - e^{ - \theta_2 x } )
-$$
+\begin{displaymath}
+  f ( x , \btheta ) = \theta_1 ( 1 - e^{ - \theta_2 x } )
+\end{displaymath}
 versus model 2
-$$
-f ( x , \btheta )={ \theta_1 x  \over \theta_{2+x}}
-$$
-both of which start at $f = 0$ when $x = 0$ and approach the
-asymptote $\theta_{1}$ as $x  \to  \infty$.
+\begin{displaymath}
+  f ( x , \btheta )=\frac{\theta_1x}{\theta_2+x}
+\end{displaymath}
+both of which start at $f=0$ when $x=0$ and approach the
+asymptote $\theta_{1}$ as $x\to\infty$.
 In these situations, one model may give a superior fit to the data,
 and we would like to select that model.
 
@@ -2311,15 +2271,14 @@ going from the partial to the full model.
 
 Letting $S$ denote the sum of squares, $\nu$ the degrees of
 freedom, and $P$ the number of parameters, with subscripts $f$
-and $p$ for the {\em full\/}
-and {\em partial\/} models and a subscript $e$
-for {\em extra},
+and $p$ for the \emph{full}
+and \emph{partial} models and a subscript $e$
+for \emph{extra},
 the calculations can be summarized as in
 Table~\ref{tbl:extra}.
 \begin{table}
-  \caption{
-  Extra sum of squares analysis for nested models.
-  }\label{tbl:extra}
+  \caption{Extra sum of squares analysis for nested models.}
+  \label{tbl:extra}
   \begin{center}
     \begin{tabular}{c  c  c  c  c} \hline
       & \multicolumn{1}{c}{Sum of} & \multicolumn{1}{c}{Degrees of}
@@ -2376,7 +2335,7 @@ together on the expectation surface.
 
 Many nested models can be parametrized in terms of incremental
 parameters.
-An {\em incremental parameter\/} accounts for a
+An \emph{incremental parameter} accounts for a
 \index{parameter!incremental}
 \index{incremental!parameter}
 change in a parameter between blocks of cases and is
@@ -2389,143 +2348,142 @@ be made directly from the regression output without having
 to do additional computation.
 The use of incremental parameters is most easily described by
 means of an example.
-\label{mic:10}
+
 \begin{example}
-
-In the Puromycin experiment, two blocks of experiments were run.
-In one the enzyme was treated with puromycin (Table A1.3$a$), and
-in the other the same enzyme was untreated
-(Table A1.3$b$).
-It was hypothesized that the Puromycin should affect the maximum
-velocity parameter $\theta_{1}$, but not the half-velocity
-parameter $\theta_{2}$.
-The two data sets are plotted in
-Figure~\ref{fig:MIC2data}.
-\begin{figure}
-  \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.MIC2data,height=3in}}
-  \caption{Plot of enzyme velocity data versus substrate concentration.
-    The data for the enzyme treated (not treated) with Puromycin are
-    shown as ().}
-  \label{fig:MIC2data}
-\end{figure}
-
-To determine if the $\theta_{2}$ parameter is unchanged,
-we use an extra sum of squares analysis, which requires fitting a full and a
-partial model.
-The full model corresponds to completely different sets of
-parameters for the treated data and the untreated data, while
-the partial model corresponds to different $\theta_{1}$
-parameters but the same $\theta_{2}$ parameter.
-To combine the full and partial models, we introduce
-the {\em indicator variable\/}
+  \label{mic:10}
+  In the Puromycin experiment, two blocks of experiments were run.
+  In one the enzyme was treated with puromycin (Table A1.3$a$), and
+  in the other the same enzyme was untreated
+  (Table A1.3$b$).
+  It was hypothesized that the Puromycin should affect the maximum
+  velocity parameter $\theta_{1}$, but not the half-velocity
+  parameter $\theta_{2}$.
+  The two data sets are plotted in
+  Figure~\ref{fig:MIC2data}.
+  \begin{figure}
+    \centerline{\includegraphics{3MIC2data}}%,height=3in}}
+    \caption{Plot of enzyme velocity data versus substrate concentration.
+      The data for the enzyme treated (not treated) with Puromycin are
+      shown as ().}
+    \label{fig:MIC2data}
+  \end{figure}
+  
+  To determine if the $\theta_{2}$ parameter is unchanged,
+  we use an extra sum of squares analysis, which requires fitting a full and a
+  partial model.
+  The full model corresponds to completely different sets of
+  parameters for the treated data and the untreated data, while
+  the partial model corresponds to different $\theta_{1}$
+  parameters but the same $\theta_{2}$ parameter.
+  To combine the full and partial models, we introduce
+  the \emph{indicator variable}
   \begin{displaymath}
     x_2 = \left\{ 
-    \begin{array}{ll}
-      0 & \mbox{\rm untreated}\\
-      1 & \mbox{\rm treated}
-    \end{array}
-  \right.
+      \begin{array}{ll}
+        0 & \mbox{\rm untreated}\\
+        1 & \mbox{\rm treated}
+      \end{array}
+    \right.
   \end{displaymath}
-
-and let $x_1$ be the substrate concentration.
-The combined model is then written
+  
+  and let $x_1$ be the substrate concentration.
+  The combined model is then written
   \begin{displaymath}\label{eqn:combin}
     f(\bx,\btheta)=\frac{(\theta_1 + \phi_1 x_2 ) x_1}{(\theta_2+\phi_2 x_2)+x_1}
   \end{displaymath}
-where
-$\theta_{1}$ is the maximum velocity for the untreated enzyme,
-$\phi_{1}$ is the incremental maximum velocity due to the
-treatment,
-$\theta_{2}$ is the (possibly common) ``half-velocity''
-point, and $\phi_{2}$ is the change in the half-velocity due to the
-treatment.
-Since we expect $\phi_{1}$ to be nonzero, we are interested
-in testing whether $\phi_{2}$ could be zero.
-
-The model (\ref{eqn:combin}) was fitted and the results of this fit are
-shown in Table~\ref{tbl:treloar3}.
-  \begin{table}
-   \caption{
-   Parameter summary for the 4-parameter Michaelis--Menten model fitted
-   to the combined Puromycin data set.
-   }\label{tbl:treloar3}
-\begin{center}
-\begin{tabular}{cccccccc} \hline
-& &\multicolumn{1}{c}{Approx.}&&\multicolumn{4}{c}{Correlation}\\
-\multicolumn{1}{c}{Parameter} &\multicolumn{1}{c}{Estimate}& \multicolumn{1}{c}{Std. Err.}&\multicolumn{1}{c}{$t$ Ratio} &\multicolumn{4}{c}{Matrix}\\ \hline
-$\theta_{1}$ &160.3 & 6.90 & 23.2 &1.00\\
-$\theta_{2}$ & 0.0477 & 0.00828 & 5.8 & 0.77 & 1.00\\
-$\phi_{1}$ & 52.4 & 9.55 & 5.5 &--\/0.72 & --\/0.56 & 1.00\\
-$\phi_{2}$ & 0.0164 & 0.0114 &1.4 &--\/0.56 & --\/0.72 & 0.77 & 1.00\\ \hline
-\end{tabular}
-\end{center}
-\end{table}
-It appears that $\phi_{2}$ could be zero, since it has a small
-$t$ ratio, and so we fit the
-partial model (\ref{eqn:combin}) with $\phi_2 = 0$.
-The results of this fit are given in
-Table~\ref{tbl:treloar4} and
+  where
+  $\theta_{1}$ is the maximum velocity for the untreated enzyme,
+  $\phi_{1}$ is the incremental maximum velocity due to the
+  treatment,
+  $\theta_{2}$ is the (possibly common) ``half-velocity''
+  point, and $\phi_{2}$ is the change in the half-velocity due to the
+  treatment.
+  Since we expect $\phi_{1}$ to be nonzero, we are interested
+  in testing whether $\phi_{2}$ could be zero.
+  
+  The model (\ref{eqn:combin}) was fitted and the results of this fit are
+  shown in Table~\ref{tbl:treloar3}.
   \begin{table}
     \caption{
-    Parameter summary for the 3-parameter Michaelis--Menten model fitted
-    to the combined Puromycin data set.
+      Parameter summary for the 4-parameter Michaelis--Menten model fitted
+      to the combined Puromycin data set.
+    }\label{tbl:treloar3}
+    \begin{center}
+      \begin{tabular}{cccccccc} \hline
+        & &\multicolumn{1}{c}{Approx.}&&\multicolumn{4}{c}{Correlation}\\
+        \multicolumn{1}{c}{Parameter} &\multicolumn{1}{c}{Estimate}& \multicolumn{1}{c}{Std. Err.}&\multicolumn{1}{c}{$t$ Ratio} &\multicolumn{4}{c}{Matrix}\\ \hline
+        $\theta_{1}$ &160.3 & 6.90 & 23.2 &1.00\\
+        $\theta_{2}$ & 0.0477 & 0.00828 & 5.8 & 0.77 & 1.00\\
+        $\phi_{1}$ & 52.4 & 9.55 & 5.5 &--\/0.72 & --\/0.56 & 1.00\\
+        $\phi_{2}$ & 0.0164 & 0.0114 &1.4 &--\/0.56 & --\/0.72 & 0.77 & 1.00\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  It appears that $\phi_{2}$ could be zero, since it has a small
+  $t$ ratio, and so we fit the
+  partial model (\ref{eqn:combin}) with $\phi_2 = 0$.
+  The results of this fit are given in
+  Table~\ref{tbl:treloar4} and
+  \begin{table}
+    \caption{
+      Parameter summary for the 3-parameter Michaelis--Menten model fitted
+      to the combined Puromycin data set.
     }\label{tbl:treloar4}
-\begin{center}
-\begin{tabular}{ccccccc}\hline
-& & \multicolumn{1}{c}{Approx.}&&\multicolumn{3}{c}{Correlation}\\
-\multicolumn{1}{c}{Parameter} &\multicolumn{1}{c}{Estimate}& \multicolumn{1}{c}{Std. Err.} &\multicolumn{1}{c}{$t$ Ratio} & \multicolumn{3}{c}{Matrix}\\ \hline
-$\theta_{1}$&166.6&5.81&28.7&1.00\\
-$\theta_{2}$&0.058&0.00591&9.8&0.61&1.00\\
-$\phi_{1}$&42.0&6.27&6.7&--\/0.54&0.06&1.00\\ \hline
-\end{tabular}
-\end{center}
-\end{table}
-the extra sum of squares analysis is presented in
-Table~\ref{tbl:treloar}.
-\begin{table}
-  \caption{
-  Extra sum of squares analysis for the 3- and 4-parameter
-  Michaelis--Menten model fitted to the combined Puromycin data set.
-  }\label{tbl&treloar}
-  \begin{center}
-    \begin{tabular}{cccccc}\hline
-      & \multicolumn{1}{c}{Sum of} & \multicolumn{1}{c}{Degrees of}
-      &\multicolumn{1}{c}{Mean}\\ \multicolumn{1}{c}{Source} &
-      \multicolumn{1}{c}{Squares} &\multicolumn{1}{c}{Freedom} &
-      \multicolumn{1}{c}{Square} & \multicolumn{1}{c}{F Ratio}
-      &\multicolumn{1}{c}{$p$ Value}\\
-      \hline Extra&186&1&186.&1.7&0.21\\
-      4-parameter&2055&19&108.2\\
-      3-parameter&2241&20\\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-
-In this well-designed experiment, which includes replications, it
-is also possible to analyze for lack of fit of the partial model as
-shown in Table~\ref{tbl:treloar5}.
-\begin{table}
-  \caption{
-  Lack of fit analysis for the 3-parameter Michaelis--Menten model
-  fitted to the combined Puromycin data set.  }\label{tbl&treloar5}
-  \begin{center}
-    \begin{tabular}{cccccc}
-      & \multicolumn{1}{c}{Sum of} & \multicolumn{1}{c}{Degrees
-      of} & \multicolumn{1}{c}{Mean}\\ \multicolumn{1}{c}{Source} &
-      \multicolumn{1}{c}{Squares} & \multicolumn{1}{c}{Freedom} &
-      \multicolumn{1}{c}{Square} & \multicolumn{1}{c}{F Ratio} &
-      \multicolumn{1}{c}{$p$ Value}\\ \hline
-      Lack of fit &1144&9&127.3&1.3&0.35\\
-      Replication&1097&11&99.7\\ \hline
-      Residuals&2241&20\\ \hline
-    \end{tabular}
-  \end{center}
-\end{table}
-These summary calculations, together with plots of the residuals
-(not shown), suggest that a model which has a common
-half-velocity parameter and a higher asymptotic velocity for
-the treated enzyme is adequate.
+    \begin{center}
+      \begin{tabular}{ccccccc}\hline
+        & & \multicolumn{1}{c}{Approx.}&&\multicolumn{3}{c}{Correlation}\\
+        \multicolumn{1}{c}{Parameter} &\multicolumn{1}{c}{Estimate}& \multicolumn{1}{c}{Std. Err.} &\multicolumn{1}{c}{$t$ Ratio} & \multicolumn{3}{c}{Matrix}\\ \hline
+        $\theta_{1}$&166.6&5.81&28.7&1.00\\
+        $\theta_{2}$&0.058&0.00591&9.8&0.61&1.00\\
+        $\phi_{1}$&42.0&6.27&6.7&--\/0.54&0.06&1.00\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  the extra sum of squares analysis is presented in
+  Table~\ref{tbl:treloar}.
+  \begin{table}
+    \caption{
+      Extra sum of squares analysis for the 3- and 4-parameter
+      Michaelis--Menten model fitted to the combined Puromycin data set.
+    }\label{tbl&treloar}
+    \begin{center}
+      \begin{tabular}{cccccc}\hline
+        & \multicolumn{1}{c}{Sum of} & \multicolumn{1}{c}{Degrees of}
+        &\multicolumn{1}{c}{Mean}\\ \multicolumn{1}{c}{Source} &
+        \multicolumn{1}{c}{Squares} &\multicolumn{1}{c}{Freedom} &
+        \multicolumn{1}{c}{Square} & \multicolumn{1}{c}{F Ratio}
+        &\multicolumn{1}{c}{$p$ Value}\\
+        \hline Extra&186&1&186.&1.7&0.21\\
+        4-parameter&2055&19&108.2\\
+        3-parameter&2241&20\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  
+  In this well-designed experiment, which includes replications, it
+  is also possible to analyze for lack of fit of the partial model as
+  shown in Table~\ref{tbl:treloar5}.
+  \begin{table}
+    \caption{
+      Lack of fit analysis for the 3-parameter Michaelis--Menten model
+      fitted to the combined Puromycin data set.  }\label{tbl&treloar5}
+    \begin{center}
+      \begin{tabular}{cccccc}
+        & \multicolumn{1}{c}{Sum of} & \multicolumn{1}{c}{Degrees
+          of} & \multicolumn{1}{c}{Mean}\\ \multicolumn{1}{c}{Source} &
+        \multicolumn{1}{c}{Squares} & \multicolumn{1}{c}{Freedom} &
+        \multicolumn{1}{c}{Square} & \multicolumn{1}{c}{F Ratio} &
+        \multicolumn{1}{c}{$p$ Value}\\ \hline
+        Lack of fit &1144&9&127.3&1.3&0.35\\
+        Replication&1097&11&99.7\\ \hline
+        Residuals&2241&20\\ \hline
+      \end{tabular}
+    \end{center}
+  \end{table}
+  These summary calculations, together with plots of the residuals
+  (not shown), suggest that a model which has a common
+  half-velocity parameter and a higher asymptotic velocity for
+  the treated enzyme is adequate.
 \end{example}
 
 In the above example, the $t$ ratios for the
@@ -2562,7 +2520,7 @@ variables as in Section 3.11.
 
 \subsection{Non-nested Models}
 
-When trying to decide which of several {\em non-nested\/} models is
+When trying to decide which of several \emph{non-nested} models is
 best, the first approach should be to the researcher.
 That is, if there are scientific reasons for preferring one model
 over the others, strong weight should be given to the
@@ -2590,9 +2548,9 @@ several experiments in which the operating conditions have been
 varied, and it may be thought that the rate constants should depend in
 some systematic way on the operating conditions.
 We would then like to fit a model which
-incorporates the dependence of the {\em kinetic parameters\/}
-$\btheta$ on some {\em process variables}, say $\bw$, and some
-{\em process parameters},
+incorporates the dependence of the \emph{kinetic parameters}
+$\btheta$ on some \emph{process variables}, say $\bw$, and some
+\emph{process parameters},
 \index{parameter!process}
 $\bphi = ( \phi_1 ,\ldots, \phi_L ) \trans$.
 That is, $\btheta = \btheta ( \bw , \bphi )$.
@@ -2606,67 +2564,66 @@ derivatives with respect to $\bphi$, and then use a Gauss--Newton
 algorithm to converge to $\hat{\bphi}$.
 It is more efficient, however, to build on what we already have
 and proceed as follows:
-  \begin{enumerate}
-    \item At each level of $\bw$, estimate the kinetic parameters
-          $\btheta$ in the regular model.
-    \item Plot the parameter estimates $\hat \theta_{p}$ versus $\bw$
-          to determine a plausible form for the relationship of $\hat
-          \theta_{p}$ to $\bw$ and to obtain starting estimates for
-          the process parameters $\bphi$.
-    \item  Use the chain rule for derivatives to determine the
-          derivatives with respect to $\bphi$, exploiting the existing
-          derivatives with respect to $\btheta$, as
-$$
-{ \partial \eta_n   \over  \partial \phi_l } =
-\sum_{p=1}^P
-{ \partial \eta_n   \over  \partial \theta_p } 
-{ \partial \theta_p   \over  \partial \phi_l }
-$$
-         for $l= 1 ,2 ,\ldots, L$, where $L$ is the total number of
-         process parameters.
-  \end{enumerate}
+\begin{enumerate}
+\item At each level of $\bw$, estimate the kinetic parameters
+  $\btheta$ in the regular model.
+\item Plot the parameter estimates $\hat \theta_{p}$ versus $\bw$
+  to determine a plausible form for the relationship of $\hat
+  \theta_{p}$ to $\bw$ and to obtain starting estimates for
+  the process parameters $\bphi$.
+\item  Use the chain rule for derivatives to determine the
+  derivatives with respect to $\bphi$, exploiting the existing
+  derivatives with respect to $\btheta$, as
+  \begin{displaymath}
+    \frac{\partial\eta_n}{\partial\phi_l}=\sum_{p=1}^P
+    \frac{\partial\eta_n}{\partial\theta_p} 
+    \frac{\partial\theta_p}{\partial\phi_l}
+  \end{displaymath}
+  for $l= 1 ,2 ,\ldots, L$, where $L$ is the total number of
+  process parameters.
+\end{enumerate}
 An application of this method is described in Section 5.5.
 
 \begin{example}\label{mic:pfunc}
 
-Suppose in the research on Puromycin (Example Puromycin \ref{mic:10})
-there were, say, four treatment levels of Puromycin instead of
-just two (treated and untreated).
-We could then proceed by incorporating three indicator variables to
-account for changes in the parameters due to different
-treatments.
-However, if the Puromycin treatments consist of different doses,
-it might be possible to write
-$$
-f ( x , \btheta ) = { \theta_1 ( w )  x   \over  \theta_2 ( w ) + x }
-$$
-where a possible form of $\theta_{1}$ and $\theta_{2}$ is
+  Suppose in the research on Puromycin (Example Puromycin \ref{mic:10})
+  there were, say, four treatment levels of Puromycin instead of
+  just two (treated and untreated).
+  We could then proceed by incorporating three indicator variables to
+  account for changes in the parameters due to different
+  treatments.
+  However, if the Puromycin treatments consist of different doses,
+  it might be possible to write
+  \begin{displaymath}
+    f ( x , \btheta ) = \frac{\theta_1(w)x}{\theta_2(w)+x}
+  \end{displaymath}
+  where a possible form of $\theta_{1}$ and $\theta_{2}$ is
   \begin{eqnarray*}
     \theta_1&=&\phi_{10} + \phi_{11}  w\\
     \theta_2&=&\phi_{20} + \phi_{21}  w
   \end{eqnarray*}
-In this example, the (regular) variable is $x$, the substrate
-concentration, and the process variable is $w$, the Puromycin
-concentration.
-
-Now suppose that at Puromycin concentration $w_{1}$ we get
-estimates
-$\hat \theta_{11}$ and $\hat \theta_{21}$, at concentration
-$w_{2}$, we get estimates $\hat \theta_{12}$ and $\hat \theta_{22}$,
-and so on, and that a plot of $\hat \theta_{2}$ versus $w$ looks
-essentially flat, which suggests
-$\theta_2 =\mbox{\rm constant}$.
-Then we would choose $\phi_{20} = \hat \theta_{2}$.
-Suppose further that the plot of $\hat \theta_{1}$ versus $w$
-reveals a straight line relationship,
-$\theta_1 = \phi_{10} + \phi_{11} w$.
-We could then use linear regression of $\hat \theta_{1}$ on $w$
-to get starting estimates for $\phi_{10}$ and $\phi_{11}$.
-
-The model to be fitted to the combined data vector would be
+  In this example, the (regular) variable is $x$, the substrate
+  concentration, and the process variable is $w$, the Puromycin
+  concentration.
+  
+  Now suppose that at Puromycin concentration $w_{1}$ we get
+  estimates
+  $\hat \theta_{11}$ and $\hat \theta_{21}$, at concentration
+  $w_{2}$, we get estimates $\hat \theta_{12}$ and $\hat \theta_{22}$,
+  and so on, and that a plot of $\hat \theta_{2}$ versus $w$ looks
+  essentially flat, which suggests
+  $\theta_2 =\mbox{\rm constant}$.
+  Then we would choose $\phi_{20} = \hat \theta_{2}$.
+  Suppose further that the plot of $\hat \theta_{1}$ versus $w$
+  reveals a straight line relationship,
+  $\theta_1 = \phi_{10} + \phi_{11} w$.
+  We could then use linear regression of $\hat \theta_{1}$ on $w$
+  to get starting estimates for $\phi_{10}$ and $\phi_{11}$.
+  
+  The model to be fitted to the combined data vector would be
   \begin{eqnarray*}
-    f(x,w,\bphi)&=&{\theta_1(w)x\over\theta_2(w)+x}\\
-    &=&{(\phi_{10}+\phi_{11}w)x\over\phi_{20}+x}
+    f(x,w,\bphi)&=&\frac{\theta_1(w)x}{\theta_2(w)+x}\\
+    &=&\frac{(\phi_{10}+\phi_{11}w)x}{\phi_{20}+x}
   \end{eqnarray*}
 \end{example}
 
@@ -2754,8 +2711,7 @@ light intensity increased.
 
 From a plot of the data
 \begin{figure}
-  \vspace{3in}
-%    \centerline{\psfig{figure=figs/3.NITdata,height=3in}}
+  \centerline{\includegraphics{3NITdata}}%,height=3in}}
   \caption{Plot of nitrite utilization by bean plants
     versus light intensity for day 1 (*) and day 2 ().}
   \label{fig:NITdata}
@@ -2826,8 +2782,7 @@ significant day effect tends to corroborate the observed
 difference between the heights of the maxima on the two days.
 A plot of the replication
 \begin{figure}
-  \vspace{2.75in}
-%  \centerline{\psfig{figure=figs/3.NITrep,height=2.75in}}
+  \centerline{\includegraphics{3NITrep}}%,height=2.75in}}
   \caption{Replication standard deviations plotted versus replication
     averages for the nitrite utilization data.  Day 1 data are shown
     as $*$ and day 2 data as .}
@@ -2850,13 +2805,13 @@ not appropriate.
 Because the researchers did not have a model in mind, it was
 necessary to select one on the basis of the behavior of the data.
 The Michaelis--Menten model
-$$
-f (x , \btheta ) = {\theta_1  x  \over  \theta_2 + x }
-$$
+\begin{displaymath}
+  f(x,\btheta)=\frac{\theta_1x}{\theta_2+x}
+\end{displaymath}
 and the simple exponential rise model
-$$
+\begin{displaymath}
 f (x , \btheta ) = \theta_1 ( 1 - e^{ - \theta_2 x } )
-$$
+\end{displaymath}
 were selected because they met the researcher's beliefs
 that nitrite utilization was zero at zero light intensity and tended to
 an asymptote as the light intensity increased.
@@ -2874,18 +2829,18 @@ we proceed to fit a model for day 1 with incremental
 parameters for day 2.
 \index{incremental parameter!nitrite example}
 That is, we write
-$$
-f(x,\btheta)={(\theta_1+\phi_1x_2)x_1\over(\theta_2+\phi_2 x_2)+x_1}
-$$
+\begin{displaymath}
+f(x,\btheta)=\frac{(\theta_1+\phi_1x_2)x_1}{(\theta_2+\phi_2 x_2)+x_1}
+\end{displaymath}
 where $x_{1}$ is the light intensity and $x_{2}$ is an
 indicator variable
-$$
+\begin{displaymath}
 x_2 = \left\{
   \begin{array}{l l}
     0&\mbox{\rm day 1}\\
     1&\mbox{\rm day 2}
   \end{array}\right.
-$$
+\end{displaymath}
 as described in Section 3.10.
 
 \subsection{Starting Values}
@@ -2953,8 +2908,7 @@ corresponding to a $p$ value of 0.00.)
 A plot of the residuals versus light intensity,
 as in
 \begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.NITres1,height=3in}}
+  \centerline{\includegraphics{3NITres1}}%,height=3in}}
   \caption{Studentized residuals from the 4-parameter
     Michaelis--Menten model plotted versus light intensity.  Day 1
     data are shown as $*$ and day 2 data as .}
@@ -2972,22 +2926,21 @@ leveling off as suggested by the researchers.
 To alter the Michaelis--Menten expectation function to rise to a
 peak and then fall, we added a quadratic term to the denominator to
 produce the quadratic Michaelis--Menten model,
-$$
-f ( x , \btheta ) = { \theta_1 x   \over  \theta_2 + x + \theta_3  x^2 }
-$$
+\begin{displaymath}
+  f(x,\btheta)=\frac{\theta_1x}{\theta_2+x+\theta_3x^2}
+\end{displaymath}
 which, with incremental parameters and an indicator variable
 for the different days, becomes
-$$
-f ( \bx , \btheta ) = { ( \theta_1 + \phi_1  x_2 )
-x_1   \over  ( \theta_2 + \phi_2  x_2 ) + x_1 +
-( \theta_3 + \phi_3  x_2 )  x_1^2 }
-$$
+\begin{displaymath}
+  f(\bx,\btheta)=\frac{(\theta_1+\phi_1 x_2)x_1}{(\theta_2+\phi_2x_2)+x_1
+    +(\theta_3+\phi_3x_2)x_1^2}
+\end{displaymath}
 (For the exponential rise model, we replaced the unit term by an
 exponential to produce the exponential difference model,
-$$
+\begin{displaymath}
 f = \theta_1 ( e^{ - \theta_3 x } -
 e^{ - \theta_2 x } )
-$$
+\end{displaymath}
 This model, augmented with increment parameters and an
 indicator variable, was also used to fit the data.)
 
@@ -3005,9 +2958,9 @@ $\bphi^0=( -10000 ,23 ,0.002 ) \trans$.
 rate constants might be in the ratio 1:5 and used the estimate
 for $\theta_{2}$ to give $\theta_3 =0.006$.
 We then estimated $\theta_{1}$ by evaluating
-$$
-\theta_1 = {y \over e^{{-0.006x}}-e^{{-0.030x}}}
-$$
+\begin{displaymath}
+  \theta_1=\frac{y}{e^{{-0.006x}}-e^{{-0.030x}}}
+\end{displaymath}
 for several $x$ values.  This gave $\theta_1^{0}=37000$
 for the day 1 data and $35000$ for the day 2 data, from which we
 got $\phi_1^0 = -2000$.)
@@ -3050,8 +3003,7 @@ difference model.)
 
 The residuals for this model, plotted versus light intensity in
 \begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.NITres2,height=3in}}
+  \centerline{\includegraphics{3NITres2}}%,height=3in}}
   \caption{Studentized residuals from the 6-parameter quadratic
     Michaelis--Menten model plotted versus light intensity.  Day 1
     data are shown as * and day 2 data as $\cdot$.}
@@ -3121,8 +3073,7 @@ does not show a significant degradation of the fit with
 elimination of $\phi_{2}$ and $\phi_{3}$.
 The residuals, when plotted versus light intensity as in
 \begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.NITres3,height=3in}}
+  \centerline{\includegraphics{3NITres3}}%,height=3in}}
   \caption{Studentized residuals from the 4-parameter quadratic
     Michaelis--Menten model plotted versus light intensity.  Day 1
     data are shown as * and day 2 data as $\cdot$.}
@@ -3186,9 +3137,9 @@ Consequently, they will tend to be collinear.
 
 As a final check on the model, the 3-parameter Michaelis--Menten
 model
-$$
-f = {( \theta_1 + \phi_1 x_2 ) x_1  \over  \theta_2 + x_1}
-$$
+\begin{displaymath}
+  f=\frac{(\theta_1+\phi_1x_2)x_1}{\theta_2+x_1}
+\end{displaymath}
 could be fitted and compared with the
 4-parameter quadratic Michaelis--Menten model using an extra sum of
 squares analysis to further substantiate the necessity for the parameter
@@ -3284,8 +3235,7 @@ smaller, we had a slight preference for the Michaelis--Menten
 model.
 In Figure~\ref{fig:NITconfband}
 \begin{figure}
-  \vspace{3in}
-%  \centerline{\psfig{figure=figs/3.NITconfband,height=3in}}
+  \centerline{\includegraphics{3NITconfband}}%,height=3in}}
   \caption{Plot of nitrite utilization versus light intensity together
     with the fitted curves (solid lines) and the 95\% approximate
     inference bands (dotted).  Data for day 1 are shown as * and for
@@ -3317,7 +3267,7 @@ than on the design of experiments to produce good data, although
 we believe that good experimental design is vital to
 scientific progress.
 The reason for the prime importance of experimental design is
-that {\em the information content of the data is established
+that \emph{the information content of the data is established
 when the experiment is performed}, and no amount of sensitive data
 analysis can recover information which is not present in the
 data.
@@ -3333,7 +3283,7 @@ in order to appreciate what ``good experimental design'' is.
 \index{experimental design!general considerations}
 
 Experimentation is fundamental to scientific learning, which we
-may characterize as {\em reducing ignorance}.
+may characterize as \emph{reducing ignorance}.
 At any stage of research, we are in a position of having data,
 and of being able to explain part of that data, and
 as the research proceeds, we are able to account for, or
@@ -3346,14 +3296,14 @@ conditions, she would endeavor to find out, at each stage, what
 the important factors are, and how they affect the response.
 Initially, she would be involved in empirical ``screening designs''
 to try to isolate those factors which are most influential in
-affecting the response, probably using {\em factorial\/} or
-{\em fractional factorial\/} designs
+affecting the response, probably using \emph{factorial} or
+\emph{fractional factorial} designs
 \cite{box:hunt:hunt:1978}.
 %\glossary{ Box, G.E.P.}
 %\glossary{ Hunter, J.S.}
 %\glossary{ Hunter, W.G.}
 If she was interested in optimizing some characteristic, she
-might then proceed to {\em response surface\/} designs
+might then proceed to \emph{response surface} designs
 \cite{box:drap:1987,box:hunt:hunt:1978}.
 %\glossary{ Draper, N.R.}
 %\glossary{ Box, G.E.P.}
@@ -3367,7 +3317,7 @@ It is this aspect of experimental design which we consider in
 this section.
 
 We assume initially that the experimenter has a well-defined
-{\em form\/} for the expectation function relating the
+\emph{form} for the expectation function relating the
 factors to the response, and that the objectives
 of the experiments are to provide the necessary and adequate
 \index{experimental design!objectives}
@@ -3438,7 +3388,7 @@ then proceed slavishly to follow that design to its completion.
 Due account should be taken of what is learned at each stage of
 the experiment, and this information should be exploited in the
 design of the next stage.
-The number of experiments which should be run in a {\em block\/}
+The number of experiments which should be run in a \emph{block}
 will depend on the number of factors and the type of experiment
 being run, of course, but blocks of size 10 to 20 are usually
 informative and manageable.
@@ -3453,11 +3403,11 @@ spite of the inherent variability of the response.
 
 With regard to
 verifying the assumptions about the expectation
-function, it is important to provide {\em replications\/}
+function, it is important to provide \emph{replications}
 \index{replication}
 to enable testing for lack of fit or inadequacy of the
 expectation function.
-It is also important, when possible, to {\em randomize\/}
+It is also important, when possible, to \emph{randomize}
 the order of the
 \index{randomization}
 experiments, to ensure that the expectation function is appropriate.
@@ -3476,9 +3426,9 @@ assumptions concerning the disturbances will be appropriate, as
 discussed in Section 1.3.
 Once again, we see the importance and power of randomizing.
 
-In summary, {\em statistical analysis\/} is concerned with the efficient
+In summary, \emph{statistical analysis} is concerned with the efficient
 extraction and presentation of the information embodied in a data set,
-while {\em statistical experimental design\/}
+while \emph{statistical experimental design}
 is concerned first with
 ensuring that the important necessary information is embodied in a data
 set,
@@ -3489,17 +3439,17 @@ information easy.
 \index{experimental design!for linear expectation functions}
 
 Consider the linear model (1.1)
-$$
+\begin{displaymath}
 \bY=\bX \bbeta+\bZ
-$$
+\end{displaymath}
 with the usual assumptions (1.2) and (1.3) about the disturbances
 $\bZ$,
-$$
+\begin{displaymath}
 \mbox{\rm E} [ \bZ ] =  {\bf 0} 
-$$
-$$
+\end{displaymath}
+\begin{displaymath}
 \mbox{\rm Var} [ \bZ ] = \sigma^2 \bI
-$$
+\end{displaymath}
 For a linear regression model, a row of the derivative matrix $\bX$
 depends only on the choice of the $K$ design variables, where the
 design variables determine such characteristics as when the run
@@ -3522,9 +3472,9 @@ region is minimized
 Since the power $-1/2$ is inconsequential,
 Wald proposed
 maximizing the determinant $D = | \bX \trans \bX |$, and
-designs which satisfy this criterion are called {\em D-optimal\/}
+designs which satisfy this criterion are called \emph{D-optimal}
 designs.
-The criterion is referred to as the {\em determinant criterion}.
+The criterion is referred to as the \emph{determinant criterion}.
 \index{determinant!design criterion}
 
 From a geometric point of view, the determinant criterion implies
@@ -3561,9 +3511,9 @@ some initial parameter estimates $\btheta^0 $.
 That is, in nonlinear design, the $D$-optimal criterion is modified to
 maximize
 \index{D-optimal!design criterion}
-$$ \label{eqn:6.1}
+\begin{displaymath}
 D = | {\bV^0}\trans\bV^0 |
-$$
+\end{displaymath}
 
 The design of an experiment depends on the stage at which the
 researcher is in an investigation.
@@ -3610,32 +3560,24 @@ $\btheta^{0}$ are given.
 
 The derivatives of the expectation function, evaluated at the
 initial parameter estimates $\btheta^{0}$, are
-$$
-{x \over  \theta_2^0 + x } 
-{- \theta_1^0 x  \over  ( \theta_2^0 + x )^2 }
-$$
+\begin{displaymath}
+  \frac{x}{\theta_2^0+x}\frac{-\theta_1^0x}{(\theta_2^0+x)^2}
+\end{displaymath}
 and so the determinant to be maximized is
-  \begin{eqnarray*}
-    | \bV^0 |&=&\left| \matrix { \matrix {
-    {x_1 \over  \theta_2^0 + x_1 }
-    \cr
-    {x_2 \over  \theta_2^0 + x_2 }
-    }
-    \matrix {
-    {- \theta_1^0 x_1 \over ( \theta_2^0+x_1 )^2}
-    \cr
-    {- \theta_1^0 x_2 \over ( \theta_2^0+x_2 )^2}
-    }
-    } \right|\\
-    &=&{\theta_1^0 x_1 x_2| x_1-x_2 |  \over ( \theta_2^0+x_1 )^2 (
+\begin{eqnarray*}
+  | \bV^0 |&=&\left|
+  \begin{bmatrix}
+    \frac{x_1}{\theta_2^0+x_1}&\frac{-\theta_1^0 x_1}{( \theta_2^0+x_1 )^2}\\
+    \frac{x_2}{\theta_2^0+x_2}&\frac{-\theta_1^0 x_2}{( \theta_2^0+x_2)^2}
+  \end{bmatrix}\right|\\
+  &=&\frac{\theta_1^0 x_1 x_2| x_1-x_2 | }{ ( \theta_2^0+x_1 )^2 (
     \theta_2^0+x_2 )^2}
-  \end{eqnarray*}
+\end{eqnarray*}
 The modulus of this determinant is maximized when
-$$
-x_1=x_{\mbox{\rm max}}\quad\mbox{\rm and}\quad
-{x_2=\theta_2^0 \over 1+2 ( \theta_2^0 / x_{\mbox{\rm max}})}
-\approx\theta_2^0
-$$
+\begin{displaymath}
+  x_1=x_{\mbox{\rm max}}\quad\text{and}\quad
+  x_2=\frac{\theta_2^0}{1+2(\theta_2^0/x_{\text{max}})}\approx\theta_2^0
+\end{displaymath}
 The determinant criterion therefore places the design points so
 as to tie down the asymptote ($\theta_{1}$) by performing one
 experiment at the maximum concentration, and to tie down the
@@ -3645,17 +3587,16 @@ half-concentration.
 It is instructive to compare the $D$-optimal design with the
 dilution design used by \citeasnoun{trel:1974}.
 %\glossary{ Treloar, M.A.}
-The dilution design used $x_{max}  =  1.1$ and five dilutions by
+The dilution design used $x_{\text{max}}=1.1$ and five dilutions by
 approximately one-half, with duplications, giving a total of 12 runs.
 With the same number of runs, the $D$-optimal design would consist of 6
 replications at $x_{max}$ and 6 replications at
-$x_2=\theta_2^0 /[1+2 ( \theta_2^0 / x_{max} )]$.
+$x_2=\theta_2^0 /[1+2 ( \theta_2^0 / x_{\text{max}})]$.
 We take $\theta_2^0  =  0.1$ as a reasonable starting estimate,
 and so the design is $x_1  =  1.1$, $x_2  =  0.085$.
 In Figure \ref{fig:MICdesign}
 \begin{figure}
-  \vspace{3in}
-  %\centerline{\psfig{figure=figs/3.MICdesign,height=3in}}
+  \centerline{\includegraphics{3MICdesign}}%,height=3in}}
   \caption{Comparison of 95\% approximate inference regions for two
     designs for the Puromycin data.  The larger region results from
     the dilution design used, and the shaded region results from a
@@ -3681,7 +3622,7 @@ The determinant criterion provides an objective basis for
 determining $P$-point designs for $P$-parameter models, but the
 design strategy should not be applied blindly.
 The criterion was derived on the basis that the expectation
-function is {\em known}, and provides only $P$ design points to
+function is \emph{known}, and provides only $P$ design points to
 estimate the $P$ parameters.
 Replications at these $P$ design points are useful because
 \index{replication}
@@ -3709,9 +3650,9 @@ analyzed, and the
 design for the next run is obtained by maximizing
 $| \bV_1 \trans \bV_1 |$ with respect to the design variables,
 $\bx_{N+1}$, where
-$$
-\bV_1=\left( \matrix{\matrix{{\bV_0}\cr{\bv_{N+1}}}}\right)
-$$
+\begin{displaymath}
+\bV_1= \begin{pmatrix}\bV_0\\\bv_{N+1}\end{pmatrix}
+\end{displaymath}
 and $\bv_{N+1}$ is the gradient vector
 $\partial f / \partial \btheta \trans$
 evaluated at the least squares estimates from the $N$ runs already made.
@@ -3780,25 +3721,25 @@ Then the variance--covariance matrix of the $P_{2}$
 parameters is proportional to $\bD_{2,2}$, where
 \begin{eqnarray*}
   \bD&=&({\bV^0}\trans \bV^0 )^{-1}\\
-  && = \left[  \matrix {
-  \matrix{{{\bV_1^{0}}\trans \bV_1^0}
-  \cr{{\bV_2^{0}}\trans \bV_1^0}}
-  \matrix{{{\bV_1^{0}}\trans \bV_2^0}
-  \cr{{\bV_2^{0}}\trans \bV_2^0}}
-  }\right]^{-1}\\
-  && = \left[ \matrix {
-  \matrix { \bD_{1,1} \cr \bD_{1,2} \trans }
-  \matrix { \bD_{1,2} \cr \bD_{2,2} }
-  }\right]
+  % && = \left[  \matrix {
+  % \matrix{{{\bV_1^{0}}\trans \bV_1^0}
+  % \cr{{\bV_2^{0}}\trans \bV_1^0}}
+  % \matrix{{{\bV_1^{0}}\trans \bV_2^0}
+  % \cr{{\bV_2^{0}}\trans \bV_2^0}}
+  % }\right]^{-1}\\
+  % && = \left[ \matrix {
+  % \matrix { \bD_{1,1} \cr \bD_{1,2} \trans }
+  % \matrix { \bD_{1,2} \cr \bD_{2,2} }
+  % }\right]
 \end{eqnarray*}
 and so the $D$-optimal criterion is changed to minimization of
-$$
+\begin{displaymath}
 D_S = | \bD_{2,2} |
-$$
+\end{displaymath}
 which is equivalent to maximizing
-$$
-{ | { \bV^0 } \trans \bV^0 |   \over  | { \bV_1^0 } \trans \bV_1^0 | }
-$$
+\begin{displaymath}
+\frac{ | { \bV^0 } \trans \bV^0 |}{ | { \bV_1^0 } \trans \bV_1^0 | }
+\end{displaymath}
 
 \begin{example}\label{iso:subset}
 
@@ -3856,37 +3797,35 @@ so the design problem is simpler.
 The easiest type of conditionally linear model to demonstrate this for
 is that with only one conditionally linear parameter,
 so the function can be written
-$$
+\begin{displaymath}
 f ( \bx , \btheta ) = \theta_1  g ( \bx , \btheta_{-1} )
-$$
+\end{displaymath}
 for some function $g$ where
 $\btheta_{-1} = ( \theta_2 ,\ldots, \theta_P ) \trans$.
 This includes the Michaelis--Menten, BOD, and isomerization models.
 The gradient of the model function can then be written
-$$\label{eqn:clfact}
-{\partial f  \over \partial \btheta \trans} =
-\left( g ( \bx , \btheta_{-1} ) ,
- { \partial g   \over \partial \btheta_{-1} \trans}\right)
-\left[ \matrix {
-  \matrix { 1 \cr  {\bf 0}  }
-  \matrix {  {\bf 0}  \cr \theta_1 \bI }
-}\right]
-$$
+\begin{displaymath}
+  \frac{\partial f}{\partial\btheta\trans}=\left(g(\bx,\btheta_{-1}),
+    \frac{\partial g}{\partial\btheta_{-1}\trans}\right)
+  \begin{bmatrix}
+    1 & 0\\
+    \bm0 &\theta_1 \bI
+  \end{bmatrix}
+\end{displaymath}
 which isolates the dependence of $\theta_{1}$ from any dependence
 upon $\bx$.
 Using (\ref{eqn:clfact}), the derivative matrix $\bV$ can be written
-
-$$ \label{eqn:dfact}
-\bV = \bH ( \bx , \btheta_{-1} )  \bB ( \theta_1 )
-$$
+\begin{displaymath}
+  \bV = \bH ( \bx , \btheta_{-1} )  \bB ( \theta_1 )
+\end{displaymath}
 where
-$$
+\begin{displaymath}
 \bB ( \theta_1 ) =
-\left[ \matrix {
-  \matrix { 1 \cr  {\bf 0}  }
-  \matrix {  {\bf 0}  \cr \theta_1 \bI }
-}\right]
-$$
+\begin{bmatrix}
+  1 & 0\\
+  \bm0 &\theta_1 \bI
+\end{bmatrix}
+\end{displaymath}
 is $P \times P$, so the $D$-optimal criterion is
 \begin{eqnarray*}
   | \bV \trans \bV |&=&| \bB \trans \bH \trans \bH  \bB |\\
@@ -3896,10 +3835,10 @@ and, again, the dependence of $\theta_{1}$ is isolated from $\bx$.
 Therefore, the design does not depend upon $\theta_{1}$.
 
 In general, for conditionally linear models of the form
-$$
+\begin{displaymath}
 f ( \bx , \btheta ) = \theta_1 g_1 ( \bx , \btheta_{{-} \bL } )
 + \cdots + \theta_L g_L ( \bx , \btheta_{ - \bL } )
-$$
+\end{displaymath}
 where
 $\btheta_{ - \bL } = ( \theta_{L+1} ,\ldots, \theta_P ) \trans$,
 the
@@ -3913,7 +3852,7 @@ in \citeasnoun{hill:1980}, nor was it emphasized in
 %\glossary{ Khuri, A.I .}
 conditionally linear parameters will usually affect subset designs.
 This occurs because, for subset designs,
-the design criterion involves the {\em ratio\/}
+the design criterion involves the \emph{ratio}
 of determinants of components of $\bV$, and
 so the simple factorization above usually does not occur even if $\bB$ is
 square.
@@ -3927,11 +3866,11 @@ each component of $\btheta_{-\bL} $ enters into only one of the
 functions $g_i ,  i = 1 ,\ldots, L$, the derivatives can be factored
 as in (\ref{eqn:dfact}).
 For example, $D$-optimal designs for the sum of exponentials model
-$$
+\begin{displaymath}
 f ( x, \btheta ) = \theta_1 e^{ - \theta_2 x } +
 \theta_3 e^{ - \theta_4 x } + \cdots +
 \theta_{P-1} e^{ - \theta_P x }
-$$
+\end{displaymath}
 do not depend on the conditionally linear parameters.
 
 \subsection{Other Design Criteria}
@@ -3940,29 +3879,28 @@ Precise parameter estimation is not the only objective used for
 experimental design.
 Methods have been proposed for constructing designs for discriminating
 between possible model functions \cite{box:hill:1974} and for balancing
-%\glossary{ Box, G.E.P.}
-%\glossary{ Hill, W.J.}
+% \glossary{ Box, G.E.P.}
+% \glossary{ Hill, W.J.}
 the objectives of model discrimination and precise parameter estimation
 \cite{hill:hunt:wich:1968}.
-%\glossary{ Hill, W.J.}
-%\glossary{ Hunter, W.G.}
-%\glossary{ Wichern, D.}
+% \glossary{ Hill, W.J.}
+% \glossary{ Hunter, W.G.}
+% \glossary{ Wichern, D.}
 The review article \cite{stei:hunt:1984} describes many of these
-%\glossary{ Steinberg, D.M.}
-%\glossary{ Hunter, W.G.}
+% \glossary{ Steinberg, D.M.}
+% \glossary{ Hunter, W.G.}
 criteria.
 We also list several of the references for different experimental design
 criteria for single response and multiresponse nonlinear models in the
 bibliography.
 
 \begin{problems}
-
+  
   \prob Use the data from Appendix 4, Section A4.2 to fit the
   logistic model
-  $$
-  f ( x , \btheta )=\theta_1 +
-  { \theta_2   \over  1 + e^{ - \theta_4 ( x - \theta_3 ) }}
-  $$
+  \begin{displaymath}
+    f(x,\btheta)=\theta_1+\frac{\theta_2}{1+e^{-\theta_4(x-\theta_3)}}
+  \end{displaymath}
   
   \subprob Plot the data versus $x=\log_{10}$ (NIF concentration).
   Note that you will have to make a decision about how to incorporate
@@ -3997,109 +3935,109 @@ bibliography.
   
   \subprob Use the starting estimates from part (b) to fit the
   postulated model from part (a).
-
-\prob
+  
+  \prob
 
   \subprob Use the plot from Problem 2.6 and sketch in the
-    curve of steepest descent from the point
-    $\btheta^{0}$.
-    Hint: The direction of steepest descent is
-    perpendicular to the contours.
+  curve of steepest descent from the point
+  $\btheta^{0}$.
+  Hint: The direction of steepest descent is
+  perpendicular to the contours.
   \subprob Is the direction of the Gauss--Newton increment
-    close to the initial direction of steepest descent?
+  close to the initial direction of steepest descent?
   \subprob Calculate and plot the Levenberg increment using a
-    conditioning factor of $k=4$.
+  conditioning factor of $k=4$.
   \subprob Calculate and plot the Marquardt increment using a
-    conditioning factor of $k=4$.
+  conditioning factor of $k=4$.
   \subprob Comment on the relative directions of the
-    Gauss--Newton, Levenberg and Marquardt increment
-    vectors.
-
-\prob Use the data from Appendix 4, Section A4.3 to determine an
+  Gauss--Newton, Levenberg and Marquardt increment
+  vectors.
+  
+  \prob Use the data from Appendix 4, Section A4.3 to determine an
   appropriate model and to estimate the parameters.
-
+  
   \subprob Plot the concentration versus time on semilog paper,
-    and use the plot to determine the number of
-    exponential terms necessary to fit the data.
+  and use the plot to determine the number of
+  exponential terms necessary to fit the data.
   \subprob Use the plot and the method of curve peeling to
-    determine starting values for the parameters.
+  determine starting values for the parameters.
   \subprob Use a nonlinear estimation routine to estimate the
-    parameters.
-
-\prob Use a nonlinear estimation routine and the data and model
+  parameters.
+  
+  \prob Use a nonlinear estimation routine and the data and model
   from Appendix 4, Section A4.4 to estimate the parameters.
   Take note of the number of iterations required and any
   difficulties you encounter in each attempt.
-
+  
   \subprob Use any approach you think is appropriate to obtain
-    starting values for the parameters in the model.
+  starting values for the parameters in the model.
   \subprob Use your starting values in a nonlinear estimation
-    routine to estimate the parameters.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
-  \subprob Reparametrize the model by centering the factor $1 /
-    x_{3}$, and use the equivalent starting values from
-    part (a) to estimate the parameters.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
-    What effect does this reparametrization have on the
-    number of iterations to convergence?
+  routine to estimate the parameters.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
+  \subprob Reparametrize the model by centering the factor $1/x_3$,
+  and use the equivalent starting values from
+  part (a) to estimate the parameters.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
+  What effect does this reparametrization have on the
+  number of iterations to convergence?
   \subprob Reparametrize the model in part (a) using
-    $\theta_{1=e}^{ \phi_1 }$ and $\theta_2=e^{\phi_2}$
-    and the equivalent starting values from part (a)
-    to estimate the parameters.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
-    What effect does this reparametrization have on the
-    number of iterations to convergence?
+  $\theta_{1=e}^{ \phi_1 }$ and $\theta_2=e^{\phi_2}$
+  and the equivalent starting values from part (a)
+  to estimate the parameters.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
+  What effect does this reparametrization have on the
+  number of iterations to convergence?
   \subprob Reparametrize the model in part (b) using the same
-    parametrization as in part (c) and the equivalent
-    starting values from part (a) to estimate the
-    parameters.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
-    What effect does this reparametrization have on the
-    number of iterations to convergence?
-
-\prob Use a nonlinear estimation routine and the data and
+  parametrization as in part (c) and the equivalent
+  starting values from part (a) to estimate the
+  parameters.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
+  What effect does this reparametrization have on the
+  number of iterations to convergence?
+  
+  \prob Use a nonlinear estimation routine and the data and
   model from Appendix 4, Section A4.5 to estimate the
   parameters.
   Take note of the number of iterations required and
   any difficulties you encounter in each attempt.
-
+  
   \subprob Use any approach you think is appropriate to obtain
-    starting values for the parameters in the model.
+  starting values for the parameters in the model.
   \subprob Use your starting values in a nonlinear estimation
-    routine to estimate the parameters.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
+  routine to estimate the parameters.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
   \subprob Reparametrize the model in part (a) using $\theta_2
-    e^{ - \theta_3 x }= e^{ - \phi_3 ( x - \phi_2 ) }$.
-    If you achieve convergence, examine the parameter
-    approximate correlation matrix, and comment on the
-    conditioning of the model.
-    What effect does this reparametrization have on the
-    number of iterations to convergence?
-
-\prob 
-
+  e^{ - \theta_3 x }= e^{ - \phi_3 ( x - \phi_2 ) }$.
+  If you achieve convergence, examine the parameter
+  approximate correlation matrix, and comment on the
+  conditioning of the model.
+  What effect does this reparametrization have on the
+  number of iterations to convergence?
+  
+  \prob 
+  
   \subprob Show that the theoretical $D$-optimal starting
-    design for the logistic model of Problem 3.1
-    consists of $\bx=(-\infty,\theta_3-1.044/
-    \theta_4,\theta_3+1.044/ \theta_4,+\infty)\trans$. 
+  design for the logistic model of Problem 3.1
+  consists of $\bx=(-\infty,\theta_3-1.044/
+  \theta_4,\theta_3+1.044/ \theta_4,+\infty)\trans$. 
   \subprob Interpret the choice of the design points
-    graphically by plotting the logistic function versus
-    $x$ and plotting the location of the design points
-    on the $x$-axis.
+  graphically by plotting the logistic function versus
+  $x$ and plotting the location of the design points
+  on the $x$-axis.
   \subprob Plot the derivatives with respect to the parameters
-    versus $x$ and use these plots to help interpret the
-    choice of the design points.
-
+  versus $x$ and use these plots to help interpret the
+  choice of the design points.
+  
 \end{problems}
 
 % Local Variables: 

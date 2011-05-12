@@ -68,9 +68,9 @@ $( \gamma_1 (t) , \gamma_2 (t) ) \trans$
 of tetracycline hydrochloride in the two compartments
 can be described by the following pair of differential equations:
 \begin{eqnarray} \label{eqn:5.1}
-  {d \gamma_1 ( t )   \over  d t }&=&
+  \frac{d\gamma_1(t)}{d t}&=&
   \dot \gamma_1 = - \theta_1 \gamma_1 ( t )\\
-  {d \gamma_2 ( t )   \over  d t }&=&
+  \frac{d\gamma_2(t)}{d t}&=&
   \dot \gamma_2 =
   \theta_1 \gamma_1 ( t ) - \theta_2 \gamma_2 ( t )\nonumber
 \end{eqnarray}
@@ -124,9 +124,9 @@ in Figure \ref{fig:ziggy},
 which corresponds to the set of linear differential
 equations,
 \begin{eqnarray}\label{eqn:5.2}
-  {d\gamma_1\over dt}&=&-(\theta_1+\theta_4)\gamma_1\\
-  {d\gamma_2\over dt}&=&\theta_1\gamma_1-(\theta_2+\theta_3)\gamma_2\nonumber\\
-  {d\gamma_3\over dt}&=&\theta_4\gamma_1+\theta_2\gamma_2\nonumber
+  \frac{d\gamma_1}{dt}&=&-(\theta_1+\theta_4)\gamma_1\\
+  \frac{d\gamma_2}{dt}&=&\theta_1\gamma_1-(\theta_2+\theta_3)\gamma_2\nonumber\\
+  \frac{d\gamma_3}{dt}&=&\theta_4\gamma_1+\theta_2\gamma_2\nonumber
 \end{eqnarray}
 In this equation, $\gamma_1$ denotes kerogen, $\gamma_{2}$
 bitumen, and $\gamma_{3}$ oil.
@@ -153,7 +153,7 @@ the concentrations obey the linear system of differential
 equations
 \begin{equation}
   \label{eqn:5.3}
-  {d\bgamma\over dt}=\dot{\bgamma}(t)=\bA\bgamma(t)+\biota(t)
+  \frac{d\bgamma}{dt}=\dot{\bgamma}(t)=\bA\bgamma(t)+\biota(t)
 \end{equation}
 where $\bA$ is the $K \times K$ system {\em transfer matrix\/}
 \index{matrix!system transfer}
@@ -168,14 +168,14 @@ Although more complicated inputs may be used \cite{bate:wolf:watt:1986},
 in this book we consider only two input functions.
 One is a continuous infusion of material or {\em step input\/}
 into the system,
-$$
+\begin{displaymath}
 \biota ( t ) = \left\{
 \begin{array}{c c}
   \biota&t\ge 0\\
   0&t<0
 \end{array}
 \right.
-$$
+\end{displaymath}
 where $\biota$ is a constant vector.
 The other is a bolus or instantaneous injection, and although it
 can be considered as an impulse or Dirac $\delta$-function input, it
@@ -188,14 +188,14 @@ For the tetracycline example, the input is a bolus in the gut,
 and the transfer matrix $\bA$ can be readily obtained by
 inspection of the differential equations (\ref{eqn:5.1}) or from the system
 diagram (Figure \ref{fig:tet}), as
-$$
+\begin{displaymath}
 \bA = \left[
 \begin{array}{r r}
   -\theta_1&0\\
   \theta_1&-\theta_2
 \end{array}
 \right]
-$$
+\end{displaymath}
 The initial concentration of tetracycline hydrochloride in
 the gut is unknown, but the concentration in the serum is assumed to be
 zero, so we incorporate another parameter $\theta_{3}$ and
@@ -207,13 +207,13 @@ write $\bgamma_0=(\theta_3,0)\trans$.
 For the model (\ref{eqn:5.2}) suggested by \citeasnoun{zieg:gorm:1980},
 %\glossary{ Ziegel, E.R.}
 %\glossary{ Gorman, J.W.}
-$$
-\bA = \left[ \matrix {
-\matrix { { - \theta_1 - \theta_4 } \cr \theta_1 \cr \theta_4 }
-\matrix { 0 \cr { - \theta_2 - \theta_3 } \cr \theta_2 }
-\matrix { 0 \cr 0 \cr 0 }
-}\right]
-$$
+% \begin{displaymath}
+% \bA = \left[ \matrix {
+% \matrix { { - \theta_1 - \theta_4 } \cr \theta_1 \cr \theta_4 }
+% \matrix { 0 \cr { - \theta_2 - \theta_3 } \cr \theta_2 }
+% \matrix { 0 \cr 0 \cr 0 }
+% }\right]
+% \end{displaymath}
 The recorded measurements for bitumen and oil are percentages of
 the initial amount of kerogen, so we take
 $\bgamma_0=(100,0,0)\trans$.
@@ -298,23 +298,22 @@ $2\times2$ identity matrix.
 \subsection{Solving Systems of Linear Differential Equations}
 
 The general solution to (\ref{eqn:5.3}) can be written
-$$\label{eqn:5.4}
-\bgamma ( t ) = e^{ \bA t } \bgamma_0
-+ e^{ \bA t } * \biota ( t )
-$$
+\begin{displaymath}
+  \bgamma ( t ) = e^{ \bA t } \bgamma_0
+  + e^{ \bA t } * \biota ( t )
+\end{displaymath}
 where the matrix exponential
 \index{matrix!exponential}
 $e^{ \bA t }$ represents the convergent power series
-$$\label{eqn:5.6}
-e^{ \bA t } = \bI + {\bA t   \over  1 ! } +
-{( \bA t )^2   \over  2 ! } +\cdots
-$$
+\begin{displaymath}
+  e^{ \bA t } = \bI + \frac{\bA t}{1!}+\frac{(\bA t)^2}{2!} +\cdots
+\end{displaymath}
 and the $*$ denotes convolution,
 \index{convolution}
-$$\label{eqn:5.5}
-e^{ \bA t } * \biota ( t ) = \int_0^t
-e^{ \bA ( t - u ) } \biota ( u )du
-$$
+\begin{displaymath}
+  e^{ \bA t } * \biota ( t ) = \int_0^t
+  e^{ \bA ( t - u ) } \biota ( u )du
+\end{displaymath}
 The vector function is integrated componentwise.
 
 Suppose $\bA$ is {\em diagonalizable}, so
@@ -324,29 +323,29 @@ a diagonal matrix of eigenvalues,
 \index{eigenvalue}
 \index{eigenvector}
 $\bLAMBDA ={\rm diag}(\lambda_1,\ldots,\lambda_K)$, such that
-$$
+\begin{displaymath}
 \bA = \bU \bLAMBDA \bU^{-1}
-$$
+\end{displaymath}
 Then
-$$
+\begin{displaymath}
 e^{{\bA} t} = \bU e^{{\bLAMBDA} t} \bU^{-1}
-$$
+\end{displaymath}
 with
-$$
+\begin{displaymath}
 e^{{\bLAMBDA} t} ={\rm diag} ( e^{{\lambda}_1 t} ,\ldots,e^{{\lambda}_K t} )
-$$
+\end{displaymath}
 General computational methods for evaluating the convolution integral are
 given in Appendix 5, and pseudocode is given in Appendix 3.
 
 To develop the matrix exponential solution, we consider the special
 situation in which $\bA$ is diagonalizable and the
 input is a bolus, so the system (\ref{eqn:5.3}) can be written
-$$\label{eqn:bolus}
+\begin{displaymath}
 \dot{\bgamma}  =  \bA \bgamma  t    0
-$$
-$$
+\end{displaymath}
+\begin{displaymath}
 \bgamma ( 0 )   =  \bgamma_0
-$$
+\end{displaymath}
 Then (\ref{eqn:bolus}) becomes
 \begin{eqnarray}
   \dot{\bgamma}&=&\bA\bgamma  \\
@@ -354,70 +353,74 @@ Then (\ref{eqn:bolus}) becomes
 \end{eqnarray}
 Premultiplying both sides of the equation by $\bU^{-1}$, and
 letting $\bxi = \bU^{-1} \bgamma$, gives
-$$
+\begin{displaymath}
 \dot{\bxi}= \bLAMBDA \bxi
-$$
+\end{displaymath}
 which is a set of independent first order differential
 equations
-$$
+\begin{displaymath}
 \dot{\xi}_k = \lambda_k \xi_k k = 1 , 2 ,\ldots, K
-$$
+\end{displaymath}
 with solutions
-$$
+\begin{displaymath}
 \xi_k ( t )=e^{{\lambda}_k t }\xi_k ( 0 )
-$$
+\end{displaymath}
 where $\xi_k ( 0 )$ is the $k$th element of
 $\bU^{-1} \bgamma_0 $.
 Reverting to $\bgamma = \bU \bxi$ gives
-$$\label{eqn:ebolus}
+\begin{displaymath}
 \bgamma ( t ) = \bU e^{{\bLAMBDA} t} \bU^{-1} \bgamma_0
  = e^{ \bA t } \bgamma_0
-$$
+\end{displaymath}
 Thus, for a bolus or impulse input, the convolution integral
 (\ref{eqn:5.5}) reduces to (\ref{eqn:ebolus}).
 \begin{example}\label{tet:3}
 For the tetracycline example,
 $\bgamma_0 = ( \theta_3 ,  0) \trans$, and
-$$\label{eqn:5.7}
-\bA = \left[ \matrix {
-\matrix {- \theta_1 \cr \theta_1 }
-\matrix { 0 \cr - \theta_2 }
-}\right]
-$$
+\begin{displaymath}
+  \bA =
+  \begin{bmatrix}
+    -\theta_1&0\\
+    \theta_1&\theta_2
+  \end{bmatrix}
+\end{displaymath}
 For this simple system, we can calculate
 eigenvalues and eigenvectors of the transfer matrix (\ref{eqn:5.7})
 and use these to obtain explicit analytic expressions for
 the responses.
 Thus,
-$$
-\bLAMBDA = \left[ \matrix {
-  \matrix{ - \theta_1 \cr 0}
-  \matrix{ 0 \cr - \theta_2}
-}\right]
-$$
+\begin{displaymath}
+\bLAMBDA =
+\begin{bmatrix}
+  -\theta_1 & 0\\
+          0 & -\theta_2
+\end{bmatrix}
+\end{displaymath}
 and
-$$
-\bU = \left[ \matrix {
-\matrix { 1 \cr { { \theta_1   \over  \theta_2 - \theta_1 } } }
-\matrix { 0 \cr - \theta_1 }
-}\right]
-$$
+\begin{displaymath}
+\bU =
+\begin{bmatrix}
+  1        & 0\\
+  \frac{\theta_1}{\theta_2-\theta_1} & -\theta_1
+\end{bmatrix}
+\end{displaymath}
 so
-$$
-\bU^{-1} = \left[ \matrix {
-\matrix { 1 \cr { {1 \over  \theta_2 - \theta_1 } } }
-\matrix { 0 \cr - {1 \over \theta_1} }
-}\right]
-$$
+\begin{displaymath}
+\bU^{-1} =
+\begin{bmatrix}
+  1 & 0\\
+  \frac{1}{\theta_2-\theta_1} & \frac{-1}{\theta_1}
+\end{bmatrix}
+\end{displaymath}
 and, using (\ref{eqn:ebolus}), the responses are
-$$
-\bgamma = \left[ \matrix {
-\matrix { \theta_3 e^{ - \theta_1 t } \cr
-   { { \theta_3 \theta_1 ( e^{ - \theta_1 t }
-      - e^{ - \theta_2 t } )   \over  \theta_2 - \theta_1 } }
-   }
-}\right]
-$$
+% \begin{displaymath}
+% \bgamma = \left[ \matrix {
+% \matrix { \theta_3 e^{ - \theta_1 t } \cr
+%    { \frac{ \theta_3 \theta_1 ( e^{ - \theta_1 t }
+%       - e^{-\theta_2t})}{\theta_2 - \theta_1 } }
+%    }
+% }\right]
+% \end{displaymath}
 \end{example}
 
 \subsection*{Dead Time}
@@ -433,20 +436,20 @@ We then modify (\ref{eqn:5.3}) to
   \bgamma(0)&=&\bgamma_0
 \end{eqnarray}
 where $\tau = ( t - t_0 )_{+}$, that is,
-$$
+\begin{displaymath}
 \tau = \left\{\begin{array}{l l}
 t - t_0&t > t_0\\
 0&t\le t_0
 \end{array}\right.
-$$
+\end{displaymath}
 where $t_0$ can be known or unknown.
 The general solution is then
-$$\label{eqn:deadtau}
-\bgamma ( \tau ) = \left \{ \matrix
-   { \bgamma_0 \cr e^{ \bA \tau } \bgamma_0
-          + e^{ \bA \tau }  * \biota ( \tau )}
-  \matrix {\tau\le 0 \cr \tau = 0}\right .
-$$
+% \begin{displaymath}
+% \bgamma ( \tau ) = \left \{ \matrix
+%    { \bgamma_0 \cr e^{ \bA \tau } \bgamma_0
+%           + e^{ \bA \tau }  * \biota ( \tau )}
+%   \matrix {\tau\le 0 \cr \tau = 0}\right .
+% \end{displaymath}
 
 \begin{example}\label{tet:deadtime}
 
@@ -562,16 +565,16 @@ evaluated at $t_{f}$, as the initial condition vector
 in a new system with $\biota =  {\bf 0} $.
 Thus, assuming the initial conditions are zero, for the
 on-infusion stage we have
-$$
+\begin{displaymath}
 \bgamma_{{\rm on}} ( t ) = e^{ \bA t } * \biota ( t ) 
 t \le t_f
-$$
+\end{displaymath}
 and for the off-infusion stage we have
-$$
+\begin{displaymath}
 \bgamma_{{\rm off}} ( t ) =
 e^{ \bA (t - t_f )} \bgamma_{{\rm on}} ( t_f ) 
 t  t_f
-$$
+\end{displaymath}
 
 \subsection{Derivatives of the Expectation Function}
 \index{derivative!compartment model}
@@ -597,26 +600,26 @@ directly.
 As in Chapter 4, we use a subscript in parentheses to denote
 differentiation with respect to a parameter and
 write, for example,
-$$
-{ \partial \bgamma ( \tau )   \over  \partial \theta_p }  =
-\bgamma_{(p)}p = 1 , 2 ,\ldots, P
-$$
+\begin{displaymath}
+  \frac{\partial\bgamma(\tau)}{\partial\theta_p}=
+  \bgamma_{(p)}\quad p=1,2,\dots,P
+\end{displaymath}
 If only $\tau$ depends on $\theta_{p}$, the derivative of
 $\bgamma ( \tau )$ with respect to
 $\theta_{p}$ can be evaluated directly from
 (\ref{eqn:dead}) using the chain rule, so
-$$\label{eqn:taud}
+\begin{displaymath}
 \bgamma_{(p)} ( \tau ) = \tau_{(p)} [ \bA \bgamma ( \tau ) +
 \biota ]
-$$
+\end{displaymath}
 When $\bA$, $\bgamma_{0}$, or $\biota$, but not $\tau$, depends on
 $\theta_{p}$, we get the derivative
 $\bgamma_{(p)} ( \tau )$ by differentiating (\ref{eqn:dead}) with
 respect to $\theta_{p}$ to obtain
-$$
+\begin{displaymath}
 \dot{\bgamma}_{(p)} ( \tau ) = \bA \bgamma_{(p)} ( \tau ) +
 \bA_{(p)} \bgamma ( \tau ) + \biota_{(p)}
-$$
+\end{displaymath}
 This is simply another linear system of differential equations
 with driving function $\bA_{(p)} \bgamma ( \tau ) + \biota_{(p)}$,
 for which the solution is
@@ -632,11 +635,11 @@ for which the solution is
 To get a general expression for $\theta_{p}$ determining any
 of $\tau$, $\bA$, $\bgamma_{0}$, and $\biota$,
 we combine (\ref{eqn:5.8}) and (\ref{eqn:taud}) to give the expression
-$$\label{eqn:alld}
+\begin{displaymath}
 \bgamma_{(p)} ( \tau ) = e^{ \bA \tau } \bgamma_{(p)} ( 0 )
 + e^{ \bA \tau } * [ \bA_{(p)} \bgamma ( \tau ) + \biota_{(p)} ]
 + \tau_{(p)} [ \bA \bgamma ( \tau ) + \biota ]
-$$
+\end{displaymath}
 which is true for an impulse or step input.
 
 It is easy to evaluate $\bA_{(p)}$,
@@ -647,11 +650,11 @@ are always --1, +1, or 0.
 Note that the method can be extended to higher order derivatives:
 in particular, the derivative with respect to
 $\theta_{p}$ and $\theta_{q}$ is
-$$\label{eqn:5.9}
+\begin{displaymath}
 \bgamma_{(pq)} ( \tau ) =
 e^{ \bA \tau } * ( \bA_{(p)} \bgamma_{(q)} ( \tau ) ) +
 e^{ \bA \tau } * ( \bA_{(q)} \bgamma_{(p)} ( \tau ) )
-$$
+\end{displaymath}
 since the elements of $\bA_{(pq)}$, $\bgamma_{(pq)} (0)$,
 $\biota_{(pq)}$, and $\tau_{(pq)}$ are all 0.
 
@@ -661,56 +664,54 @@ For the tetracycline example with delay time, we have
 $\tau = ( t - \theta_4 )_{+}$,
 $\bgamma_0 = ( \theta_3 ,  0 ) \trans$
 and
-$$
-\bA = \left[ \matrix {
-\matrix { - \theta_1 \cr \theta_1 }
-\matrix { 0 \cr - \theta_2 }
-}\right]
-$$
+% \begin{displaymath}
+% \bA = \left[ \matrix {
+% \matrix { - \theta_1 \cr \theta_1 }
+% \matrix { 0 \cr - \theta_2 }
+% }\right]
+% \end{displaymath}
 so that
-$$
-\bA_{(1)} = \left[ \matrix {
-\matrix { - 1 \cr 1 }
-\matrix { 0 \cr 0 }
-}\right] , 
-\bA_{(2)} = \left[ \matrix {
-\matrix { 0 \cr 0 }
-\matrix { 0 \cr -1 }
-}\right] , 
-\bA_{(3)} = \bA_{(4)} = \left[ \matrix {
-\matrix { 0 \cr 0 }
-\matrix { 0 \cr 0 }
-}\right]
-$$
-$$
-\bgamma_{(1)} ( 0 ) = \bgamma_{(2)} ( 0 ) =
-\bgamma_{(4)} ( 0 ) = \left[ \matrix {
-\matrix { 0 \cr 0 }
-}\right] , 
-\bgamma_{(3)} ( 0 ) = \left[ \matrix {
-\matrix { 1 \cr 0 }
-}\right]
-$$
-$$
-\tau_{(1)} = \tau_{(2)} = \tau_{(3)} = 0 , 
-\tau_{(4)} = \left\{ \matrix { \matrix {-1 \cr 0}
-\matrix { \tau \ge 0 \cr \tau  0}
-}\right.
-$$
+% \begin{displaymath}
+% \bA_{(1)} = \left[ \matrix {
+% \matrix { - 1 \cr 1 }
+% \matrix { 0 \cr 0 }
+% }\right] , 
+% \bA_{(2)} = \left[ \matrix {
+% \matrix { 0 \cr 0 }
+% \matrix { 0 \cr -1 }
+% }\right] , 
+% \bA_{(3)} = \bA_{(4)} = \left[ \matrix {
+% \matrix { 0 \cr 0 }
+% \matrix { 0 \cr 0 }
+% }\right]
+% \end{displaymath}
+% \begin{displaymath}
+% \bgamma_{(1)} ( 0 ) = \bgamma_{(2)} ( 0 ) =
+% \bgamma_{(4)} ( 0 ) = \left[ \matrix {
+% \matrix { 0 \cr 0 }
+% }\right] , 
+% \bgamma_{(3)} ( 0 ) = \left[ \matrix {
+% \matrix { 1 \cr 0 }
+% }\right]
+% \end{displaymath}
+% \begin{displaymath}
+% \tau_{(1)} = \tau_{(2)} = \tau_{(3)} = 0 , 
+% \tau_{(4)} = \left\{ \matrix { \matrix {-1 \cr 0}
+% \matrix { \tau \ge 0 \cr \tau  0}
+% }\right.
+% \end{displaymath}
 and all second derivatives of these quantities are zero.
 \end{example}
 
 The functions $\bgamma_{(p)} ( \tau ),p=1 ,\ldots, P$,
-are called the
-%
-{\em sensitivity functions }
+are called the \emph{sensitivity functions}
 of the system \cite{cara:stew:1985}
 %\glossary{ Caracotsios, M.}
 %\glossary{ Stewart, W.E.}
 and can be evaluated
 for any $\tau$ and $\btheta$ using (\ref{eqn:alld}) and the results
 of Appendix 5.
-Pseudocode for fitting compartment models is given in Appendix 3.
+%Pseudocode for fitting compartment models is given in Appendix 3.
 
 \section{Practical Considerations}
 \index{practical considerations!compartment models}
@@ -752,9 +753,9 @@ With a bolus injection, the dose, say $D$, in the initial
 compartment is known, but the concentration $\gamma_0 $ is
 estimated.
 These are related by
-$$
-\gamma_0 = { D   \over  V_i }
-$$
+\begin{displaymath}
+  \gamma_0=\frac{D}{V_i}
+\end{displaymath}
 where $V_{i}$ is the volume of distribution for the injection
 compartment.
 Again, the logarithms of $\gamma_0 $ and $V_{i}$ are
@@ -938,7 +939,7 @@ We see from the plot that the concentration has reached
 46\% by time 0.5 day, and so the starting value for the
 rate constant is
 \begin{eqnarray*}
-  \theta&=&{- \ln0.46 \over 0.5 }\\
+  \theta&=&\frac{-\ln0.46}{0.5}\\
   &\approx&1.55
 \end{eqnarray*}
 
@@ -1033,19 +1034,19 @@ determine a simple adequate model.
 For the catenary model we added two parameters with values smaller
 than, and distinct from,
 the current parameter estimates to produce the starting estimates
-$$
+\begin{displaymath}
 \btheta^0 = ( 1.00 ,  0.66 ,  0.82 ,  0.5 ,  0.2 ) \trans
-$$
+\end{displaymath}
 from which we converged to
-$$
+\begin{displaymath}
 \hat \btheta = ( 0.990 ,  0.762 ,  1.015 ,  0.240 ,  0.352 ) \trans
-$$
+\end{displaymath}
 with a residual sum of squares of 0.043 on 7 degrees of freedom.
 
 Using the same starting values, the mamillary model converged to
-$$
+\begin{displaymath}
 \hat \btheta = ( 0.990 ,  0.532 ,  1.340 ,  0.231 ,  0.267 ) \trans
-$$
+\end{displaymath}
 with the same residual sum of squares as the catenary model.
 The residuals (for both models) are shown in
 Figure~\ref{fig:LIPres3cm5p},
@@ -1182,10 +1183,10 @@ This strongly suggests that the rate constants depend on temperature.
 A common form of rate constant dependence upon temperature
 is the Arrhenius relation
 \index{Arrhennius relation}
-$$\label{eqn:arrhen}
+\begin{displaymath}
 {\rm k}_i ( T ) = {\rm k}_{i,0} 
 e^{{-} E_i / R T}
-$$
+\end{displaymath}
 where $\mbox{\rm k}_i ( T )$ is the rate constant at temperature $T$,
 $\mbox{\rm k}_{i,0}$ is the preexponential term, $E_{i}$ is the activation
 energy for the reaction, $R$ is the universal gas constant of 1.987
@@ -1199,17 +1200,16 @@ To reduce the correlations, we center the temperatures about
 an intermediate temperature, $T_{0}$, as discussed in Section 3.4.2,
 and write (\ref{eqn:arrhen})
 as
-$$
-{\rm k}_i ( T ) = {\rm k}_i ( T_0 ) 
-\exp {\left[ - { E_i   \over R }\left( {1 \over T }-
-{1 \over T_0} \right)\right]}
-$$
+\begin{displaymath}
+  {\rm k}_i ( T ) = {\rm k}_i ( T_0 ) 
+  \exp {\left[ - \frac{E_i}{R}\left(\frac{1}{T}-\frac{1}{T_0}\right)\right]}
+\end{displaymath}
 Then
 \begin{eqnarray}\label{eqn:logarr}
   \ln{\rm k}_i ( T )&=&\ln{\rm k}_i ( T_0 )
-  - {E_i  \over R }\left( {1 \over T }- {1 \over T_0}\right)\\
+  - \frac{E_i}{R}\left(\frac{1}{T}-\frac{1}{T_0}\right)\\
   &=&\phi_i
-  - {E_i  \over R }\left( {1 \over T }- {1 \over T_0}\right)\nonumber
+  -\frac{E_i}{R}\left(\frac{1}{T}-\frac{1}{T_0}\right)\nonumber
 \end{eqnarray}
 so the logarithms of the rate constants depend linearly
 on the scaled inverse temperature.
@@ -1231,28 +1231,28 @@ However, we know that at time 0 the kerogen percentage is 100
 while the percentage of the other species is zero.
 Substituting these values into the model
 \begin{eqnarray*}
-  { d \gamma_1   \over  d t }&=&- ( \theta_1 + \theta_4 ) \gamma_1\\
-  {d\gamma_2\over d t }&=&\theta_1 \gamma_1 -
+  \frac{d\gamma_1}{d t}&=&- ( \theta_1 + \theta_4 ) \gamma_1\\
+  \frac{d\gamma_2}{d t}&=&\theta_1 \gamma_1 -
   ( \theta_2 + \theta_3 ) \gamma_2\\
-  { d \gamma_3   \over  d t }&=&\theta_4 \gamma_1 + \theta_2 \gamma_2
+  \frac{d\gamma_3}{d t}&=&\theta_4 \gamma_1 + \theta_2 \gamma_2
 \end{eqnarray*}
 at time 0 produces
 \begin{eqnarray*}
-  {d \gamma_2 ( 0 )  \over d t}&=&\theta_1\gamma_1 ( 0 )\\
+  \frac{d\gamma_2(0)}{d t}&=&\theta_1\gamma_1 ( 0 )\\
   &=& 100  \theta_1
 \end{eqnarray*}
 and
-$$
-{d \gamma_3 ( 0 )  \over d t} = 100  \theta_4
-$$
+\begin{displaymath}
+  \frac{d\gamma_3(0)}{d t}=100\theta_4
+\end{displaymath}
 and we can use approximate rates from early observations of
 $\gamma_{2}$ and $\gamma_{3}$ to obtain starting estimates
 $\theta_1^{0}$ and $\theta_4^{0}$.
 From these, we can infer a percentage of kerogen as
-$$
+\begin{displaymath}
 \gamma_1 ( t )  \approx 
 100  e^{ - ( \theta_1^0 + \theta_4^0 ) t }
-$$
+\end{displaymath}
 and use the approximate rate method of Section 4.3.1 to obtain
 starting estimates $\theta_2^{0}$ and $\theta_3^{0}$.
 
@@ -1266,14 +1266,14 @@ We therefore use the first two nonzero observations of $\gamma_{2}$
 and $\gamma_{3}$ to calculate $\theta_1^{0}$ and
 $\theta_4^{0}$ as
 \begin{eqnarray*}
-  \theta_1^0&=&\left. {1 \over \gamma_1 ( 0 )} 
-  {d \gamma_2  \over d t} \right|_0\\
-  &=& {1 \over 100 } {11.5 - 2.2  \over 3 }\\
+  \theta_1^0&=&\left.\frac{1}{\gamma_1(0)} 
+  \frac{d\gamma_2}{d t}\right|_0\\
+  &=&\frac{1}{100}\frac{11.5 - 2.2}{3}\\
   &=& 0.031
 \end{eqnarray*}
 and
 \begin{eqnarray*}
-  \theta_4^0&=& {1 \over 100 } {7.2 - 0.7  \over 5 }\\
+  \theta_4^0&=&\frac{1}{100}\frac{7.2 - 0.7}{5}\\
   &=&  0.013  
 \end{eqnarray*}
 A starting estimate of the dead time, $t_0^0 = 6$ minutes, is
@@ -1445,9 +1445,9 @@ Table~\ref{tbl:alltemp}.
 To get starting estimates for the process parameters in the
 Arrhenius relation, we introduced the negative scaled inverse
 temperature variable
-$$
-T_{\mbox{\rm inv} } = {-1000  \over 1.987 }\left( {1 \over T}-{1\over 723}\right)
-$$
+\begin{displaymath}
+  T_{\mbox{\rm inv} }=\frac{-1000}{1.987}\left(\frac{1}{T}-\frac{1}{723}\right)
+\end{displaymath}
 which centers about the middle temperature 723 K and
 includes a factor of 1000 to convert
 the units of the activation energy from cal/g-mole to the more
@@ -1569,31 +1569,31 @@ $t_0^{\mbox{\rm oil}}>t_0^{\mbox{\rm bitumen}}$.
   \centerline{\box\graph}
   has eigenvalues $( - ( \theta_1+\theta_2 ) ,0 ) \trans$ and
   eigenvectors
-  $$
-  \bU=\left[ \matrix {
-      \matrix{{\theta_1 +\theta_2} \cr {- \theta_1}}
-      \matrix{0 \cr 1}
-    }\right]
-  $$
+  % \begin{displaymath}
+  % \bU=\left[ \matrix {
+  %     \matrix{{\theta_1 +\theta_2} \cr {- \theta_1}}
+  %     \matrix{0 \cr 1}
+  %   }\right]
+  % \end{displaymath}
   with
-  $$
+  \begin{displaymath}
   \bU^{-1}=\left[
     \begin{array}{c c}
       1/(\theta_1+\theta_2)&0\\
       \theta_1/(\theta_1+\theta_2)&1
     \end{array}\right]
-  $$
+  \end{displaymath}
 
   \subprob Use the results from part (a) to show that the response at
   time $t$ to an initial concentration of 100\% in response 1 and 0\%
   concentration in response 2 is
-  $$
-  \bgamma( t )=\left[ \matrix{
-      \matrix {e^{{-} ( \theta_1 +\theta_2 )t} \cr
-        {\theta_1 \over \theta_1 +\theta_2}
-        \left( 1-e^{{-} ( \theta_1 +\theta_2 )t}\right)}
-    }\right]
-  $$
+  % \begin{displaymath}
+  % \bgamma( t )=\left[ \matrix{
+  %     \matrix {e^{{-} ( \theta_1 +\theta_2 )t} \cr
+  %       \frac{\theta_1}{\theta_1 +\theta_2}
+  %       \left( 1-e^{{-} ( \theta_1 +\theta_2 )t}\right)}
+  %   }\right]
+  % \end{displaymath}
 
   \prob Use the data from Appendix 4, Section A4.8 to fit a
   compartment model.

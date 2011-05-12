@@ -131,20 +131,20 @@ of squares function.
 For a linear model,
 a $(1 - \alpha)$ marginal interval for $ \beta_{p}$ can be written
 in terms of the studentized parameter
-$$
-{\beta_{p}-\hat\beta_p \over {\rm se} ( \hat \beta_p )}
+\begin{displaymath}
+\frac{\beta_{p}-\hat\beta_p}{{\rm se} ( \hat \beta_p )}
  =\delta ( \beta_p )
-$$
+\end{displaymath}
 as
-$$
+\begin{displaymath}
 - \tNP\le\delta ( \beta_p ) \le\tNP
-$$
+\end{displaymath}
 But the studentized parameter can also be written
 
 ATAMO!!!!!!
 
 \begin{equation}
-  {\beta_p-\hat\beta_p \over {{\rm se}} ( \hat \beta_p )} = {{\rm
+  \frac{\beta_p-\hat\beta_p}{{{\rm se}} ( \hat \beta_p )} = {{\rm
   sign}} ( \beta_p - \hat \beta_p ) \sqrt { { \tilde S ( \beta_p ) - S (
   \hat{\bbeta}) }} / s
   \label{eqn:tratio}
@@ -180,9 +180,9 @@ By analogy with the linear model, we define a nominal
 $(1 - \alpha)$ likelihood interval for
 \index{likelihood!interval}
 $\theta_{p}$ as the set of all $\theta_{p}$ for which
-$$
+\begin{displaymath}
 - \tNP\le\tau ( \theta_p )\le\tNP
-$$
+\end{displaymath}
 The profile $t$ function is similar to the $\chi$ statistic used
 by \citeasnoun{blis:jame:1966}.
 %\glossary{ Bliss, C.I.}
@@ -426,9 +426,9 @@ additional complexity of choosing a prior density for the parameters.
 
 In the Bayesian analysis of a linear regression model, described
 in Section 1.3.3, a prior density
-$$
+\begin{displaymath}
 p ( \bbeta , \sigma )  \propto  \sigma^{-1}
-$$
+\end{displaymath}
 is often used.
 This does not correspond to an actual probability density, since
 the integral of this density over the parameter $\sigma$ or $\bbeta$
@@ -491,7 +491,7 @@ proportional to the Jacobian of the mapping to the expectation plane,
 \index{Jacobian}
 so we set
 \begin{eqnarray*}
-  p ( \btheta )&\propto&{d A\over d \btheta }\\
+  p ( \btheta )&\propto&\frac{d A}{d\btheta}\\
   &=&| \bV \trans \bV |^{{1/2}}
 \end{eqnarray*}
 where $dA$ represents an element of area on the expectation surface.
@@ -568,11 +568,10 @@ After choosing a prior density, we form the posterior density by
 multiplying the prior by the likelihood function.
 Thus the posterior density, $p ( \btheta , \sigma | \by )$, becomes
 \index{posterior density!for nonlinear model}
-$$
+\begin{displaymath}
 p ( \btheta , \sigma | \by )\propto| \bV \trans \bV |^{{1/2}}
-\sigma^{-(N+1)}  \exp \left( -  { S ( \btheta )   \over  2 \sigma^2 
-}\right)
-$$
+\sigma^{-(N+1)}  \exp \left( - \frac{S(\btheta)}{2\sigma^2}\right)
+\end{displaymath}
 where $S ( \btheta )$ is the residual sum of squares at $\btheta$.
 As shown in \citeasnoun{box:tiao:1973}, the marginal posterior density of
 %\glossary{ Box, G.E.P.}
@@ -588,9 +587,9 @@ to yield
 An HPD region will be bounded by a contour of this posterior
 \index{highest posterior density (HPD)!region for nonlinear model}
 density function, or equivalently, by a contour of
-$$
-{ S ( \btheta )   \over  | \bV \trans \bV |^{ 1 / N } }
-$$
+\begin{displaymath}
+\frac{S(\btheta)}{|\bV\trans\bV|^{1/N}}
+\end{displaymath}
 
 To assign a probability value to the region,
 we must determine the level of contour.
@@ -613,9 +612,9 @@ That is,
   \label{eqn:2.9e}
 \end{equation}
 where
-$$
-\bV_{\phi} = {d \boeta  \over d \bphi \trans}
-$$
+\begin{displaymath}
+\bV_{\phi}=\frac{d\boeta}{d\bphi\trans}
+\end{displaymath}
 If the expectation surface is perfectly flat or, more generally,
 if it has zero Gaussian curvature everywhere \cite{onei:1966},
 %\glossary{ Oneill, B.}
@@ -632,7 +631,7 @@ That is,
   p_{\phi} ( \bphi | \by )&\propto&[ S_{\phi} ( \bphi ) ]^{-N/2}\\
   &\approx& \left[ S_{\phi} ( \hat{\bphi})  + \frac{1}{2}
   ( \bphi-\hat{\bphi})\trans
-  \left.{ \partial^2 S_{\phi}   \over  \partial \bphi \partial \bphi
+  \left.\frac{\partial^2S_{\phi}}{\partial\bphi\partial\bphi
   \trans} \right|_{\hat{\phi}}(\bphi-\hat{\bphi})\right]^{-N/2}  
 \end{eqnarray*}
 which is in the form of a multivariate T density
@@ -643,19 +642,19 @@ which is in the form of a multivariate T density
 Thus, an approximate $1-\alpha$ HPD region consists of all
 values of $\bphi$ enclosed by the contour $S_{\phi} ( \bphi )$
 determined by
-$$
-{[ S_{\phi} ( \bphi ) - S_{\phi} ( \hat{\bphi} ) ] /  P   \over
-{S_{\phi} ( \hat{\bphi}) } / ( N -P )}\le\FPNP
-$$
+\begin{displaymath}
+\frac{[S_{\phi}(\bphi)-S_{\phi}(\hat{\bphi})]/P}
+{{S_{\phi}(\hat{\bphi})}/(N-P)}\le\FPNP
+\end{displaymath}
 
 In terms of $\btheta$, the HPD region becomes a contour in
 ${S ( \btheta )} / {| \bV \trans \bV |^{1/N}}$, and so the approximate
 $ (1 - \alpha)$ HPD region in $\btheta$ is bounded by the contour
-$$
-{ S ( \btheta )   \over  | \bV \trans \bV |^{1/N}} =
-{ S ( \hat{\btheta})   \over  | \hat{\bV}\trans\hat{\bV}|^{1/N}}
-\left[ 1 + {P \over N -P} \FPNP\right]
-$$
+\begin{displaymath}
+\frac{S(\btheta)}{| \bV \trans \bV |^{1/N}} =
+\frac{S(\hat{\btheta})}{|\hat{\bV}\trans\hat{\bV}|^{1/N}}
+\left[ 1 + \frac{P}{N-P}\FPNP\right]
+\end{displaymath}
 Computationally, it is more convenient to determine
 contours of ${ | \bV \trans \bV |^{1/N}} / {S ( \btheta ) }$, since
 sometimes $| \bV \trans \bV | = 0$ on the boundary of the parameter
@@ -691,20 +690,20 @@ parameters, as in eliminating $\sigma$.
 If $\theta_{1}$ is the single parameter of interest
 and $\btheta_{-1}$ represents the nuisance parameters, the
 marginal density for $\theta_{1}$ is
-$$
+\begin{displaymath}
 p_{{\theta}_1} ( \theta_1 )  \propto
 \int  p_{\theta} ( \theta_1 , \btheta_{-1} \trans )
 d \btheta_{-1}
-$$
+\end{displaymath}
 This method of eliminating components of $\btheta$ would generally
 require a prohibitive amount of numerical integration, so approximations
 based on the density conditional on the parameter of interest are used.
 A first approximation is to use the analogue of the profile likelihood,
-$$
+\begin{displaymath}
 \int_{\theta} p( \theta_1 , \btheta_{-1} \trans ) 
 d \btheta_{-1}\propto
 p_{\theta} ( \theta_1 , \btheta_{-1}^* ( \theta_1 ))
-$$
+\end{displaymath}
 where $\btheta_{-1}^* ( \theta_1 )$ is the value which maximizes
 $p_{\theta} ( \theta_1 , \btheta_{-1} )$ over $\btheta_{-1}$ for
 that value of $\theta_{1}$.
@@ -728,13 +727,13 @@ We only do this for completeness, however, because
 {\em we do not recommend the approach}.
 
 The method involves hypotheses of the form
-$$
+\begin{displaymath}
 {\rm H}_{0:}  \btheta = \btheta_0
-$$
+\end{displaymath}
 versus
-$$
+\begin{displaymath}
 {\rm H}_{{{\rm }} A}:  \btheta \ne \btheta_0
-$$
+\end{displaymath}
 where, as in the linear model, the test is based on the relative lengths
 of tangential and orthogonal components of the residual vector
 $\bz_0 = \by - \boeta ( \btheta_0 )$.
@@ -750,7 +749,7 @@ locally most powerful, unbiased test of the hypothesis,
 and under
 the assumptions on the model, the confidence region
 \begin{equation}
-  {\norm \bQ_1 \trans ( \btheta ) \bz ( \btheta ) \norm^2 / P  \over
+  \frac{\norm\bQ_1\trans(\btheta)\bz(\btheta)\norm^2/P}{
   \norm \bQ_2 \trans ( \btheta ) \bz ( \btheta ) \norm^2 / ( N -P )} 
   \le\FPNP
   \label{eqn:2.12c}
@@ -763,10 +762,10 @@ evaluated at $\btheta$.
 When there is an independent
 variance estimate $s_r^{2}$ with $\nu_{r}$
 degrees of freedom, an alternative form of the confidence region is
-$$
+\begin{displaymath}
 \norm \bQ_1 \trans ( \btheta ) \bz ( \btheta ) \norm^2 
 \le P s_r^2 F ( P, \nu_r ; \alpha )
-$$
+\end{displaymath}
 EXAMPLE:puro19 Puromycin confidence regions
 %%%\input{puro19}
 
@@ -830,9 +829,9 @@ If the model reduces to a linear model when a subset of the
 parameters is held fixed, then exact marginal confidence regions
 for the nonlinear parameters can be calculated.
 For example, the model
-$$
+\begin{displaymath}
 f( x ,  \btheta ) = \theta_1 +  \theta_2 e^{ \theta_3 x }
-$$
+\end{displaymath}
 reduces to a linear model when $\theta_{3}$ is held fixed.
 Thus confidence intervals for $\theta_{3}$ can be determined
 using a $t$ distribution,

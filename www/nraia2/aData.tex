@@ -47,9 +47,9 @@ The samples were treated and PCB residues in parts per million (ppm)
 were estimated using column chromatography.
 
 A linear model
-$$
+\begin{displaymath}
 f ( x, \bbeta )=\beta_1+\beta_2 x
-$$
+\end{displaymath}
 is proposed where $f$ is predicted ln(PCB
 concentration) and $x$ is $\cubage$.
 
@@ -89,9 +89,9 @@ intervals of time, the temperature indicated by it'' \cite{roll:1950}.
 \end{table}
 
 A model based on Newton's law of cooling was proposed as
-$$
+\begin{displaymath}
 f(x, \theta )=60+70 e^{ - \theta x }
-$$
+\end{displaymath}
 where $f$ is predicted temperature and $x$ is time.
 
 \section{Puromycin}
@@ -145,9 +145,9 @@ It was hypothesized that the ultimate velocity parameter
 but not the half-velocity parameter ($\theta_2$).
 
 The Michaelis--Menten model is
-$$
-f(x, \btheta ) ={\theta_1 x \over \theta_{2+x}}
-$$
+\begin{displaymath}
+  f(x,\btheta)=\frac{\theta_1 x}{\theta_2+x}
+\end{displaymath}
 where $f$ is predicted velocity and $x$ is substrate concentration.
 
 \section{BOD}
@@ -189,10 +189,9 @@ values shown are the averages of two analyses on each bottle.
 
 A model was derived based on exponential decay with a fixed rate
 constant as
-$$
-f(x, \btheta ) =\theta_1
-( 1 - e^{ \theta_2 x } )
-$$
+\begin{displaymath}
+f(x,\btheta)=\theta_1(1-e^{\theta_2 x})
+\end{displaymath}
 where $f$ is predicted biochemical oxygen demand and $x$ is time.
 \section{Isomerization}
 
@@ -262,11 +261,10 @@ A common form of model for the reaction rate is the Hougen--Watson model
 %\glossary{ Hougen, O.A.}
 %\glossary{ Watson, K.M.}
 of which the following is a special case,
-$$
-f ( \bx , \btheta )  =
-{\theta_1 \theta_3 ( x_2 - x_3 / 1.632 )  \over 1 + \theta_2 x_1 +
-\theta_3 x_2 + \theta_4 x_3}
-$$
+\begin{displaymath}
+  f(\bx,\btheta)=\frac{\theta_1\theta_3(x_2-x_3/1.632)}
+  {1+\theta_2x_1+\theta_3x_2+\theta_4x_3}
+\end{displaymath}
 where $f$ is predicted reaction rate, $x_{1}$ is partial pressure of
 hydrogen, $x_{2}$ is partial pressure of isopentane, and $x_{3}$ is
 partial pressure of $n$-pentane.
@@ -375,9 +373,9 @@ milliliter ($\mu$g/ml) was measured.
 
 For the intravenous data, a 2-compartment model was proposed, which we
 write as a sum of two exponentials,
-$$
-f(x,\btheta)=\theta_1 e^{-\theta_2 x}+\theta_3 e^{-\theta_4 x}
-$$
+\begin{displaymath}
+  f(x,\btheta)=\theta_1 e^{-\theta_2 x}+\theta_3 e^{-\theta_4 x}
+\end{displaymath}
 where $f$ is predicted sulfisoxazole concentration and $x$ is time.
 
 \section{Lubricant}
@@ -442,14 +440,12 @@ the viscosity, as discussed in \citeasnoun{lins:1975}.
 %\glossary{ Linssen, H.N.}
 
 The proposed model is
-$$
-f ( \bx , \btheta ) = {\theta_1 \over  \theta_2 + x_1 } +
-\theta_3 x_2 + \theta_4 x_2^2 +
-\theta_5 x_2^3 +
-( \theta_6 + \theta_7 x_2^2 )  x_2 
-\exp \left( { - x_1   \over  \theta_8 + \theta_9 x_2^2 }
-\right)
-$$
+\begin{displaymath}
+  f(\bx,\btheta)=\frac{\theta_1}{\theta_2+x_1} +
+  \theta_3 x_2+\theta_4 x_2^2+\theta_5 x_2^3 +
+  ( \theta_6 + \theta_7 x_2^2 )  x_2 
+  \exp\left(\frac{-x_1}{\theta_8+\theta_9 x_2^2 } \right)
+\end{displaymath}
 where $f$ is predicted ln(viscosity), $x_{1}$ is temperature, and
 $x_{2}$ is pressure.
 
@@ -503,10 +499,9 @@ generated from electrical potentials.
 \end{table}
 
 A model was derived from the theory of ion transport as
-$$
-f ( x , \btheta ) = \theta_1
-( 1 - \theta_2 e^{ - \theta_3 x } )
-$$
+\begin{displaymath}
+  f(x,\btheta)=\theta_1(1-\theta_2 e^{-\theta_3 x})
+\end{displaymath}
 where $f$ is predicted chloride concentration and $x$ is time.
 \section{Ethyl Acrylate}
 
@@ -563,10 +558,10 @@ data, using the refinements of Section 3.9.
 
 The integrated model is written
 \begin{eqnarray*}
-  F(\bx,\btheta)&=&-{\theta_4+\theta_5\over\theta_1}e^{-\theta_1 x_1}
+  F(\bx,\btheta)&=&-\frac{\theta_4+\theta_5}{\theta_1}e^{-\theta_1 x_1}
   (1-e^{-\theta_1 x_2})\\
-  &&+{\theta_4\over\theta_2}e^{-\theta_2 x_1}(1-e^{-\theta_2 x_2})
-  +{\theta_5\over\theta_3}e^{-\theta_3 x_1}(1-e^{-\theta_3 x_2})
+  &&+\frac{\theta_4}{\theta_2}e^{-\theta_2 x_1}(1-e^{-\theta_2 x_2})
+  +\frac{\theta_5}{\theta_3}e^{-\theta_3 x_1}(1-e^{-\theta_3 x_2})
 \end{eqnarray*}
 where $F$ is predicted CO$_{2}$ exhaled during an interval,
 $x_{1}$ is interval starting time, and $x_{2}$ is interval
@@ -616,15 +611,10 @@ Logarithms of the integrated function were fitted to logarithms of the
 data, using the refinements of Section 3.9.
 
 The integrated model is written
-$$
-F ( \bx , \btheta ) = 
- { \theta_3   \over  \theta_1 }
-e^{ - \theta_1 x_1 }
-( 1 - e^{ - \theta_1 x_2} )
- + { \theta_4   \over  \theta_2}
-e^{ - \theta_2 x_1 }
-( 1 - e^{ - \theta_2 x_2} )
-$$
+\begin{displaymath}
+  F(\bx,\btheta)=\frac{\theta_3}{\theta_1}e^{-\theta_1 x_1}(1-e^{-\theta_1 x_2})
+  +\frac{\theta_4}{\theta_1}e^{-\theta_2 x_1}(1-e^{-\theta_2 x_2})
+\end{displaymath}
 where $F$ is predicted saccharin excreted during an interval,
 $x_{1}$ is interval starting time, and $x_{2}$ is interval
 duration.
@@ -691,14 +681,13 @@ asymptote as light intensity increased.
 Two models were fitted which rose to a peak and then began to decline,
 as described in Section 3.12.
 These models are
-$$
-f(x, \btheta ) = { \theta_1 x   \over  \theta_2 + x + \theta_3  x^2 }
-$$
+\begin{displaymath}
+  f(x,\btheta)=\frac{\theta_1 x}{\theta_2+x+\theta_3x^2}
+\end{displaymath}
 and
-$$
-f(x, \btheta ) = \theta_1 ( e^{ - \theta_3 x } -
-e^{ - \theta_2 x })
-$$
+\begin{displaymath}
+  f(x,\btheta)=\theta_1(e^{-\theta_3 x}-e^{-\theta_2 x})
+\end{displaymath}
 where $f$ is predicted nitrite utilization and $x$ is light intensity.
 
 \section{s-PMMA}
@@ -763,11 +752,10 @@ conductance (dimensionless).
 The model is an empirical generalization of two models based on
 theory.
 It is written
-$$
-f ( x , \btheta ) =\theta_2+
-{\theta_1-\theta_2  \over  \left[ 1+\left( i 2 \pi xe^{{-} \theta_3} \right)^{{\theta}_4}
-\right]^{{\theta}_5} }
-$$
+\begin{displaymath}
+  f(x,\btheta)=\theta_2+\frac{\theta_1-\theta_2}
+  {\left[ 1+\left( i 2 \pi xe^{{-} \theta_3} \right)^{{\theta}_4}\right]^{{\theta}_5}}
+\end{displaymath}
 where $f$ is predicted relative complex impedance and $x$ is
 frequency.
 
@@ -809,11 +797,11 @@ was measured over a period of 16 hours.
 
 A 2-compartment model was proposed, and dead time was incorporated
 as
-$$
+\begin{displaymath}
 f ( x , \btheta ) =\theta_3
 [ e^{{-} \theta_1 ( x - \theta_4 )}-
   e^{{-} \theta_2 ( x - \theta_4 )}]
-$$
+\end{displaymath}
 where $f$ is predicted tetracycline hydrochloride concentration and
 $x$ is time.
 

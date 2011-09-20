@@ -599,96 +599,96 @@ the \emph{expectation plane}\index{ expectation plane} when dealing
 with a linear model.
 
 \begin{example}\label{pcb:3}
-To illustrate the geometry of the expectation surface, consider just
-three cases from the $\ln(\mbox{\rm PCB})$ versus $\cubage$ data,
-\begin{center}
-  \begin{tabular}{r r}
-    \hline\multicolumn{1}{c}{$\cubage$}&
-    \multicolumn{1}{c}{$\ln(\mbox{\rm PCB})$}\\\hline
-    1.26&0.92\\
-    1.82&2.15\\
-    2.22&2.52\\\hline
-  \end{tabular}
-\end{center}
-The matrix $\bm X$ is then 
-\begin{displaymath}
-  \bm X=
-  \begin{bmatrix}
-    1 & 1.26\\
-    1 & 1.82\\
-    1 & 2.22
-  \end{bmatrix}
-\end{displaymath}
-which consists of two column vectors
-$\bx_1 = (1,1,1)\trans$ and $\bx_2 =(1.26,1.82,2.22)\trans$.
-These two vectors in the 3-dimensional response space are shown
+  To illustrate the geometry of the expectation surface, consider just
+  three cases from the $\ln(\mbox{\rm PCB})$ versus $\cubage$ data,
+  \begin{center}
+    \begin{tabular}{r r}
+      \hline\multicolumn{1}{c}{$\cubage$}&
+      \multicolumn{1}{c}{$\ln(\mbox{\rm PCB})$}\\\hline
+      1.26&0.92\\
+      1.82&2.15\\
+      2.22&2.52\\\hline
+    \end{tabular}
+  \end{center}
+  The matrix $\bm X$ is then 
+  \begin{displaymath}
+    \bm X=
+    \begin{bmatrix}
+      1 & 1.26\\
+      1 & 1.82\\
+      1 & 2.22
+    \end{bmatrix}
+  \end{displaymath}
+  which consists of two column vectors
+  $\bx_1 = (1,1,1)\trans$ and $\bx_2 =(1.26,1.82,2.22)\trans$.
+  These two vectors in the 3-dimensional response space are shown
   \begin{figure}
     \centerline{\includegraphics{1PCB3plane}}%,height=4.5in}}
     \caption[PCB expectation plane]{
-    Expectation surface for the 3-case PCB example.
-    Part $a$ shows the parameter plane with $\beta_1$ parameter lines
-    (dashed) and $\beta_2$ parameter lines (dot--dashed).
-    Part $b$ shows the vectors $\bx_1$ (dashed line) and $\bx_2$
-    (dot--dashed line) in the response space.
-    The end points of the vectors correspond to
-    $\bbeta=(1,0)\trans$ and $\bbeta=(0,1)\trans$ respectively.
-    Part $c$ shows a portion of the expectation plane (shaded) in the
-    response space, with $\beta_1$ parameter lines (dashed) and
-    $\beta_2$ parameter lines (dot--dashed).
+      Expectation surface for the 3-case PCB example.
+      Part $a$ shows the parameter plane with $\beta_1$ parameter lines
+      (dashed) and $\beta_2$ parameter lines (dot--dashed).
+      Part $b$ shows the vectors $\bx_1$ (dashed line) and $\bx_2$
+      (dot--dashed line) in the response space.
+      The end points of the vectors correspond to
+      $\bbeta=(1,0)\trans$ and $\bbeta=(0,1)\trans$ respectively.
+      Part $c$ shows a portion of the expectation plane (shaded) in the
+      response space, with $\beta_1$ parameter lines (dashed) and
+      $\beta_2$ parameter lines (dot--dashed).
     }\label{fig:1.PCB3plane}
   \end{figure}
-in Figure \ref{fig:1.PCB3plane}$b$, and correspond to the points
-$\bbeta=(1,0)\trans$ and $\bbeta=(0,1)\trans$ in the parameter plane,
-shown in Figure \ref{fig:1.PCB3plane}$a$.
-The expectation function $\boeta (\bbeta)=\bX\bbeta$ defines a
-2-dimensional expectation plane in the 3-dimensional response space.
-This is shown in Figure \ref{fig:1.PCB3plane}$c$, where the parameter
-lines
-\index{parameter!line}
-corresponding to the lines $\beta_1=-3,\ldots, 5$ and $\beta_2=-2
-,\ldots, 2 $, shown in Figure \ref{fig:1.PCB3plane}$a$, are given.
-A parameter line is associated with the parameter which is
-varying so the lines corresponding to $\beta_1=-3,\ldots,5$ (dotdashed
-lines) are called $\beta_2$ lines.
+  in Figure \ref{fig:1.PCB3plane}$b$, and correspond to the points
+  $\bbeta=(1,0)\trans$ and $\bbeta=(0,1)\trans$ in the parameter plane,
+  shown in Figure \ref{fig:1.PCB3plane}$a$.
+  The expectation function $\boeta (\bbeta)=\bX\bbeta$ defines a
+  2-dimensional expectation plane in the 3-dimensional response space.
+  This is shown in Figure \ref{fig:1.PCB3plane}$c$, where the parameter
+  lines
+  \index{parameter!line}
+  corresponding to the lines $\beta_1=-3,\ldots, 5$ and $\beta_2=-2
+  ,\ldots, 2 $, shown in Figure \ref{fig:1.PCB3plane}$a$, are given.
+  A parameter line is associated with the parameter which is
+  varying so the lines corresponding to $\beta_1=-3,\ldots,5$ (dotdashed
+  lines) are called $\beta_2$ lines.
 
-Note that the parameter lines in the parameter plane are straight,
-\index{parameter!plane}
-parallel, and equispaced, and that their images on the expectation
-plane are also straight, parallel, and equispaced.
-Because the vector $\bx_1$ is shorter than
-$\bx_2$ ($\norm\bx_1\norm=\sqrt{3}$ while
-$\norm \bx_2 \norm=\sqrt{9.83}$), the spacing between the lines of
-constant $\beta_1$ on the expectation plane is less than that
-between the lines of constant $\beta_2$. 
-Also, the vectors $\bx_1$ and $\bx_2$ are not orthogonal.
-The angle $\omega$ between them can be calculated from
+  Note that the parameter lines in the parameter plane are straight,
+  \index{parameter!plane}
+  parallel, and equispaced, and that their images on the expectation
+  plane are also straight, parallel, and equispaced.
+  Because the vector $\bx_1$ is shorter than
+  $\bx_2$ ($\norm\bx_1\norm=\sqrt{3}$ while
+  $\norm \bx_2 \norm=\sqrt{9.83}$), the spacing between the lines of
+  constant $\beta_1$ on the expectation plane is less than that
+  between the lines of constant $\beta_2$. 
+  Also, the vectors $\bx_1$ and $\bx_2$ are not orthogonal.
+  The angle $\omega$ between them can be calculated from
   \begin{eqnarray*}
     \cos\omega&=&\frac{\bx_1\trans\bx_2}{\norm\bx_1\norm\norm\bx_2\norm}\\
     &=&\frac{5.30}{\sqrt{(3)(9.83)}}\\
     &=&0.98
   \end{eqnarray*}
-to be about 11$^\circ$, so the parameter lines on the expectation
-plane are not at right angles as they are on the parameter plane.
-
-As a consequence of the unequal length and nonorthogonality of the
-vectors, unit squares on the parameter plane map to parallelograms on
-the expectation plane. 
-The area of the parallelogram is
+  to be about 11$^\circ$, so the parameter lines on the expectation
+  plane are not at right angles as they are on the parameter plane.
+  
+  As a consequence of the unequal length and nonorthogonality of the
+  vectors, unit squares on the parameter plane map to parallelograms on
+  the expectation plane. 
+  The area of the parallelogram is
   \begin{eqnarray}\label{eqn:pargram}
     \norm\bx_1 \norm  \norm \bx_2 \norm\sin\omega&=&
     \norm \bx_1 \norm  \norm \bx_2 \norm \sqrt { 1 - \cos^2\omega }\\
     &=&\sqrt {( \bx_1 \trans \bx_1 ) ( \bx_2 \trans \bx_2 ) -
-    ( \bx_1 \trans \bx_2 )^2 }\nonumber\\
+      ( \bx_1 \trans \bx_2 )^2 }\nonumber\\
     &=&\sqrt {\left| \bX \trans \bX \right|}\nonumber
   \end{eqnarray}
-That is, the \emph{Jacobian determinant} of the transformation
-\index{Jacobian!determinant}
-\index{determinant!Jacobian}
-from the parameter plane to the expectation plane
-is a constant equal to $\left| \bX \trans \bX \right|^{1/2}$.
-Conversely, the ratio of areas in the parameter plane
-to those on the expectation plane is
-$\left| \bX \trans \bX\right|^{-1/2}$.
+  That is, the \emph{Jacobian determinant} of the transformation
+  \index{Jacobian!determinant}
+  \index{determinant!Jacobian}
+  from the parameter plane to the expectation plane
+  is a constant equal to $\left| \bX \trans \bX \right|^{1/2}$.
+  Conversely, the ratio of areas in the parameter plane
+  to those on the expectation plane is
+  $\left| \bX \trans \bX\right|^{-1/2}$.
 \end{example}
 
 The simple linear mapping seen in the above example is true for all
@@ -1001,70 +1001,70 @@ $\bbeta = \bbeta^0$, since $\bu^0$ has a
 suspiciously large component in the $\bQ_1$ plane.
 
 Note that
-    \begin{displaymath}
-      \frac{ \norm \bu_2^0 \norm^2}{N-P}=\frac{S(\hat{\bbeta})}{N-P}= s^2
-    \end{displaymath}
+\begin{displaymath}
+  \frac{ \norm \bu_2^0 \norm^2}{N-P}=\frac{S(\hat{\bbeta})}{N-P}= s^2
+\end{displaymath}
 and
-    \begin{equation}\label{eqn:normu1}
-      \norm \bu_1^0 \norm^2 =
-      \norm \bR_1 \bbeta^0 - \bw_1 \norm^2
-    \end{equation}
+\begin{equation}\label{eqn:normu1}
+  \norm \bu_1^0 \norm^2 =
+  \norm \bR_1 \bbeta^0 - \bw_1 \norm^2
+\end{equation}
 and so the ratio (\ref{eqn:1.20}) becomes
-    \begin{equation}\label{eqn:frat}
-      \frac{\norm \bR_1 \bbeta^0 - \bw_1 \norm^2}{P s^2}
-    \end{equation}
+\begin{equation}\label{eqn:frat}
+  \frac{\norm \bR_1 \bbeta^0 - \bw_1 \norm^2}{P s^2}
+\end{equation}
 
 \begin{example}\label{pcb:fullht}
-We illustrate the decomposition of the residual $\bu$ for testing
-the null hypothesis\index{hypothesis}
-    \begin{displaymath}
-      \mbox{\rm H}_0:\bbeta = ( -2.0 ,  2.0 ) \trans
-    \end{displaymath}
-versus the alternative
-    \begin{displaymath}
-      \mbox{\rm H}_{\mbox{\rm A}}:\bbeta \neq ( -2.0 ,  2.0 ) \trans
-    \end{displaymath}
-for the full PCB data set in Figure \ref{fig:PCBfullht}.
+  We illustrate the decomposition of the residual $\bu$ for testing
+  the null hypothesis\index{hypothesis}
+  \begin{displaymath}
+    \mbox{\rm H}_0:\bbeta = ( -2.0 ,  2.0 ) \trans
+  \end{displaymath}
+  versus the alternative
+  \begin{displaymath}
+    \mbox{\rm H}_{\mbox{\rm A}}:\bbeta \neq ( -2.0 ,  2.0 ) \trans
+  \end{displaymath}
+  for the full PCB data set in Figure \ref{fig:PCBfullht}.
   \begin{figure}
     \centerline{\includegraphics{1PCBfullht}}%,height=3in}}
     \caption[Hypothesis test for PCB example]{
-    A geometric interpretation of the test
-    $\mbox{\rm H}_0:\bbeta=(-2.0,2.0)\trans$ for the full PCB data set.
-    We show the projections of the response vector $\bw$ and a portion
-    of the expectation plane projected into the 3-dimensional space
-    given by the tangent vectors $\bq_1$ and $\bq_2$, and the
-    orthogonal component of the response vector, $\bw_2$.
-    For the test point $\bbeta^0$, the residual vector $\bu^0$ is
-    decomposed into a tangential component $\bu_1^0$ and an orthogonal
-    component $\bu_2^0$.}
-   \label{fig:PCBfullht}
+      A geometric interpretation of the test
+      $\mbox{\rm H}_0:\bbeta=(-2.0,2.0)\trans$ for the full PCB data set.
+      We show the projections of the response vector $\bw$ and a portion
+      of the expectation plane projected into the 3-dimensional space
+      given by the tangent vectors $\bq_1$ and $\bq_2$, and the
+      orthogonal component of the response vector, $\bw_2$.
+      For the test point $\bbeta^0$, the residual vector $\bu^0$ is
+      decomposed into a tangential component $\bu_1^0$ and an orthogonal
+      component $\bu_2^0$.}
+    \label{fig:PCBfullht}
   \end{figure}
-Even though the rotated data vector $\bw$ and the expectation surface
-for this example are in a 28-dimensional space, the relevant distances
-can be pictured in the 3-dimensional space spanned by the expectation
-surface (vectors $\bq_1$ and $\bq_2$) and the residual vector.
-The scaled lengths of the components $\bu_1$ and $\bu_2$ are compared
-to determine if the point $\bbeta^0=(-2.0,2.0)\trans$ is reasonable.
-
-The numerator in (\ref{eqn:frat}) is
-    \begin{displaymath}
-      \left\|
-        \begin{bmatrix}
-          5.29150 & 8.87105\\
-          0       & 2.16134
-        \end{bmatrix}
-        \begin{bmatrix}-2.0\\2.0\end{bmatrix}
-        -
-        \begin{bmatrix}7.7570 \\ 4.9721\end{bmatrix}
-      \right\|^2=0.882
-    \end{displaymath}
-The ratio is then $0.882/( 2\times0.246 ) = 1.79$,
-which corresponds to a tail probability (or $p$ value)
-\index{tail probability}
-\index{p-value}
-of 0.19 for an F distribution with 2 and 26 degrees of freedom.
-Since the probability of obtaining a ratio at least as large as
-1.79 is 19\%, we do not reject the null hypothesis.
+  Even though the rotated data vector $\bw$ and the expectation surface
+  for this example are in a 28-dimensional space, the relevant distances
+  can be pictured in the 3-dimensional space spanned by the expectation
+  surface (vectors $\bq_1$ and $\bq_2$) and the residual vector.
+  The scaled lengths of the components $\bu_1$ and $\bu_2$ are compared
+  to determine if the point $\bbeta^0=(-2.0,2.0)\trans$ is reasonable.
+  
+  The numerator in (\ref{eqn:frat}) is
+  \begin{displaymath}
+    \left\|
+      \begin{bmatrix}
+        5.29150 & 8.87105\\
+        0       & 2.16134
+      \end{bmatrix}
+      \begin{bmatrix}-2.0\\2.0\end{bmatrix}
+      -
+      \begin{bmatrix}7.7570 \\ 4.9721\end{bmatrix}
+    \right\|^2=0.882
+  \end{displaymath}
+  The ratio is then $0.882/( 2\times0.246 ) = 1.79$,
+  which corresponds to a tail probability (or $p$ value)
+  \index{tail probability}
+  \index{p-value}
+  of 0.19 for an F distribution with 2 and 26 degrees of freedom.
+  Since the probability of obtaining a ratio at least as large as
+  1.79 is 19\%, we do not reject the null hypothesis.
 \end{example}
 
 A $1-\alpha$ joint confidence region for the parameters $\bbeta$
@@ -1074,71 +1074,71 @@ consists of all those values for which
 the above hypothesis test is not rejected at level $\alpha$.
 Thus, a value $\bbeta^0$ is within a $ 1-\alpha$
 confidence region if
-    \begin{displaymath}
-      \frac{\norm\bu_1^0\norm^2/P}{\norm\bu_2^0\norm^2/(N-P)}\le\FPNP
-    \end{displaymath}
+\begin{displaymath}
+  \frac{\norm\bu_1^0\norm^2/P}{\norm\bu_2^0\norm^2/(N-P)}\le\FPNP
+\end{displaymath}
 Since $s^2$ does not depend on
 $\bbeta^0$, the points inside the confidence region
 form a disk on the expectation plane defined by
-    \begin{displaymath}
-      \norm \bu_1 \norm^2 \le P s^2 \FPNP
-    \end{displaymath}
+\begin{displaymath}
+  \norm \bu_1 \norm^2 \le P s^2 \FPNP
+\end{displaymath}
 Furthermore, from (\ref{eqn:betahat}) and (\ref{eqn:normu1}) we have
-    \begin{displaymath}
-      \norm\bu_1\norm^2=\norm\bR_1(\bbeta-\hat{\bbeta})\norm^2
-    \end{displaymath}
+\begin{displaymath}
+  \norm\bu_1\norm^2=\norm\bR_1(\bbeta-\hat{\bbeta})\norm^2
+\end{displaymath}
 so a point on the boundary of the confidence region in the parameter
 space satisfies
-    \begin{displaymath}
-      \bR_1 ( \bbeta - \hat{\bbeta} ) =
-\sqrt {P s^2 \FPNP}\ \bd
-    \end{displaymath}
+\begin{displaymath}
+  \bR_1 ( \bbeta - \hat{\bbeta} ) =
+  \sqrt {P s^2 \FPNP}\ \bd
+\end{displaymath}
 where $\norm \bd \norm = 1$.
 That is, the confidence region is given by
-    \begin{equation}\label{eqn:linconf}
-      \left\{\bbeta=\hat{\bbeta}+\sqrt{P s^2\FPNP}\bR_1^{-1}\bd
-      \mid\norm\bd\norm=1\right\}
-    \end{equation}
+\begin{equation}\label{eqn:linconf}
+  \left\{\bbeta=\hat{\bbeta}+\sqrt{P s^2\FPNP}\bR_1^{-1}\bd
+    \mid\norm\bd\norm=1\right\}
+\end{equation}
 Thus the region of ``reasonable'' parameter values is a disk centered
 at $\bR_1\hat{\bbeta}$ on the expectation plane and is an ellipse
 centered at $\hat{\bbeta}$ in the parameter space.
 
 \begin{example}\label{pcb:confdisk}
-
-For the $\ln(\mbox{\rm PCB})$ versus $\cubage$ data,
-$\hat{\bbeta}=(-2.391,2.300)\trans$ and $s^2 = 0.246$
-based on $26$ degrees of freedom, so the 95\% confidence disk on the
-transformed expectation surface is
-\begin{displaymath}
-  \bR_1 \bbeta = \begin{bmatrix}7.7570\\4.9721\end{bmatrix}
-  + 1.288 \begin{bmatrix}\cos\omega&\sin\omega\end{bmatrix}
-\end{displaymath}
-where $0\le\omega\le 2\pi$.
-The disk is shown in the expectation plane in
-Figure \ref{fig:PCBconfdisk}$a$,
-\begin{figure}
-  \centerline{\includegraphics{1PCBconfdisk}}%,height=2.25in}}
-  \caption[95\% confidence disk for PCB example]{The 95\% confidence
-    disk and parameter confidence region for the PCB data.  Part $a$
-    shows the response vector $\bw$ and a portion of the expectation
-    plane projected into the 3-dimensional space given by the tangent
-    vectors $\bq_1$ and $\bq_2$, and the orthogonal component of the
-    response vector, $\bw_2$.  The 95\% confidence disk (shaded) in
-    the expectation plane (part $a$) maps to the elliptical confidence
-    region (shaded) in the parameter plane (part $b$).}
-  \label{fig:PCBconfdisk}
-\end{figure}
-and the corresponding ellipse
-\begin{displaymath}
-  \bbeta = \begin{bmatrix}-2.391\\2.300\end{bmatrix}
-  + 1.288
-  \begin{bmatrix}
-    0.18898 & -0.77566\\
-    0       &  0.46268
-  \end{bmatrix}
-  \begin{bmatrix}\cos\omega&\sin\omega\end{bmatrix}
-\end{displaymath}
-is shown in the parameter plane in Figure \ref{fig:PCBconfdisk}$b$.
+  
+  For the $\ln(\mbox{\rm PCB})$ versus $\cubage$ data,
+  $\hat{\bbeta}=(-2.391,2.300)\trans$ and $s^2 = 0.246$
+  based on $26$ degrees of freedom, so the 95\% confidence disk on the
+  transformed expectation surface is
+  \begin{displaymath}
+    \bR_1 \bbeta = \begin{bmatrix}7.7570\\4.9721\end{bmatrix}
+    + 1.288 \begin{bmatrix}\cos\omega&\sin\omega\end{bmatrix}
+  \end{displaymath}
+  where $0\le\omega\le 2\pi$.
+  The disk is shown in the expectation plane in
+  Figure \ref{fig:PCBconfdisk}$a$,
+  \begin{figure}
+    \centerline{\includegraphics{1PCBconfdisk}}%,height=2.25in}}
+    \caption[95\% confidence disk for PCB example]{The 95\% confidence
+      disk and parameter confidence region for the PCB data.  Part $a$
+      shows the response vector $\bw$ and a portion of the expectation
+      plane projected into the 3-dimensional space given by the tangent
+      vectors $\bq_1$ and $\bq_2$, and the orthogonal component of the
+      response vector, $\bw_2$.  The 95\% confidence disk (shaded) in
+      the expectation plane (part $a$) maps to the elliptical confidence
+      region (shaded) in the parameter plane (part $b$).}
+    \label{fig:PCBconfdisk}
+  \end{figure}
+  and the corresponding ellipse
+  \begin{displaymath}
+    \bbeta = \begin{bmatrix}-2.391\\2.300\end{bmatrix}
+    + 1.288
+    \begin{bmatrix}
+      0.18898 & -0.77566\\
+      0       &  0.46268
+    \end{bmatrix}
+    \begin{bmatrix}\cos\omega&\sin\omega\end{bmatrix}
+  \end{displaymath}
+  is shown in the parameter plane in Figure \ref{fig:PCBconfdisk}$b$.
 \end{example}
 
 \subsection{Marginal Confidence Intervals}
@@ -1146,13 +1146,13 @@ is shown in the parameter plane in Figure \ref{fig:PCBconfdisk}$b$.
 
 We can create a marginal confidence interval for a single parameter,
 say $\beta_1$, by ``inverting'' a hypothesis test of the form
-    \begin{displaymath}
-      \mbox{\rm H}_0:\beta_1=\beta_1^0
-    \end{displaymath}
+\begin{displaymath}
+  \mbox{\rm H}_0:\beta_1=\beta_1^0
+\end{displaymath}
 versus
-    \begin{displaymath}
-      \mbox{\rm H}_{\mbox{\rm A}}:\beta_1 \neq \beta_1^0
-    \end{displaymath}
+\begin{displaymath}
+  \mbox{\rm H}_{\mbox{\rm A}}:\beta_1 \neq \beta_1^0
+\end{displaymath}
 Any $\beta_1^0$ for which $\mbox{\rm H}_0$ is not rejected at level
 $\alpha$ is included in the $1-\alpha$ confidence interval.
 To perform the hypothesis test, we choose any parameter vector with
@@ -1168,120 +1168,120 @@ The component $u_2^0$ is the same for any parameter $\bbeta$ with
 $\beta_1 = \beta_1^0$, and, assuming that the true $\beta_1$ is
 $\beta_1^0$, the scaled ratio of the corresponding random variables
 $U_2$ and $\bU_3$ has the distribution
-    \begin{displaymath}
-      \frac{U_2^2 / 1}{\norm\bU_3\norm^2/(N-P)}\sim F(1,N-P)
-    \end{displaymath}
+\begin{displaymath}
+  \frac{U_2^2 / 1}{\norm\bU_3\norm^2/(N-P)}\sim F(1,N-P)
+\end{displaymath}
 Thus we reject $\mbox{\rm H}_0$ at level $\alpha$ if
-    \begin{displaymath}
-      \left( u_2^0 \right)^2  s^2 F ( 1 ,N -P ; \alpha )
-    \end{displaymath}
+\begin{displaymath}
+  \left( u_2^0 \right)^2  s^2 F ( 1 ,N -P ; \alpha )
+\end{displaymath}
 
 \begin{example}\label{pcb:partht}
 
-To test the null hypothesis
-    \begin{displaymath}
-      \mbox{\rm H}_0 :\beta_1=-2.0
-    \end{displaymath}
-versus the alternative
-    \begin{displaymath}
-      \mbox{\rm H}_{\mbox{\rm A}}:\beta_1\neq-2.0
-    \end{displaymath}
-for the complete PCB data set, we decompose the transformed residual
-vector at $\bbeta^{0}=(-2.0,2.2)\trans$ into three components
-as shown in
+  To test the null hypothesis
+  \begin{displaymath}
+    \mbox{\rm H}_0 :\beta_1=-2.0
+  \end{displaymath}
+  versus the alternative
+  \begin{displaymath}
+    \mbox{\rm H}_{\mbox{\rm A}}:\beta_1\neq-2.0
+  \end{displaymath}
+  for the complete PCB data set, we decompose the transformed residual
+  vector at $\bbeta^{0}=(-2.0,2.2)\trans$ into three components
+  as shown in
   \begin{figure}
     \centerline{\includegraphics{1PCBpartialht}}%,height=3in}}
     \caption[Geometric interpretation of confidence interval]{
-    A geometric interpretation of the test $\mbox{\rm H}_{0:}\beta_1=-2.0$
-    for the full PCB data set.
-    We show the response vector $\bw$, and a portion of the
-    expectation plane projected into the 3-dimensional space given by
-    the tangent vectors $\bq_1$ and $\bq_2$, and the orthogonal
-    component of the response vector, $\bw_2$.
-    For a representative point on the line $\beta_1=-2$ the residual
-    vector $\bu$ is decomposed into a tangential component $\bu_1^0$
-    along the line, a tangential component $u_2^0$ perpendicular to
-    the line, and an orthogonal component $\bu_3^0$.}
+      A geometric interpretation of the test $\mbox{\rm H}_{0:}\beta_1=-2.0$
+      for the full PCB data set.
+      We show the response vector $\bw$, and a portion of the
+      expectation plane projected into the 3-dimensional space given by
+      the tangent vectors $\bq_1$ and $\bq_2$, and the orthogonal
+      component of the response vector, $\bw_2$.
+      For a representative point on the line $\beta_1=-2$ the residual
+      vector $\bu$ is decomposed into a tangential component $\bu_1^0$
+      along the line, a tangential component $u_2^0$ perpendicular to
+      the line, and an orthogonal component $\bu_3^0$.}
     \label{fig:PCBpartialht}
   \end{figure}
-Figure \ref{fig:PCBpartialht} and calculate the ratio
-    \begin{eqnarray*}
-      \frac{\left( u_2^0 \right)^2}{s^2}&=&\frac{0.240}{0.246}\\
-       &=&0.97
-    \end{eqnarray*}
-This corresponds to a $p$ value of 0.33, and so we do not reject the
-null hypothesis.
+  Figure \ref{fig:PCBpartialht} and calculate the ratio
+  \begin{eqnarray*}
+    \frac{\left( u_2^0 \right)^2}{s^2}&=&\frac{0.240}{0.246}\\
+    &=&0.97
+  \end{eqnarray*}
+  This corresponds to a $p$ value of 0.33, and so we do not reject the
+  null hypothesis.
 \end{example}
 
 We can create a $1-\alpha$ marginal confidence interval for $\beta_1$
 as all values for which
-    \begin{displaymath}
-      \left(u_2^0\right)^2\le s^2 F(1,N-P;\alpha)
-    \end{displaymath}
+\begin{displaymath}
+  \left(u_2^0\right)^2\le s^2 F(1,N-P;\alpha)
+\end{displaymath}
 or, equivalently,
-    \begin{equation}\label{eqn:tbeta}
-      |u_2^0|\le s\cdot\tNP
-    \end{equation}
+\begin{equation}\label{eqn:tbeta}
+  |u_2^0|\le s\cdot\tNP
+\end{equation}
 Since $|u_2^0|$ is the distance from the point $\bR_1\hat{\bbeta}$ to
 the line corresponding to $\beta_1=\beta_1^0$ on the transformed
 parameter plane, the confidence interval will include all values
 $\beta_1^0$ for which the corresponding parameter line intersects the
 disk 
-    \begin{equation}\label{eqn:disk}
-      \left\{\bR_1\hat{\bbeta}+s\tNP\bd\mid\norm\bd\norm=1\right\}
-    \end{equation}
+\begin{equation}\label{eqn:disk}
+  \left\{\bR_1\hat{\bbeta}+s\tNP\bd\mid\norm\bd\norm=1\right\}
+\end{equation}
 Instead of determining the value of $|u_2^0|$ for each $\beta_1^0$, we
 take the disk (\ref{eqn:disk}) and determine the minimum and maximum
 values of $\beta_1$ for points on the disk.
 Writing $\br^1$ for the first row of $\bR_1^{-1}$, the values of
 $\beta_1$ corresponding to points on the expectation plane disk are
-    \begin{displaymath}
-      \br^1(\bR_1\hat{\bbeta}+s\cdot\tNP\bd)=\hat{\beta}_1+s\cdot\tNP\br^1\bd
-    \end{displaymath}
+\begin{displaymath}
+  \br^1(\bR_1\hat{\bbeta}+s\cdot\tNP\bd)=\hat{\beta}_1+s\cdot\tNP\br^1\bd
+\end{displaymath}
 and the minimum and maximum occur for the unit vectors in the
 direction of $\br^1$; that is,
 $\bd = \pm \left(\br^1\right)\trans/\norm \br^1 \norm$.
 This gives the confidence interval
-    \begin{displaymath}
-      \hat{\beta}_1\pm s\norm\br^1\norm\tNP
-    \end{displaymath}
+\begin{displaymath}
+  \hat{\beta}_1\pm s\norm\br^1\norm\tNP
+\end{displaymath}
 In general, a marginal confidence interval for parameter $\beta_p$
 \index{confidence!geometry of interval}
 \index{confidence!"interval!for!parameter}
 is
-    \begin{equation}\label{eqn:confint}
-      \hat{\beta}_p  \pm  s \norm \br^{{p}}\norm  \tNP
-    \end{equation}
+\begin{equation}\label{eqn:confint}
+  \hat{\beta}_p  \pm  s \norm \br^{{p}}\norm  \tNP
+\end{equation}
 where $\br^p$ is the $p$th row of $\bR_1^{-1}$.
 The quantity
-    \begin{equation}\label{eqn:stderr}
-      \mbox{\rm se} ( \hat{\beta}_p ) = s \norm \br^p\norm
-    \end{equation}
+\begin{equation}\label{eqn:stderr}
+  \mbox{\rm se} ( \hat{\beta}_p ) = s \norm \br^p\norm
+\end{equation}
 is called the \emph{standard error}
 \index{standard error}
 for the $p$th parameter.
 Since
-    \begin{eqnarray*}
-      ( \bX \trans \bX )^{-1}&=&( \bR_1 \trans \bR_1 )^{-1}\\
-      &=&\bR_1^{-1} \bR_1^{{-} \mbox{\rm T}}
-    \end{eqnarray*}
+\begin{eqnarray*}
+  ( \bX \trans \bX )^{-1}&=&( \bR_1 \trans \bR_1 )^{-1}\\
+  &=&\bR_1^{-1} \bR_1^{{-} \mbox{\rm T}}
+\end{eqnarray*}
 $\norm\br^p\norm^2=\left\{(\bX\trans\bX)^{-1}\right\}_{pp}$, so the
 standard error can be written as in equation (\ref{eqn:std.err}).
 
 A convenient summary of the variability of the parameter estimates can
 be obtained by factoring 
 $\bR_1^{-1}$ as
-    \begin{equation}\label{eqn:r1diag}
-      \bR_1^{-1}=\mbox{\rm diag}(\norm\br^1\norm,\norm\br^2\norm,\ldots,
-      \norm \br^P\norm )  \bL
-    \end{equation}
+\begin{equation}\label{eqn:r1diag}
+  \bR_1^{-1}=\mbox{\rm diag}(\norm\br^1\norm,\norm\br^2\norm,\ldots,
+  \norm \br^P\norm )  \bL
+\end{equation}
 where $\bL$ has unit length rows.
 The diagonal matrix provides the parameter standard errors, while the
 \emph{correlation matrix}
 \index{correlation!matrix}
-    \begin{equation}\label{eqn:corr}
-      \bC = \bL \bL \trans
-    \end{equation}
+\begin{equation}\label{eqn:corr}
+  \bC = \bL \bL \trans
+\end{equation}
 gives the correlations between the parameter estimates.
 
 \begin{example}\label{pcb:9}
@@ -1334,25 +1334,25 @@ obtain a standard error for the expected response at $\bx_0$ as $s
 \norm \bx_0 \trans \bR_1^{-1} \norm$, so the confidence interval is
 \index{confidence!interval for expected response}
 \index{expected response!confidence interval}
-    \begin{equation}\label{eqn:x0confi}
-      \bx_0 \trans \hat{\bbeta}\pm  s \norm \bx_0 \trans \bR_1^{-1}
-      \norm \tNP
-    \end{equation}
+\begin{equation}\label{eqn:x0confi}
+  \bx_0 \trans \hat{\bbeta}\pm  s \norm \bx_0 \trans \bR_1^{-1}
+  \norm \tNP
+\end{equation}
 Similarly, a confidence band for the response function is
 \index{confidence!band for response function}
-    \begin{equation}\label{eqn:x0confb}
-      \bx \trans \hat{\bbeta}\pm  s \norm \bx \trans \bR_1^{-1}
-      \norm\sqrt{P\FPNP}
-    \end{equation}
+\begin{equation}\label{eqn:x0confb}
+  \bx \trans \hat{\bbeta}\pm  s \norm \bx \trans \bR_1^{-1}
+  \norm\sqrt{P\FPNP}
+\end{equation}
 
 \begin{example}\label{pcb:confband}
-
-A plot of the fitted expectation function and the 95\% confidence
-bands for the PCB example was given in Figure \ref{fig:1.PCBregionband}$b$.
+  
+  A plot of the fitted expectation function and the 95\% confidence
+  bands for the PCB example was given in Figure \ref{fig:1.PCBregionband}$b$.
 \end{example}
 
 \citeasnoun{ansl:1985} gives derivations of other sampling theory results in
-%\glossary{ Ansley, C.F.}
+% \glossary{ Ansley, C.F.}
 linear regression using the \emph{QR} decomposition, which, as we have seen,
 is closely related to the geometric approach to regression.
 
@@ -1372,30 +1372,30 @@ plane with the likelihood spheres produces disks.
 Analytically, the likelihood function (\ref{eqn:1.5a}) depends on
 \index{likelihood!function}
 $\boeta$ through
-    \begin{eqnarray}\label{eqn:2}
-      \norm\boeta-\by\norm^2&=&\norm\bQ\trans(\boeta-\by)\norm^2\\
-       &=&\norm\bQ_1\trans(\boeta-\by)\norm^2+
-       \norm \bQ_2 \trans ( \boeta - \by ) \norm^2\nonumber\\
-       &=&\norm\bw(\bbeta)-\bw_1\norm^2+\norm\bw_2\norm^2\nonumber
-    \end{eqnarray}
+\begin{eqnarray}\label{eqn:2}
+  \norm\boeta-\by\norm^2&=&\norm\bQ\trans(\boeta-\by)\norm^2\\
+  &=&\norm\bQ_1\trans(\boeta-\by)\norm^2+
+  \norm \bQ_2 \trans ( \boeta - \by ) \norm^2\nonumber\\
+  &=&\norm\bw(\bbeta)-\bw_1\norm^2+\norm\bw_2\norm^2\nonumber
+\end{eqnarray}
 where $\bw(\bbeta)=\bQ_1\trans\boeta$ and $\bQ_2\trans\boeta={\bf 0}$.
 A constant value of the total sum of squares specifies a disk of
 \index{sum of squares!contour}
 \index{contour!sum of squares}
 the form
-    \begin{displaymath}
-      \norm\bw(\bbeta)-\bw_1\norm^2=c
-    \end{displaymath}
+\begin{displaymath}
+  \norm\bw(\bbeta)-\bw_1\norm^2=c
+\end{displaymath}
 on the expectation plane.
 Choosing
-    \begin{displaymath}
-      c = P s^2 \FPNP
-    \end{displaymath}
+\begin{displaymath}
+  c = P s^2 \FPNP
+\end{displaymath}
 produces the disk corresponding to a $1-\alpha$ confidence region.
 In terms of the total sum of squares, the contour is
-    \begin{equation}\label{eqn:likcont2}
-      S(\bbeta)=S(\hat{\bbeta})\left\{1+\frac{P}{N-P}\FPNP\right\}
-    \end{equation}
+\begin{equation}\label{eqn:likcont2}
+  S(\bbeta)=S(\hat{\bbeta})\left\{1+\frac{P}{N-P}\FPNP\right\}
+\end{equation}
 
 As shown previously, and illustrated in Figure \ref{fig:PCBconfdisk},
 this disk transforms to an ellipsoid in the parameter space.
@@ -1493,9 +1493,9 @@ The assumptions, as listed in Section 1.1.1, are:
   the disturbances.
   \index{ "random variable"}
   Thus,
-  $$
+  \begin{displaymath}
   p_{\bY}(\by|\bbeta,\sigma^2)=p_{\bZ}(\by-\bX\bbeta|\sigma^2)
-  $$
+  \end{displaymath}
   In practice, this assumption is closely tied to the
   assumption of constant variance of the disturbances.
   \index{ variance constant}
@@ -1693,9 +1693,9 @@ The term $h_{nn}$ is the $n$th diagonal term of the ``hat'' matrix
 \index{matrix!hat}
 $\bH=\bX(\bX\trans\bX)^{-1}\bX\trans=\bQ_1\bQ_1\trans$,
 and $\hat{z}_n$ is the residual for the $n\/$th case,
-$$
-\hat{z}_n=y_n-\hat{y}_n
-$$
+\begin{displaymath}
+  \hat{z}_n=y_n-\hat{y}_n
+\end{displaymath}
 A relationship between the residuals and any variable then suggests
 that there is an effect due to that variable which has not been
 accounted for.
@@ -1747,13 +1747,13 @@ Normal probability plots are also good for revealing outliers.
 
 Plots of residuals are given in Figure \ref{fig:PCBresplots} for the
 fit of $\ln(\mbox{\rm PCB})$ to $\cubage$.
-  \begin{figure}
-    \centerline{\includegraphics{1PCBresplots}}%,height=2.25in}}
-    \caption[Residual plots for PCB data]{
+\begin{figure}
+  \centerline{\includegraphics{1PCBresplots}}%,height=2.25in}}
+  \caption[Residual plots for PCB data]{
     Studentized residuals for the PCB data plotted versus fitted
     values in part $a$ and versus normal quantiles in part $b$.}
-    \label{fig:PCBresplots}
-  \end{figure}
+  \label{fig:PCBresplots}
+\end{figure}
 Since the fitted values are a linear function of the regressor
 variable $\cubage$, the form of the plot of the studentized residuals
 versus $\hat{y}$ will be the same as that versus $\cubage$, so we only
@@ -1784,13 +1784,13 @@ One procedure is to try a range of power transformations in the form
 \cite{box:cox:1964}
 %\glossary{ Box, G.E.P.}
 %\glossary{ Cox, D.R.}
-$$
-y^{(\lambda)}=\left\{
-\begin{array}{c c}
-  \frac{y^\lambda-1}{\lambda}&\lambda\neq0\\
-  \ln y&\lambda=0
-\end{array}\right.
-$$
+\begin{displaymath}
+  y^{(\lambda)}=\left\{
+    \begin{array}{c c}
+      \frac{y^\lambda-1}{\lambda}&\lambda\neq0\\
+      \ln y&\lambda=0
+    \end{array}\right.
+\end{displaymath}
 We calculate and plot variances versus averages for
 $y^{(\lambda)},\lambda=0,\pm0.5,\pm1,\ldots$ and select that value of
 $\lambda$ for which the variance appears to be most stable.
@@ -1818,13 +1818,13 @@ choosing a form of weighting for weighted least squares.
 
 A plot of the standard deviations versus the averages for the original
 PCB data is given in Figure \ref{fig:PCBstddev}$a$.
-  \begin{figure}
-    \centerline{\includegraphics{1PCBstddev}}%,height=2.25in}}
-    \caption[Standard deviations versus replication averages]{
+\begin{figure}
+  \centerline{\includegraphics{1PCBstddev}}%,height=2.25in}}
+  \caption[Standard deviations versus replication averages]{
     Replication standard deviations plotted versus replication
     averages for the PCB data in part $a$ and for the $\ln(\mbox{\rm PCB})$
     data in part $b$.}\label{fig:PCBstddev}
-  \end{figure}
+\end{figure}
 It can be seen that there is a good straight line relationship between
 $s$ and $\bar y$, and so the variance-stabilizing technique leads to
 the logarithmic transformation.
@@ -1867,9 +1867,9 @@ replication mean square with the appropriate value in the F table.
 That is, we compare
 \index{lack of fit!mean square}
 \index{replication!mean square}
-$$
+\begin{displaymath}
 \frac{S_l /\nu_l}{S_r/\nu_r}\mbox{{\rm\ with\ }} F(\nu_l,\nu_r;\alpha)
-$$
+\end{displaymath}
 to determine whether there is significant lack of fit at level
 $\alpha$.
 The geometric justification for this analysis is that the replication

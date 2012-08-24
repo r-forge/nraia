@@ -8,7 +8,7 @@ SSRichards(input, Asym, xmid, scal, lpow)
  \item{input}{a numeric vector of values at which to evaluate the model.}
  \item{Asym}{a numeric parameter representing the asymptote.}
  \item{xmid}{a numeric parameter representing the \code{x} value at the
-   inflection point of the curve.  The value of \code{SSlogis} will be
+   inflection point of the curve.  The value of \code{SSRichards} will be
    \code{Asym/2} at \code{xmid}.}
  \item{scal}{a numeric scale parameter on the \code{input} axis.}
  \item{lpow}{the natural logarithm of the inverse of the power to which
@@ -27,7 +27,6 @@ SSRichards(input, Asym, xmid, scal, lpow)
   \code{lpow} are names of objects, the gradient matrix with respect to
   these names is attached as an attribute named \code{gradient}.
 }
-%\author{Jose Pinheiro and Douglas Bates}
 \seealso{\code{\link{nls}}, \code{\link{selfStart}}
 }
 \examples{

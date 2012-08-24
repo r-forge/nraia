@@ -23,22 +23,10 @@
     Applications}, Wiley (Appendix A1.5).
 }
 \examples{
-plot(conc ~ time, data = Sulfi, las = 1,
+fm1 <- nls(conc ~ SSbiexp(time, A1, lrc1, A2, lrc2), Sulfi)
+coef(summary(fm1))
+plotfit(fm1,
      xlab = "Time since drug administration (min)",
-     ylab = expression(plain("Sulfisoxazole concentration (")
-               *mu*plain("g/ml)")),
-     main = "Sulfisoxazole data and fitted curve")
-fm1 <- nls(conc ~ SSbiexp(time, A1, lrc1, A2, lrc2),
-    data = Sulfi)
-summary(fm1)
-usr <- par("usr")
-xx <- seq(usr[1], usr[2], len = 50)
-lines(xx, predict(fm1, list(time = xx)))
-plot(conc ~ time, data = Sulfi, las = 1, log = "y",
-     xlab = "Time since drug administration (min)",
-     ylab = expression(plain("Sulfisoxazole concentration (")
-               *mu*plain("g/ml)")),
-     main = "Sulfisoxazole data (log scale)")
-lines(xx, predict(fm1, list(time = xx)))
+     ylab = expression("Sulfisoxazole concentration ("*mu*"g/ml)"))
 }
 \keyword{datasets}

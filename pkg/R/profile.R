@@ -205,7 +205,7 @@ splom.profile.nls <-
                 panel.axis(side = side,
                            at = at,
                            labels = format(at, trim = TRUE),
-                           tick = TRUE,
+                           ticks = TRUE,
                            check.overlap = TRUE,
                            half = side == "top" && j > 1,
 
@@ -228,7 +228,7 @@ splom.profile.nls <-
             which.half <- ifelse(j == 1, "lower", "upper")
             at <- pretty(lims)
             panel.axis(side = side, at = at, labels = format(at, trim = TRUE),
-                       tick = TRUE, half = TRUE, which.half = which.half,
+                       ticks = TRUE, half = TRUE, which.half = which.half,
                        tck = 1, rot = 0,
 
                        text.col = axis.text.col,

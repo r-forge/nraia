@@ -4,7 +4,7 @@ import(lattice)
 import(grid)
 
 #exportPattern("^[^\\.]")
-export(plotfit, SSRichards)
+export(plotfit, SSRichards, SSChwirut)
 
 S3method(plotfit, nls)
 S3method(plotfit, list)

@@ -18,3 +18,20 @@ SSRichards <-
               c("Asym", "xmid", "scal", "lpow"),
               function(input, Asym, xmid, scal, lpow) {})
 
+SSChwirut <-
+    selfStart(~ exp(-exp(lrc)*input)/(b0 + b1*input),
+              function(mCall, data, LHS)
+          {
+              xy   <- data.frame(sortedXyData(mCall[["input"]], LHS, data))
+              if (nrow(xy) < 4) {
+                  stop("too few distinct input values to fit the Chwirut model")
+              }
+              rc1  <- -coef(lm(log(y) ~ x, xy))[2]
+              pars <- coef(nls(y ~ exp(-exp(lrc)*x)/(1+p3*x), xy,
+                               c(lrc=log(unname(rc1)), p3=1/mean(xy$x)), alg="plinear"))
+              value <- c(pars[1], c(1, pars[2])/pars[3])
+              names(value) <- mCall[c("lrc", "b0", "b1")]
+              value
+          },
+              c("lrc", "b0", "b1"),
+              c("input", "lrc", "b0", "b1"))

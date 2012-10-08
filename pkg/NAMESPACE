@@ -3,11 +3,11 @@ import(splines)
 import(lattice)
 import(grid)
 
-#exportPattern("^[^\\.]")
 export(plotfit, SSRichards, SSChwirut)
 
 S3method(plotfit, nls)
 S3method(plotfit, list)
+S3method(plot, nls)
 S3method(plot, profile.nls)
 S3method(splom, profile.nls)
 S3method(as.data.frame, profile.nls)

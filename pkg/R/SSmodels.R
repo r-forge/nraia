@@ -1,7 +1,27 @@
 ## self-starting model function for the Richards growth model
 SSRichards <-
-    selfStart(~ Asym * (1+exp((xmid - input)/scal))^(-exp(-lpow)),
-              function(mCall, data, LHS)
+    selfStart(function (input, Asym, xmid, scal, lpow) 
+          {
+              .expr1 <- xmid - input
+              .expr3 <- exp(.expr1/scal)
+              .expr4 <- 1 + .expr3
+              .expr6 <- exp(-lpow)
+              .expr7 <- -.expr6
+              .expr8 <- .expr4^.expr7
+              .value <- Asym * .expr8
+              .actualArgs <- as.list(match.call()[c("Asym", "xmid", "scal", "lpow")])
+              if (all(unlist(lapply(.actualArgs, is.name)))) {
+                  .expr11 <- .expr4^(.expr7 - 1)
+                  .grad <- array(0, c(length(.value), 4L),
+                                 list(NULL, c("Asym", "xmid", "scal", "lpow")))
+                  .grad[, "Asym"] <- .expr8
+                  .grad[, "xmid"] <- Asym * (.expr11 * (.expr7 * (.expr3 * (1/scal))))
+                  .grad[, "scal"] <- -(Asym * (.expr11 * (.expr7 * (.expr3 * (.expr1/scal^2)))))
+                  .grad[, "lpow"] <- Asym * (.expr8 * (log(.expr4) * .expr6))
+                  attr(.value, "gradient") <- .grad
+              }
+              .value
+          }, function(mCall, data, LHS)
           {
               linit <- unname(attr(SSlogis, "initial")(mCall, data, LHS))
               xy <- data.frame(sortedXyData(mCall[["input"]], LHS, data))
@@ -14,9 +34,7 @@ SSRichards <-
               value <- pars[c(4,1:3)]
               names(value) <- mCall[c("Asym", "xmid", "scal", "lpow")]
               value
-          },
-              c("Asym", "xmid", "scal", "lpow"),
-              function(input, Asym, xmid, scal, lpow) {})
+          }, c("Asym", "xmid", "scal", "lpow"))
 
 SSChwirut <-
     selfStart(~ exp(-exp(lrc)*input)/(b0 + b1*input),

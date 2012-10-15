@@ -1,4 +1,4 @@
-plotfit <- function(fm, ...) UseMethod("plotfit")
+plotfit <- function(fm, newpars=NULL, ...) UseMethod("plotfit")
 
 ## Determine the names of the x and y variables in a fitted model
 vnm <- function(fm)
@@ -15,19 +15,26 @@ vnm <- function(fm)
 }
 
 ## Create the predictor function from a fitted model
-pfun <- function(fm)
+pfun <- function(fm, newpars=NULL)
 {
-    vnmx <- as.character(vnm(fm)$x)
+    fm1 <- fm
+    if (!is.null(newpars)) {
+        stopifnot(is.numeric(newpars),
+                  all(names(newpars) == names(pp <- fm$m$getPars())))
+        if (fm1$m$setPars(newpars))
+            warning("singular gradient matrix at newpars")
+    }
+    vnmx <- as.character(vnm(fm1)$x)
     function(x) {
         ll <- list(x)
         names(ll) <- vnmx
-        predict(fm, ll)
+        predict(fm1, ll)
     }
 }
     
-plotfit.nls <- function(fm, ...)
+plotfit.nls <- function(fm, newpars=NULL, ...)
 {
-    predfun <- pfun(fm)
+    predfun <- pfun(fm, newpars)
     xyplot(eval(substitute(y ~ x, vnm(fm))), fm$m$getEnv(),
            panel = function(x, y, ...) {
                panel.grid(h = -1, v = -1)
@@ -36,7 +43,7 @@ plotfit.nls <- function(fm, ...)
            }, ...)
 }
 
-plotfit.list <- function(fm, ...)
+plotfit.list <- function(fm, newpars=NULL, ...)
 {
     if (!all(unlist(lapply(fm, inherits, "nls"))))
         stop("plotfit of a list must be a list of nls models")

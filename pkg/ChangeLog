@@ -1,3 +1,32 @@
+2012-10-20 22:58  Douglas Bates <bates@stat.wisc.edu>
+
+	* R/profile.R: Add tauCoords optional argument to
+	  as.data.frame.profile.nls
+
+2012-10-15 17:00  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, R/plotfit.R, data/BOD2.rda,
+	  data/Chloride.rda, data/Coal.rda, data/Ethyl.rda,
+	  data/Isom.rda, data/Leaves.rda, data/Lipo.rda,
+	  data/Lubricant.rda, data/Nitren.rda, data/Nitrite.rda,
+	  data/O.xylene.rda, data/Oilshale.rda, data/PCB.rda,
+	  data/Pinene.rda, data/Pinene2.rda, data/Rumford.rda,
+	  data/Sacch2.rda, data/Saccharin.rda, data/Sulfi.rda,
+	  data/Tetra.rda, data/sPMMA.rda: Remove attribute giving
+	  appendix numbers from first edition on data sets. Compress with
+	  xz. New version number and date. Add capability in plotfit to
+	  specify newpars.
+
+2012-10-08 18:28  Douglas Bates <bates@stat.wisc.edu>
+
+	* DESCRIPTION, NAMESPACE, R/SSmodels.R: Change SSRichards to
+	  check on parameters.
+
+2012-10-08 18:28  Douglas Bates <bates@stat.wisc.edu>
+
+	* R/plot.R: Change SSRichards to check on parameters. Add a plot
+	  method for nls objects.
+
 2012-08-24  Douglas Bates <bates@stat.wisc.edu>
 
 	* man/Sulfi.Rd: Use plotfit for plot.

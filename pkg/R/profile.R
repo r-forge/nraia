@@ -1,23 +1,59 @@
 ## functions and methods for profile.nls objects
 
 as.data.frame.profile.nls <-
-    function(x, row.names = NULL, optional = FALSE, ...)
+    function(x, row.names = NULL, optional = FALSE, ..., tauCoords=FALSE)
 {
-    fr <- do.call("rbind", lapply(x, "[[", "par.vals"))
-    tau <- lapply(x, "[[", "tau")
-    pnames <- factor(rep(names(x), sapply(tau, length)), levels = names(x))
-    pars <- fr[cbind(seq_len(nrow(fr)),
-                     match(as.character(pnames), colnames(fr)))]
-    fr <- as.data.frame(fr)
-    fr$.tau <- unlist(tau)
-    fr$.par <- pars
-    fr$.pnm <- pnames
+    fr   <- do.call("rbind", lapply(x, "[[", "par.vals"))
+    tau  <- lapply(x, "[[", "tau")
+    xnms <- names(x)
+    pnms <- factor(rep.int(xnms, sapply(tau, length)))
+    fr   <- as.data.frame(fr)
+    tnm  <- ifelse("tau" %in% names(fr), ".tau", "tau")
+    fr[[tnm]] <- unlist(tau)
+    fr$.pnm <- pnms
+    ss   <- split(fr, fr$.pnm)
+    fwd  <- list()
+    for (nm in xnms) {
+        form <- eval(substitute(a ~ b,
+                                list(a=as.name(tnm), b=as.name(nm))))
+        fwd[[nm]] <- interpSpline(form, ss[[nm]])
+    }
+    attr(fr,"forward") <- fwd
+    attr(fr,"backward") <- lapply(fwd, backSpline)
+    class(fr) <- c("profile.frame", "data.frame")
+    if (!tauCoords) return(fr)
+    fr[[tnm]] <- NULL
+    for (nm in xnms)
+        fr[[nm]] <- zapsmall(predy(fwd[[nm]], fr[[nm]]),digits=12)
+    class(fr) <- c("tau.frame", class(fr))
     fr
+}
+
+taugrid <- function(pr, fun, level=0.99, npts=200) {
+    stopifnot(inherits(pr, "profile.nls"),
+              0 < (level <- as.numeric(level[1])),
+              level < 1,
+              5 < (npts <- as.integer(npts[1])))
+    orig <- attr(pr, "original.fit")
+    bd   <- sqrt(2*qf(level, length(coef(orig)), df.residual(orig)))
+    pnms <- names(coef(orig))
+    names(pnms) <- pnms
+    args <- c(lapply(pnms,function(nm) seq(-bd, bd, length.out=npts)),
+              KEEP.OUT.ATTRS=FALSE)
+    gr   <- do.call(expand.grid, args)
+    pmat <- matrix(0., nrow=nrow(gr), ncol=length(pnms))
+    colnames(pmat) <- unname(pnms)
+    fr   <- as.data.frame(pr, tauCoords=TRUE)
+    bac  <- attr(fr, "backward")
+    for (nm in pnms) pmat[,nm] <- predy(bac[[nm]], gr[[nm]])
+    gr$pmat <- pmat
+    gr$RSS  <- apply(pmat, 1, fun)
+    attr(gr, "tau.frame") <- fr
+    gr
 }
 
 ## extract only the y component from a prediction
 predy <- function(sp, vv) predict(sp, vv)$y
-
 ## A lattice-based plot method for profile.nls objects
 plot.profile.nls <-
     function (x, levels = sqrt(qf(pmax.int(0, pmin.int(1, conf)), 1, df[2])),

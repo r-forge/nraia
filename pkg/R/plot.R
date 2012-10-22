@@ -13,27 +13,79 @@ plot.nls <- function(x, ...) {
 }
 
 ## check if the results of confint.nls have a class.  If so check the class or use a null S3 default and a method.
-cigrid <- function(ci, fun, npts=200) {
-  vals <- as.data.frame(
-    apply(ci, 1, function(v) seq(v[1],v[2],length.out=npts)))
-  ans <- array(apply(do.call(expand.grid,vals),1,fun),
-               c(npts,npts))
-  attr(ans, "vals") <- vals
-  class(ans) <- "cigrid"
-  ans
+cigrid <- function(x, fun, npts=200, ...) UseMethod("cigrid")
+
+cigrid.matrix <- function(x, fun, npts=200, ...) {
+    ## Create a data frame of the parameter values on the grid
+    vals <- as.data.frame(
+        apply(x, 1, function(v) seq(v[1], v[2], length.out=npts)))
+
+    ## Evaluate fun on the grid points and convert to an array
+    ans <- array(apply(do.call(expand.grid,vals),1,fun),
+                 rep.int(npts,length(vals)))
+    attr(ans, "vals") <- vals
+    class(ans) <- "cigrid"
+    ans
 }
 
-contourplot.cigrid <- function(x, data, ...) {
-  dots <- list(...)
-  dnms <- names(dots)
-  vals <- attr(x, "vals")
-  vnms <- names(vals)
-  if (!("xlab" %in% dnms)) dots$xlab <- vnms[1]
-  if (!("ylab" %in% dnms)) dots$ylab <- vnms[2]
-  dots$x <- unclass(x)
-  dots$row.values <- vals[[1]]
-  dots$column.values <- vals[[2]]
-  dots$xlim <- range(vals[[1]])
-  dots$ylim <- range(vals[[2]])
-  do.call(contourplot, dots)
+cigrid.profile.nls <- function(x, fun, npts=200, maxconf=0.99, ...) {
+    nu   <- df.residual(attr(x, "original.fit"))
+    P    <- length(x)
+    cis  <- confint(x, level=pf(P*qf(maxconf, P, nu), 1, nu))
+    if (any(is.na(cis))) stop("write code to fix NA's in confints")
+    ans  <- cigrid(cis, fun, npts, ...)
+    class(ans) <- c("cigrid.profile", class(ans))
+    attr(ans, "profile") <- as.data.frame(x)
+    attr(ans, "fdf")     <- c(P, nu)
+    attr(ans, "deviance")<- deviance(attr(x, "original.fit"))
+    attr(ans, "coef")    <- coef(attr(x, "original.fit"))
+    ans
+}
+
+contourplot.cigrid.profile <- function(x, data, levs=c(0.5,0.8,0.9,0.95,0.99), ...) {
+    cc   <- attr(x, "coef")
+    dev  <- attr(x, "deviance")
+    fdf  <- attr(x, "fdf")
+    frm  <- attr(x, "profile")
+    frms <- split(frm, frm$.pnm)
+    vals <- attr(x, "vals")
+    forw <- attr(frm, "forward")
+    bakw <- attr(frm, "backward")
+    pnms <- names(vals)
+    P    <- length(vals)
+    Pm1  <- P - 1L
+    ww   <- 1./Pm1                    # widths of viewports in plotViewport
+    cens <- (1:Pm1)*ww - 1./(2*Pm1)   # centers of subviewports
+    grid.newpage()
+    pushViewport(plotViewport(c(5,4,2,2), name="canvas"))
+    for (j in 1:Pm1) {
+        for (i in (j+1):P) {
+            nms <- pnms[c(j,i)]
+            pushViewport(viewport(cens[j], cens[P + 1 - i], ww, ww))
+            pushViewport(dataViewport(vals[[j]], vals[[i]], extension=0, name="plotRegion"))
+            if (j==1L) {
+                grid.yaxis()
+                grid.text(pnms[i], x=unit(-3,"lines"), rot=90)
+            }
+            if (i==P) {
+                grid.xaxis()
+                grid.text(pnms[j], y=unit(-3,"lines"))
+            }
+            if (i==(j+1)) {
+                grid.xaxis(label=FALSE,main=FALSE)
+                grid.yaxis(label=FALSE,main=FALSE)
+            }
+            grid.rect()
+            lapply(contourLines(vals[[j]], vals[[i]], apply(x, c(j,i), min),
+                                levels = dev*(1+fdf[1]*qf(levs,fdf[1],fdf[2])/fdf[2])),
+                   function(cl) grid.lines(cl$x, cl$y, default.units="native"))
+            grid.points(cc[j], cc[i], pch="+", gp=gpar(cex=1.2, col='black'))
+            pushViewport(dataViewport(vals[[j]], vals[[i]], extension=0, name="plotRegion", clip="on"))
+            frmi <- frms[[pnms[i]]]
+            frmj <- frms[[pnms[j]]]
+            grid.lines(frmi[[j]], frmi[[i]], gp=gpar(lty=5), default.units="native")
+            grid.lines(frmj[[j]], frmj[[i]], gp=gpar(lty=6), default.units="native")
+            popViewport(3)
+        }
+    }
 }

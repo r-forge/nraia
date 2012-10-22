@@ -3,7 +3,7 @@ import(splines)
 import(lattice)
 import(grid)
 
-export(plotfit, SSRichards, SSChwirut)
+export(plotfit, SSRichards, SSChwirut, cigrid)
 
 S3method(plotfit, nls)
 S3method(plotfit, list)
@@ -11,5 +11,6 @@ S3method(plot, nls)
 S3method(plot, profile.nls)
 S3method(splom, profile.nls)
 S3method(as.data.frame, profile.nls)
+S3method(contourplot, cigrid)
 
 
